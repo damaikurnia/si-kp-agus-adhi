@@ -10,9 +10,13 @@
  */
 package View;
 
+import Controller.ControlData;
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -80,6 +84,14 @@ public class HomeUtama extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         time = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        usernameTF2 = new javax.swing.JTextField();
+        masuk_button2 = new javax.swing.JButton();
+        password_TF = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -117,26 +129,106 @@ public class HomeUtama extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 180));
 
-        jPanel3.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         time.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         time.setText("time");
+
+        jPanel6.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18));
+        jLabel13.setText("Login");
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14));
+        jLabel14.setText("NIP");
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14));
+        jLabel16.setText("Password");
+
+        masuk_button2.setFont(new java.awt.Font("Tahoma", 1, 14));
+        masuk_button2.setText("Masuk");
+        masuk_button2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                masuk_button2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel15)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(85, 85, 85)
+                                .addComponent(masuk_button2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel16)
+                                    .addComponent(jLabel14))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(password_TF, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                                    .addComponent(usernameTF2)))))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(130, 130, 130)
+                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(81, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(94, 94, 94)
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel14)
+                            .addComponent(usernameTF2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel16)
+                            .addComponent(password_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(37, 37, 37)))
+                .addComponent(masuk_button2)
+                .addGap(35, 35, 35))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(201, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(830, Short.MAX_VALUE)
+                .addContainerGap(828, Short.MAX_VALUE)
                 .addComponent(time)
                 .addContainerGap())
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(252, 252, 252)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(291, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(time)
-                .addContainerGap(332, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 870, 360));
@@ -146,6 +238,34 @@ public class HomeUtama extends javax.swing.JFrame {
         java.awt.Dimension dialogSize = getSize();
         setLocation((screenSize.width-dialogSize.width)/2,(screenSize.height-dialogSize.height)/2);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void masuk_button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masuk_button2ActionPerformed
+        if (usernameTF.equals("")&&password_TF.equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "inputan tidak lengkap");
+        } else {
+            String id = usernameTF.getText();
+            String passwd = password_TF.getText();
+                try {
+                    boolean cek = ControlData.getKoneksi().Login(id, passwd);
+                    if (cek == true) {
+                        FrameOperator FP = new FrameOperator();
+                        FP.setVisible(true);
+                        emptyField();
+                        String nama = ControlData.getKoneksi().cariPegawai(id);
+                        //FP.Nama_label.setText(nama);
+
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "username dan password salah\n silahkan username dan "
+                                + "password lagi");
+                        emptyField();
+                        usernameTF.requestFocus();
+
+                    }
+                } catch (Exception ex) {
+                    Logger.getLogger(HomeUtama.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }
+    }//GEN-LAST:event_masuk_button2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,10 +279,43 @@ public class HomeUtama extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton PetugasRB;
+    private javax.swing.JRadioButton PetugasRB1;
+    private javax.swing.JRadioButton dokter_RB;
+    private javax.swing.JRadioButton dokter_RB1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JButton masuk_button;
+    private javax.swing.JButton masuk_button1;
+    private javax.swing.JButton masuk_button2;
+    private javax.swing.JPasswordField password_TF;
     private javax.swing.JLabel time;
+    public static javax.swing.JTextField usernameTF;
+    public static javax.swing.JTextField usernameTF1;
+    public static javax.swing.JTextField usernameTF2;
     // End of variables declaration//GEN-END:variables
+
+    private void emptyField() {
+        usernameTF.setText("");
+        password_TF.setText("");
+    }
 }
