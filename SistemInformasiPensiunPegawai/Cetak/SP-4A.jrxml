@@ -1003,6 +1003,32 @@
 						key="line-24"/>
 					<graphicElement stretchType="NoStretch"/>
 				</line>
+				<staticText>
+					<reportElement
+						x="207"
+						y="287"
+						width="333"
+						height="15"
+						key="staticText-59"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[Pejabat Negara Eksekutif / Pejabat negara Non Eksekutif]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="208"
+						y="304"
+						width="333"
+						height="15"
+						key="staticText-60"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[Perintis Kemerdekaan Republik Indonesia]]></text>
+				</staticText>
 			</band>
 		</detail>
 		<columnFooter>
