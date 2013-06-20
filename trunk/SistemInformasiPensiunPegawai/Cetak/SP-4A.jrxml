@@ -349,7 +349,7 @@
 					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[Instansi tempat bekerja terakhir]]></text>
+				<text><![CDATA[a. Dukuh/RT/RW]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -375,7 +375,7 @@
 					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[Terhitung Mulai Tanggal]]></text>
+				<text><![CDATA[Alamat Setelah pensiun :]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -388,7 +388,46 @@
 					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[Pernah atau akan menerima ]]></text>
+				<text><![CDATA[b. Desa / Kelurahan]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="42"
+						y="437"
+						width="160"
+						height="15"
+						key="staticText-25"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[d. Kabupaten]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="41"
+						y="418"
+						width="161"
+						height="15"
+						key="staticText-26"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[c. Kecamatan]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="42"
+						y="458"
+						width="160"
+						height="15"
+						key="staticText-27"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[Uang Pensiun agar dibayarkan di]]></text>
 				</staticText>
 			</band>
 		</detail>
