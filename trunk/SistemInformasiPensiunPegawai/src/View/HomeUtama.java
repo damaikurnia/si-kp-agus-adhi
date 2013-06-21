@@ -43,7 +43,7 @@ public class HomeUtama extends javax.swing.JFrame {
     }
 
     public static String getStringTime() {
-        return getDate() + "-" + getMonth() + "-" + getYear() + " " + getCurrHour() + ":" + getCurrMinute() + ":" + getCurrSecond();
+        return getDate() + "-" + (getMonth()+1) + "-" + getYear() + " " + getCurrHour() + ":" + getCurrMinute() + ":" + getCurrSecond();
     }
 
     public static int getCurrHour() {
@@ -51,7 +51,7 @@ public class HomeUtama extends javax.swing.JFrame {
     }
 
     public static int getDate() {
-        return Calendar.getInstance().get(Calendar.DATE) + Calendar.getInstance().get(Calendar.MONTH);
+        return Calendar.getInstance().get(Calendar.DATE);
     }
 
     public static int getMonth() {
@@ -89,7 +89,7 @@ public class HomeUtama extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        usernameTF2 = new javax.swing.JTextField();
+        usernameTF = new javax.swing.JTextField();
         masuk_button2 = new javax.swing.JButton();
         password_TF = new javax.swing.JPasswordField();
 
@@ -132,7 +132,7 @@ public class HomeUtama extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        time.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        time.setFont(new java.awt.Font("Tahoma", 1, 14));
         time.setText("time");
 
         jPanel6.setBackground(new java.awt.Color(204, 204, 204));
@@ -175,7 +175,7 @@ public class HomeUtama extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(password_TF, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                                    .addComponent(usernameTF2)))))
+                                    .addComponent(usernameTF)))))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(130, 130, 130)
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -191,10 +191,9 @@ public class HomeUtama extends javax.swing.JFrame {
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel14)
-                            .addComponent(usernameTF2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(usernameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16)
@@ -219,7 +218,7 @@ public class HomeUtama extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(252, 252, 252)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(291, Short.MAX_VALUE))
+                .addContainerGap(289, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,9 +239,22 @@ public class HomeUtama extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void masuk_button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masuk_button2ActionPerformed
-        if (usernameTF.equals("")&&password_TF.equals("")) {
-            JOptionPane.showMessageDialog(rootPane, "inputan tidak lengkap");
-        } else {
+        String a=usernameTF.getText();
+        String b=password_TF.getText();
+        if (a.equalsIgnoreCase("")&&b.equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(rootPane, "inputan tidak lengkap \n ID dan password kosong"
+                    + "","peringatan",JOptionPane.ERROR_MESSAGE);
+        }else if (!a.equalsIgnoreCase("")&&b.equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(rootPane, "inputan tidak lengkap \n  password kosong"
+                    + "","peringatan",JOptionPane.ERROR_MESSAGE);
+        } else if (a.equalsIgnoreCase("")&&!b.equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(rootPane, "inputan tidak lengkap \n ID kosong"
+                    + "","peringatan",JOptionPane.ERROR_MESSAGE);
+        }if (!a.matches("[0-9]*")) {
+            JOptionPane.showMessageDialog(rootPane, "ID tidak valid"
+                    + "","peringatan",JOptionPane.ERROR_MESSAGE);
+        }
+        else {
             String id = usernameTF.getText();
             String passwd = password_TF.getText();
                 try {
@@ -279,39 +291,19 @@ public class HomeUtama extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton PetugasRB;
-    private javax.swing.JRadioButton PetugasRB1;
-    private javax.swing.JRadioButton dokter_RB;
-    private javax.swing.JRadioButton dokter_RB1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JButton masuk_button;
-    private javax.swing.JButton masuk_button1;
     private javax.swing.JButton masuk_button2;
     private javax.swing.JPasswordField password_TF;
     private javax.swing.JLabel time;
     public static javax.swing.JTextField usernameTF;
-    public static javax.swing.JTextField usernameTF1;
-    public static javax.swing.JTextField usernameTF2;
     // End of variables declaration//GEN-END:variables
 
     private void emptyField() {
