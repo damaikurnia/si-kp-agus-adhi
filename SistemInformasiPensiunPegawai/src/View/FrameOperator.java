@@ -13,6 +13,7 @@ package View;
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,7 +26,6 @@ public class FrameOperator extends javax.swing.JFrame {
         initComponents();
         showDigitalClock();
         disabledButton();
-        jPanel5.setVisible(false);
     }
 
     public final void showDigitalClock() {
@@ -41,7 +41,7 @@ public class FrameOperator extends javax.swing.JFrame {
     }
 
     public static String getStringTime() {
-        return getDate() + "-" + getMonth() + "-" + getYear() + " " + getCurrHour() + ":" + getCurrMinute() + ":" + getCurrSecond();
+        return getDate() + "-" + (getMonth()+1) + "-" + getYear() + " " + getCurrHour() + ":" + getCurrMinute() + ":" + getCurrSecond();
     }
 
     public static int getCurrHour() {
@@ -97,10 +97,10 @@ public class FrameOperator extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        pegawai_button = new javax.swing.JButton();
+        Pensiun_Button = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        keluar_button = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         buttonTmbhPeg = new javax.swing.JButton();
         buttonEditPeg = new javax.swing.JButton();
@@ -145,26 +145,26 @@ public class FrameOperator extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        time.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        time.setFont(new java.awt.Font("Tahoma", 1, 14));
         time.setText("time");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel2.setText("Selamat Datang,");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel3.setText("nama");
 
-        jButton1.setText("PEGAWAI");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        pegawai_button.setText("PEGAWAI");
+        pegawai_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                pegawai_buttonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("PENSIUN");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Pensiun_Button.setText("PENSIUN");
+        Pensiun_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                Pensiun_ButtonActionPerformed(evt);
             }
         });
 
@@ -175,10 +175,10 @@ public class FrameOperator extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Keluar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        keluar_button.setText("Keluar");
+        keluar_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                keluar_buttonActionPerformed(evt);
             }
         });
 
@@ -189,23 +189,23 @@ public class FrameOperator extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(149, 149, 149)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(keluar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pegawai_button, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Pensiun_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(81, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pegawai_button, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Pensiun_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(keluar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(74, Short.MAX_VALUE))
         );
 
@@ -283,24 +283,30 @@ public class FrameOperator extends javax.swing.JFrame {
         setLocation((screenSize.width-dialogSize.width)/2,(screenSize.height-dialogSize.height)/2);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void pegawai_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pegawai_buttonActionPerformed
         enabledButton();
-        jPanel5.setVisible(true);
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_pegawai_buttonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-disabledButton();
+    private void Pensiun_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Pensiun_ButtonActionPerformed
+        disabledButton();
+        buttonTmbhPeg.setText("Proses Pensiun");
+        buttonTmbhPeg.setVisible(true);
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_Pensiun_ButtonActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void keluar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keluar_buttonActionPerformed
+        int status = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin keluar", "Konfirmasi keluar",
+                JOptionPane.OK_CANCEL_OPTION);
+        if (status == 0) {
+            System.exit(0);
+        }
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_keluar_buttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -314,13 +320,11 @@ disabledButton();
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Pensiun_Button;
     private javax.swing.JButton buttonEditPeg;
     private javax.swing.JButton buttonHpsPeg;
     private javax.swing.JButton buttonTmbhPeg;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -329,6 +333,8 @@ disabledButton();
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JButton keluar_button;
+    private javax.swing.JButton pegawai_button;
     private javax.swing.JLabel time;
     // End of variables declaration//GEN-END:variables
 }
