@@ -27,47 +27,8 @@ public class HomeUtama extends javax.swing.JFrame {
     /** Creates new form HomeUtama */
     public HomeUtama() {
         initComponents();
-        showDigitalClock();
-    }
-
-    public final void showDigitalClock() {
-        TimerTask tt = new TimerTask() {
-
-            @Override
-            public void run() {
-                time.setText(getStringTime());
-            }
-        };
-        Timer t = new Timer();
-        t.schedule(tt, 0, 100);
-    }
-
-    public static String getStringTime() {
-        return getDate() + "-" + (getMonth()+1) + "-" + getYear() + " " + getCurrHour() + ":" + getCurrMinute() + ":" + getCurrSecond();
-    }
-
-    public static int getCurrHour() {
-        return Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-    }
-
-    public static int getDate() {
-        return Calendar.getInstance().get(Calendar.DATE);
-    }
-
-    public static int getMonth() {
-        return Calendar.getInstance().get(Calendar.MONTH);
-    }
-
-    public static int getYear() {
-        return Calendar.getInstance().get(Calendar.YEAR);
-    }
-
-    public static int getCurrMinute() {
-        return Calendar.getInstance().get(Calendar.MINUTE);
-    }
-
-    public static int getCurrSecond() {
-        return Calendar.getInstance().get(Calendar.SECOND);
+         Clock clock=new Clock();
+        clock.showDigitalClock(time);
     }
 
     /** This method is called from within the constructor to
@@ -250,7 +211,7 @@ public class HomeUtama extends javax.swing.JFrame {
         } else if (a.equalsIgnoreCase("")&&!b.equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(rootPane, "inputan tidak lengkap \n ID kosong"
                     + "","peringatan",JOptionPane.ERROR_MESSAGE);
-        }if (!a.matches("[0-9]*")) {
+        }else if (!a.matches("[0-9]*")) {
             JOptionPane.showMessageDialog(rootPane, "ID tidak valid"
                     + "","peringatan",JOptionPane.ERROR_MESSAGE);
         }

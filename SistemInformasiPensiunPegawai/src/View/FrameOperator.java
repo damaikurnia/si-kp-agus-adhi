@@ -10,10 +10,21 @@
  */
 package View;
 
+import Controller.ConnMySql;
+import Controller.ControlData;
+import java.sql.Connection;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -24,60 +35,23 @@ public class FrameOperator extends javax.swing.JFrame {
     /** Creates new form FrameOperator */
     public FrameOperator() {
         initComponents();
-        showDigitalClock();
+        Clock clock=new Clock();
+        clock.showDigitalClock(time);
         disabledButton();
-    }
-
-    public final void showDigitalClock() {
-        TimerTask tt = new TimerTask() {
-
-            @Override
-            public void run() {
-                time.setText(getStringTime());
-            }
-        };
-        Timer t = new Timer();
-        t.schedule(tt, 0, 100);
-    }
-
-    public static String getStringTime() {
-        return getDate() + "-" + (getMonth()+1) + "-" + getYear() + " " + getCurrHour() + ":" + getCurrMinute() + ":" + getCurrSecond();
-    }
-
-    public static int getCurrHour() {
-        return Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-    }
-
-    public static int getDate() {
-        return Calendar.getInstance().get(Calendar.DATE);
-    }
-
-    public static int getMonth() {
-        return Calendar.getInstance().get(Calendar.MONTH);
-    }
-
-    public static int getYear() {
-        return Calendar.getInstance().get(Calendar.YEAR);
-    }
-
-    public static int getCurrMinute() {
-        return Calendar.getInstance().get(Calendar.MINUTE);
-    }
-
-    public static int getCurrSecond() {
-        return Calendar.getInstance().get(Calendar.SECOND);
     }
 
     private void disabledButton() {
         buttonEditPeg.setVisible(false);
         buttonHpsPeg.setVisible(false);
         buttonTmbhPeg.setVisible(false);
+        buttonSearch.setVisible(false);
     }
 
     private void enabledButton() {
         buttonEditPeg.setVisible(true);
         buttonHpsPeg.setVisible(true);
         buttonTmbhPeg.setVisible(true);
+        buttonSearch.setVisible(true);
     }
 
     /** This method is called from within the constructor to
@@ -105,6 +79,7 @@ public class FrameOperator extends javax.swing.JFrame {
         buttonTmbhPeg = new javax.swing.JButton();
         buttonEditPeg = new javax.swing.JButton();
         buttonHpsPeg = new javax.swing.JButton();
+        buttonSearch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -210,10 +185,22 @@ public class FrameOperator extends javax.swing.JFrame {
         );
 
         buttonTmbhPeg.setText("tambah Pegawai");
+        buttonTmbhPeg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonTmbhPegActionPerformed(evt);
+            }
+        });
 
         buttonEditPeg.setText("edit Pegawai");
 
         buttonHpsPeg.setText("Hapus Pegawai");
+
+        buttonSearch.setText("Pencarian Pegawai");
+        buttonSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSearchActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -222,6 +209,7 @@ public class FrameOperator extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(149, 149, 149)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonHpsPeg, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonTmbhPeg, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonEditPeg, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -236,7 +224,9 @@ public class FrameOperator extends javax.swing.JFrame {
                 .addComponent(buttonEditPeg, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(buttonHpsPeg, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(buttonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -296,6 +286,22 @@ public class FrameOperator extends javax.swing.JFrame {
     }//GEN-LAST:event_Pensiun_ButtonActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {
+            Connection kon = null;
+            String reportSource = "";
+            try {
+                kon = ConnMySql.getConnections();
+            } catch (Exception ex) {
+                Logger.getLogger(FrameOperator.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            reportSource = "./Cetak/CoverBUP.jasper";
+            Map<String, Object> params = new HashMap<String, Object>();
+            JasperPrint jasperPrint = JasperFillManager.fillReport(reportSource, params, kon);
+            JasperViewer.viewReport(jasperPrint, false);
+
+        } catch (JRException ex) {
+        }
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -307,6 +313,20 @@ public class FrameOperator extends javax.swing.JFrame {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_keluar_buttonActionPerformed
+
+    private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonSearchActionPerformed
+
+    private void buttonTmbhPegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTmbhPegActionPerformed
+        if (buttonTmbhPeg.getText().startsWith("P")) {
+            this.dispose();
+            ProsesPensiun PP=new ProsesPensiun();
+            PP.setVisible(true);
+        } else {
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonTmbhPegActionPerformed
 
     /**
      * @param args the command line arguments
@@ -323,6 +343,7 @@ public class FrameOperator extends javax.swing.JFrame {
     private javax.swing.JButton Pensiun_Button;
     private javax.swing.JButton buttonEditPeg;
     private javax.swing.JButton buttonHpsPeg;
+    private javax.swing.JButton buttonSearch;
     private javax.swing.JButton buttonTmbhPeg;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
