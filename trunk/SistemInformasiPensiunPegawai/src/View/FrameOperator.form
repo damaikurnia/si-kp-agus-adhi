@@ -250,6 +250,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="buttonSearch" alignment="0" min="-2" pref="184" max="-2" attributes="0"/>
                           <Component id="buttonHpsPeg" alignment="0" min="-2" pref="184" max="-2" attributes="0"/>
                           <Component id="buttonTmbhPeg" alignment="0" min="-2" pref="184" max="-2" attributes="0"/>
                           <Component id="buttonEditPeg" alignment="0" min="-2" pref="184" max="-2" attributes="0"/>
@@ -267,7 +268,9 @@
                       <Component id="buttonEditPeg" min="-2" pref="37" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="buttonHpsPeg" min="-2" pref="37" max="-2" attributes="0"/>
-                      <EmptySpace pref="132" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="buttonSearch" min="-2" pref="37" max="-2" attributes="0"/>
+                      <EmptySpace pref="84" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -277,6 +280,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="tambah Pegawai"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonTmbhPegActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="buttonEditPeg">
               <Properties>
@@ -287,6 +293,14 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Hapus Pegawai"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="buttonSearch">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pencarian Pegawai"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSearchActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
