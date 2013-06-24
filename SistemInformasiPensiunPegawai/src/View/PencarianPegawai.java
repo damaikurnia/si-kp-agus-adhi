@@ -89,7 +89,7 @@ public class PencarianPegawai extends javax.swing.JFrame {
 
         time.setFont(new java.awt.Font("Tahoma", 1, 14));
         time.setText("time");
-        jPanel3.add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, -1, -1));
+        jPanel3.add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 10, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 0, 18));
         jLabel2.setText("Pencarian Pegawai");
@@ -115,10 +115,10 @@ public class PencarianPegawai extends javax.swing.JFrame {
 
         nip_br.setFont(new java.awt.Font("Tahoma", 1, 14));
         nip_br.setText("Masukan NIP");
-        jPanel4.add(nip_br, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, -1, -1));
+        jPanel4.add(nip_br, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, -1, -1));
 
         nip_TF.setFont(new java.awt.Font("Tahoma", 0, 12));
-        jPanel4.add(nip_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 310, -1));
+        jPanel4.add(nip_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 310, -1));
 
         jButton1.setText("Cari");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -126,9 +126,9 @@ public class PencarianPegawai extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, -1, -1));
+        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, -1, -1));
 
-        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 660, 140));
+        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 540, 130));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 870, 400));
 

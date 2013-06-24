@@ -91,7 +91,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
 
         time.setFont(new java.awt.Font("Tahoma", 1, 14));
         time.setText("time");
-        jPanel3.add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, -1, -1));
+        jPanel3.add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 0, 18));
         jLabel2.setText("Data Pegawai");
