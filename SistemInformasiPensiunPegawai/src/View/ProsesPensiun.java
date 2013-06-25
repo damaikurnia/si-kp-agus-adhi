@@ -155,7 +155,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
 
     private void button_prosesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_prosesActionPerformed
         tabel_cari.setVisible(true);
-        int option = JOptionPane.showConfirmDialog(rootPane, "apakah akan proses \n NIP" + nip_TF.getText(), "tanya", JOptionPane.OK_CANCEL_OPTION);
+        int option = JOptionPane.showConfirmDialog(rootPane, "apakah akan proses \n NIP " + nip_TF.getText(), "tanya", JOptionPane.OK_CANCEL_OPTION);
         if (option == 0) {
         }
         // TODO add your handling code here:

@@ -35,7 +35,7 @@ public class FrameOperator extends javax.swing.JFrame {
     /** Creates new form FrameOperator */
     public FrameOperator() {
         initComponents();
-        Clock clock=new Clock();
+        Clock clock = new Clock();
         clock.showDigitalClock(time);
         disabledButton();
     }
@@ -184,7 +184,7 @@ public class FrameOperator extends javax.swing.JFrame {
                 .addContainerGap(74, Short.MAX_VALUE))
         );
 
-        buttonTmbhPeg.setText("tambah Pegawai");
+        buttonTmbhPeg.setText("Tambah Pegawai");
         buttonTmbhPeg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonTmbhPegActionPerformed(evt);
@@ -274,6 +274,7 @@ public class FrameOperator extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void pegawai_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pegawai_buttonActionPerformed
+        buttonTmbhPeg.setText("Tambah Pegawai");
         enabledButton();
         // TODO add your handling code here:
     }//GEN-LAST:event_pegawai_buttonActionPerformed
@@ -292,7 +293,8 @@ public class FrameOperator extends javax.swing.JFrame {
             try {
                 kon = ConnMySql.getConnections();
             } catch (Exception ex) {
-                Logger.getLogger(FrameOperator.class.getName()).log(Level.SEVERE, null, ex);
+//                Logger.getLogger(FrameOperator.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(rootPane, "terjadi gagal koneksi ke Database \n Coba cek koneksi ke Database");
             }
             reportSource = "./Cetak/CoverBUP.jasper";
             Map<String, Object> params = new HashMap<String, Object>();
@@ -300,6 +302,7 @@ public class FrameOperator extends javax.swing.JFrame {
             JasperViewer.viewReport(jasperPrint, false);
 
         } catch (JRException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         }
 
         // TODO add your handling code here:
@@ -321,10 +324,14 @@ public class FrameOperator extends javax.swing.JFrame {
     private void buttonTmbhPegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTmbhPegActionPerformed
         if (buttonTmbhPeg.getText().startsWith("P")) {
             this.dispose();
-            ProsesPensiun PP=new ProsesPensiun();
+            ProsesPensiun PP = new ProsesPensiun();
             PP.setVisible(true);
-        } else {
+        } else if(buttonTmbhPeg.getText().startsWith("T")) {
+             this.dispose();
+            TambahPegawai tmbhPeg = new TambahPegawai();
+            tmbhPeg.setVisible(true);
         }
+
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonTmbhPegActionPerformed
 
