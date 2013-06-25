@@ -11,11 +11,6 @@
 package View;
 
 import Controller.ControlData;
-import java.util.Calendar;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,7 +22,7 @@ public class HomeUtama extends javax.swing.JFrame {
     /** Creates new form HomeUtama */
     public HomeUtama() {
         initComponents();
-         Clock clock=new Clock();
+        Clock clock = new Clock();
         clock.showDigitalClock(time);
     }
 
@@ -200,43 +195,43 @@ public class HomeUtama extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void masuk_button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masuk_button2ActionPerformed
-        String a=usernameTF.getText();
-        String b=password_TF.getText();
-        if (a.equalsIgnoreCase("")&&b.equalsIgnoreCase("")) {
+        String a = usernameTF.getText();
+        String b = password_TF.getText();
+        if (a.equalsIgnoreCase("") && b.equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(rootPane, "inputan tidak lengkap \n ID dan password kosong"
-                    + "","peringatan",JOptionPane.ERROR_MESSAGE);
-        }else if (!a.equalsIgnoreCase("")&&b.equalsIgnoreCase("")) {
+                    + "", "peringatan", JOptionPane.ERROR_MESSAGE);
+        } else if (!a.equalsIgnoreCase("") && b.equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(rootPane, "inputan tidak lengkap \n  password kosong"
-                    + "","peringatan",JOptionPane.ERROR_MESSAGE);
-        } else if (a.equalsIgnoreCase("")&&!b.equalsIgnoreCase("")) {
+                    + "", "peringatan", JOptionPane.ERROR_MESSAGE);
+        } else if (a.equalsIgnoreCase("") && !b.equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(rootPane, "inputan tidak lengkap \n ID kosong"
-                    + "","peringatan",JOptionPane.ERROR_MESSAGE);
-        }else if (!a.matches("[0-9]*")) {
+                    + "", "peringatan", JOptionPane.ERROR_MESSAGE);
+        } else if (!a.matches("[0-9]*")) {
             JOptionPane.showMessageDialog(rootPane, "ID tidak valid"
-                    + "","peringatan",JOptionPane.ERROR_MESSAGE);
-        }
-        else {
+                    + "", "peringatan", JOptionPane.ERROR_MESSAGE);
+        } else {
             String id = usernameTF.getText();
             String passwd = password_TF.getText();
-                try {
-                    boolean cek = ControlData.getKoneksi().Login(id, passwd);
-                    if (cek == true) {
-                        FrameOperator FP = new FrameOperator();
-                        FP.setVisible(true);
-                        emptyField();
-                        String nama = ControlData.getKoneksi().cariPegawai(id);
-                        //FP.Nama_label.setText(nama);
+            try {
+                boolean cek = ControlData.getKoneksi().Login(id, passwd);
+                if (cek == true) {
+                    FrameOperator FP = new FrameOperator();
+                    FP.setVisible(true);
+                    emptyField();
+                    String nama = ControlData.getKoneksi().cariPegawai(id);
+                    //FP.Nama_label.setText(nama);
 
-                    } else {
-                        JOptionPane.showMessageDialog(rootPane, "username dan password salah\n silahkan username dan "
-                                + "password lagi");
-                        emptyField();
-                        usernameTF.requestFocus();
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "username dan password salah\n silahkan username dan "
+                            + "password lagi");
+                    emptyField();
+                    usernameTF.requestFocus();
 
-                    }
-                } catch (Exception ex) {
-                    Logger.getLogger(HomeUtama.class.getName()).log(Level.SEVERE, null, ex);
                 }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(rootPane, "Tidak dapat koneksi ke Database \n"
+                        + "cek settingan dahulu");
+            }
         }
     }//GEN-LAST:event_masuk_button2ActionPerformed
 
