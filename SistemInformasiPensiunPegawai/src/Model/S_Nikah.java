@@ -8,16 +8,16 @@ package Model;
  *
  * @author a9uszT
  */
-public class SuratNikah {
+public class S_Nikah {
     private String id_SuratNikah;
     private String tanggal_nikah;
     private String nama_suami;
     private String nama_istri;
 
-    public SuratNikah() {
+    public S_Nikah() {
     }
 
-    public SuratNikah(String id_SuratNikah, String tanggal_nikah, String nama_suami, String nama_istri) {
+    public S_Nikah(String id_SuratNikah, String tanggal_nikah, String nama_suami, String nama_istri) {
         this.id_SuratNikah = id_SuratNikah;
         this.tanggal_nikah = tanggal_nikah;
         this.nama_suami = nama_suami;
