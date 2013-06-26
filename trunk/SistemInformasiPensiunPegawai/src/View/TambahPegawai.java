@@ -699,7 +699,7 @@ public class TambahPegawai extends javax.swing.JFrame {
 
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel56.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel56.setFont(new java.awt.Font("Tahoma", 0, 14));
         jLabel56.setText("Nama kepala keluarga");
         jPanel8.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
         jPanel8.add(jTextField41, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 230, -1));
@@ -708,31 +708,31 @@ public class TambahPegawai extends javax.swing.JFrame {
         jPanel8.add(jTextField48, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 40, -1));
         jPanel8.add(jTextField49, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 120, -1));
 
-        jLabel60.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel60.setFont(new java.awt.Font("Tahoma", 0, 14));
         jLabel60.setText("Kelurahan/Desa");
         jPanel8.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
 
-        jLabel58.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel58.setFont(new java.awt.Font("Tahoma", 0, 14));
         jLabel58.setText("RT/RW");
         jPanel8.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
 
-        jLabel57.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel57.setFont(new java.awt.Font("Tahoma", 0, 14));
         jLabel57.setText("Alamat");
         jPanel8.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
-        jLabel61.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel61.setFont(new java.awt.Font("Tahoma", 0, 14));
         jLabel61.setText("Kecamatan");
         jPanel8.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, -1, -1));
 
-        jLabel62.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel62.setFont(new java.awt.Font("Tahoma", 0, 14));
         jLabel62.setText("kabupaten/Kota");
         jPanel8.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, -1, -1));
 
-        jLabel64.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel64.setFont(new java.awt.Font("Tahoma", 0, 14));
         jLabel64.setText("Kode Pos");
         jPanel8.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, -1, -1));
 
-        jLabel63.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel63.setFont(new java.awt.Font("Tahoma", 0, 14));
         jLabel63.setText("Provinsi");
         jPanel8.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 130, -1, -1));
         jPanel8.add(jTextField53, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, 230, -1));
@@ -740,7 +740,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         jPanel8.add(jTextField51, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, 230, -1));
         jPanel8.add(jTextField50, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 230, -1));
 
-        jLabel59.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel59.setFont(new java.awt.Font("Tahoma", 0, 14));
         jLabel59.setText("Nomor KK");
         jPanel8.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, -1, -1));
         jPanel8.add(jTextField55, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 230, -1));
