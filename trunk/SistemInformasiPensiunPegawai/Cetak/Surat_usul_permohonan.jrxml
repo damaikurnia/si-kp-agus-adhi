@@ -2,8 +2,8 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Surat_usul_permohonan" pageWidth="611" pageHeight="935" columnWidth="551" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" uuid="c9e7af8e-d8ca-4cb3-8b86-43382cb9cb93">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="232"/>
 	<property name="ireport.y" value="0"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
@@ -13,7 +13,8 @@
 	a.nama_pemilik, c.nip_lama, c.nip_baru, d.tempat_lahir, DATE_FORMAT(d.tanggal_lahir, '%d-%M-%Y') AS tanggal_lahir,
 	a.pangkat_baru, a.golongan_baru,ROUND(DATEDIFF(CURRENT_DATE,d.tanggal_surat)/365,0) AS tahun,
 	ROUND(MOD(DATEDIFF(CURRENT_DATE,d.tanggal_surat)/365,12)) AS Bulan,e.gajipokok_baru,d.Profesi, f.id_SuratKarpeg,
-	DATE_FORMAT(g.tanggal_nikah, '%d-%M-%Y') AS tanggal_nikah,e.Sekolah, h.Alamat, DATE_FORMAT(a.tmt_baru, '%d-%M-%Y') AS tmt
+	DATE_FORMAT(g.tanggal_nikah, '%d-%M-%Y') AS tanggal_nikah,e.Sekolah, h.Alamat, DATE_FORMAT(a.tmt_baru, '%d-%M-%Y') AS tmt,
+	DATE_FORMAT(CURRENT_DATE, '%d-%M-%Y') AS tanggalsekarang
 FROM
 	sk_pangkatterakhir a, pns b, sk_nipbaru c, sk_cpns d, sptkg_terakhir e, sk_karpeg f, s_nikah g, kk h
 WHERE
@@ -25,22 +26,49 @@ WHERE
 	b.id_SuratNikah	= g.id_SuratNikah AND
 	b.id_Suratkk = h.id_Suratkk;]]>
 	</queryString>
-	<field name="nama_pemilik" class="java.lang.String"/>
-	<field name="nip_lama" class="java.lang.String"/>
-	<field name="nip_baru" class="java.lang.String"/>
-	<field name="tempat_lahir" class="java.lang.String"/>
-	<field name="tanggal_lahir" class="java.lang.String"/>
-	<field name="pangkat_baru" class="java.lang.String"/>
-	<field name="golongan_baru" class="java.lang.String"/>
+	<field name="nama_pemilik" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nip_lama" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nip_baru" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tempat_lahir" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tanggal_lahir" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pangkat_baru" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="golongan_baru" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="tahun" class="java.math.BigDecimal"/>
 	<field name="Bulan" class="java.math.BigDecimal"/>
-	<field name="gajipokok_baru" class="java.lang.Integer"/>
-	<field name="Profesi" class="java.lang.String"/>
-	<field name="id_SuratKarpeg" class="java.lang.String"/>
-	<field name="tanggal_nikah" class="java.lang.String"/>
-	<field name="Sekolah" class="java.lang.String"/>
-	<field name="Alamat" class="java.lang.String"/>
+	<field name="gajipokok_baru" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Profesi" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_SuratKarpeg" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tanggal_nikah" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Sekolah" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Alamat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="tmt" class="java.lang.String"/>
+	<field name="tanggalsekarang" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -1219,6 +1247,17 @@ WHERE
 				</textElement>
 				<text><![CDATA[PENSIUN FILE KOORD.PEG.GM]]></text>
 			</staticText>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="a1efc3cb-42b1-44ea-8af7-6fb14dbb8727" key="textField-1" x="397" y="2" width="115" height="14"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tanggalsekarang}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>
