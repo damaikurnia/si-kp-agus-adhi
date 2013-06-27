@@ -1,1077 +1,1088 @@
-<?xml version="1.0" encoding="UTF-8"  ?>
-<!-- Created with iReport - A designer for JasperReports -->
-<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
-<jasperReport
-		 name="Daftar-Susunan_keluarga"
-		 columnCount="1"
-		 printOrder="Vertical"
-		 orientation="Portrait"
-		 pageWidth="611"
-		 pageHeight="935"
-		 columnWidth="551"
-		 columnSpacing="0"
-		 leftMargin="30"
-		 rightMargin="30"
-		 topMargin="20"
-		 bottomMargin="20"
-		 whenNoDataType="NoPages"
-		 isTitleNewPage="false"
-		 isSummaryNewPage="false">
-	<property name="ireport.scriptlethandling" value="2" />
-	<property name="ireport.encoding" value="UTF-8" />
-	<import value="java.util.*" />
-	<import value="net.sf.jasperreports.engine.*" />
-	<import value="net.sf.jasperreports.engine.data.*" />
-
-
-		<background>
-			<band height="0"  isSplitAllowed="true" >
-			</band>
-		</background>
-		<title>
-			<band height="142"  isSplitAllowed="true" >
-				<staticText>
-					<reportElement
-						x="247"
-						y="11"
-						width="87"
-						height="15"
-						key="staticText-1"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Daftar-Susunan_keluarga" pageWidth="611" pageHeight="935" columnWidth="551" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" uuid="886680b0-1c5b-4a39-bd6a-7ef9f2fad14b">
+	<property name="ireport.scriptlethandling" value="2"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="13"/>
+	<property name="ireport.y" value="720"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<queryString>
+		<![CDATA[SELECT
+	a.nama_pemilik, c.nip_lama, c.nip_baru, d.tempat_lahir, DATE_FORMAT(d.tanggal_lahir, '%d-%M-%Y') AS tanggal_lahir,
+	a.pangkat_baru, a.golongan_baru,e.gajipokok_baru,d.Profesi, f.id_SuratKarpeg,
+	DATE_FORMAT(g.tanggal_nikah, '%d-%M-%Y') AS tanggal_nikah,e.Sekolah, h.Alamat
+FROM
+	sk_pangkatterakhir a, pns b, sk_nipbaru c, sk_cpns d, sptkg_terakhir e, sk_karpeg f, s_nikah g, kk h
+WHERE
+	b.id_SuratPangkatTerakhir=a.id_SuratPangkatTerakhir AND
+	b.id_SuratNIPBaru = c.id_SuratNIPBaru AND
+	b.id_SuratCPNS=d.id_SuratCPNS AND
+	b.id_SuratSPTKGTerakhir	= e.id_SuratSPTKGTerakhir AND
+	b.id_SuratKarpeg = f.id_SuratKarpeg AND
+	b.id_SuratNikah	= g.id_SuratNikah AND
+	b.id_Suratkk = h.id_Suratkk;]]>
+	</queryString>
+	<field name="nama_pemilik" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nip_lama" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nip_baru" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tempat_lahir" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tanggal_lahir" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pangkat_baru" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="golongan_baru" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gajipokok_baru" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Profesi" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_SuratKarpeg" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tanggal_nikah" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Sekolah" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Alamat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="142" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="2d3aea43-5dc7-43d3-aa3c-cc20d44890d6" key="staticText-1" x="247" y="11" width="87" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[LAMPIRAN III]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="339"
-						y="11"
-						width="5"
-						height="15"
-						key="staticText-2"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5550167f-ad52-495b-9bd6-6a264be452cc" key="staticText-2" x="339" y="11" width="5" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="348"
-						y="11"
-						width="200"
-						height="15"
-						key="staticText-3"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Justified" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="92453ba0-b1c8-4106-88eb-778971d40b9e" key="staticText-3" x="348" y="11" width="200" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[SURAT EDARAN BERSAMA]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="349"
-						y="28"
-						width="199"
-						height="15"
-						key="staticText-4"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Justified" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d3f0e1a3-a099-4795-a3f8-d2dafec74f4f" key="staticText-4" x="349" y="28" width="199" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[KEPALA BADAN ADMINISTRASI]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="349"
-						y="44"
-						width="199"
-						height="15"
-						key="staticText-5"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Justified" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="889be68b-c99f-48d9-9bb4-47c4e03fd041" key="staticText-5" x="349" y="44" width="199" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[DIREKTUR JENDRAL ANGGARAN]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="348"
-						y="75"
-						width="61"
-						height="15"
-						key="staticText-6"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Justified" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="774451c7-cf3e-4f9f-89e9-9019e4b57bce" key="staticText-6" x="348" y="75" width="61" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[NOMOR]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="414"
-						y="90"
-						width="134"
-						height="15"
-						key="staticText-7"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Justified" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="abe7f679-61da-4cc9-bfbe-81011bbab1bb" key="staticText-7" x="414" y="90" width="134" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[( No.SE/48/80)]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="348"
-						y="60"
-						width="61"
-						height="15"
-						key="staticText-8"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Justified" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9b7b63f6-3fbb-43a1-bfba-cbd18593ea67" key="staticText-8" x="348" y="60" width="61" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[NOMOR]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="409"
-						y="60"
-						width="5"
-						height="15"
-						key="staticText-9"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6f37b0d2-cd14-4dc0-b43e-892d34b0286d" key="staticText-9" x="409" y="60" width="5" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="409"
-						y="75"
-						width="5"
-						height="15"
-						key="staticText-10"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fc554362-f2a7-4fc4-8c12-6c5c07510330" key="staticText-10" x="409" y="75" width="5" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="414"
-						y="60"
-						width="134"
-						height="15"
-						key="staticText-12"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Justified" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4c9c96b5-c054-4d6f-bd64-ff697408a7b0" key="staticText-12" x="414" y="60" width="134" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[10/SE/1980]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="414"
-						y="75"
-						width="134"
-						height="15"
-						key="staticText-13"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Justified" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b70351a5-fd0a-483a-8b55-6442927fa2aa" key="staticText-13" x="414" y="75" width="134" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[SE-1.16/DJA/1.0/3/80]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="348"
-						y="105"
-						width="61"
-						height="15"
-						key="staticText-14"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Justified" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a499d956-a060-4f23-a65a-434f09d1efe3" key="staticText-14" x="348" y="105" width="61" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[TANGGAL]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="409"
-						y="105"
-						width="5"
-						height="15"
-						key="staticText-15"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e20f687e-1fb7-4083-97bb-074f925b22c8" key="staticText-15" x="409" y="105" width="5" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="414"
-						y="105"
-						width="134"
-						height="15"
-						key="staticText-16"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Justified" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="85fd6616-caa1-43a6-af53-55b2efba27f1" key="staticText-16" x="414" y="105" width="134" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[24 MARET 1980]]></text>
-				</staticText>
-			</band>
-		</title>
-		<pageHeader>
-			<band height="0"  isSplitAllowed="true" >
-			</band>
-		</pageHeader>
-		<columnHeader>
-			<band height="0"  isSplitAllowed="true" >
-			</band>
-		</columnHeader>
-		<detail>
-			<band height="753"  isSplitAllowed="true" >
-				<staticText>
-					<reportElement
-						x="0"
-						y="7"
-						width="548"
-						height="23"
-						key="staticText-17"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font fontName="Times New Roman" pdfFontName="Helvetica-Bold" size="18" isBold="true" isUnderline="true"/>
-					</textElement>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="753" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="5a0c2da4-5b5f-405c-bd8d-6ca8e224f538" key="staticText-17" x="0" y="7" width="548" height="23"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="18" isBold="true" isUnderline="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
 				<text><![CDATA[DAFTAR SUSUNAN KELUARGA]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="27"
-						y="66"
-						width="130"
-						height="15"
-						key="staticText-19"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1eec1383-9394-4247-95f4-26a7be2289c5" key="staticText-19" x="27" y="66" width="130" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[Nama]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="27"
-						y="84"
-						width="131"
-						height="15"
-						key="staticText-20"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="453019d3-6a39-4b20-bd48-a753dc52c537" key="staticText-20" x="27" y="84" width="131" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[NIP]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="26"
-						y="137"
-						width="147"
-						height="15"
-						key="staticText-21"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ba3bca27-9104-46e4-87f7-faa3252e5c47" key="staticText-21" x="26" y="137" width="147" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[Pangkat dan Golongan Ruang]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="26"
-						y="101"
-						width="133"
-						height="15"
-						key="staticText-23"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2557e52c-defc-43a1-8c8e-8c52c5a9d022" key="staticText-23" x="26" y="101" width="133" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[Nomor Seri Karpeg]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="26"
-						y="119"
-						width="132"
-						height="15"
-						key="staticText-24"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="61678529-6e63-4a9b-bca9-d78a4eea66e2" key="staticText-24" x="26" y="119" width="132" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[Tempat dan Tanggal Lahir]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="27"
-						y="158"
-						width="135"
-						height="15"
-						key="staticText-28"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8185fa05-3003-40a2-9313-731642659642" key="staticText-28" x="27" y="158" width="135" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[Unit Organisasi]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="27"
-						y="193"
-						width="134"
-						height="15"
-						key="staticText-29"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ed4cf8a1-e844-47a3-a6cd-042676d621d6" key="staticText-29" x="27" y="193" width="134" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[Alamat rumah sekarang]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="27"
-						y="228"
-						width="133"
-						height="15"
-						key="staticText-30"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="34ddd6f7-7d65-402f-a6e9-eff998031ead" key="staticText-30" x="27" y="228" width="133" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[Alamat rumah pensiun]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="181"
-						y="244"
-						width="56"
-						height="14"
-						key="staticText-31"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3610408f-69e5-4f6a-ba6a-ecb32d91a946" key="staticText-31" x="181" y="244" width="56" height="14"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
 				<text><![CDATA[Kabupaten]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="171"
-						y="227"
-						width="5"
-						height="15"
-						key="staticText-32"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="514170d6-7bd8-43be-9f0f-d27b83b3dfec" key="staticText-32" x="171" y="227" width="5" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="181"
-						y="209"
-						width="57"
-						height="15"
-						key="staticText-33"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="55cb3798-addd-4e25-b526-72788242dd5b" key="staticText-33" x="181" y="209" width="56" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
 				<text><![CDATA[Kabupaten]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="171"
-						y="192"
-						width="5"
-						height="15"
-						key="staticText-34"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e1b9ed16-80bb-4018-808d-ece0b2525862" key="staticText-34" x="171" y="192" width="5" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="181"
-						y="173"
-						width="182"
-						height="18"
-						key="staticText-35"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8f5259a7-597b-4003-a739-811f3a997902" key="staticText-35" x="181" y="173" width="182" height="18"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
 				<text><![CDATA[Dinas Pendidikan Kabupaten Klaten]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="172"
-						y="157"
-						width="5"
-						height="15"
-						key="staticText-36"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="09b95b5f-be18-4135-97a9-fd7f197d9f4f" key="staticText-36" x="172" y="157" width="5" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="172"
-						y="66"
-						width="5"
-						height="15"
-						key="staticText-37"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4638eaf1-e5db-4e1e-bcfa-71b907276ccf" key="staticText-37" x="172" y="66" width="5" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="172"
-						y="84"
-						width="5"
-						height="15"
-						key="staticText-38"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8974e575-92d2-4a1e-b7c0-38f33193dd47" key="staticText-38" x="172" y="84" width="5" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="172"
-						y="137"
-						width="5"
-						height="15"
-						key="staticText-40"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="cd2bd63e-5328-4676-baa1-6d9ab0c255e2" key="staticText-40" x="172" y="137" width="5" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="172"
-						y="119"
-						width="5"
-						height="15"
-						key="staticText-43"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4806f0d4-79e2-4090-a069-5de896ef6e87" key="staticText-43" x="172" y="119" width="5" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="172"
-						y="101"
-						width="5"
-						height="15"
-						key="staticText-44"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="77464a49-9249-4e9b-ae66-d0d05d0f2148" key="staticText-44" x="172" y="101" width="5" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="-5"
-						y="270"
-						width="548"
-						height="23"
-						key="staticText-45"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font fontName="Times New Roman" pdfFontName="Helvetica-Bold" size="18" isBold="true" isUnderline="true"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bf509117-8d5c-4516-a214-bd89c3d88c5d" key="staticText-45" x="-5" y="270" width="548" height="23"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="18" isBold="true" isUnderline="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
 				<text><![CDATA[SUSUNAN KELUARGA]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="20"
-						y="322"
-						width="15"
-						height="18"
-						key="staticText-47"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b61e59d6-310f-4e6c-b1d8-21aeb5fa84b7" key="staticText-47" x="20" y="322" width="15" height="18"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[No.]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="38"
-						y="323"
-						width="137"
-						height="17"
-						key="staticText-48"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b8352934-61dc-4e29-84e0-4a80a7319abe" key="staticText-48" x="38" y="323" width="137" height="17"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[NAMA]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="178"
-						y="316"
-						width="68"
-						height="16"
-						key="staticText-49"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c589a484-d1b6-44aa-a7a9-a57e89914560" key="staticText-49" x="178" y="316" width="68" height="16"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[Hubungan]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="176"
-						y="331"
-						width="71"
-						height="20"
-						key="staticText-50"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c55b1d3d-9cb2-452c-9b57-fc9985606b79" key="staticText-50" x="176" y="331" width="71" height="20"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[Keluarga]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="250"
-						y="317"
-						width="65"
-						height="14"
-						key="staticText-51"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1654f3b3-3ac7-4abb-b77a-6584f0e60b73" key="staticText-51" x="250" y="317" width="65" height="14"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[Tanggal]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="250"
-						y="334"
-						width="64"
-						height="17"
-						key="staticText-52"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c6eb027f-024c-474b-87d5-d3f006491419" key="staticText-52" x="250" y="334" width="64" height="17"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[Lahir]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="322"
-						y="317"
-						width="82"
-						height="15"
-						key="staticText-53"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7bbc3716-5383-4c05-bd80-d1d5c5177f32" key="staticText-53" x="322" y="317" width="82" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[Pekerjaan/]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="322"
-						y="334"
-						width="82"
-						height="14"
-						key="staticText-54"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="cd12ab38-71e6-4386-9859-3d02ee05041b" key="staticText-54" x="322" y="334" width="82" height="14"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[Sekolah]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="408"
-						y="317"
-						width="66"
-						height="15"
-						key="staticText-55"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d7031286-15cd-403b-82ad-108f7302ae5b" key="staticText-55" x="408" y="317" width="66" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[Tanggal]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="408"
-						y="333"
-						width="65"
-						height="17"
-						key="staticText-56"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f213bf77-2bab-4a3a-98ae-520677232176" key="staticText-56" x="408" y="333" width="65" height="17"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[Perkawinan]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="484"
-						y="321"
-						width="55"
-						height="19"
-						key="staticText-59"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ae75ffd2-be80-42f9-9699-0dbcf4d950c7" key="staticText-59" x="484" y="321" width="55" height="19"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
 				<text><![CDATA[keterangan]]></text>
-				</staticText>
-				<line direction="TopDown">
-					<reportElement
-						x="19"
-						y="314"
-						width="523"
-						height="2"
-						key="line-1"/>
-					<graphicElement stretchType="NoStretch"/>
-				</line>
-				<line direction="TopDown">
-					<reportElement
-						x="21"
-						y="352"
-						width="523"
-						height="0"
-						key="line-2"/>
-					<graphicElement stretchType="NoStretch"/>
-				</line>
-				<line direction="TopDown">
-					<reportElement
-						x="35"
-						y="314"
-						width="0"
-						height="147"
-						key="line-3"/>
-					<graphicElement stretchType="NoStretch"/>
-				</line>
-				<line direction="TopDown">
-					<reportElement
-						x="19"
-						y="315"
-						width="0"
-						height="147"
-						key="line-4"/>
-					<graphicElement stretchType="NoStretch"/>
-				</line>
-				<line direction="TopDown">
-					<reportElement
-						x="543"
-						y="315"
-						width="0"
-						height="146"
-						key="line-5"/>
-					<graphicElement stretchType="NoStretch"/>
-				</line>
-				<line direction="TopDown">
-					<reportElement
-						x="481"
-						y="315"
-						width="0"
-						height="145"
-						key="line-7"/>
-					<graphicElement stretchType="NoStretch"/>
-				</line>
-				<line direction="TopDown">
-					<reportElement
-						x="404"
-						y="315"
-						width="0"
-						height="145"
-						key="line-8"/>
-					<graphicElement stretchType="NoStretch"/>
-				</line>
-				<line direction="TopDown">
-					<reportElement
-						x="321"
-						y="315"
-						width="0"
-						height="146"
-						key="line-9"/>
-					<graphicElement stretchType="NoStretch"/>
-				</line>
-				<line direction="TopDown">
-					<reportElement
-						x="248"
-						y="315"
-						width="0"
-						height="145"
-						key="line-10"/>
-					<graphicElement stretchType="NoStretch"/>
-				</line>
-				<line direction="TopDown">
-					<reportElement
-						x="177"
-						y="316"
-						width="0"
-						height="144"
-						key="line-11"/>
-					<graphicElement stretchType="NoStretch"/>
-				</line>
-				<line direction="TopDown">
-					<reportElement
-						x="20"
-						y="461"
-						width="523"
-						height="0"
-						key="line-12"/>
-					<graphicElement stretchType="NoStretch"/>
-				</line>
-				<staticText>
-					<reportElement
-						x="373"
-						y="479"
-						width="35"
-						height="17"
-						key="staticText-60"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
-					</textElement>
+			</staticText>
+			<line>
+				<reportElement uuid="151457d0-94ae-464e-965b-179e9adef714" key="line-1" x="19" y="314" width="523" height="2"/>
+			</line>
+			<line>
+				<reportElement uuid="5fb80265-b397-4512-a103-79f1e16e68b1" key="line-2" x="21" y="352" width="523" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="996e5748-ab10-4ed4-8538-fd57ef72f140" key="line-3" x="35" y="314" width="1" height="147"/>
+			</line>
+			<line>
+				<reportElement uuid="8d4f4258-9af7-49e5-921e-a6e0fbd77e5c" key="line-4" x="19" y="315" width="1" height="147"/>
+			</line>
+			<line>
+				<reportElement uuid="0f0d31e3-d24f-43b1-8a15-25ce9f577a20" key="line-5" x="543" y="315" width="1" height="146"/>
+			</line>
+			<line>
+				<reportElement uuid="9f28e1dd-92de-403d-b015-cfb8dd7a2d02" key="line-7" x="481" y="315" width="1" height="145"/>
+			</line>
+			<line>
+				<reportElement uuid="77b2872c-5de2-4aa1-a98c-8ced22658937" key="line-8" x="404" y="315" width="1" height="145"/>
+			</line>
+			<line>
+				<reportElement uuid="9a5c0e72-851d-41cd-8f14-69fb1cbaf11f" key="line-9" x="321" y="315" width="1" height="146"/>
+			</line>
+			<line>
+				<reportElement uuid="4386bfea-a734-4402-ba02-4bc00e38b64d" key="line-10" x="248" y="315" width="1" height="145"/>
+			</line>
+			<line>
+				<reportElement uuid="b6b50795-79a0-4fa5-afd6-7ec1abffb598" key="line-11" x="177" y="316" width="1" height="144"/>
+			</line>
+			<line>
+				<reportElement uuid="8f72ff9a-27c1-45e1-87df-dd23cd24448e" key="line-12" x="20" y="461" width="523" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="7882e68b-f1ce-46c5-be1c-0bba681165f2" key="staticText-60" x="373" y="479" width="35" height="17"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
 				<text><![CDATA[Klaten, ]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="20"
-						y="353"
-						width="15"
-						height="12"
-						key="staticText-62"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7f1ecf0b-2ca4-4a31-9a15-5ade92d0c58e" key="staticText-62" x="20" y="353" width="15" height="12"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[1]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="38"
-						y="353"
-						width="137"
-						height="12"
-						key="staticText-63"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="92e8e326-efb0-4c3d-81ae-f8845878a67b" key="staticText-63" x="38" y="353" width="137" height="12"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[2.]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="177"
-						y="353"
-						width="71"
-						height="12"
-						key="staticText-64"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f8327499-b70c-4db0-a0d5-027ab02dd89c" key="staticText-64" x="177" y="353" width="71" height="12"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[3.]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="253"
-						y="353"
-						width="64"
-						height="12"
-						key="staticText-65"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2bbb53d9-b173-4a96-95ce-79f48b52527b" key="staticText-65" x="253" y="353" width="64" height="12"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[4.]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="322"
-						y="353"
-						width="82"
-						height="12"
-						key="staticText-66"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="dbe30a06-f4da-4b1d-b739-4e4cd0d1130e" key="staticText-66" x="322" y="353" width="82" height="12"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[5.]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="409"
-						y="353"
-						width="65"
-						height="12"
-						key="staticText-67"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3695dc70-1df3-40b5-8c23-785fd44fec3d" key="staticText-67" x="409" y="353" width="65" height="12"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[6.]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="489"
-						y="353"
-						width="48"
-						height="12"
-						key="staticText-68"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7e781d7c-6f5a-4103-90c0-4759b12d9cab" key="staticText-68" x="489" y="353" width="48" height="12"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
 				<text><![CDATA[7.]]></text>
-				</staticText>
-				<line direction="TopDown">
-					<reportElement
-						x="21"
-						y="365"
-						width="523"
-						height="0"
-						key="line-13"/>
-					<graphicElement stretchType="NoStretch"/>
-				</line>
-				<staticText>
-					<reportElement
-						x="373"
-						y="495"
-						width="101"
-						height="17"
-						key="staticText-69"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
-					</textElement>
+			</staticText>
+			<line>
+				<reportElement uuid="322864fa-4a1c-4ecf-89f2-ecd03d0f875b" key="line-13" x="21" y="365" width="523" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="2a1b335d-64aa-4f0f-bf2f-c7a6ffb67940" key="staticText-69" x="373" y="495" width="101" height="17"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
 				<text><![CDATA[Pegawai Negeri Sipil]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="373"
-						y="512"
-						width="101"
-						height="17"
-						key="staticText-70"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fde0d439-2f82-4fcc-abbd-6156266ced18" key="staticText-70" x="373" y="512" width="101" height="17"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
 				<text><![CDATA[Yang Bersangkutan]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="200"
-						y="495"
-						width="121"
-						height="17"
-						key="staticText-71"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="38316874-baec-4b1d-aaac-3b131829528e" key="staticText-71" x="200" y="495" width="121" height="17"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
 				<text><![CDATA[Mengetahui :]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="200"
-						y="512"
-						width="121"
-						height="17"
-						key="staticText-72"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c4a2a681-33da-42be-a166-0bbe8e6810dd" key="staticText-72" x="200" y="512" width="121" height="17"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
 				<text><![CDATA[Kepala Desa/Kelurahan]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="25"
-						y="511"
-						width="121"
-						height="17"
-						key="staticText-73"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="68b41511-fb5a-46c7-848b-51a40b16c078" key="staticText-73" x="25" y="511" width="121" height="17"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
 				<text><![CDATA[Camat........................]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="25"
-						y="494"
-						width="121"
-						height="17"
-						key="staticText-74"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="31920cb6-48ab-4ccb-8b83-ac19556b5ca1" key="staticText-74" x="25" y="494" width="121" height="17"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
 				<text><![CDATA[Mengetahui :]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="26"
-						y="589"
-						width="121"
-						height="17"
-						key="staticText-75"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="969cfd2a-8cf2-4086-a4d1-945c45ff1212" key="staticText-75" x="26" y="589" width="121" height="17"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
 				<text><![CDATA[____________________]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="201"
-						y="590"
-						width="121"
-						height="17"
-						key="staticText-76"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="02a76f8c-fc24-4702-acf2-47815d523358" key="staticText-76" x="201" y="590" width="121" height="17"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
 				<text><![CDATA[____________________]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="374"
-						y="590"
-						width="101"
-						height="17"
-						key="staticText-77"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="195dba74-4d73-44ed-a623-c57bd95ce5b2" key="staticText-77" x="374" y="590" width="101" height="17"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
 				<text><![CDATA[________________]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="27"
-						y="605"
-						width="121"
-						height="17"
-						key="staticText-78"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Left">
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="756a57bb-7169-4fb9-81bd-e78d5dab0f02" key="staticText-78" x="27" y="605" width="121" height="17"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
 				<text><![CDATA[NIP.]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="202"
-						y="606"
-						width="121"
-						height="17"
-						key="staticText-79"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Left">
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="05c8bb44-50f8-4fbc-866d-e97b2822e961" key="staticText-79" x="202" y="606" width="121" height="17"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
 				<text><![CDATA[NIP.]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="375"
-						y="606"
-						width="101"
-						height="17"
-						key="staticText-80"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c49a45df-3754-4207-954d-26a4684c1208" key="staticText-80" x="375" y="606" width="101" height="17"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
 				<text><![CDATA[NIP.]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="8"
-						y="650"
-						width="539"
-						height="17"
-						key="staticText-81"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Left">
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="24683219-87bf-4329-9438-87b58b5ef734" key="staticText-81" x="8" y="650" width="539" height="17"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
 				<text><![CDATA[1. Tulislah nama istri/suami/anak kandung /anak tiri/anak angkat yang masih menjadi tanggungan dalam ]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="8"
-						y="666"
-						width="539"
-						height="17"
-						key="staticText-82"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Left">
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8302e7ab-7096-4c31-8ed1-4e0ff6038e96" key="staticText-82" x="8" y="666" width="539" height="17"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
 				<text><![CDATA[    daftar gaji.]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="7"
-						y="682"
-						width="539"
-						height="17"
-						key="staticText-83"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Left">
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
-					</textElement>
+			</staticText>
+			<staticText>
+				<reportElement uuid="04d27707-cf18-4387-90f3-7c6b701fb06f" key="staticText-83" x="7" y="682" width="539" height="17"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
 				<text><![CDATA[2. Tulislah Pekerjaan istri/suami atau nama tingkat sekolah anak.]]></text>
-				</staticText>
-			</band>
-		</detail>
-		<columnFooter>
-			<band height="0"  isSplitAllowed="true" >
-			</band>
-		</columnFooter>
-		<pageFooter>
-			<band height="0"  isSplitAllowed="true" >
-			</band>
-		</pageFooter>
-		<summary>
-			<band height="0"  isSplitAllowed="true" >
-			</band>
-		</summary>
+			</staticText>
+			<textField>
+				<reportElement uuid="3f09cdaa-d915-4ec1-8113-20895238e35d" x="181" y="66" width="356" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nama_pemilik}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="60c40550-fa68-4f2d-ad24-55581c84e828" x="181" y="84" width="356" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nip_baru}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a4a6be36-4362-49a9-b85e-da05ca882862" x="181" y="101" width="356" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{id_SuratKarpeg}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1371b075-5db2-471d-bdb5-c8ec4780fa75" x="181" y="119" width="56" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tempat_lahir}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b0a2ffbd-aca4-4079-a07d-900d0fbdfad3" x="181" y="137" width="57" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pangkat_baru}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="90d307ca-d135-42cc-831c-8a0e12853169" x="181" y="157" width="356" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Sekolah}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b3239813-b476-449b-a2b1-5da0f62bc062" x="181" y="193" width="356" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Alamat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8dfe356e-4ec8-40f4-acfa-9c68004f6798" x="181" y="227" width="356" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Alamat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6a877da7-997a-4e29-b2df-e5df6717240a" x="246" y="119" width="140" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tanggal_lahir}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="61ffcb9e-b475-4243-b8b7-ae1ad0e6ed09" x="238" y="137" width="57" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{golongan_baru}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
 </jasperReport>

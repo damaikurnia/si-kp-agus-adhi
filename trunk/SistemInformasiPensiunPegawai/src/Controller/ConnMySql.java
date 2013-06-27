@@ -17,13 +17,13 @@ public class ConnMySql {
 //    private static String user = "root";
 //    private static String password = "";
     
-//    private static String jdbcURL = "jdbc:mysql://10.40.41.142:3306/SI-Pensiun-kp";//setinganku
-//    private static String user = "simdinas";
-//    private static String password = "simdinas";
+    private static String jdbcURL = "jdbc:mysql://10.40.41.142:3306/SI-Pensiun-kp";//setinganku
+    private static String user = "simdinas";
+    private static String password = "simdinas";
     
-    private static String jdbcURL = "jdbc:mysql://localhost:3306/si-Pensiun-kp";
-    private static String user = "root";
-    private static String password = "";
+//    private static String jdbcURL = "jdbc:mysql://localhost:3306/si-Pensiun-kp";
+//    private static String user = "root";
+//    private static String password = "";
     private static Connection connection = null;
 
     /**
