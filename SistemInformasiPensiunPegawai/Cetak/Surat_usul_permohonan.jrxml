@@ -3,8 +3,8 @@
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="1078"/>
+	<property name="ireport.x" value="31"/>
+	<property name="ireport.y" value="144"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
 	<import value="net.sf.jasperreports.engine.data.*"/>
@@ -1258,6 +1258,19 @@ WHERE
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{tanggalsekarang}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement uuid="18a1acb9-5c38-4e65-baf8-8e62248097c6" key="staticText-5" x="70" y="2" width="26" height="15"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[882.]]></text>
+			</staticText>
 		</band>
 	</detail>
 	<columnFooter>
