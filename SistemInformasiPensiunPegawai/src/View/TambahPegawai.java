@@ -10,6 +10,8 @@
  */
 package View;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author a9uszT
@@ -19,10 +21,14 @@ public class TambahPegawai extends javax.swing.JFrame {
     /** Creates new form TambahPegawai */
     public TambahPegawai() {
         initComponents();
-        simpan_button.setEnabled(false);
-        next_button.setEnabled(false);
+        DU_Simpan_button.setEnabled(false);
+        DU_next_button.setEnabled(false);
         jTabbedPane1.setEnabledAt(1, false);
         jTabbedPane1.setEnabledAt(2, false);
+        jTabbedPane1.setEnabledAt(3, false);
+        jTabbedPane1.setEnabledAt(4, false);
+        jTabbedPane1.setEnabledAt(5, false);
+        jTabbedPane1.setEnabledAt(6, false);
         Clock clock=new Clock();
         clock.showDigitalClock(time);
     }
@@ -46,14 +52,23 @@ public class TambahPegawai extends javax.swing.JFrame {
         nip_br = new javax.swing.JLabel();
         nama = new javax.swing.JLabel();
         Alamat = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        next_button = new javax.swing.JButton();
-        simpan_button = new javax.swing.JButton();
+        DU_NipBaru_TF = new javax.swing.JTextField();
+        DU_Nama_TF = new javax.swing.JTextField();
+        DU_next_button = new javax.swing.JButton();
+        DU_Simpan_button = new javax.swing.JButton();
         nip_br1 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        DU_NipLama_TF = new javax.swing.JTextField();
+        DU_KabKota_TF = new javax.swing.JTextField();
+        DU_RT_TF = new javax.swing.JTextField();
+        DU_Alamat_TF = new javax.swing.JTextField();
+        Alamat1 = new javax.swing.JLabel();
+        Alamat2 = new javax.swing.JLabel();
+        DU_Dukuh_TF = new javax.swing.JTextField();
+        Alamat3 = new javax.swing.JLabel();
+        DU_RW_TF = new javax.swing.JTextField();
+        Alamat4 = new javax.swing.JLabel();
+        Alamat5 = new javax.swing.JLabel();
+        DU_Kecamatan_TF = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         simpan_button1 = new javax.swing.JButton();
         next_button1 = new javax.swing.JButton();
@@ -63,7 +78,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        CPNS_nama_TF = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -77,13 +92,13 @@ public class TambahPegawai extends javax.swing.JFrame {
         jTextField12 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
-        jTextField14 = new javax.swing.JTextField();
+        CPNS_NipBaru_TF = new javax.swing.JTextField();
+        CPNS_NipLama_TF = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jDateChooser3 = new com.toedter.calendar.JDateChooser();
         jPanel6 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        PT_Nama_TF = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
@@ -92,10 +107,10 @@ public class TambahPegawai extends javax.swing.JFrame {
         jTextField16 = new javax.swing.JTextField();
         jDateChooser6 = new com.toedter.calendar.JDateChooser();
         jTextField17 = new javax.swing.JTextField();
-        jTextField18 = new javax.swing.JTextField();
+        PT_NipBaru_TF = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        jTextField19 = new javax.swing.JTextField();
+        PT_NipLama_TF = new javax.swing.JTextField();
         jTextField20 = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
@@ -123,13 +138,13 @@ public class TambahPegawai extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
-        jTextField29 = new javax.swing.JTextField();
+        SPTKG_Nama_TF = new javax.swing.JTextField();
         jTextField30 = new javax.swing.JTextField();
         jDateChooser9 = new com.toedter.calendar.JDateChooser();
         jTextField31 = new javax.swing.JTextField();
         jLabel42 = new javax.swing.JLabel();
-        jTextField34 = new javax.swing.JTextField();
-        jTextField35 = new javax.swing.JTextField();
+        SPTKG_NipLama_TF = new javax.swing.JTextField();
+        SPTKG_NipBaru_TF = new javax.swing.JTextField();
         jLabel43 = new javax.swing.JLabel();
         simpan_button3 = new javax.swing.JButton();
         next_button3 = new javax.swing.JButton();
@@ -149,17 +164,15 @@ public class TambahPegawai extends javax.swing.JFrame {
         jLabel44 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jLabel45 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        Karpeg_Nama_TF = new javax.swing.JTextField();
         jLabel46 = new javax.swing.JLabel();
         jLabel48 = new javax.swing.JLabel();
-        jLabel49 = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
-        jTextField40 = new javax.swing.JTextField();
         jDateChooser11 = new com.toedter.calendar.JDateChooser();
-        jTextField42 = new javax.swing.JTextField();
+        Karpeg_NipBaru_TF = new javax.swing.JTextField();
         jLabel51 = new javax.swing.JLabel();
         jLabel52 = new javax.swing.JLabel();
-        jTextField43 = new javax.swing.JTextField();
+        Karpeg_NipLama_TF = new javax.swing.JTextField();
         simpan_button4 = new javax.swing.JButton();
         next_button4 = new javax.swing.JButton();
         jTextField46 = new javax.swing.JTextField();
@@ -206,7 +219,6 @@ public class TambahPegawai extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("E:\\KP\\SistemInformasiPensiunPegawai\\picture\\header2.jpg")); // NOI18N
         jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -237,70 +249,101 @@ public class TambahPegawai extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 888, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Tambah PNS");
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        nip_br.setFont(new java.awt.Font("Tahoma", 1, 14));
+        nip_br.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         nip_br.setText("NIP Baru");
         jPanel4.add(nip_br, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 70, -1, -1));
 
-        nama.setFont(new java.awt.Font("Tahoma", 1, 14));
+        nama.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         nama.setText("Nama");
         jPanel4.add(nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, -1, -1));
 
-        Alamat.setFont(new java.awt.Font("Tahoma", 1, 14));
-        Alamat.setText("Alamat");
-        jPanel4.add(Alamat, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, -1, -1));
+        Alamat.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Alamat.setText("RT");
+        jPanel4.add(Alamat, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, -1, -1));
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 12));
-        jPanel4.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 363, -1));
-
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 12));
-        jPanel4.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 360, -1));
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextArea1KeyReleased(evt);
+        DU_NipBaru_TF.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        DU_NipBaru_TF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                DU_NipBaru_TFKeyPressed(evt);
             }
         });
-        jScrollPane1.setViewportView(jTextArea1);
+        jPanel4.add(DU_NipBaru_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 363, -1));
 
-        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 130, 363, -1));
+        DU_Nama_TF.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jPanel4.add(DU_Nama_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 360, -1));
 
-        next_button.setText("Next");
-        next_button.addActionListener(new java.awt.event.ActionListener() {
+        DU_next_button.setText("Next");
+        DU_next_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                next_buttonActionPerformed(evt);
+                DU_next_buttonActionPerformed(evt);
             }
         });
-        jPanel4.add(next_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 290, -1, -1));
+        jPanel4.add(DU_next_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 290, -1, -1));
 
-        simpan_button.setText("Simpan");
-        simpan_button.addActionListener(new java.awt.event.ActionListener() {
+        DU_Simpan_button.setText("Simpan");
+        DU_Simpan_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                simpan_buttonActionPerformed(evt);
+                DU_Simpan_buttonActionPerformed(evt);
             }
         });
-        jPanel4.add(simpan_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, -1, -1));
+        jPanel4.add(DU_Simpan_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, -1, -1));
 
-        nip_br1.setFont(new java.awt.Font("Tahoma", 1, 14));
+        nip_br1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         nip_br1.setText("NIP Lama");
         jPanel4.add(nip_br1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, -1));
 
-        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 12));
-        jPanel4.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 130, -1));
+        DU_NipLama_TF.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        DU_NipLama_TF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                DU_NipLama_TFKeyPressed(evt);
+            }
+        });
+        jPanel4.add(DU_NipLama_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 130, -1));
+
+        DU_KabKota_TF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                DU_KabKota_TFKeyPressed(evt);
+            }
+        });
+        jPanel4.add(DU_KabKota_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, 190, -1));
+        jPanel4.add(DU_RT_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 160, 60, -1));
+        jPanel4.add(DU_Alamat_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 130, 360, -1));
+
+        Alamat1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Alamat1.setText("Alamat");
+        jPanel4.add(Alamat1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, -1, -1));
+
+        Alamat2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Alamat2.setText("Kabupaten / Kota");
+        jPanel4.add(Alamat2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, -1, -1));
+        jPanel4.add(DU_Dukuh_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 160, 130, -1));
+
+        Alamat3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Alamat3.setText("RW");
+        jPanel4.add(Alamat3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 160, -1, -1));
+        jPanel4.add(DU_RW_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 160, 60, -1));
+
+        Alamat4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Alamat4.setText("Dukuh");
+        jPanel4.add(Alamat4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, -1, -1));
+
+        Alamat5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Alamat5.setText("Kecamatan");
+        jPanel4.add(Alamat5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, -1, -1));
+        jPanel4.add(DU_Kecamatan_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, 190, -1));
 
         jTabbedPane1.addTab("Data Utama", jPanel4);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        simpan_button1.setFont(new java.awt.Font("Tahoma", 1, 14));
+        simpan_button1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         simpan_button1.setText("Simpan");
         simpan_button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -309,7 +352,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         });
         jPanel5.add(simpan_button1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 220, -1, -1));
 
-        next_button1.setFont(new java.awt.Font("Tahoma", 1, 14));
+        next_button1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         next_button1.setText("Next");
         next_button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -318,38 +361,38 @@ public class TambahPegawai extends javax.swing.JFrame {
         });
         jPanel5.add(next_button1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 220, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Nomor Surat");
         jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
         jPanel5.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 230, -1));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Tanggal Surat");
         jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
         jDateChooser1.setDateFormatString("d MMM yyyy");
         jPanel5.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 230, -1));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Tempat Pembuatan Surat");
         jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
         jPanel5.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 230, -1));
-        jPanel5.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 230, -1));
+        jPanel5.add(CPNS_nama_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 230, -1));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Nama");
         jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
         jPanel5.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 230, -1));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Tempat Lahir");
         jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Tanggal Lahir");
         jPanel5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("TMT Partikelir");
         jPanel5.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
 
@@ -357,27 +400,27 @@ public class TambahPegawai extends javax.swing.JFrame {
         jPanel5.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 230, -1));
         jPanel5.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 230, -1));
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setText("Partikelir");
         jPanel5.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
         jPanel5.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 50, 230, -1));
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setText("Profesi");
         jPanel5.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 50, -1, -1));
         jPanel5.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 80, 230, -1));
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setText("Sekolah");
         jPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, -1, -1));
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setText("NIP baru");
         jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, -1, -1));
-        jPanel5.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 140, 230, -1));
-        jPanel5.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 110, 120, -1));
+        jPanel5.add(CPNS_NipBaru_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 140, 230, -1));
+        jPanel5.add(CPNS_NipLama_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 110, 120, -1));
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel14.setText("NIP Lama");
         jPanel5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, -1, -1));
 
@@ -388,28 +431,28 @@ public class TambahPegawai extends javax.swing.JFrame {
 
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel15.setText("Nomor Surat");
         jPanel6.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
-        jPanel6.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 230, -1));
+        jPanel6.add(PT_Nama_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 230, -1));
 
-        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel16.setText("Nama");
         jPanel6.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
-        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel19.setText("Tempat Lahir");
         jPanel6.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
 
-        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel20.setText("Tanggal Lahir");
         jPanel6.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
 
-        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel21.setText("Pendidikan");
         jPanel6.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
 
-        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel22.setText("Pangkat Lama");
         jPanel6.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
         jPanel6.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 230, -1));
@@ -417,28 +460,28 @@ public class TambahPegawai extends javax.swing.JFrame {
         jDateChooser6.setDateFormatString("d MMM yyyy");
         jPanel6.add(jDateChooser6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 230, -1));
         jPanel6.add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 230, -1));
-        jPanel6.add(jTextField18, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 230, -1));
+        jPanel6.add(PT_NipBaru_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 230, -1));
 
-        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel23.setText("NIP baru");
         jPanel6.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
 
-        jLabel24.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel24.setText("NIP Lama");
         jPanel6.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
-        jPanel6.add(jTextField19, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 120, -1));
+        jPanel6.add(PT_NipLama_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 120, -1));
         jPanel6.add(jTextField20, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 50, 230, -1));
 
-        jLabel25.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel25.setText("Ruang lama");
         jPanel6.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, -1, -1));
 
-        jLabel26.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel26.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel26.setText("Golongan Lama");
         jPanel6.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, -1));
         jPanel6.add(jTextField21, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 230, -1));
 
-        simpan_button2.setFont(new java.awt.Font("Tahoma", 1, 14));
+        simpan_button2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         simpan_button2.setText("Simpan");
         simpan_button2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -447,7 +490,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         });
         jPanel6.add(simpan_button2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 340, -1, -1));
 
-        next_button2.setFont(new java.awt.Font("Tahoma", 1, 14));
+        next_button2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         next_button2.setText("Next");
         next_button2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -458,24 +501,24 @@ public class TambahPegawai extends javax.swing.JFrame {
         jPanel6.add(jTextField22, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 230, -1));
         jPanel6.add(jTextField23, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 230, -1));
 
-        jLabel27.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel27.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel27.setText("TMT lama");
         jPanel6.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, -1, -1));
 
         jDateChooser7.setDateFormatString("d MMM yyyy");
         jPanel6.add(jDateChooser7, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, 230, -1));
 
-        jLabel28.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel28.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel28.setText("Pangkat Baru");
         jPanel6.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, -1, -1));
         jPanel6.add(jTextField24, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 110, 230, -1));
         jPanel6.add(jTextField25, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 140, 230, -1));
 
-        jLabel29.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel29.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel29.setText("Golongan Baru");
         jPanel6.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 140, -1, -1));
 
-        jLabel30.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel30.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel30.setText("Ruang baru");
         jPanel6.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, -1, -1));
         jPanel6.add(jTextField26, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 170, 230, -1));
@@ -483,17 +526,17 @@ public class TambahPegawai extends javax.swing.JFrame {
         jDateChooser8.setDateFormatString("d MMM yyyy");
         jPanel6.add(jDateChooser8, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 200, 230, -1));
 
-        jLabel31.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel31.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel31.setText("TMT baru");
         jPanel6.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 200, -1, -1));
 
-        jLabel32.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel32.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel32.setText("Mas kerja Gol");
         jPanel6.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 230, -1, -1));
         jPanel6.add(jTextField27, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 230, 230, -1));
         jPanel6.add(jTextField28, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 260, 230, -1));
 
-        jLabel33.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel33.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel33.setText("Gaji Pokok");
         jPanel6.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, -1, -1));
 
@@ -501,39 +544,39 @@ public class TambahPegawai extends javax.swing.JFrame {
 
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel17.setText("Nomor Surat");
         jPanel7.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
-        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel18.setText("Tanggal Surat");
         jPanel7.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
-        jLabel34.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel34.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel34.setText("Tempat Pembuatan Surat");
         jPanel7.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
 
-        jLabel35.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel35.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel35.setText("Nama");
         jPanel7.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
-        jPanel7.add(jTextField29, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 230, -1));
+        jPanel7.add(SPTKG_Nama_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 230, -1));
         jPanel7.add(jTextField30, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 230, -1));
 
         jDateChooser9.setDateFormatString("d MMM yyyy");
         jPanel7.add(jDateChooser9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 230, -1));
         jPanel7.add(jTextField31, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 230, -1));
 
-        jLabel42.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel42.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel42.setText("NIP Lama");
         jPanel7.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
-        jPanel7.add(jTextField34, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 120, -1));
-        jPanel7.add(jTextField35, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 230, -1));
+        jPanel7.add(SPTKG_NipLama_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 120, -1));
+        jPanel7.add(SPTKG_NipBaru_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 230, -1));
 
-        jLabel43.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel43.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel43.setText("NIP baru");
         jPanel7.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
 
-        simpan_button3.setFont(new java.awt.Font("Tahoma", 1, 14));
+        simpan_button3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         simpan_button3.setText("Simpan");
         simpan_button3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -542,7 +585,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         });
         jPanel7.add(simpan_button3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 250, -1, -1));
 
-        next_button3.setFont(new java.awt.Font("Tahoma", 1, 14));
+        next_button3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         next_button3.setText("Next");
         next_button3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -551,32 +594,32 @@ public class TambahPegawai extends javax.swing.JFrame {
         });
         jPanel7.add(next_button3, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 250, -1, -1));
 
-        jLabel36.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel36.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel36.setText("Pangkat Baru");
         jPanel7.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
         jPanel7.add(jTextField32, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 230, -1));
         jPanel7.add(jTextField33, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 230, -1));
 
-        jLabel37.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel37.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel37.setText("Golongan Baru");
         jPanel7.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
 
-        jLabel38.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel38.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel38.setText("Ruang Baru");
         jPanel7.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, -1));
         jPanel7.add(jTextField36, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 230, -1));
 
-        jLabel39.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel39.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel39.setText("Sekolah");
         jPanel7.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 50, -1, -1));
         jPanel7.add(jTextField37, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 50, 230, -1));
         jPanel7.add(jTextField38, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 80, 230, -1));
 
-        jLabel40.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel40.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel40.setText("Gaji Pokok Lama");
         jPanel7.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, -1, -1));
 
-        jLabel41.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel41.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel41.setText("gaji Pokok Baru");
         jPanel7.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, -1, -1));
         jPanel7.add(jTextField39, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 110, 230, -1));
@@ -584,7 +627,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         jDateChooser10.setDateFormatString("d MMM yyyy");
         jPanel7.add(jDateChooser10, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, 230, -1));
 
-        jLabel44.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel44.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel44.setText("TMT baru");
         jPanel7.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, -1, -1));
 
@@ -592,42 +635,37 @@ public class TambahPegawai extends javax.swing.JFrame {
 
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel45.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel45.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel45.setText("Nomor Surat");
         jPanel9.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, -1, -1));
-        jPanel9.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 80, 230, -1));
+        jPanel9.add(Karpeg_Nama_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 80, 230, -1));
 
-        jLabel46.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel46.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel46.setText("Nama");
         jPanel9.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, -1));
 
-        jLabel48.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel48.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel48.setText("Tanggal Lahir");
-        jPanel9.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, -1, -1));
+        jPanel9.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, -1, -1));
 
-        jLabel49.setFont(new java.awt.Font("Tahoma", 0, 14));
-        jLabel49.setText("Nama");
-        jPanel9.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, -1, -1));
-
-        jLabel50.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel50.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel50.setText("TMT CPNS");
-        jPanel9.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, -1, -1));
-        jPanel9.add(jTextField40, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, 230, -1));
+        jPanel9.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, -1, -1));
 
         jDateChooser11.setDateFormatString("d MMM yyyy");
-        jPanel9.add(jDateChooser11, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 230, -1));
-        jPanel9.add(jTextField42, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 140, 230, -1));
+        jPanel9.add(jDateChooser11, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, 230, -1));
+        jPanel9.add(Karpeg_NipBaru_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 140, 230, -1));
 
-        jLabel51.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel51.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel51.setText("NIP baru");
         jPanel9.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, -1, -1));
 
-        jLabel52.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel52.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel52.setText("NIP Lama");
         jPanel9.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, -1, -1));
-        jPanel9.add(jTextField43, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 120, -1));
+        jPanel9.add(Karpeg_NipLama_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 120, -1));
 
-        simpan_button4.setFont(new java.awt.Font("Tahoma", 1, 14));
+        simpan_button4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         simpan_button4.setText("Simpan");
         simpan_button4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -636,7 +674,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         });
         jPanel9.add(simpan_button4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, -1, -1));
 
-        next_button4.setFont(new java.awt.Font("Tahoma", 1, 14));
+        next_button4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         next_button4.setText("Next");
         next_button4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -647,35 +685,35 @@ public class TambahPegawai extends javax.swing.JFrame {
         jPanel9.add(jTextField46, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 230, -1));
 
         jDateChooser12.setDateFormatString("d MMM yyyy");
-        jPanel9.add(jDateChooser12, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, 230, -1));
+        jPanel9.add(jDateChooser12, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, 230, -1));
 
         jTabbedPane1.addTab("SK_Karpeg", jPanel9);
 
         jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel47.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel47.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel47.setText("Nomor Surat");
         jPanel10.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, -1, -1));
         jPanel10.add(jTextField47, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 230, -1));
         jPanel10.add(jTextField44, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, 230, -1));
         jPanel10.add(jTextField45, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, 230, -1));
 
-        jLabel53.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel53.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel53.setText("Nama Istri");
         jPanel10.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, -1, -1));
 
-        jLabel54.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel54.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel54.setText("Nama Suami");
         jPanel10.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, -1, -1));
 
-        jLabel55.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel55.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel55.setText("Tanggal Nikah");
         jPanel10.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, -1, -1));
 
         jDateChooser13.setDateFormatString("d MMM yyyy");
         jPanel10.add(jDateChooser13, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 230, -1));
 
-        simpan_button5.setFont(new java.awt.Font("Tahoma", 1, 14));
+        simpan_button5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         simpan_button5.setText("Simpan");
         simpan_button5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -684,7 +722,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         });
         jPanel10.add(simpan_button5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, -1, -1));
 
-        next_button5.setFont(new java.awt.Font("Tahoma", 1, 14));
+        next_button5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         next_button5.setText("Next");
         next_button5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -699,7 +737,7 @@ public class TambahPegawai extends javax.swing.JFrame {
 
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel56.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel56.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel56.setText("Nama kepala keluarga");
         jPanel8.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
         jPanel8.add(jTextField41, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 230, -1));
@@ -708,31 +746,31 @@ public class TambahPegawai extends javax.swing.JFrame {
         jPanel8.add(jTextField48, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 40, -1));
         jPanel8.add(jTextField49, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 120, -1));
 
-        jLabel60.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel60.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel60.setText("Kelurahan/Desa");
         jPanel8.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
 
-        jLabel58.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel58.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel58.setText("RT/RW");
         jPanel8.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
 
-        jLabel57.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel57.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel57.setText("Alamat");
         jPanel8.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
-        jLabel61.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel61.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel61.setText("Kecamatan");
         jPanel8.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, -1, -1));
 
-        jLabel62.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel62.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel62.setText("kabupaten/Kota");
         jPanel8.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, -1, -1));
 
-        jLabel64.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel64.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel64.setText("Kode Pos");
         jPanel8.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, -1, -1));
 
-        jLabel63.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel63.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel63.setText("Provinsi");
         jPanel8.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 130, -1, -1));
         jPanel8.add(jTextField53, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, 230, -1));
@@ -740,7 +778,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         jPanel8.add(jTextField51, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, 230, -1));
         jPanel8.add(jTextField50, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 230, -1));
 
-        jLabel59.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel59.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel59.setText("Nomor KK");
         jPanel8.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, -1, -1));
         jPanel8.add(jTextField55, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 230, -1));
@@ -788,7 +826,7 @@ public class TambahPegawai extends javax.swing.JFrame {
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 215, -1, 440));
 
-        time.setFont(new java.awt.Font("Tahoma", 1, 12));
+        time.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         time.setText("time");
         getContentPane().add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 190, -1, -1));
 
@@ -798,22 +836,18 @@ public class TambahPegawai extends javax.swing.JFrame {
         setLocation((screenSize.width-dialogSize.width)/2,(screenSize.height-dialogSize.height)/2);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextArea1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextArea1KeyReleased
-        simpan_button.setEnabled(true);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextArea1KeyReleased
+    private void DU_Simpan_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DU_Simpan_buttonActionPerformed
+        sebarkanNama(DU_Nama_TF.getText());
+        sebarkanNIPLama(DU_NipLama_TF.getText());
+        sebarkanNIPBaru(DU_NipBaru_TF.getText());
+        DU_next_button.setEnabled(true);
+    }//GEN-LAST:event_DU_Simpan_buttonActionPerformed
 
-    private void simpan_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpan_buttonActionPerformed
-        next_button.setEnabled(true);
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_simpan_buttonActionPerformed
-
-    private void next_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_next_buttonActionPerformed
+    private void DU_next_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DU_next_buttonActionPerformed
         jTabbedPane1.setEnabledAt(1, true);
         jTabbedPane1.setSelectedIndex(1);
         // TODO add your handling code here:
-    }//GEN-LAST:event_next_buttonActionPerformed
+    }//GEN-LAST:event_DU_next_buttonActionPerformed
 
     private void simpan_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpan_button1ActionPerformed
         // TODO add your handling code here:
@@ -857,6 +891,52 @@ public class TambahPegawai extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_next_button5ActionPerformed
 
+    private void DU_NipLama_TFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DU_NipLama_TFKeyPressed
+        int res = cekAngka(DU_NipLama_TF.getText());
+        if (res == 0) {
+            DU_NipLama_TF.setText("");
+        }
+    }//GEN-LAST:event_DU_NipLama_TFKeyPressed
+
+    private void DU_NipBaru_TFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DU_NipBaru_TFKeyPressed
+        int res = cekAngka(DU_NipBaru_TF.getText());
+        if (res == 0) {
+            DU_NipBaru_TF.setText("");
+        }
+    }//GEN-LAST:event_DU_NipBaru_TFKeyPressed
+
+    private void DU_KabKota_TFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DU_KabKota_TFKeyPressed
+        DU_Simpan_button.setEnabled(true);
+    }//GEN-LAST:event_DU_KabKota_TFKeyPressed
+
+    private int cekAngka(String isian) {
+        if (!isian.matches("[0-9]*")) {
+            JOptionPane.showMessageDialog(rootPane, "Masukkan harus angka..!!");
+            return 0;
+        }
+        return 1;
+    }
+    
+    public void sebarkanNama(String nama){
+        CPNS_nama_TF.setText(nama);        
+        PT_Nama_TF.setText(nama);
+        SPTKG_Nama_TF.setText(nama);
+        Karpeg_Nama_TF.setText(nama);
+    }
+    
+    public void sebarkanNIPLama(String nipLama){
+        CPNS_NipLama_TF.setText(nipLama);
+        PT_NipLama_TF.setText(nipLama);
+        SPTKG_NipLama_TF.setText(nipLama);
+        Karpeg_NipLama_TF.setText(nipLama);
+    }
+    
+    public void sebarkanNIPBaru(String nipBaru){
+        CPNS_NipBaru_TF.setText(nipBaru);
+        PT_NipBaru_TF.setText(nipBaru);
+        SPTKG_NipBaru_TF.setText(nipBaru);
+        Karpeg_NipBaru_TF.setText(nipBaru);
+    }
     /**
      * @param args the command line arguments
      */
@@ -870,6 +950,34 @@ public class TambahPegawai extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Alamat;
+    private javax.swing.JLabel Alamat1;
+    private javax.swing.JLabel Alamat2;
+    private javax.swing.JLabel Alamat3;
+    private javax.swing.JLabel Alamat4;
+    private javax.swing.JLabel Alamat5;
+    private javax.swing.JTextField CPNS_NipBaru_TF;
+    private javax.swing.JTextField CPNS_NipLama_TF;
+    private javax.swing.JTextField CPNS_nama_TF;
+    private javax.swing.JTextField DU_Alamat_TF;
+    private javax.swing.JTextField DU_Dukuh_TF;
+    private javax.swing.JTextField DU_KabKota_TF;
+    private javax.swing.JTextField DU_Kecamatan_TF;
+    private javax.swing.JTextField DU_Nama_TF;
+    private javax.swing.JTextField DU_NipBaru_TF;
+    private javax.swing.JTextField DU_NipLama_TF;
+    private javax.swing.JTextField DU_RT_TF;
+    private javax.swing.JTextField DU_RW_TF;
+    private javax.swing.JButton DU_Simpan_button;
+    private javax.swing.JButton DU_next_button;
+    private javax.swing.JTextField Karpeg_Nama_TF;
+    private javax.swing.JTextField Karpeg_NipBaru_TF;
+    private javax.swing.JTextField Karpeg_NipLama_TF;
+    private javax.swing.JTextField PT_Nama_TF;
+    private javax.swing.JTextField PT_NipBaru_TF;
+    private javax.swing.JTextField PT_NipLama_TF;
+    private javax.swing.JTextField SPTKG_Nama_TF;
+    private javax.swing.JTextField SPTKG_NipBaru_TF;
+    private javax.swing.JTextField SPTKG_NipLama_TF;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser10;
     private com.toedter.calendar.JDateChooser jDateChooser11;
@@ -924,7 +1032,6 @@ public class TambahPegawai extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
-    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
@@ -956,24 +1063,16 @@ public class TambahPegawai extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField16;
     private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField18;
-    private javax.swing.JTextField jTextField19;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField20;
     private javax.swing.JTextField jTextField21;
     private javax.swing.JTextField jTextField22;
@@ -983,23 +1082,16 @@ public class TambahPegawai extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField26;
     private javax.swing.JTextField jTextField27;
     private javax.swing.JTextField jTextField28;
-    private javax.swing.JTextField jTextField29;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField30;
     private javax.swing.JTextField jTextField31;
     private javax.swing.JTextField jTextField32;
     private javax.swing.JTextField jTextField33;
-    private javax.swing.JTextField jTextField34;
-    private javax.swing.JTextField jTextField35;
     private javax.swing.JTextField jTextField36;
     private javax.swing.JTextField jTextField37;
     private javax.swing.JTextField jTextField38;
     private javax.swing.JTextField jTextField39;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField40;
     private javax.swing.JTextField jTextField41;
-    private javax.swing.JTextField jTextField42;
-    private javax.swing.JTextField jTextField43;
     private javax.swing.JTextField jTextField44;
     private javax.swing.JTextField jTextField45;
     private javax.swing.JTextField jTextField46;
@@ -1013,12 +1105,8 @@ public class TambahPegawai extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField53;
     private javax.swing.JTextField jTextField54;
     private javax.swing.JTextField jTextField55;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JLabel nama;
-    private javax.swing.JButton next_button;
     private javax.swing.JButton next_button1;
     private javax.swing.JButton next_button2;
     private javax.swing.JButton next_button3;
@@ -1026,7 +1114,6 @@ public class TambahPegawai extends javax.swing.JFrame {
     private javax.swing.JButton next_button5;
     private javax.swing.JLabel nip_br;
     private javax.swing.JLabel nip_br1;
-    private javax.swing.JButton simpan_button;
     private javax.swing.JButton simpan_button1;
     private javax.swing.JButton simpan_button2;
     private javax.swing.JButton simpan_button3;
