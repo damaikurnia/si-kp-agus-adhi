@@ -4,10 +4,13 @@
  */
 package Controller;
 
+import Model.PNS;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -47,5 +50,27 @@ public class ControlData {
 
     public String cariPegawai(String id) {
         throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    public List<PNS> SearchPNS(String id) throws SQLException {
+        PreparedStatement stmt = null;
+        PNS cek = null;
+        ResultSet result = null;
+        conn.setAutoCommit(false);
+        String query = "SELECT nip_baru,nama_pns FROM PNS "
+                + "where nip_baru=? ";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, id);
+        result = stmt.executeQuery();
+         List<PNS> pns = new ArrayList<PNS>();
+        if (result.next()) {
+            cek=new PNS();
+            cek.setNip_baru(result.getString(1));
+            cek.setNama_pns(result.getString(2));
+            pns.add(cek);
+        }
+        conn.commit();
+        return pns;
+
     }
 }
