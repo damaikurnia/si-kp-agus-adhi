@@ -64,9 +64,9 @@ public class ControlData {
         stmt = conn.prepareStatement(query);
         stmt.setString(1, id);
         result = stmt.executeQuery();
-         List<PNS> pns = new ArrayList<PNS>();
+        List<PNS> pns = new ArrayList<PNS>();
         if (result.next()) {
-            cek=new PNS();
+            cek = new PNS();
             cek.setNip_baru(result.getString(1));
             cek.setNama_pns(result.getString(2));
             pns.add(cek);
@@ -75,8 +75,8 @@ public class ControlData {
         return pns;
 
     }
-    
-        public void insertPNS(PNS k) throws SQLException {
+
+    public void insertPNS(PNS k) throws SQLException {
         PreparedStatement stmt = null;
         try {
             conn.setAutoCommit(false);
@@ -89,7 +89,7 @@ public class ControlData {
             stmt.setString(5, k.getId_SuratPangkatTerakhir());
             stmt.setString(6, k.getId_SuratSPTKGTerakhir());
             stmt.setString(7, k.getId_SuratKarpeg());
-            stmt.setString(9, k.getId_SuratNikah());
+            stmt.setString(8, k.getId_SuratNikah());
             stmt.setString(9, k.getId_SuratNIPBaru());
             stmt.setString(10, k.getId_Suratkk());
 

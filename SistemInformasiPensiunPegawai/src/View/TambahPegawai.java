@@ -10,8 +10,11 @@
  */
 package View;
 
+import Model.PNS;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,7 +22,8 @@ import javax.swing.JOptionPane;
  * @author a9uszT
  */
 public class TambahPegawai extends javax.swing.JFrame {
-
+    
+    PNS pegawai = new PNS("-","-","-","-","-","-","-","-","-","-");
     /** Creates new form TambahPegawai */
     public TambahPegawai() {
         initComponents();
@@ -851,7 +855,17 @@ public class TambahPegawai extends javax.swing.JFrame {
         sebarkanNIPLama(DU_NipLama_TF.getText());
         sebarkanNIPBaru(DU_NipBaru_TF.getText());
         sebarkanKeKK();
+        
+        pegawai.setNip_baru(DU_NipBaru_TF.getText());
+        pegawai.setNip_lama(DU_NipLama_TF.getText());
+        pegawai.setNama_pns(DU_Nama_TF.getText());
+        try {
+            Controller.ControlData.getKoneksi().insertPNS(pegawai);
+        } catch (Exception ex) {
+            Logger.getLogger(TambahPegawai.class.getName()).log(Level.SEVERE, null, ex);
+        }
         DU_next_button.setEnabled(true);
+        JOptionPane.showMessageDialog(rootPane,"Data Utama Berhasil Disimpan");
     }//GEN-LAST:event_DU_Simpan_buttonActionPerformed
 
     private void DU_next_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DU_next_buttonActionPerformed
