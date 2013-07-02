@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -72,5 +74,43 @@ public class ControlData {
         conn.commit();
         return pns;
 
+    }
+    
+        public void insertPNS(PNS k) throws SQLException {
+        PreparedStatement stmt = null;
+        try {
+            conn.setAutoCommit(false);
+            String query = "INSERT INTO pns VALUES(?,?,?,?,?,?,?,?,?,?)";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, k.getNip_baru());
+            stmt.setString(2, k.getNip_lama());
+            stmt.setString(3, k.getNama_pns());
+            stmt.setString(4, k.getId_SuratCPNS());
+            stmt.setString(5, k.getId_SuratPangkatTerakhir());
+            stmt.setString(6, k.getId_SuratSPTKGTerakhir());
+            stmt.setString(7, k.getId_SuratKarpeg());
+            stmt.setString(9, k.getId_SuratNikah());
+            stmt.setString(9, k.getId_SuratNIPBaru());
+            stmt.setString(10, k.getId_Suratkk());
+
+            stmt.executeUpdate();
+            conn.commit();
+        } catch (SQLException se) {
+            conn.rollback();
+            throw se;
+        } finally {
+            try {
+                conn.setAutoCommit(true);
+                if (stmt != null) {
+                    stmt.close();
+                }
+            } catch (Exception e) {
+                try {
+                    throw e;
+                } catch (Exception ex) {
+                    Logger.getLogger(ControlData.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
     }
 }
