@@ -1229,7 +1229,7 @@ WHERE
 					<subreportParameter  name="NIP">
 						<subreportParameterExpression><![CDATA[$P{NIP}]]></subreportParameterExpression>
 					</subreportParameter>
-					<dataSourceExpression><![CDATA[$P{MyDatasource}]]></dataSourceExpression>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_istri_suami_dpcp.jasper"]]></subreportExpression>
 				</subreport>
 				<subreport  isUsingCache="true">
@@ -1245,7 +1245,7 @@ WHERE
 					<subreportParameter  name="NIP">
 						<subreportParameterExpression><![CDATA[$P{NIP}]]></subreportParameterExpression>
 					</subreportParameter>
-					<dataSourceExpression><![CDATA[$P{MyDatasource}]]></dataSourceExpression>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_anak_dpcp.jasper"]]></subreportExpression>
 				</subreport>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
