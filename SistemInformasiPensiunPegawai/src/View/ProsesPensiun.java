@@ -14,11 +14,16 @@ import Controller.ConnMySql;
 import Controller.ControlData;
 import Model.PNS;
 import TableModel.DataProsesPensiunTableModel;
+import TableModel.RataTengah;
+import java.awt.Color;
 import java.sql.Connection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.TableCellRenderer;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRPrintPage;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -33,9 +38,14 @@ public class ProsesPensiun extends javax.swing.JFrame {
 
     /** Creates new form ProsesPensiun */
     public ProsesPensiun() {
+
         initComponents();
         Clock clock = new Clock();
         clock.showDigitalClock(time);
+        jenis_label.setVisible(false);
+        combo_jenisPensiun.setVisible(false);
+         tabel_cari.getColumnModel().getColumn(0).setCellRenderer(tengah);
+        tabel_cari.getColumnModel().getColumn(1).setCellRenderer(tengah);
     }
 
     /** This method is called from within the constructor to
@@ -56,9 +66,11 @@ public class ProsesPensiun extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabel_cari = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
-        nip_br = new javax.swing.JLabel();
+        jenis_label = new javax.swing.JLabel();
         nip_TF = new javax.swing.JTextField();
         button_proses = new javax.swing.JButton();
+        combo_jenisPensiun = new javax.swing.JComboBox();
+        nip_br1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         exit_button = new javax.swing.JButton();
 
@@ -67,7 +79,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("E:\\KP\\SistemInformasiPensiunPegawai\\picture\\header2.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("E:\\KP\\trunk\\SistemInformasiPensiunPegawai\\picture\\header2.jpg")); // NOI18N
         jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -104,36 +116,38 @@ public class ProsesPensiun extends javax.swing.JFrame {
 
         time.setFont(new java.awt.Font("Tahoma", 1, 14));
         time.setText("time");
-        jPanel3.add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, -1, -1));
+        jPanel3.add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 10, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 0, 18));
         jLabel2.setText("Data Pegawai");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, -1, -1));
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, -1, -1));
 
         tabel_cari.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "N I P", "NAMA"
             }
         ));
         jScrollPane1.setViewportView(tabel_cari);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, 540, 100));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 540, 60));
 
         jPanel4.setBackground(new java.awt.Color(153, 153, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        nip_br.setFont(new java.awt.Font("Tahoma", 1, 14));
-        nip_br.setText("Masukan NIP");
-        jPanel4.add(nip_br, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
+        jenis_label.setFont(new java.awt.Font("Tahoma", 1, 14));
+        jenis_label.setText("Pilih Jenis Pensiun");
+        jPanel4.add(jenis_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, -1, 30));
 
         nip_TF.setFont(new java.awt.Font("Tahoma", 0, 12));
+        nip_TF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                nip_TFKeyReleased(evt);
+            }
+        });
         jPanel4.add(nip_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 310, -1));
 
         button_proses.setText("Proses");
@@ -142,13 +156,26 @@ public class ProsesPensiun extends javax.swing.JFrame {
                 button_prosesActionPerformed(evt);
             }
         });
-        jPanel4.add(button_proses, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, -1, -1));
+        jPanel4.add(button_proses, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, -1, -1));
 
-        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 540, 130));
+        combo_jenisPensiun.setFont(new java.awt.Font("Tahoma", 1, 14));
+        combo_jenisPensiun.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Pilih Jenis--", "B U P", "Janda / Duda", "Meninggal Dunia" }));
+        combo_jenisPensiun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combo_jenisPensiunActionPerformed(evt);
+            }
+        });
+        jPanel4.add(combo_jenisPensiun, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 230, -1));
 
-        jLabel3.setFont(new java.awt.Font("Arial Black", 0, 18));
+        nip_br1.setFont(new java.awt.Font("Tahoma", 1, 14));
+        nip_br1.setText("Masukan NIP");
+        jPanel4.add(nip_br1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
+
+        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 540, 190));
+
+        jLabel3.setFont(new java.awt.Font("Arial Black", 1, 18));
         jLabel3.setText("Proses Pensiun Pegawai");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, -1, -1));
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, -1, -1));
 
         exit_button.setText("Keluar");
         exit_button.addActionListener(new java.awt.event.ActionListener() {
@@ -169,46 +196,32 @@ public class ProsesPensiun extends javax.swing.JFrame {
     private void button_prosesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_prosesActionPerformed
         try {
             tabel_cari.setVisible(true);
-            List<PNS> search = ControlData.getKoneksi().SearchPNS(nip_TF.getText());
-            if (search.isEmpty()) {
-                JOptionPane.showMessageDialog(rootPane, "data Pegawai tidak ditemukan");
-            } else {
-                DataProsesPensiunTableModel dataPensiun = new DataProsesPensiunTableModel(search);
-                tabel_cari.setModel(dataPensiun);
-                int option = JOptionPane.showConfirmDialog(rootPane, "Data ditemukan apakah akan proses \n NIP " + nip_TF.getText(), "tanya", JOptionPane.OK_CANCEL_OPTION);
-                if (option == 0) {
-                    // try {
-                    Connection kon = null;
-                    try {
-                        kon = ConnMySql.getConnections();
-//                        } catch (Exception ex) {
-//                            JOptionPane.showMessageDialog(rootPane, "terjadi gagal koneksi ke Database \n Coba cek koneksi ke Database");
-//                        }
-                        Map reportparametermap1 = new HashMap();
-
-                        reportparametermap1.put("NIP", nip_TF.getText());
-                        String reportSource = "./Cetak/CoverBUP.jasper";
-                        String reportSource2 = "./Cetak/Surat_keterangan.jasper";
-                        String reportSource3 = "./Cetak/Badan_Administrasi.jasper";
-                        JasperPrint firstjasperprint = new JasperPrint();
-                        firstjasperprint = JasperFillManager.fillReport(reportSource, reportparametermap1, kon);
-
-                        JasperPrint secondjasperprint = new JasperPrint();
-                        secondjasperprint = JasperFillManager.fillReport(reportSource2, reportparametermap1, kon);
-
-                        JasperPrint thirdjasperprint = new JasperPrint();
-                        thirdjasperprint = JasperFillManager.fillReport(reportSource3, reportparametermap1, kon);
-
-                        JasperPrint firstsecondlinked = multipageLinking(firstjasperprint, secondjasperprint);
-                        JasperPrint firstsecondthirdlinked = multipageLinking(firstsecondlinked, thirdjasperprint);
-                        // reportSource = "./Cetak/CoverBUP.jasper";
-                        // Map<String, Object> params = new HashMap<String, Object>();
-                        // params.put("NIP", nip_TF.getText());
-                        // JasperPrint jasperPrint = JasperFillManager.fillReport(reportSource, reportparametermap1, kon);
-                        JasperViewer.viewReport(firstsecondthirdlinked, false);
-
-                    } catch (JRException ex) {
-                        JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+            if (nip_TF.getDocument().getLength()==0) {
+                JOptionPane.showMessageDialog(rootPane, "NIP masih Kosong");
+                nip_TF.requestFocus();
+                nip_TF.setBackground(Color.pink);
+            } else if(nip_TF.getDocument().getLength()<18){
+                JOptionPane.showMessageDialog(rootPane, "NIP tidak lengkap");
+                nip_TF.requestFocus();
+                nip_TF.setBackground(Color.pink);
+            } else if(nip_TF.getDocument().getLength()>18){
+                JOptionPane.showMessageDialog(rootPane, "NIP terlalu panjang");
+                nip_TF.requestFocus();
+                nip_TF.setBackground(Color.pink);
+            }
+            else {
+                List<PNS> search = ControlData.getKoneksi().SearchPNS(nip_TF.getText());
+                if (search.isEmpty()) {
+                    JOptionPane.showMessageDialog(rootPane, "data Pegawai tidak ditemukan");
+                } else {
+                    DataProsesPensiunTableModel dataPensiun = new DataProsesPensiunTableModel(search);
+                    tabel_cari.setModel(dataPensiun);
+                    int option = JOptionPane.showConfirmDialog(rootPane, "Data ditemukan apakah akan proses \n NIP " + nip_TF.getText(), "tanya", JOptionPane.OK_CANCEL_OPTION);
+                    if (option == 0) {
+                        jenis_label.setVisible(true);
+                        combo_jenisPensiun.setVisible(true);
+                        button_proses.setEnabled(false);
+                        nip_TF.setEditable(false);
                     }
                 }
             }
@@ -232,6 +245,51 @@ public class ProsesPensiun extends javax.swing.JFrame {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_exit_buttonActionPerformed
+
+    private void combo_jenisPensiunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_jenisPensiunActionPerformed
+        String kat = (String) combo_jenisPensiun.getSelectedItem();
+        if (kat.matches("B U P")) {
+            // try {
+            Connection kon = null;
+            try {
+                kon = ConnMySql.getConnections();
+//                        } catch (Exception ex) {
+//                            JOptionPane.showMessageDialog(rootPane, "terjadi gagal koneksi ke Database \n Coba cek koneksi ke Database");
+//                        }
+                Map reportparametermap1 = new HashMap();
+
+                reportparametermap1.put("NIP", nip_TF.getText());
+                String reportSource = "./Cetak/CoverBUP.jasper";
+                String reportSource2 = "./Cetak/Surat_keterangan.jasper";
+                String reportSource3 = "./Cetak/Badan_Administrasi.jasper";
+                JasperPrint firstjasperprint = new JasperPrint();
+                firstjasperprint = JasperFillManager.fillReport(reportSource, reportparametermap1, kon);
+
+                JasperPrint secondjasperprint = new JasperPrint();
+                secondjasperprint = JasperFillManager.fillReport(reportSource2, reportparametermap1, kon);
+
+                JasperPrint thirdjasperprint = new JasperPrint();
+                thirdjasperprint = JasperFillManager.fillReport(reportSource3, reportparametermap1, kon);
+
+                JasperPrint firstsecondlinked = multipageLinking(firstjasperprint, secondjasperprint);
+                JasperPrint firstsecondthirdlinked = multipageLinking(firstsecondlinked, thirdjasperprint);
+                // reportSource = "./Cetak/CoverBUP.jasper";
+                // Map<String, Object> params = new HashMap<String, Object>();
+                // params.put("NIP", nip_TF.getText());
+                // JasperPrint jasperPrint = JasperFillManager.fillReport(reportSource, reportparametermap1, kon);
+                JasperViewer.viewReport(firstsecondthirdlinked, false);
+
+            } catch (Exception ex) {
+//                Logger.getLogger(ProsesPensiun.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_combo_jenisPensiunActionPerformed
+
+    private void nip_TFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nip_TFKeyReleased
+        inputAngka(nip_TF.getText());
+        nip_TF.setBackground(Color.white);
+    }//GEN-LAST:event_nip_TFKeyReleased
     private JasperPrint multipageLinking(JasperPrint page1, JasperPrint page2) {
         List<JRPrintPage> pages = page2.getPages();
         for (int count = 0; count < pages.size(); count++) {
@@ -239,6 +297,12 @@ public class ProsesPensiun extends javax.swing.JFrame {
         }
 
         return page1;
+    }
+
+    private void inputAngka(String angka) {
+        if (!angka.matches("[0-9]*")) {
+            JOptionPane.showMessageDialog(rootPane, "masukan angka", "", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -252,8 +316,10 @@ public class ProsesPensiun extends javax.swing.JFrame {
             }
         });
     }
+     public TableCellRenderer tengah = new RataTengah();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton button_proses;
+    private javax.swing.JComboBox combo_jenisPensiun;
     private javax.swing.JButton exit_button;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -263,8 +329,9 @@ public class ProsesPensiun extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jenis_label;
     private javax.swing.JTextField nip_TF;
-    private javax.swing.JLabel nip_br;
+    private javax.swing.JLabel nip_br1;
     private javax.swing.JTable tabel_cari;
     private javax.swing.JLabel time;
     // End of variables declaration//GEN-END:variables
