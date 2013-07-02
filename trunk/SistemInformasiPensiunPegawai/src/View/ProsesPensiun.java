@@ -10,7 +10,20 @@
  */
 package View;
 
+import Controller.ConnMySql;
+import Controller.ControlData;
+import Model.PNS;
+import TableModel.DataProsesPensiunTableModel;
+import java.sql.Connection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRPrintPage;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -154,10 +167,58 @@ public class ProsesPensiun extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void button_prosesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_prosesActionPerformed
-        tabel_cari.setVisible(true);
-        int option = JOptionPane.showConfirmDialog(rootPane, "apakah akan proses \n NIP " + nip_TF.getText(), "tanya", JOptionPane.OK_CANCEL_OPTION);
-        if (option == 0) {
+        try {
+            tabel_cari.setVisible(true);
+            List<PNS> search = ControlData.getKoneksi().SearchPNS(nip_TF.getText());
+            if (search.isEmpty()) {
+                JOptionPane.showMessageDialog(rootPane, "data Pegawai tidak ditemukan");
+            } else {
+                DataProsesPensiunTableModel dataPensiun = new DataProsesPensiunTableModel(search);
+                tabel_cari.setModel(dataPensiun);
+                int option = JOptionPane.showConfirmDialog(rootPane, "Data ditemukan apakah akan proses \n NIP " + nip_TF.getText(), "tanya", JOptionPane.OK_CANCEL_OPTION);
+                if (option == 0) {
+                    // try {
+                    Connection kon = null;
+                    try {
+                        kon = ConnMySql.getConnections();
+//                        } catch (Exception ex) {
+//                            JOptionPane.showMessageDialog(rootPane, "terjadi gagal koneksi ke Database \n Coba cek koneksi ke Database");
+//                        }
+                        Map reportparametermap1 = new HashMap();
+
+                        reportparametermap1.put("NIP", nip_TF.getText());
+                        String reportSource = "./Cetak/CoverBUP.jasper";
+                        String reportSource2 = "./Cetak/Surat_keterangan.jasper";
+                        String reportSource3 = "./Cetak/Badan_Administrasi.jasper";
+                        JasperPrint firstjasperprint = new JasperPrint();
+                        firstjasperprint = JasperFillManager.fillReport(reportSource, reportparametermap1, kon);
+
+                        JasperPrint secondjasperprint = new JasperPrint();
+                        secondjasperprint = JasperFillManager.fillReport(reportSource2, reportparametermap1, kon);
+
+                        JasperPrint thirdjasperprint = new JasperPrint();
+                        thirdjasperprint = JasperFillManager.fillReport(reportSource3, reportparametermap1, kon);
+
+                        JasperPrint firstsecondlinked = multipageLinking(firstjasperprint, secondjasperprint);
+                        JasperPrint firstsecondthirdlinked = multipageLinking(firstsecondlinked, thirdjasperprint);
+                        // reportSource = "./Cetak/CoverBUP.jasper";
+                        // Map<String, Object> params = new HashMap<String, Object>();
+                        // params.put("NIP", nip_TF.getText());
+                        // JasperPrint jasperPrint = JasperFillManager.fillReport(reportSource, reportparametermap1, kon);
+                        JasperViewer.viewReport(firstsecondthirdlinked, false);
+
+                    } catch (JRException ex) {
+                        JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(rootPane, "Tidak dapat koneksi ke Database \n"
+                    + "cek settingan dahulu");
         }
+
         // TODO add your handling code here:
 }//GEN-LAST:event_button_prosesActionPerformed
 
@@ -166,11 +227,19 @@ public class ProsesPensiun extends javax.swing.JFrame {
                 JOptionPane.OK_CANCEL_OPTION);
         if (status == 0) {
             this.dispose();
-            FrameOperator FO=new FrameOperator();
+            FrameOperator FO = new FrameOperator();
             FO.setVisible(true);
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_exit_buttonActionPerformed
+    private JasperPrint multipageLinking(JasperPrint page1, JasperPrint page2) {
+        List<JRPrintPage> pages = page2.getPages();
+        for (int count = 0; count < pages.size(); count++) {
+            page1.addPage(pages.get(count));
+        }
+
+        return page1;
+    }
 
     /**
      * @param args the command line arguments
