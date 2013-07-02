@@ -23,6 +23,9 @@
 	<import value="net.sf.jasperreports.engine.*" />
 	<import value="net.sf.jasperreports.engine.data.*" />
 
+	<parameter name="NIP" isForPrompting="true" class="java.lang.String">
+		<defaultValueExpression ><![CDATA[""]]></defaultValueExpression>
+	</parameter>
 	<queryString><![CDATA[SELECT
   anggotakeluarga.nama_lengkap,
 DATE_FORMAT(  anggotakeluarga.tanggal_lahir, '%d-%m-%Y') as tglLahir,
@@ -40,7 +43,7 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
                                              FROM anggotakeluarga,
                                                pns,
                                                sptkg_terakhir
-                                             WHERE sptkg_terakhir.nip_baru = "195210231979011003")
+                                             WHERE sptkg_terakhir.nip_baruLIKE  $P{NIP})
     AND pns.id_SuratNikah = s_nikah.id_SuratNikah
     AND pns.id_SuratCPNS = sk_cpns.id_SuratCPNS
     AND kk.id_Suratkk = anggotakeluarga.id_suratKK
@@ -332,9 +335,9 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="8"
-						y="40"
+						y="39"
 						width="16"
-						height="14"
+						height="15"
 						key="textField-2"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -358,7 +361,7 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="188"
-						y="38"
+						y="39"
 						width="59"
 						height="16"
 						key="textField-4"/>

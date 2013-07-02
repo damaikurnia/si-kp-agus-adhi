@@ -23,6 +23,9 @@
 	<import value="net.sf.jasperreports.engine.*" />
 	<import value="net.sf.jasperreports.engine.data.*" />
 
+	<parameter name="NIP" isForPrompting="true" class="java.lang.String">
+		<defaultValueExpression ><![CDATA[""]]></defaultValueExpression>
+	</parameter>
 	<queryString><![CDATA[SELECT
   anggotakeluarga.nama_lengkap,
 DATE_FORMAT(  anggotakeluarga.tanggal_lahir, '%d-%m-%Y') as tglLahir,
@@ -40,7 +43,7 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
                                              FROM anggotakeluarga,
                                                pns,
                                                sptkg_terakhir
-                                             WHERE sptkg_terakhir.nip_baru = "195210231979011003")
+                                             WHERE sptkg_terakhir.nip_baru LIKE  $P{NIP})
     AND pns.id_SuratNikah = s_nikah.id_SuratNikah
     AND pns.id_SuratCPNS = sk_cpns.id_SuratCPNS
     AND kk.id_Suratkk = anggotakeluarga.id_suratKK

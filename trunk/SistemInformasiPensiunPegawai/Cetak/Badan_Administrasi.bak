@@ -26,34 +26,48 @@
 	<parameter name="SUBREPORT_DIR" isForPrompting="true" class="java.lang.String">
 		<defaultValueExpression ><![CDATA["E:\\KP\\SistemInformasiPensiunPegawai\\Cetak\\"]]></defaultValueExpression>
 	</parameter>
+	<parameter name="NIP" isForPrompting="true" class="java.lang.String">
+		<defaultValueExpression ><![CDATA[""]]></defaultValueExpression>
+	</parameter>
 	<queryString><![CDATA[SELECT
-  sk_pangkatterakhir.`nama_pemilik`    AS sk_pangkatterakhir_nama_pemilik,
-  DATE_FORMAT( sk_pangkatterakhir.`tanggal_lahir` , '%d-%M-%Y')   AS sk_pangkatterakhir_tanggal_lahir,
-  sk_pangkatterakhir.`nip_lama`        AS sk_pangkatterakhir_nip_lama,
-  sptkg_terakhir.`nip_baru`            AS sptkg_terakhir_nip_baru,
-  sptkg_terakhir.`pangkat_baru`        AS sptkg_terakhir_pangkat_baru,
-  sptkg_terakhir.`golongan_ruang_baru` AS sptkg_terakhir_golongan_banggotakeluargaruang_aru,
-  DATE_FORMAT( sk_pangkatterakhir.`tmt_baru` , '%d-%m-%Y')       AS sk_pangkatterakhir_tmt_baru,
-  sk_cpns.`Profesi`                    AS sk_cpns_Profesi,
-  kk.`Alamat`                          AS kk_Alamat,
-  sk_cpns.`tempat_lahir`               AS sk_cpns_tempat_lahir,
-  sptkg_terakhir.`Sekolah`             AS sptkg_terakhir_Sekolah,
-	DATE_FORMAT(sk_cpns.`tmt_partikelir`  , '%d-%m-%Y')               AS sk_cpns_tmt_partikelir,
-  sptkg_terakhir.`gajipokok_baru`      AS sptkg_terakhir_gajipokok_baru,
-kk.kelurahan_desa as desa,
-kk.kecamatan as kecamatan,
-kk.kabupaten_kota as kabupaten,
-kk.kode_pos as kode_pos,
-kk.provinsi as provinsi
-FROM `sk_pangkatterakhir` sk_pangkatterakhir,
-  `sk_karpeg` sk_karpeg,
-  `sk_cpns` sk_cpns,
-  `s_nikah` s_nikah,
-  `kk` kk,
-  `sptkg_terakhir` sptkg_terakhir,
-  `pns` pns
-WHERE pns.nip_baru = "195210231979011003"
-    AND pns.`id_SuratKarpeg` = sk_karpeg.`id_SuratKarpeg`]]></queryString>
+     sk_pangkatterakhir.`nama_pemilik` AS sk_pangkatterakhir_nama_pemilik,
+     DATE_FORMAT(sk_pangkatterakhir.`tanggal_lahir`,'%d-%m-%Y')AS sk_pangkatterakhir_tanggal_lahir,
+     sk_pangkatterakhir.`nip_lama` AS sk_pangkatterakhir_nip_lama,
+     sptkg_terakhir.`nip_baru` AS sptkg_terakhir_nip_baru,
+     sptkg_terakhir.`pangkat_baru` AS sptkg_terakhir_pangkat_baru,
+     sptkg_terakhir.`golongan_ruang_baru` AS sptkg_terakhir_golongan_banggotakeluargaruang_aru,
+     DATE_FORMAT(sk_pangkatterakhir.`tmt_baru`,'%d-%m-%Y')AS sk_pangkatterakhir_tmt_baru,
+     sk_cpns.`Profesi` AS sk_cpns_Profesi,
+     kk.`Alamat` AS kk_Alamat,
+     sk_cpns.`tempat_lahir` AS sk_cpns_tempat_lahir,
+     sptkg_terakhir.`Sekolah` AS sptkg_terakhir_Sekolah,
+     DATE_FORMAT(sk_cpns.`tmt_partikelir`,'%d-%m-%Y')AS sk_cpns_tmt_partikelir,
+     sptkg_terakhir.`gajipokok_baru` AS sptkg_terakhir_gajipokok_baru,
+     kk.`kelurahan_desa` AS desa,
+     kk.`kecamatan` AS kecamatan,
+     kk.`kabupaten_kota` AS kabupaten,
+     kk.`kode_pos` AS kode_pos,
+     kk.`provinsi` AS provinsi,
+     DATE_FORMAT(CURRENT_DATE,'%d-%m-%Y')AS hari_Ini,
+     DATE_FORMAT(sk_pangkatterakhir.`tmt_baru`,'%d-%m-%Y') AS sk_pangkatterakhir_tmt_baru,
+     sk_pangkatterakhir.`masa_kerja_tahun` AS sk_pangkatterakhir_masa_kerja_tahun,
+     sk_pangkatterakhir.`masa_kerja_bulan` AS sk_pangkatterakhir_masa_kerja_bulan,
+	ROUND(DATEDIFF(CURRENT_DATE,sk_cpns.tanggal_surat)/365,0)AS tahun,
+	ROUND(MOD(DATEDIFF(CURRENT_DATE,sk_cpns.tanggal_surat)/365,12)) AS Bulan,
+year(sk_cpns.`tmt_partikelir`) as tahun_cpns,
+year(sk_pangkatterakhir.`tanggal_lahir`)+60 as tahun_skrng
+FROM
+     `sk_pangkatterakhir` sk_pangkatterakhir,
+     `sk_cpns` sk_cpns,
+     `kk` kk,
+     `sptkg_terakhir` sptkg_terakhir,
+     `pns` pns
+WHERE
+     pns.nip_baru LIKE  $P{NIP}
+ AND pns.id_Suratkk =kk.id_Suratkk 
+ AND pns.id_SuratCPNS =sk_cpns.id_SuratCPNS 
+ AND pns.id_SuratPangkatTerakhir =sk_pangkatterakhir.id_SuratPangkatTerakhir 
+ AND pns.id_SuratSPTKGTerakhir =sptkg_terakhir.id_SuratSPTKGTerakhir]]></queryString>
 
 	<field name="sk_pangkatterakhir_nama_pemilik" class="java.lang.String"/>
 	<field name="sk_pangkatterakhir_tanggal_lahir" class="java.lang.String"/>
@@ -73,6 +87,13 @@ WHERE pns.nip_baru = "195210231979011003"
 	<field name="kabupaten" class="java.lang.String"/>
 	<field name="kode_pos" class="java.lang.String"/>
 	<field name="provinsi" class="java.lang.String"/>
+	<field name="hari_Ini" class="java.lang.String"/>
+	<field name="sk_pangkatterakhir_masa_kerja_tahun" class="java.lang.String"/>
+	<field name="sk_pangkatterakhir_masa_kerja_bulan" class="java.lang.String"/>
+	<field name="tahun" class="java.math.BigDecimal"/>
+	<field name="Bulan" class="java.math.BigDecimal"/>
+	<field name="tahun_cpns" class="java.lang.Long"/>
+	<field name="tahun_skrng" class="java.lang.Long"/>
 
 		<background>
 			<band height="0"  isSplitAllowed="true" >
@@ -820,8 +841,8 @@ WHERE pns.nip_baru = "195210231979011003"
 				</staticText>
 				<staticText>
 					<reportElement
-						x="460"
-						y="206"
+						x="456"
+						y="208"
 						width="69"
 						height="12"
 						key="staticText-88"/>
@@ -833,8 +854,8 @@ WHERE pns.nip_baru = "195210231979011003"
 				</staticText>
 				<staticText>
 					<reportElement
-						x="459"
-						y="217"
+						x="456"
+						y="222"
 						width="69"
 						height="12"
 						key="staticText-89"/>
@@ -847,7 +868,7 @@ WHERE pns.nip_baru = "195210231979011003"
 				<staticText>
 					<reportElement
 						x="438"
-						y="230"
+						y="239"
 						width="435"
 						height="12"
 						key="staticText-90"/>
@@ -860,7 +881,7 @@ WHERE pns.nip_baru = "195210231979011003"
 				<staticText>
 					<reportElement
 						x="438"
-						y="242"
+						y="251"
 						width="88"
 						height="12"
 						key="staticText-91"/>
@@ -1004,7 +1025,7 @@ WHERE pns.nip_baru = "195210231979011003"
 					<reportElement
 						x="175"
 						y="80"
-						width="52"
+						width="84"
 						height="12"
 						key="textField-8"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -1056,7 +1077,7 @@ WHERE pns.nip_baru = "195210231979011003"
 					<reportElement
 						x="182"
 						y="164"
-						width="53"
+						width="106"
 						height="12"
 						key="textField-10"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -1132,9 +1153,9 @@ WHERE pns.nip_baru = "195210231979011003"
 				</staticText>
 				<staticText>
 					<reportElement
-						x="186"
+						x="175"
 						y="92"
-						width="41"
+						width="35"
 						height="12"
 						key="staticText-106"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -1145,9 +1166,9 @@ WHERE pns.nip_baru = "195210231979011003"
 				</staticText>
 				<staticText>
 					<reportElement
-						x="186"
+						x="175"
 						y="104"
-						width="41"
+						width="35"
 						height="12"
 						key="staticText-107"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -1158,7 +1179,7 @@ WHERE pns.nip_baru = "195210231979011003"
 				</staticText>
 				<staticText>
 					<reportElement
-						x="257"
+						x="229"
 						y="92"
 						width="41"
 						height="12"
@@ -1171,7 +1192,7 @@ WHERE pns.nip_baru = "195210231979011003"
 				</staticText>
 				<staticText>
 					<reportElement
-						x="257"
+						x="229"
 						y="104"
 						width="41"
 						height="12"
@@ -1184,7 +1205,7 @@ WHERE pns.nip_baru = "195210231979011003"
 				</staticText>
 				<staticText>
 					<reportElement
-						x="301"
+						x="272"
 						y="92"
 						width="56"
 						height="12"
@@ -1202,7 +1223,13 @@ WHERE pns.nip_baru = "195210231979011003"
 						width="421"
 						height="164"
 						key="subreport-1"/>
-					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportParameter  name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="NIP">
+						<subreportParameterExpression><![CDATA[$P{NIP}]]></subreportParameterExpression>
+					</subreportParameter>
+					<dataSourceExpression><![CDATA[$P{MyDatasource}]]></dataSourceExpression>
 					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_istri_suami_dpcp.jasper"]]></subreportExpression>
 				</subreport>
 				<subreport  isUsingCache="true">
@@ -1212,7 +1239,13 @@ WHERE pns.nip_baru = "195210231979011003"
 						width="418"
 						height="109"
 						key="subreport-2"/>
-					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportParameter  name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="NIP">
+						<subreportParameterExpression><![CDATA[$P{NIP}]]></subreportParameterExpression>
+					</subreportParameter>
+					<dataSourceExpression><![CDATA[$P{MyDatasource}]]></dataSourceExpression>
 					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_anak_dpcp.jasper"]]></subreportExpression>
 				</subreport>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
@@ -1266,6 +1299,201 @@ WHERE pns.nip_baru = "195210231979011003"
 						<font fontName="Times New Roman"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{desa}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="779"
+						y="163"
+						width="67"
+						height="12"
+						key="textField-15"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{provinsi}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="524"
+						y="164"
+						width="67"
+						height="12"
+						key="textField-16"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{kecamatan}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="524"
+						y="208"
+						width="67"
+						height="12"
+						key="textField-17"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{kecamatan}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="652"
+						y="208"
+						width="67"
+						height="12"
+						key="textField-18"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{kabupaten}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="779"
+						y="207"
+						width="67"
+						height="12"
+						key="textField-19"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{provinsi}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="746"
+						y="191"
+						width="67"
+						height="12"
+						key="textField-20"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{desa}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="524"
+						y="222"
+						width="67"
+						height="12"
+						key="textField-21"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{kode_pos}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="686"
+						y="263"
+						width="79"
+						height="12"
+						key="textField-22"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{hari_Ini}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="158"
+						y="92"
+						width="16"
+						height="12"
+						key="textField-23"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sk_pangkatterakhir_masa_kerja_tahun}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="215"
+						y="92"
+						width="12"
+						height="12"
+						key="textField-24"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center">
+						<font fontName="Times New Roman"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sk_pangkatterakhir_masa_kerja_bulan}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="327"
+						y="92"
+						width="79"
+						height="12"
+						key="textField-25"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sk_pangkatterakhir_tmt_baru}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="158"
+						y="104"
+						width="16"
+						height="12"
+						key="textField-26"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$F{tahun}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="215"
+						y="104"
+						width="12"
+						height="12"
+						key="textField-27"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center">
+						<font fontName="Times New Roman"/>
+					</textElement>
+				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$F{Bulan}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="223"
+						y="128"
+						width="42"
+						height="12"
+						key="textField-28"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Long"><![CDATA[$F{tahun_cpns}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="294"
+						y="128"
+						width="42"
+						height="12"
+						key="textField-29"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Long"><![CDATA[$F{tahun_skrng}]]></textFieldExpression>
 				</textField>
 			</band>
 		</detail>
