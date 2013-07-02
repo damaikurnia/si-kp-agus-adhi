@@ -5,6 +5,7 @@
 package Controller;
 
 import Model.PNS;
+import Model.SK_CPNS;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -92,6 +93,50 @@ public class ControlData {
             stmt.setString(8, k.getId_SuratNikah());
             stmt.setString(9, k.getId_SuratNIPBaru());
             stmt.setString(10, k.getId_Suratkk());
+
+            stmt.executeUpdate();
+            conn.commit();
+        } catch (SQLException se) {
+            conn.rollback();
+            throw se;
+        } finally {
+            try {
+                conn.setAutoCommit(true);
+                if (stmt != null) {
+                    stmt.close();
+                }
+            } catch (Exception e) {
+                try {
+                    throw e;
+                } catch (Exception ex) {
+                    Logger.getLogger(ControlData.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+    
+    public void updatePNS(){
+        
+    }
+    
+    public void insertCPNS(SK_CPNS k) throws SQLException {
+        PreparedStatement stmt = null;
+        try {
+            conn.setAutoCommit(false);
+            String query = "INSERT INTO sk_cpns VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, k.getId_SuratCPNS());
+            stmt.setString(2, k.getTempat_surat());
+            stmt.setString(3, k.getTanggal_surat());
+            stmt.setString(4, k.getNama_pemilik());
+            stmt.setString(5, k.getTempat_lahir());
+            stmt.setString(6, k.getTanggal_lahir());
+            stmt.setString(7, k.getPartikelir());
+            stmt.setString(8, k.getTmt_partikelir());
+            stmt.setString(9, k.getProfesi());
+            stmt.setString(10, k.getSekolah());
+            stmt.setString(11, k.getNip_lama());
+            stmt.setString(12, k.getNip_baru());
 
             stmt.executeUpdate();
             conn.commit();
