@@ -21,14 +21,14 @@ public class TambahPegawai extends javax.swing.JFrame {
     /** Creates new form TambahPegawai */
     public TambahPegawai() {
         initComponents();
-        DU_Simpan_button.setEnabled(false);
-        DU_next_button.setEnabled(false);
-        jTabbedPane1.setEnabledAt(1, false);
-        jTabbedPane1.setEnabledAt(2, false);
-        jTabbedPane1.setEnabledAt(3, false);
-        jTabbedPane1.setEnabledAt(4, false);
-        jTabbedPane1.setEnabledAt(5, false);
-        jTabbedPane1.setEnabledAt(6, false);
+//        DU_Simpan_button.setEnabled(false);
+//        DU_next_button.setEnabled(false);
+//        jTabbedPane1.setEnabledAt(1, false);
+//        jTabbedPane1.setEnabledAt(2, false);
+//        jTabbedPane1.setEnabledAt(3, false);
+//        jTabbedPane1.setEnabledAt(4, false);
+//        jTabbedPane1.setEnabledAt(5, false);
+//        jTabbedPane1.setEnabledAt(6, false);
         Clock clock=new Clock();
         clock.showDigitalClock(time);
     }
@@ -69,6 +69,8 @@ public class TambahPegawai extends javax.swing.JFrame {
         Alamat4 = new javax.swing.JLabel();
         Alamat5 = new javax.swing.JLabel();
         DU_Kecamatan_TF = new javax.swing.JTextField();
+        DU_Desa_TF = new javax.swing.JTextField();
+        Alamat6 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         simpan_button1 = new javax.swing.JButton();
         next_button1 = new javax.swing.JButton();
@@ -193,10 +195,10 @@ public class TambahPegawai extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jLabel56 = new javax.swing.JLabel();
         jTextField41 = new javax.swing.JTextField();
-        jTextField15 = new javax.swing.JTextField();
-        jTextField54 = new javax.swing.JTextField();
-        jTextField48 = new javax.swing.JTextField();
-        jTextField49 = new javax.swing.JTextField();
+        KK_Alamat_TF = new javax.swing.JTextField();
+        KK_RT_TF = new javax.swing.JTextField();
+        KK_RW_TF = new javax.swing.JTextField();
+        KK_KelDesa_TF = new javax.swing.JTextField();
         jLabel60 = new javax.swing.JLabel();
         jLabel58 = new javax.swing.JLabel();
         jLabel57 = new javax.swing.JLabel();
@@ -206,8 +208,8 @@ public class TambahPegawai extends javax.swing.JFrame {
         jLabel63 = new javax.swing.JLabel();
         jTextField53 = new javax.swing.JTextField();
         jTextField52 = new javax.swing.JTextField();
-        jTextField51 = new javax.swing.JTextField();
-        jTextField50 = new javax.swing.JTextField();
+        KK_KabKota_TF = new javax.swing.JTextField();
+        KK_Kec_TF = new javax.swing.JTextField();
         jLabel59 = new javax.swing.JLabel();
         jTextField55 = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -311,7 +313,7 @@ public class TambahPegawai extends javax.swing.JFrame {
                 DU_KabKota_TFKeyPressed(evt);
             }
         });
-        jPanel4.add(DU_KabKota_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, 190, -1));
+        jPanel4.add(DU_KabKota_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, 190, -1));
         jPanel4.add(DU_RT_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 160, 60, -1));
         jPanel4.add(DU_Alamat_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 130, 360, -1));
 
@@ -321,7 +323,7 @@ public class TambahPegawai extends javax.swing.JFrame {
 
         Alamat2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Alamat2.setText("Kabupaten / Kota");
-        jPanel4.add(Alamat2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, -1, -1));
+        jPanel4.add(Alamat2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, -1, -1));
         jPanel4.add(DU_Dukuh_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 160, 130, -1));
 
         Alamat3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -334,9 +336,14 @@ public class TambahPegawai extends javax.swing.JFrame {
         jPanel4.add(Alamat4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, -1, -1));
 
         Alamat5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Alamat5.setText("Kecamatan");
+        Alamat5.setText("Desa");
         jPanel4.add(Alamat5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, -1, -1));
-        jPanel4.add(DU_Kecamatan_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, 190, -1));
+        jPanel4.add(DU_Kecamatan_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, 190, -1));
+        jPanel4.add(DU_Desa_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, 230, -1));
+
+        Alamat6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Alamat6.setText("Kecamatan");
+        jPanel4.add(Alamat6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, -1, -1));
 
         jTabbedPane1.addTab("Data Utama", jPanel4);
 
@@ -741,10 +748,10 @@ public class TambahPegawai extends javax.swing.JFrame {
         jLabel56.setText("Nama kepala keluarga");
         jPanel8.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
         jPanel8.add(jTextField41, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 230, -1));
-        jPanel8.add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 230, -1));
-        jPanel8.add(jTextField54, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 40, -1));
-        jPanel8.add(jTextField48, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 40, -1));
-        jPanel8.add(jTextField49, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 120, -1));
+        jPanel8.add(KK_Alamat_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 230, -1));
+        jPanel8.add(KK_RT_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 40, -1));
+        jPanel8.add(KK_RW_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 40, -1));
+        jPanel8.add(KK_KelDesa_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 120, -1));
 
         jLabel60.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel60.setText("Kelurahan/Desa");
@@ -775,8 +782,8 @@ public class TambahPegawai extends javax.swing.JFrame {
         jPanel8.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 130, -1, -1));
         jPanel8.add(jTextField53, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, 230, -1));
         jPanel8.add(jTextField52, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, 230, -1));
-        jPanel8.add(jTextField51, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, 230, -1));
-        jPanel8.add(jTextField50, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 230, -1));
+        jPanel8.add(KK_KabKota_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, 230, -1));
+        jPanel8.add(KK_Kec_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 230, -1));
 
         jLabel59.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel59.setText("Nomor KK");
@@ -840,6 +847,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         sebarkanNama(DU_Nama_TF.getText());
         sebarkanNIPLama(DU_NipLama_TF.getText());
         sebarkanNIPBaru(DU_NipBaru_TF.getText());
+        sebarkanKeKK();
         DU_next_button.setEnabled(true);
     }//GEN-LAST:event_DU_Simpan_buttonActionPerformed
 
@@ -937,6 +945,15 @@ public class TambahPegawai extends javax.swing.JFrame {
         SPTKG_NipBaru_TF.setText(nipBaru);
         Karpeg_NipBaru_TF.setText(nipBaru);
     }
+    
+    public void sebarkanKeKK(){
+        KK_Alamat_TF.setText(DU_Alamat_TF.getText());
+        KK_RT_TF.setText(DU_RT_TF.getText());
+        KK_RW_TF.setText(DU_RW_TF.getText());
+        KK_KelDesa_TF.setText(DU_Desa_TF.getText());
+        KK_Kec_TF.setText(DU_Kecamatan_TF.getText());
+        KK_KabKota_TF.setText(DU_KabKota_TF.getText());
+    }
     /**
      * @param args the command line arguments
      */
@@ -955,10 +972,12 @@ public class TambahPegawai extends javax.swing.JFrame {
     private javax.swing.JLabel Alamat3;
     private javax.swing.JLabel Alamat4;
     private javax.swing.JLabel Alamat5;
+    private javax.swing.JLabel Alamat6;
     private javax.swing.JTextField CPNS_NipBaru_TF;
     private javax.swing.JTextField CPNS_NipLama_TF;
     private javax.swing.JTextField CPNS_nama_TF;
     private javax.swing.JTextField DU_Alamat_TF;
+    private javax.swing.JTextField DU_Desa_TF;
     private javax.swing.JTextField DU_Dukuh_TF;
     private javax.swing.JTextField DU_KabKota_TF;
     private javax.swing.JTextField DU_Kecamatan_TF;
@@ -969,6 +988,12 @@ public class TambahPegawai extends javax.swing.JFrame {
     private javax.swing.JTextField DU_RW_TF;
     private javax.swing.JButton DU_Simpan_button;
     private javax.swing.JButton DU_next_button;
+    private javax.swing.JTextField KK_Alamat_TF;
+    private javax.swing.JTextField KK_KabKota_TF;
+    private javax.swing.JTextField KK_Kec_TF;
+    private javax.swing.JTextField KK_KelDesa_TF;
+    private javax.swing.JTextField KK_RT_TF;
+    private javax.swing.JTextField KK_RW_TF;
     private javax.swing.JTextField Karpeg_Nama_TF;
     private javax.swing.JTextField Karpeg_NipBaru_TF;
     private javax.swing.JTextField Karpeg_NipLama_TF;
@@ -1070,7 +1095,6 @@ public class TambahPegawai extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField16;
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField20;
@@ -1096,14 +1120,9 @@ public class TambahPegawai extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField45;
     private javax.swing.JTextField jTextField46;
     private javax.swing.JTextField jTextField47;
-    private javax.swing.JTextField jTextField48;
-    private javax.swing.JTextField jTextField49;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField50;
-    private javax.swing.JTextField jTextField51;
     private javax.swing.JTextField jTextField52;
     private javax.swing.JTextField jTextField53;
-    private javax.swing.JTextField jTextField54;
     private javax.swing.JTextField jTextField55;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JLabel nama;
