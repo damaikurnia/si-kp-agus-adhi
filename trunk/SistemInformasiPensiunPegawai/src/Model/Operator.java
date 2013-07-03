@@ -10,31 +10,16 @@ package Model;
  */
 public class Operator {
 
-    private String idPegawai;
     private String passwordPegawai;
     private String kode_operator;
+    private String namaOperator;
 
     public Operator() {
     }
 
-    public Operator(String id, String password, String kode_op) {
-        this.idPegawai = id;
+    public Operator(String password, String kode_op) {
         this.passwordPegawai = password;
         this.kode_operator = kode_op;
-    }
-
-    /**
-     * @return the idPegawai
-     */
-    public String getIdPegawai() {
-        return idPegawai;
-    }
-
-    /**
-     * @param idPegawai the idPegawai to set
-     */
-    public void setIdPegawai(String idPegawai) {
-        this.idPegawai = idPegawai;
     }
 
     /**
@@ -64,4 +49,20 @@ public class Operator {
     public void setKode_operator(String kode_operator) {
         this.kode_operator = kode_operator;
     }
+
+    /**
+     * @return the namaOperator
+     */
+    public String getNamaOperator() {
+        return namaOperator;
+    }
+
+    /**
+     * @param namaOperator the namaOperator to set
+     */
+    public void setNamaOperator(String namaOperator) {
+        this.namaOperator = namaOperator;
+    }
+    
+    
 }

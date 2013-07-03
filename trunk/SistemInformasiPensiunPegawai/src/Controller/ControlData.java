@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import Model.Operator;
 import Model.PNS;
 import Model.SK_CPNS;
 import java.sql.Connection;
@@ -79,83 +80,86 @@ public class ControlData {
 
     public void insertPNS(PNS k) throws SQLException {
         PreparedStatement stmt = null;
-        try {
+        conn.setAutoCommit(false);
+        String query = "INSERT INTO pns VALUES(?,?,?,?,?,?,?,?,?,?)";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, k.getNip_baru());
+        stmt.setString(2, k.getNip_lama());
+        stmt.setString(3, k.getNama_pns().toUpperCase());
+        stmt.setString(4, k.getId_SuratCPNS());
+        stmt.setString(5, k.getId_SuratPangkatTerakhir());
+        stmt.setString(6, k.getId_SuratSPTKGTerakhir());
+        stmt.setString(7, k.getId_SuratKarpeg());
+        stmt.setString(8, k.getId_SuratNikah());
+        stmt.setString(9, k.getId_SuratNIPBaru());
+        stmt.setString(10, k.getId_Suratkk());
+
+        stmt.executeUpdate();
+        conn.commit();
+    }
+
+    public void updatePNS(String kodeSandi, String nip,String idSurat) throws SQLException {
+        PreparedStatement stmt = null;
+        if (kodeSandi.equals("CPNS")) {
             conn.setAutoCommit(false);
-            String query = "INSERT INTO pns VALUES(?,?,?,?,?,?,?,?,?,?)";
+            String query = "update pns set id_suratcpns = ? where nip_baru = ?";
             stmt = conn.prepareStatement(query);
-            stmt.setString(1, k.getNip_baru());
-            stmt.setString(2, k.getNip_lama());
-            stmt.setString(3, k.getNama_pns());
-            stmt.setString(4, k.getId_SuratCPNS());
-            stmt.setString(5, k.getId_SuratPangkatTerakhir());
-            stmt.setString(6, k.getId_SuratSPTKGTerakhir());
-            stmt.setString(7, k.getId_SuratKarpeg());
-            stmt.setString(8, k.getId_SuratNikah());
-            stmt.setString(9, k.getId_SuratNIPBaru());
-            stmt.setString(10, k.getId_Suratkk());
+            stmt.setString(1, idSurat);
+            stmt.setString(2, nip);
 
             stmt.executeUpdate();
             conn.commit();
-        } catch (SQLException se) {
-            conn.rollback();
-            throw se;
-        } finally {
-            try {
-                conn.setAutoCommit(true);
-                if (stmt != null) {
-                    stmt.close();
-                }
-            } catch (Exception e) {
-                try {
-                    throw e;
-                } catch (Exception ex) {
-                    Logger.getLogger(ControlData.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
         }
     }
-    
-    public void updatePNS(){
-        
-    }
-    
+
     public void insertCPNS(SK_CPNS k) throws SQLException {
         PreparedStatement stmt = null;
-        try {
-            conn.setAutoCommit(false);
-            String query = "INSERT INTO sk_cpns VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
-            stmt = conn.prepareStatement(query);
-            stmt.setString(1, k.getId_SuratCPNS());
-            stmt.setString(2, k.getTempat_surat());
-            stmt.setString(3, k.getTanggal_surat());
-            stmt.setString(4, k.getNama_pemilik());
-            stmt.setString(5, k.getTempat_lahir());
-            stmt.setString(6, k.getTanggal_lahir());
-            stmt.setString(7, k.getPartikelir());
-            stmt.setString(8, k.getTmt_partikelir());
-            stmt.setString(9, k.getProfesi());
-            stmt.setString(10, k.getSekolah());
-            stmt.setString(11, k.getNip_lama());
-            stmt.setString(12, k.getNip_baru());
+        conn.setAutoCommit(false);
+        String query = "INSERT INTO sk_cpns VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,CURRENT_DATE,?)";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, k.getId_SuratCPNS().toUpperCase());
+        stmt.setString(2, k.getTempat_surat().toUpperCase());
+        stmt.setString(3, k.getTanggal_surat());
+        stmt.setString(4, k.getNama_pemilik().toUpperCase());
+        stmt.setString(5, k.getTempat_lahir().toUpperCase());
+        stmt.setString(6, k.getTanggal_lahir());
+        stmt.setString(7, k.getPartikelir().toUpperCase());
+        stmt.setString(8, k.getTmt_partikelir());
+        stmt.setString(9, k.getProfesi().toUpperCase());
+        stmt.setString(10, k.getSekolah().toUpperCase());
+        stmt.setString(11, k.getNip_lama());
+        stmt.setString(12, k.getNip_baru());
+        stmt.setString(13, k.getGp_bulanan());
+        stmt.setString(14, k.getDari_gaji());
+        stmt.setString(15, k.getMasa_kerja_tahun());
+        stmt.setString(16, k.getMasa_kerja_bulan());
+        stmt.setString(17, k.getGolongan());
+        stmt.setString(18, k.getBerijazah().toUpperCase());
+        stmt.setString(19, k.getPersetujuan_dr().toUpperCase());
+        stmt.setString(20, k.getNmr_persetujuan());
+        stmt.setString(21, k.getTmt_persetujuan());
+        stmt.setString(22, k.getKode_operator().toUpperCase());
 
-            stmt.executeUpdate();
-            conn.commit();
-        } catch (SQLException se) {
-            conn.rollback();
-            throw se;
-        } finally {
-            try {
-                conn.setAutoCommit(true);
-                if (stmt != null) {
-                    stmt.close();
-                }
-            } catch (Exception e) {
-                try {
-                    throw e;
-                } catch (Exception ex) {
-                    Logger.getLogger(ControlData.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
+        stmt.executeUpdate();
+        conn.commit();
+    }
+
+    public Operator tampilOperator(String id) throws SQLException {
+        PreparedStatement statement = null;
+        boolean cari = false;
+        ResultSet result = null;
+
+        conn.setAutoCommit(false);
+        statement = conn.prepareStatement("select * from operator where kode_operator = ? ");
+        statement.setString(1, id);
+        result = statement.executeQuery();
+        Operator op = new Operator();
+        if (result.next()) {
+            op.setKode_operator(result.getString(1));
+            op.setPasswordPegawai(result.getString(2));
+            op.setKode_operator(result.getString(3));
         }
+        conn.commit();
+        return op;
     }
 }
