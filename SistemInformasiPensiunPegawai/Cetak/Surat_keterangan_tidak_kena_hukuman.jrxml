@@ -23,8 +23,11 @@
 	<import value="net.sf.jasperreports.engine.*" />
 	<import value="net.sf.jasperreports.engine.data.*" />
 
+	<parameter name="NIP" isForPrompting="true" class="java.lang.String">
+		<defaultValueExpression ><![CDATA[""]]></defaultValueExpression>
+	</parameter>
 	<queryString><![CDATA[SELECT
-  sk_pangkatterakhir.`nama_pemilik`    AS sk_pangkatterakhir_nama_pemilik,
+sptkg_terakhir.`nama_pemilik`  AS sptkg_terakhir_nama_pemilik,
   sptkg_terakhir.`nip_baru`            AS sptkg_terakhir_nip_baru,
   sptkg_terakhir.`pangkat_baru`        AS sptkg_terakhir_pangkat_baru,
   sptkg_terakhir.`golongan_ruang_baru` AS sptkg_terakhir_golongan_banggotakeluargaruang_aru,
@@ -33,15 +36,16 @@
 kk.`Kabupaten_kota`                          AS kk_Kabupaten_kota,
   sptkg_terakhir.`Sekolah`             AS sptkg_terakhir_Sekola
 FROM `sk_pangkatterakhir` sk_pangkatterakhir,
-  `sk_karpeg` sk_karpeg,
   `sk_cpns` sk_cpns,
   `kk` kk,
   `sptkg_terakhir` sptkg_terakhir,
   `pns` pns
-WHERE pns.nip_baru = "195210231979011003"
-    AND pns.`id_SuratKarpeg` = sk_karpeg.`id_SuratKarpeg` ]]></queryString>
+WHERE pns.nip_baru LIKE  $P{NIP}
+AND pns.id_SuratSPTKGTerakhir = sptkg_terakhir.id_SuratSPTKGTerakhir
+AND pns.id_Suratkk=kk.id_Suratkk
+AND pns.id_SuratCPNS=sk_cpns.id_SuratCPNS]]></queryString>
 
-	<field name="sk_pangkatterakhir_nama_pemilik" class="java.lang.String"/>
+	<field name="sptkg_terakhir_nama_pemilik" class="java.lang.String"/>
 	<field name="sptkg_terakhir_nip_baru" class="java.lang.String"/>
 	<field name="sptkg_terakhir_pangkat_baru" class="java.lang.String"/>
 	<field name="sptkg_terakhir_golongan_banggotakeluargaruang_aru" class="java.lang.String"/>
@@ -508,7 +512,7 @@ WHERE pns.nip_baru = "195210231979011003"
 					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sk_pangkatterakhir_nama_pemilik}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sptkg_terakhir_nama_pemilik}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement

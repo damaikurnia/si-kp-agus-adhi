@@ -2,13 +2,13 @@
 <!-- Created with iReport - A designer for JasperReports -->
 <!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
 <jasperReport
-		 name="inner_daftar_susunan_keluarga"
+		 name="inner_DSK"
 		 columnCount="1"
 		 printOrder="Vertical"
 		 orientation="Landscape"
-		 pageWidth="453"
+		 pageWidth="535"
 		 pageHeight="421"
-		 columnWidth="453"
+		 columnWidth="535"
 		 columnSpacing="0"
 		 leftMargin="0"
 		 rightMargin="0"
@@ -17,9 +17,6 @@
 		 whenNoDataType="NoPages"
 		 isTitleNewPage="false"
 		 isSummaryNewPage="false">
-	<property name="ireport.zoom" value="1.5" />
-	<property name="ireport.x" value="0" />
-	<property name="ireport.y" value="0" />
 	<property name="ireport.scriptlethandling" value="0" />
 	<property name="ireport.encoding" value="UTF-8" />
 	<import value="java.util.*" />
@@ -31,61 +28,54 @@
 	</parameter>
 	<queryString><![CDATA[SELECT
   anggotakeluarga.nama_lengkap,
-DATE_FORMAT(  anggotakeluarga.tanggal_lahir, '%d-%m-%Y') as tglLahir,
-  anggotakeluarga.tempat_lahir  ,
-DATE_FORMAT(  s_nikah.tanggal_nikah, '%d-%m-%Y') as tgl_nikah,
-  s_nikah.id_SuratNikah,
-  anggotakeluarga.agama
-FROM sk_cpns,
-  s_nikah,
-  anggotakeluarga,
-  pns,
-  kk,
-  sptkg_terakhir
-WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
+  anggotakeluarga.pekerjaan  ,
+  anggotakeluarga.status_hub_keluarga  ,
+  DATE_FORMAT( anggotakeluarga.tanggal_lahir, '%d-%m-%Y') AS tglLahir,
+    DATE_FORMAT( s_nikah.tanggal_nikah  , '%d-%m-%Y') AS tglNikah
+FROM 
+  s_nikah,anggotakeluarga,pns,kk
+WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
                                                anggotakeluarga.status_hub_keluarga
                                              FROM anggotakeluarga,
                                                pns,
                                                sptkg_terakhir
-                                             WHERE sptkg_terakhir.nip_baru LIKE  $P{NIP})
+                                             WHERE sptkg_terakhir.nip_baru LIKE $P{NIP} )
     AND pns.id_SuratNikah = s_nikah.id_SuratNikah
-    AND pns.id_SuratCPNS = sk_cpns.id_SuratCPNS
     AND kk.id_Suratkk = anggotakeluarga.id_suratKK
     AND pns.nama_pns != anggotakeluarga.nama_lengkap;]]></queryString>
 
 	<field name="nama_lengkap" class="java.lang.String"/>
+	<field name="pekerjaan" class="java.lang.String"/>
+	<field name="status_hub_keluarga" class="java.lang.String"/>
 	<field name="tglLahir" class="java.lang.String"/>
-	<field name="tempat_lahir" class="java.lang.String"/>
-	<field name="tgl_nikah" class="java.lang.String"/>
-	<field name="id_SuratNikah" class="java.lang.String"/>
-	<field name="agama" class="java.lang.String"/>
+	<field name="tglNikah" class="java.lang.String"/>
 
 		<background>
 			<band height="0"  isSplitAllowed="true" >
 			</band>
 		</background>
 		<title>
-			<band height="81"  isSplitAllowed="true" >
+			<band height="82"  isSplitAllowed="true" >
 				<staticText>
 					<reportElement
-						x="170"
-						y="5"
-						width="127"
+						x="2"
+						y="7"
+						width="487"
 						height="21"
-						key="staticText"/>
+						key="staticText-1"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font isBold="true" isUnderline="true"/>
+						<font pdfFontName="Helvetica-Bold" size="12" isBold="true" isUnderline="true"/>
 					</textElement>
 				<text><![CDATA[SUSUNAN KELUARGA]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="240"
-						y="29"
+						x="286"
+						y="31"
 						width="70"
 						height="14"
-						key="staticText-53"/>
+						key="staticText-2"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="10" isBold="true"/>
@@ -94,11 +84,11 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
 				</staticText>
 				<staticText>
 					<reportElement
-						x="183"
-						y="47"
+						x="219"
+						y="49"
 						width="56"
 						height="16"
-						key="staticText-52"/>
+						key="staticText-3"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="10" isBold="true"/>
@@ -107,11 +97,11 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
 				</staticText>
 				<staticText>
 					<reportElement
-						x="385"
-						y="36"
+						x="435"
+						y="38"
 						width="54"
 						height="18"
-						key="staticText-59"/>
+						key="staticText-4"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="10" isBold="true"/>
@@ -120,11 +110,11 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
 				</staticText>
 				<staticText>
 					<reportElement
-						x="134"
-						y="44"
+						x="151"
+						y="46"
 						width="48"
 						height="19"
-						key="staticText-50"/>
+						key="staticText-5"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="10" isBold="true"/>
@@ -133,11 +123,11 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
 				</staticText>
 				<staticText>
 					<reportElement
-						x="183"
-						y="28"
+						x="219"
+						y="30"
 						width="56"
 						height="17"
-						key="staticText-51"/>
+						key="staticText-6"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="10" isBold="true"/>
@@ -146,11 +136,11 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
 				</staticText>
 				<staticText>
 					<reportElement
-						x="240"
-						y="46"
+						x="286"
+						y="48"
 						width="70"
 						height="14"
-						key="staticText-54"/>
+						key="staticText-7"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="10" isBold="true"/>
@@ -159,11 +149,11 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
 				</staticText>
 				<staticText>
 					<reportElement
-						x="24"
-						y="36"
-						width="109"
+						x="18"
+						y="38"
+						width="121"
 						height="17"
-						key="staticText-48"/>
+						key="staticText-8"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="10" isBold="true"/>
@@ -172,11 +162,11 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
 				</staticText>
 				<staticText>
 					<reportElement
-						x="319"
-						y="44"
+						x="367"
+						y="46"
 						width="65"
 						height="17"
-						key="staticText-56"/>
+						key="staticText-9"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="10" isBold="true"/>
@@ -185,11 +175,11 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
 				</staticText>
 				<staticText>
 					<reportElement
-						x="134"
-						y="29"
+						x="151"
+						y="31"
 						width="48"
 						height="16"
-						key="staticText-49"/>
+						key="staticText-10"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="10" isBold="true"/>
@@ -198,11 +188,11 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
 				</staticText>
 				<staticText>
 					<reportElement
-						x="8"
-						y="36"
+						x="2"
+						y="38"
 						width="15"
 						height="18"
-						key="staticText-47"/>
+						key="staticText-11"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="10" isBold="true"/>
@@ -211,11 +201,11 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
 				</staticText>
 				<staticText>
 					<reportElement
-						x="318"
-						y="29"
+						x="366"
+						y="31"
 						width="66"
 						height="15"
-						key="staticText-55"/>
+						key="staticText-12"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="10" isBold="true"/>
@@ -224,11 +214,11 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
 				</staticText>
 				<staticText>
 					<reportElement
-						x="7"
-						y="62"
+						x="2"
+						y="63"
 						width="15"
 						height="18"
-						key="staticText-60"/>
+						key="staticText-13"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="10" isBold="true"/>
@@ -237,11 +227,11 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
 				</staticText>
 				<staticText>
 					<reportElement
-						x="70"
-						y="62"
+						x="73"
+						y="63"
 						width="15"
 						height="18"
-						key="staticText-61"/>
+						key="staticText-14"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="10" isBold="true"/>
@@ -250,11 +240,11 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
 				</staticText>
 				<staticText>
 					<reportElement
-						x="150"
-						y="62"
+						x="163"
+						y="64"
 						width="15"
 						height="18"
-						key="staticText-62"/>
+						key="staticText-15"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="10" isBold="true"/>
@@ -263,11 +253,11 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
 				</staticText>
 				<staticText>
 					<reportElement
-						x="204"
-						y="62"
+						x="241"
+						y="63"
 						width="15"
 						height="18"
-						key="staticText-63"/>
+						key="staticText-16"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="10" isBold="true"/>
@@ -276,11 +266,11 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
 				</staticText>
 				<staticText>
 					<reportElement
-						x="269"
-						y="62"
+						x="316"
+						y="63"
 						width="15"
 						height="18"
-						key="staticText-64"/>
+						key="staticText-17"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="10" isBold="true"/>
@@ -289,11 +279,11 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
 				</staticText>
 				<staticText>
 					<reportElement
-						x="346"
-						y="62"
+						x="395"
+						y="63"
 						width="15"
 						height="18"
-						key="staticText-65"/>
+						key="staticText-18"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="10" isBold="true"/>
@@ -302,11 +292,11 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
 				</staticText>
 				<staticText>
 					<reportElement
-						x="409"
-						y="62"
+						x="460"
+						y="63"
 						width="15"
 						height="18"
-						key="staticText-66"/>
+						key="staticText-19"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="10" isBold="true"/>
@@ -315,8 +305,17 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
 				</staticText>
 				<line direction="TopDown">
 					<reportElement
-						x="23"
-						y="29"
+						x="17"
+						y="31"
+						width="0"
+						height="50"
+						key="line-1"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="2"
+						y="31"
 						width="0"
 						height="50"
 						key="line-2"/>
@@ -324,8 +323,8 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
 				</line>
 				<line direction="TopDown">
 					<reportElement
-						x="8"
-						y="29"
+						x="138"
+						y="31"
 						width="0"
 						height="50"
 						key="line-3"/>
@@ -333,8 +332,8 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
 				</line>
 				<line direction="TopDown">
 					<reportElement
-						x="134"
-						y="29"
+						x="219"
+						y="31"
 						width="0"
 						height="50"
 						key="line-4"/>
@@ -342,8 +341,8 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
 				</line>
 				<line direction="TopDown">
 					<reportElement
-						x="183"
-						y="29"
+						x="286"
+						y="31"
 						width="0"
 						height="50"
 						key="line-5"/>
@@ -351,8 +350,8 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
 				</line>
 				<line direction="TopDown">
 					<reportElement
-						x="240"
-						y="29"
+						x="362"
+						y="31"
 						width="0"
 						height="50"
 						key="line-6"/>
@@ -360,8 +359,8 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
 				</line>
 				<line direction="TopDown">
 					<reportElement
-						x="314"
-						y="29"
+						x="435"
+						y="31"
 						width="0"
 						height="50"
 						key="line-7"/>
@@ -369,8 +368,8 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
 				</line>
 				<line direction="TopDown">
 					<reportElement
-						x="385"
-						y="29"
+						x="489"
+						y="31"
 						width="0"
 						height="50"
 						key="line-8"/>
@@ -378,38 +377,29 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
 				</line>
 				<line direction="TopDown">
 					<reportElement
-						x="439"
-						y="29"
-						width="0"
-						height="50"
+						x="3"
+						y="80"
+						width="486"
+						height="1"
 						key="line-9"/>
 					<graphicElement stretchType="NoStretch"/>
 				</line>
 				<line direction="TopDown">
 					<reportElement
-						x="8"
-						y="79"
-						width="431"
-						height="1"
-						key="line-10"/>
-					<graphicElement stretchType="NoStretch"/>
-				</line>
-				<line direction="TopDown">
-					<reportElement
-						x="8"
-						y="29"
-						width="431"
+						x="3"
+						y="63"
+						width="485"
 						height="1"
 						key="line-11"/>
 					<graphicElement stretchType="NoStretch"/>
 				</line>
 				<line direction="TopDown">
 					<reportElement
-						x="8"
-						y="62"
-						width="431"
+						x="1"
+						y="30"
+						width="485"
 						height="1"
-						key="line-12"/>
+						key="line-22"/>
 					<graphicElement stretchType="NoStretch"/>
 				</line>
 			</band>
@@ -419,16 +409,16 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
 			</band>
 		</pageHeader>
 		<columnHeader>
-			<band height="0"  isSplitAllowed="true" >
+			<band height="1"  isSplitAllowed="true" >
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="16"  isSplitAllowed="true" >
+			<band height="20"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="29"
+						x="20"
 						y="1"
-						width="105"
+						width="119"
 						height="15"
 						key="textField-1"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -437,10 +427,152 @@ WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nama_lengkap}]]></textFieldExpression>
 				</textField>
+				<line direction="TopDown">
+					<reportElement
+						x="2"
+						y="18"
+						width="486"
+						height="1"
+						key="line-12"/>
+					<graphicElement stretchType="NoStretch" pen="Dotted"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="2"
+						y="-1"
+						width="0"
+						height="19"
+						key="line-14"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="17"
+						y="-1"
+						width="0"
+						height="19"
+						key="line-15"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="138"
+						y="-1"
+						width="0"
+						height="19"
+						key="line-16"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="219"
+						y="-1"
+						width="0"
+						height="19"
+						key="line-17"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="286"
+						y="-3"
+						width="0"
+						height="19"
+						key="line-18"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="362"
+						y="-1"
+						width="0"
+						height="19"
+						key="line-19"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="435"
+						y="-1"
+						width="0"
+						height="19"
+						key="line-20"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="489"
+						y="-1"
+						width="0"
+						height="19"
+						key="line-21"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="223"
+						y="1"
+						width="49"
+						height="15"
+						key="textField-2"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{tglLahir}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="366"
+						y="1"
+						width="61"
+						height="15"
+						key="textField-3"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{tglNikah}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="291"
+						y="1"
+						width="61"
+						height="15"
+						key="textField-4"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{pekerjaan}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="141"
+						y="0"
+						width="77"
+						height="15"
+						key="textField-5"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{status_hub_keluarga}]]></textFieldExpression>
+				</textField>
 			</band>
 		</detail>
 		<columnFooter>
-			<band height="0"  isSplitAllowed="true" >
+			<band height="3"  isSplitAllowed="true" >
+				<line direction="TopDown">
+					<reportElement
+						x="2"
+						y="0"
+						width="487"
+						height="1"
+						key="line-13"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
 			</band>
 		</columnFooter>
 		<pageFooter>
