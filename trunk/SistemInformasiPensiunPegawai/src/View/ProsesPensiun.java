@@ -20,11 +20,8 @@ import java.sql.Connection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableCellRenderer;
-import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRPrintPage;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -44,7 +41,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
         clock.showDigitalClock(time);
         jenis_label.setVisible(false);
         combo_jenisPensiun.setVisible(false);
-         tabel_cari.getColumnModel().getColumn(0).setCellRenderer(tengah);
+        tabel_cari.getColumnModel().getColumn(0).setCellRenderer(tengah);
         tabel_cari.getColumnModel().getColumn(1).setCellRenderer(tengah);
     }
 
@@ -196,20 +193,19 @@ public class ProsesPensiun extends javax.swing.JFrame {
     private void button_prosesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_prosesActionPerformed
         try {
             tabel_cari.setVisible(true);
-            if (nip_TF.getDocument().getLength()==0) {
+            if (nip_TF.getDocument().getLength() == 0) {
                 JOptionPane.showMessageDialog(rootPane, "NIP masih Kosong");
                 nip_TF.requestFocus();
                 nip_TF.setBackground(Color.pink);
-            } else if(nip_TF.getDocument().getLength()<18){
+            } else if (nip_TF.getDocument().getLength() < 18) {
                 JOptionPane.showMessageDialog(rootPane, "NIP tidak lengkap");
                 nip_TF.requestFocus();
                 nip_TF.setBackground(Color.pink);
-            } else if(nip_TF.getDocument().getLength()>18){
+            } else if (nip_TF.getDocument().getLength() > 18) {
                 JOptionPane.showMessageDialog(rootPane, "NIP terlalu panjang");
                 nip_TF.requestFocus();
                 nip_TF.setBackground(Color.pink);
-            }
-            else {
+            } else {
                 List<PNS> search = ControlData.getKoneksi().SearchPNS(nip_TF.getText());
                 if (search.isEmpty()) {
                     JOptionPane.showMessageDialog(rootPane, "data Pegawai tidak ditemukan");
@@ -252,32 +248,68 @@ public class ProsesPensiun extends javax.swing.JFrame {
             // try {
             Connection kon = null;
             try {
-                kon = ConnMySql.getConnections();
+                int age = ControlData.getKoneksi().cek_BUP(nip_TF.getText());
+                if (age >= 59) {
+                    kon = ConnMySql.getConnections();
 //                        } catch (Exception ex) {
 //                            JOptionPane.showMessageDialog(rootPane, "terjadi gagal koneksi ke Database \n Coba cek koneksi ke Database");
 //                        }
-                Map reportparametermap1 = new HashMap();
+                    Map reportparametermap1 = new HashMap();
 
-                reportparametermap1.put("NIP", nip_TF.getText());
-                String reportSource = "./Cetak/CoverBUP.jasper";
-                String reportSource2 = "./Cetak/Surat_keterangan.jasper";
-                String reportSource3 = "./Cetak/Badan_Administrasi.jasper";
-                JasperPrint firstjasperprint = new JasperPrint();
-                firstjasperprint = JasperFillManager.fillReport(reportSource, reportparametermap1, kon);
+                    reportparametermap1.put("NIP", nip_TF.getText());
+                    String reportSource = "./Cetak/CoverBUP.jasper";
+                    String reportSource2 = "./Cetak/Surat_keterangan.jasper";
+                    String reportSource3 = "./Cetak/Badan_Administrasi.jasper";
+                    String reportSource4 = "./Cetak/SP-4A.jasper";
+                    String reportSource5 = "./Cetak/Surat_keterangan.jasper";
+                    String reportSource6 = "./Cetak/Surat_keterangan_tidak_kena_hukuman.jasper";
+                    String reportSource7 = "./Cetak/Surat_permohonan_berhenti.jasper";
+                    String reportSource8 = "./Cetak/Surat_usul_permohonan.jasper";
+                     String reportSource9 = "./Cetak/Daftar-Susunan_keluarga.jasper";
 
-                JasperPrint secondjasperprint = new JasperPrint();
-                secondjasperprint = JasperFillManager.fillReport(reportSource2, reportparametermap1, kon);
 
-                JasperPrint thirdjasperprint = new JasperPrint();
-                thirdjasperprint = JasperFillManager.fillReport(reportSource3, reportparametermap1, kon);
+                    JasperPrint firstjasperprint = new JasperPrint();
+                    firstjasperprint = JasperFillManager.fillReport(reportSource, reportparametermap1, kon);
 
-                JasperPrint firstsecondlinked = multipageLinking(firstjasperprint, secondjasperprint);
-                JasperPrint firstsecondthirdlinked = multipageLinking(firstsecondlinked, thirdjasperprint);
-                // reportSource = "./Cetak/CoverBUP.jasper";
-                // Map<String, Object> params = new HashMap<String, Object>();
-                // params.put("NIP", nip_TF.getText());
-                // JasperPrint jasperPrint = JasperFillManager.fillReport(reportSource, reportparametermap1, kon);
-                JasperViewer.viewReport(firstsecondthirdlinked, false);
+                    JasperPrint secondjasperprint = new JasperPrint();
+                    secondjasperprint = JasperFillManager.fillReport(reportSource2, reportparametermap1, kon);
+
+                    JasperPrint thirdjasperprint = new JasperPrint();
+                    thirdjasperprint = JasperFillManager.fillReport(reportSource3, reportparametermap1, kon);
+
+                    JasperPrint fourthjasperprint = new JasperPrint();
+                    fourthjasperprint = JasperFillManager.fillReport(reportSource4, reportparametermap1, kon);
+
+                    JasperPrint fifthjasperprint = new JasperPrint();
+                    fifthjasperprint = JasperFillManager.fillReport(reportSource5, reportparametermap1, kon);
+
+                    JasperPrint sixthjasperprint = new JasperPrint();
+                    sixthjasperprint = JasperFillManager.fillReport(reportSource6, reportparametermap1, kon);
+
+                    JasperPrint seventhjasperprint = new JasperPrint();
+                    seventhjasperprint = JasperFillManager.fillReport(reportSource7, reportparametermap1, kon);
+                     JasperPrint eighthjasperprint = new JasperPrint();
+                    eighthjasperprint = JasperFillManager.fillReport(reportSource8, reportparametermap1, kon);
+
+                     JasperPrint ninethjasperprint = new JasperPrint();
+                    ninethjasperprint = JasperFillManager.fillReport(reportSource9, reportparametermap1, kon);
+                    JasperPrint firstsecondlinked = multipageLinking(firstjasperprint, secondjasperprint);
+                    JasperPrint firstsecondthirdlinked = multipageLinking(firstsecondlinked, thirdjasperprint);
+                    JasperPrint fourthlinked = multipageLinking(firstsecondthirdlinked, fourthjasperprint);
+                    JasperPrint fifthLinked = multipageLinking(fourthlinked, fifthjasperprint);
+                    JasperPrint sixthLinked = multipageLinking(fifthLinked, sixthjasperprint);
+                    JasperPrint seventhLinked = multipageLinking(sixthLinked, seventhjasperprint);
+                     JasperPrint eighthLinked = multipageLinking(seventhLinked, eighthjasperprint);
+                      JasperPrint ninethLinked = multipageLinking(eighthLinked, ninethjasperprint);
+                    // reportSource = "./Cetak/CoverBUP.jasper";
+                    // Map<String, Object> params = new HashMap<String, Object>();
+                    // params.put("NIP", nip_TF.getText());
+                    // JasperPrint jasperPrint = JasperFillManager.fillReport(reportSource, reportparametermap1, kon);
+                    JasperViewer.viewReport(ninethLinked, false);
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "umur dibawah batas BUP", "", JOptionPane.ERROR_MESSAGE);
+                }
+
 
             } catch (Exception ex) {
 //                Logger.getLogger(ProsesPensiun.class.getName()).log(Level.SEVERE, null, ex);
@@ -316,7 +348,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
             }
         });
     }
-     public TableCellRenderer tengah = new RataTengah();
+    public TableCellRenderer tengah = new RataTengah();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton button_proses;
     private javax.swing.JComboBox combo_jenisPensiun;
