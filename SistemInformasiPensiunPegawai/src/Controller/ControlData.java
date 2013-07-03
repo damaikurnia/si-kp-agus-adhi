@@ -162,4 +162,22 @@ public class ControlData {
         conn.commit();
         return op;
     }
+
+    public int cek_BUP(String id) throws SQLException {
+        PreparedStatement stmt = null;
+        int cek = 0;
+        ResultSet result = null;
+        conn.setAutoCommit(false);
+        String query = "SELECT YEAR(CURRENT_DATE)- YEAR(sk_nipbaru.tanggal_lahir) "
+                + "FROM sk_nipbaru WHERE nip_baru=? ";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, id);
+        result = stmt.executeQuery();
+        if (result.next()) {
+            cek = result.getInt(1);
+        }
+        conn.commit();
+        return cek;
+
+    }
 }
