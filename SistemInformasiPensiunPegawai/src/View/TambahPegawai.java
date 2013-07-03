@@ -10,6 +10,7 @@
  */
 package View;
 
+import Model.Operator;
 import Model.PNS;
 import Model.SK_CPNS;
 import java.text.SimpleDateFormat;
@@ -23,10 +24,12 @@ import javax.swing.JOptionPane;
  * @author a9uszT
  */
 public class TambahPegawai extends javax.swing.JFrame {
-    
     PNS pegawai = new PNS("-","-","-","-","-","-","-","-","-","-");
     /** Creates new form TambahPegawai */
     public TambahPegawai() {
+//        Operator op = Controller.ControlData.getKoneksi().tampilOperator("P");
+//        TP_Kode_Label.setText(op.getKode_operator());
+//        TP_Nama_Label.setText(op.getNamaOperator());
         initComponents();
 //        DU_Simpan_button.setEnabled(false);
 //        DU_next_button.setEnabled(false);
@@ -88,7 +91,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         CPNS_TmpBuatSurat_TF = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        CPNS_TMTPartikelir_Date = new com.toedter.calendar.JDateChooser();
+        CPNS_TMTPersetujuan_Date = new com.toedter.calendar.JDateChooser();
         CPNS_NoSurat_TF = new javax.swing.JTextField();
         CPNS_nama_TF = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -99,7 +102,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         CPNS_Profesi_TF = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        CPNS_Sekolah_TF = new javax.swing.JTextField();
+        CPNS_NmrPersetujuan_TF = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         CPNS_NipBaru_TF = new javax.swing.JTextField();
@@ -107,23 +110,23 @@ public class TambahPegawai extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         CPNS_TglLhr_Date = new com.toedter.calendar.JDateChooser();
         jLabel49 = new javax.swing.JLabel();
-        CPNS_Sekolah_TF1 = new javax.swing.JTextField();
+        CPNS_Sekolah_TF = new javax.swing.JTextField();
         jLabel65 = new javax.swing.JLabel();
-        CPNS_Sekolah_TF2 = new javax.swing.JTextField();
+        CPNS_MasaKerjaBulan_TF = new javax.swing.JTextField();
         jLabel66 = new javax.swing.JLabel();
-        CPNS_Sekolah_TF3 = new javax.swing.JTextField();
-        CPNS_Sekolah_TF4 = new javax.swing.JTextField();
+        CPNS_GpBulan_TF = new javax.swing.JTextField();
+        CPNS_Golongan_TF = new javax.swing.JTextField();
         jLabel67 = new javax.swing.JLabel();
         jLabel68 = new javax.swing.JLabel();
         jLabel69 = new javax.swing.JLabel();
-        CPNS_Sekolah_TF5 = new javax.swing.JTextField();
-        CPNS_Sekolah_TF6 = new javax.swing.JTextField();
+        CPNS_MasaKerjaTahun_TF = new javax.swing.JTextField();
+        CPNS_GPdari_TF = new javax.swing.JTextField();
         jLabel70 = new javax.swing.JLabel();
         jLabel71 = new javax.swing.JLabel();
-        CPNS_Sekolah_TF7 = new javax.swing.JTextField();
+        CPNS_Berijazah_TF = new javax.swing.JTextField();
         jLabel72 = new javax.swing.JLabel();
-        CPNS_Sekolah_TF8 = new javax.swing.JTextField();
-        CPNS_TMTPartikelir_Date1 = new com.toedter.calendar.JDateChooser();
+        CPNS_PersetujuanDr_TF = new javax.swing.JTextField();
+        CPNS_TMTPartikelir_Date = new com.toedter.calendar.JDateChooser();
         jLabel73 = new javax.swing.JLabel();
         jLabel75 = new javax.swing.JLabel();
         SK_PangkatTerakhir = new javax.swing.JPanel();
@@ -243,6 +246,10 @@ public class TambahPegawai extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         time = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        TP_Nama_Label = new javax.swing.JLabel();
+        TP_Kode_Label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -398,7 +405,7 @@ public class TambahPegawai extends javax.swing.JFrame {
                 CPNS_simpan_buttonActionPerformed(evt);
             }
         });
-        SK_CPNS.add(CPNS_simpan_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 300, -1, -1));
+        SK_CPNS.add(CPNS_simpan_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, -1, -1));
 
         CPNS_next_button.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         CPNS_next_button.setText("Next");
@@ -407,7 +414,7 @@ public class TambahPegawai extends javax.swing.JFrame {
                 CPNS_next_buttonActionPerformed(evt);
             }
         });
-        SK_CPNS.add(CPNS_next_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 300, -1, -1));
+        SK_CPNS.add(CPNS_next_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 300, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Nomor Surat");
@@ -418,8 +425,8 @@ public class TambahPegawai extends javax.swing.JFrame {
         jLabel4.setText("Tempat ,Tanggal Surat");
         SK_CPNS.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
-        CPNS_TMTPartikelir_Date.setDateFormatString("d MMM yyyy");
-        SK_CPNS.add(CPNS_TMTPartikelir_Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 200, 120, -1));
+        CPNS_TMTPersetujuan_Date.setDateFormatString("d MMM yyyy");
+        SK_CPNS.add(CPNS_TMTPersetujuan_Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 200, 120, -1));
         SK_CPNS.add(CPNS_NoSurat_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 230, -1));
 
         CPNS_nama_TF.setEditable(false);
@@ -446,7 +453,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setText("Profesi");
         SK_CPNS.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
-        SK_CPNS.add(CPNS_Sekolah_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 170, 150, -1));
+        SK_CPNS.add(CPNS_NmrPersetujuan_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 170, 150, -1));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setText("Bulan");
@@ -472,18 +479,18 @@ public class TambahPegawai extends javax.swing.JFrame {
         jLabel49.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel49.setText("Sekolah/Instansi");
         SK_CPNS.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
-        SK_CPNS.add(CPNS_Sekolah_TF1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 230, -1));
+        SK_CPNS.add(CPNS_Sekolah_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 230, -1));
 
         jLabel65.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel65.setText("Golongan");
         SK_CPNS.add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, 20));
-        SK_CPNS.add(CPNS_Sekolah_TF2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 40, -1));
+        SK_CPNS.add(CPNS_MasaKerjaBulan_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 40, -1));
 
         jLabel66.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel66.setText("GP Bulanan, dari");
         SK_CPNS.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, 20));
-        SK_CPNS.add(CPNS_Sekolah_TF3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 40, -1));
-        SK_CPNS.add(CPNS_Sekolah_TF4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, 100, -1));
+        SK_CPNS.add(CPNS_GpBulan_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 40, -1));
+        SK_CPNS.add(CPNS_Golongan_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, 100, -1));
 
         jLabel67.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel67.setText("%");
@@ -496,8 +503,8 @@ public class TambahPegawai extends javax.swing.JFrame {
         jLabel69.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel69.setText("Masa Kerja");
         SK_CPNS.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, 20));
-        SK_CPNS.add(CPNS_Sekolah_TF5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 40, -1));
-        SK_CPNS.add(CPNS_Sekolah_TF6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, 170, -1));
+        SK_CPNS.add(CPNS_MasaKerjaTahun_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 40, -1));
+        SK_CPNS.add(CPNS_GPdari_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, 170, -1));
 
         jLabel70.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel70.setText("NIP baru");
@@ -506,15 +513,15 @@ public class TambahPegawai extends javax.swing.JFrame {
         jLabel71.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel71.setText("Berijazah");
         SK_CPNS.add(jLabel71, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, -1, -1));
-        SK_CPNS.add(CPNS_Sekolah_TF7, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 110, 250, -1));
+        SK_CPNS.add(CPNS_Berijazah_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 110, 250, -1));
 
         jLabel72.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel72.setText("Persetujuan dr");
         SK_CPNS.add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, -1, -1));
-        SK_CPNS.add(CPNS_Sekolah_TF8, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 140, 250, -1));
+        SK_CPNS.add(CPNS_PersetujuanDr_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 140, 250, -1));
 
-        CPNS_TMTPartikelir_Date1.setDateFormatString("d MMM yyyy");
-        SK_CPNS.add(CPNS_TMTPartikelir_Date1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 170, 110, -1));
+        CPNS_TMTPartikelir_Date.setDateFormatString("d MMM yyyy");
+        SK_CPNS.add(CPNS_TMTPartikelir_Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 170, 110, -1));
 
         jLabel73.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel73.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -949,6 +956,18 @@ public class TambahPegawai extends javax.swing.JFrame {
         time.setText("time");
         getContentPane().add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 190, -1, -1));
 
+        jLabel5.setText("Selamat Datang,");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+
+        jLabel8.setText("-");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, -1, -1));
+
+        TP_Nama_Label.setText("Nama");
+        getContentPane().add(TP_Nama_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 120, -1));
+
+        TP_Kode_Label.setText("Kode");
+        getContentPane().add(TP_Kode_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, -1, -1));
+
         pack();
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
         java.awt.Dimension dialogSize = getSize();
@@ -960,6 +979,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         sebarkanNIPLama(DU_NipLama_TF.getText());
         sebarkanNIPBaru(DU_NipBaru_TF.getText());
         sebarkanKeKK();
+        sebarkanTTL();
         
         pegawai.setNip_baru(DU_NipBaru_TF.getText());
         pegawai.setNip_lama(DU_NipLama_TF.getText());
@@ -979,13 +999,12 @@ public class TambahPegawai extends javax.swing.JFrame {
     }//GEN-LAST:event_DU_next_buttonActionPerformed
 
     private void CPNS_simpan_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CPNS_simpan_buttonActionPerformed
-        sebarkanTTL();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         
         SK_CPNS cpns = new SK_CPNS();
         cpns.setId_SuratCPNS(CPNS_NoSurat_TF.getText());
-        cpns.setTanggal_surat(sdf.format(CPNS_TglSurat_Date.getDate()));
         cpns.setTempat_surat(CPNS_TmpBuatSurat_TF.getText());
+        cpns.setTanggal_surat(sdf.format(CPNS_TglSurat_Date.getDate()));
         cpns.setNama_pemilik(CPNS_nama_TF.getText());
         cpns.setTempat_lahir(CPNS_TmpLhr_TF.getText());
         cpns.setTanggal_lahir(sdf.format(CPNS_TglLhr_Date.getDate()));
@@ -993,10 +1012,21 @@ public class TambahPegawai extends javax.swing.JFrame {
         cpns.setTmt_partikelir(sdf.format(CPNS_TMTPartikelir_Date.getDate()));
         cpns.setProfesi(CPNS_Profesi_TF.getText());
         cpns.setSekolah(CPNS_Sekolah_TF.getText());
+        cpns.setGp_bulanan(CPNS_GpBulan_TF.getText());
+        cpns.setDari_gaji(CPNS_GPdari_TF.getText());
+        cpns.setMasa_kerja_tahun(CPNS_MasaKerjaTahun_TF.getText());
+        cpns.setMasa_kerja_bulan(CPNS_MasaKerjaBulan_TF.getText());
+        cpns.setGolongan(CPNS_Golongan_TF.getText());
         cpns.setNip_lama(CPNS_NipLama_TF.getText());
         cpns.setNip_baru(CPNS_NipBaru_TF.getText());
+        cpns.setBerijazah(CPNS_Berijazah_TF.getText());
+        cpns.setPersetujuan_dr(CPNS_PersetujuanDr_TF.getText());
+        cpns.setNmr_persetujuan(CPNS_NmrPersetujuan_TF.getText());
+        cpns.setTmt_persetujuan(sdf.format(CPNS_TMTPersetujuan_Date.getDate()));
+        cpns.setKode_operator("P");
         try {
             Controller.ControlData.getKoneksi().insertCPNS(cpns);
+            Controller.ControlData.getKoneksi().updatePNS("CPNS",cpns.getNip_baru(),cpns.getId_SuratCPNS());
             JOptionPane.showMessageDialog(rootPane,"Data SK CPNS Berhasil Disimpan");
         } catch (Exception ex) {
             Logger.getLogger(TambahPegawai.class.getName()).log(Level.SEVERE, null, ex);
@@ -1097,9 +1127,11 @@ public class TambahPegawai extends javax.swing.JFrame {
     }
     
     public void sebarkanTTL(){
-        Date tanggal = CPNS_TglLhr_Date.getDate();
-        String tempat = CPNS_TmpLhr_TF.getText();
+        Date tanggal = DU_TglLhr_Date.getDate();
+        String tempat = DU_TmptLhr_Date.getText();
         
+        CPNS_TglLhr_Date.setDate(tanggal);
+        CPNS_TmpLhr_TF.setText(tempat);
         PT_TmpLhr_TF.setText(tempat);
         PT_TglLhr_Date.setDate(tanggal);
         Karpeg_TglLhr_Date.setDate(tanggal);
@@ -1111,7 +1143,11 @@ public class TambahPegawai extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new TambahPegawai().setVisible(true);
+                try {
+                    new TambahPegawai().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(TambahPegawai.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -1124,22 +1160,22 @@ public class TambahPegawai extends javax.swing.JFrame {
     private javax.swing.JLabel Alamat5;
     private javax.swing.JLabel Alamat6;
     private javax.swing.JLabel Alamat7;
+    private javax.swing.JTextField CPNS_Berijazah_TF;
+    private javax.swing.JTextField CPNS_GPdari_TF;
+    private javax.swing.JTextField CPNS_Golongan_TF;
+    private javax.swing.JTextField CPNS_GpBulan_TF;
+    private javax.swing.JTextField CPNS_MasaKerjaBulan_TF;
+    private javax.swing.JTextField CPNS_MasaKerjaTahun_TF;
     private javax.swing.JTextField CPNS_NipBaru_TF;
     private javax.swing.JTextField CPNS_NipLama_TF;
+    private javax.swing.JTextField CPNS_NmrPersetujuan_TF;
     private javax.swing.JTextField CPNS_NoSurat_TF;
     private javax.swing.JTextField CPNS_Partikelir_TF;
+    private javax.swing.JTextField CPNS_PersetujuanDr_TF;
     private javax.swing.JTextField CPNS_Profesi_TF;
     private javax.swing.JTextField CPNS_Sekolah_TF;
-    private javax.swing.JTextField CPNS_Sekolah_TF1;
-    private javax.swing.JTextField CPNS_Sekolah_TF2;
-    private javax.swing.JTextField CPNS_Sekolah_TF3;
-    private javax.swing.JTextField CPNS_Sekolah_TF4;
-    private javax.swing.JTextField CPNS_Sekolah_TF5;
-    private javax.swing.JTextField CPNS_Sekolah_TF6;
-    private javax.swing.JTextField CPNS_Sekolah_TF7;
-    private javax.swing.JTextField CPNS_Sekolah_TF8;
     private com.toedter.calendar.JDateChooser CPNS_TMTPartikelir_Date;
-    private com.toedter.calendar.JDateChooser CPNS_TMTPartikelir_Date1;
+    private com.toedter.calendar.JDateChooser CPNS_TMTPersetujuan_Date;
     private com.toedter.calendar.JDateChooser CPNS_TglLhr_Date;
     private com.toedter.calendar.JDateChooser CPNS_TglSurat_Date;
     private javax.swing.JTextField CPNS_TmpBuatSurat_TF;
@@ -1186,6 +1222,8 @@ public class TambahPegawai extends javax.swing.JFrame {
     private javax.swing.JTextField SPTKG_NipLama_TF;
     private javax.swing.JPanel SPTKG_Terakhir;
     private javax.swing.JPanel Surat_Nikah;
+    private javax.swing.JLabel TP_Kode_Label;
+    private javax.swing.JLabel TP_Nama_Label;
     private javax.swing.JTabbedPane Tab_PNS;
     private com.toedter.calendar.JDateChooser jDateChooser10;
     private com.toedter.calendar.JDateChooser jDateChooser11;
@@ -1237,6 +1275,7 @@ public class TambahPegawai extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
@@ -1265,6 +1304,7 @@ public class TambahPegawai extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel73;
     private javax.swing.JLabel jLabel74;
     private javax.swing.JLabel jLabel75;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
