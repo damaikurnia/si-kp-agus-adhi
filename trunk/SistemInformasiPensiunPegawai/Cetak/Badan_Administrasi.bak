@@ -110,7 +110,7 @@ WHERE
 						key="image-1"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<graphicElement stretchType="NoStretch"/>
-					<imageExpression class="java.lang.String"><![CDATA["E:\\KP\\SistemInformasiPensiunPegawai\\picture\\Logo Garuda BW.jpg"]]></imageExpression>
+					<imageExpression class="java.lang.String"><![CDATA["E:\\KP\\backup 4\\SistemInformasiPensiunPegawai\\picture\\Logo Garuda BW.jpg"]]></imageExpression>
 				</image>
 				<staticText>
 					<reportElement
@@ -1224,7 +1224,7 @@ WHERE
 						height="164"
 						key="subreport-1"/>
 					<subreportParameter  name="SUBREPORT_DIR">
-						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+						<subreportParameterExpression><![CDATA[""]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter  name="NIP">
 						<subreportParameterExpression><![CDATA[$P{NIP}]]></subreportParameterExpression>
@@ -1236,11 +1236,11 @@ WHERE
 					<reportElement
 						x="444"
 						y="19"
-						width="418"
+						width="423"
 						height="109"
 						key="subreport-2"/>
 					<subreportParameter  name="SUBREPORT_DIR">
-						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+						<subreportParameterExpression><![CDATA[""]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter  name="NIP">
 						<subreportParameterExpression><![CDATA[$P{NIP}]]></subreportParameterExpression>

@@ -24,7 +24,7 @@
 	<import value="net.sf.jasperreports.engine.data.*" />
 
 	<parameter name="NIP" isForPrompting="true" class="java.lang.String">
-		<parameterDescription><![CDATA[""]]></parameterDescription>
+		<defaultValueExpression ><![CDATA[""]]></defaultValueExpression>
 	</parameter>
 	<queryString><![CDATA[SELECT
   sk_pangkatterakhir.`nama_pemilik`    AS sk_pangkatterakhir_nama_pemilik,
@@ -53,7 +53,8 @@ FROM `sk_pangkatterakhir` sk_pangkatterakhir,
   `kk` kk,
   `sptkg_terakhir` sptkg_terakhir,
   `pns` pns
-WHERE pns.nip_baru = "195210231979011003"
+WHERE
+     pns.nip_baru LIKE $P{NIP}
     AND pns.`id_SuratKarpeg` = sk_karpeg.`id_SuratKarpeg`]]></queryString>
 
 	<field name="sk_pangkatterakhir_nama_pemilik" class="java.lang.String"/>
