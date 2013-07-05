@@ -23,12 +23,19 @@ public class SK_PangkatTerakhir {
     private String tmt_baru;
     private String masa_kerja_golongan;
     private String gaji_pokok;
+    private String masa_kerja_golongan_bulan;
+    private String tanggal_penyimpanan_surat;
+    private String kode_operator;
+    private String profesi;
+    private String sekolah;
 
     public SK_PangkatTerakhir(){}
     
     public SK_PangkatTerakhir(String id,String nama,String tgl_lhr,String nip_lama,
             String nip_baru,String pend,String pngkt_lm,String gol_lm,String tmt_lm,
-            String pngkt_br,String gol_br,String tmt_br,String masa,String gaji){
+            String pngkt_br,String gol_br,String tmt_br,String masa,String gaji,
+            String masa_kerja_gol_bln,String tgl_surat,String kode_op,String prof,
+            String sekolah){
         this.id_SuratPangkatTerakhir = id;
         this.nama_pemilik = nama;
         this.tanggal_lahir = tgl_lhr;
@@ -43,6 +50,11 @@ public class SK_PangkatTerakhir {
         this.tmt_baru = tmt_br;
         this.masa_kerja_golongan = masa;
         this.gaji_pokok = gaji;
+        this.masa_kerja_golongan_bulan = masa_kerja_gol_bln;
+        this.tanggal_penyimpanan_surat = tgl_surat;
+        this.kode_operator = kode_op;
+        this.profesi = prof;
+        this.sekolah = sekolah;
     }
     /**
      * @return the id_SuratPangkatTerakhir
@@ -239,5 +251,75 @@ public class SK_PangkatTerakhir {
     public void setGaji_pokok(String gaji_pokok) {
         this.gaji_pokok = gaji_pokok;
     }
-    
+
+    /**
+     * @return the masa_kerja_golongan_bulan
+     */
+    public String getMasa_kerja_golongan_bulan() {
+        return masa_kerja_golongan_bulan;
+    }
+
+    /**
+     * @param masa_kerja_golongan_bulan the masa_kerja_golongan_bulan to set
+     */
+    public void setMasa_kerja_golongan_bulan(String masa_kerja_golongan_bulan) {
+        this.masa_kerja_golongan_bulan = masa_kerja_golongan_bulan;
+    }
+
+    /**
+     * @return the tanggal_penyimpanan_surat
+     */
+    public String getTanggal_penyimpanan_surat() {
+        return tanggal_penyimpanan_surat;
+    }
+
+    /**
+     * @param tanggal_penyimpanan_surat the tanggal_penyimpanan_surat to set
+     */
+    public void setTanggal_penyimpanan_surat(String tanggal_penyimpanan_surat) {
+        this.tanggal_penyimpanan_surat = tanggal_penyimpanan_surat;
+    }
+
+    /**
+     * @return the kode_operator
+     */
+    public String getKode_operator() {
+        return kode_operator;
+    }
+
+    /**
+     * @param kode_operator the kode_operator to set
+     */
+    public void setKode_operator(String kode_operator) {
+        this.kode_operator = kode_operator;
+    }
+
+    /**
+     * @return the profesi
+     */
+    public String getProfesi() {
+        return profesi;
+    }
+
+    /**
+     * @param profesi the profesi to set
+     */
+    public void setProfesi(String profesi) {
+        this.profesi = profesi;
+    }
+
+    /**
+     * @return the sekolah
+     */
+    public String getSekolah() {
+        return sekolah;
+    }
+
+    /**
+     * @param sekolah the sekolah to set
+     */
+    public void setSekolah(String sekolah) {
+        this.sekolah = sekolah;
+    }
+
 }
