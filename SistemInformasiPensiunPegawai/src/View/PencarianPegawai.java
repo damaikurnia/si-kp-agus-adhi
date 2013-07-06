@@ -10,6 +10,12 @@
  */
 package View;
 
+import Controller.ControlData;
+import Model.PNS;
+import TableModel.CariPegawaiTableModel;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author a9uszT
@@ -19,10 +25,11 @@ public class PencarianPegawai extends javax.swing.JFrame {
     /** Creates new form PencarianPegawai */
     public PencarianPegawai() {
         initComponents();
-        nip_TF.requestFocus();
+        cari_txt.requestFocus();
         tabel_cari.setVisible(false);
-        Clock clock=new Clock();
+        Clock clock = new Clock();
         clock.showDigitalClock(time);
+        cari_txt.setVisible(false);
     }
 
     /** This method is called from within the constructor to
@@ -44,15 +51,16 @@ public class PencarianPegawai extends javax.swing.JFrame {
         tabel_cari = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         nip_br = new javax.swing.JLabel();
-        nip_TF = new javax.swing.JTextField();
+        cari_txt = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        combo_jenis = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("E:\\KP\\SistemInformasiPensiunPegawai\\picture\\header2.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("E:\\KP\\trunk\\SistemInformasiPensiunPegawai\\picture\\header2.jpg")); // NOI18N
         jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -97,28 +105,29 @@ public class PencarianPegawai extends javax.swing.JFrame {
 
         tabel_cari.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "NIP lama", "NIP baru", "Nama lengkap"
             }
         ));
         jScrollPane1.setViewportView(tabel_cari);
 
         jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 830, 100));
 
+        jPanel4.setBackground(new java.awt.Color(153, 153, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         nip_br.setFont(new java.awt.Font("Tahoma", 1, 14));
-        nip_br.setText("Masukan NIP");
-        jPanel4.add(nip_br, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, -1, -1));
+        nip_br.setText("Cari berdasarkan");
+        jPanel4.add(nip_br, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        nip_TF.setFont(new java.awt.Font("Tahoma", 0, 12));
-        jPanel4.add(nip_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 310, -1));
+        cari_txt.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jPanel4.add(cari_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 310, -1));
 
         jButton1.setText("Cari");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -127,6 +136,15 @@ public class PencarianPegawai extends javax.swing.JFrame {
             }
         });
         jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, -1, -1));
+
+        combo_jenis.setFont(new java.awt.Font("Tahoma", 1, 14));
+        combo_jenis.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "==pilih==", "NIP Lama", "NIP Baru", "Nama" }));
+        combo_jenis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combo_jenisActionPerformed(evt);
+            }
+        });
+        jPanel4.add(combo_jenis, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 110, -1));
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 540, 130));
 
@@ -139,9 +157,60 @@ public class PencarianPegawai extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        tabel_cari.setVisible(true);
+        try {
+            String pilihan = (String) combo_jenis.getSelectedItem();
+            if (pilihan.matches("==pilih==")) {
+                JOptionPane.showMessageDialog(rootPane, "pilih salah satu jenis pencarian", "alert", JOptionPane.WARNING_MESSAGE);
+            } else if (pilihan.matches("NIP Lama")) {
+                List<PNS> search = ControlData.getKoneksi().SearchPNS_NIPLama(cari_txt.getText());
+                if (search.isEmpty()) {
+                    JOptionPane.showMessageDialog(rootPane, "data Pegawai tidak ditemukan");
+                } else {
+                    CariPegawaiTableModel dataPensiun = new CariPegawaiTableModel(search);
+                    tabel_cari.setModel(dataPensiun);
+                }
+            } else if (pilihan.matches("NIP Baru")) {
+                 List<PNS> search = ControlData.getKoneksi().SearchPNS_NIPBaru(cari_txt.getText());
+                if (search.isEmpty()) {
+                    JOptionPane.showMessageDialog(rootPane, "data Pegawai tidak ditemukan");
+                } else {
+                    CariPegawaiTableModel dataPensiun = new CariPegawaiTableModel(search);
+                    tabel_cari.setModel(dataPensiun);
+                }
+            } else {
+                 List<PNS> search = ControlData.getKoneksi().SearchPNS_Nama(cari_txt.getText());
+                if (search.isEmpty()) {
+                    JOptionPane.showMessageDialog(rootPane, "data Pegawai tidak ditemukan");
+                } else {
+                    CariPegawaiTableModel dataPensiun = new CariPegawaiTableModel(search);
+                    tabel_cari.setModel(dataPensiun);
+                }
+            }
+            tabel_cari.setVisible(true);
+        } catch (Exception e) {
+        }
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void combo_jenisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_jenisActionPerformed
+
+        String pilihan = (String) combo_jenis.getSelectedItem();
+        if (pilihan.matches("==pilih==")) {
+            cari_txt.setVisible(false);
+            JOptionPane.showMessageDialog(rootPane, "pilih salah satu jenis pencarian", "alert", JOptionPane.WARNING_MESSAGE);
+        } else if (pilihan.matches("NIP Lama")) {
+            cari_txt.setVisible(true);
+            cari_txt.requestFocus();
+        } else if (pilihan.matches("NIP Baru")) {
+            cari_txt.setVisible(true);
+            cari_txt.requestFocus();
+        } else {
+            cari_txt.setVisible(true);
+            cari_txt.requestFocus();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combo_jenisActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,6 +224,8 @@ public class PencarianPegawai extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField cari_txt;
+    private javax.swing.JComboBox combo_jenis;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -163,7 +234,6 @@ public class PencarianPegawai extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField nip_TF;
     private javax.swing.JLabel nip_br;
     private javax.swing.JTable tabel_cari;
     private javax.swing.JLabel time;
