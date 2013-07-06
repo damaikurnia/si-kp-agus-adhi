@@ -79,6 +79,71 @@ public class ControlData {
 
     }
 
+    public List<PNS> SearchPNS_NIPLama(String id) throws SQLException {
+        PreparedStatement stmt = null;
+        PNS cek = null;
+        ResultSet result = null;
+        conn.setAutoCommit(false);
+        String query = "SELECT nip_lama,nip_baru,nama_pns FROM PNS "
+                + "where nip_lama=? ";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, id);
+        result = stmt.executeQuery();
+        List<PNS> pns = new ArrayList<PNS>();
+        if (result.next()) {
+            cek = new PNS();
+            cek.setNip_lama(result.getString(1));
+            cek.setNip_baru(result.getString(2));
+            cek.setNama_pns(result.getString(3));
+            pns.add(cek);
+        }
+        conn.commit();
+        return pns;
+    }
+
+    public List<PNS> SearchPNS_NIPBaru(String id) throws SQLException {
+        PreparedStatement stmt = null;
+        PNS cek = null;
+        ResultSet result = null;
+        conn.setAutoCommit(false);
+        String query = "SELECT nip_lama,nip_baru,nama_pns FROM PNS "
+                + "where nip_baru=? ";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, id);
+        result = stmt.executeQuery();
+        List<PNS> pns = new ArrayList<PNS>();
+        if (result.next()) {
+            cek = new PNS();
+            cek.setNip_lama(result.getString(1));
+            cek.setNip_baru(result.getString(2));
+            cek.setNama_pns(result.getString(3));
+            pns.add(cek);
+        }
+        conn.commit();
+        return pns;
+    }
+
+    public List<PNS> SearchPNS_Nama(String id) throws SQLException {
+        PreparedStatement stmt = null;
+        PNS cek = null;
+        ResultSet result = null;
+        conn.setAutoCommit(false);
+        String query = "SELECT nip_lama,nip_baru,nama_pns FROM PNS "
+                + "where Upper (nama_pns) like '%" + id.toUpperCase() + "%'";
+        stmt = conn.prepareStatement(query);
+        result = stmt.executeQuery();
+        List<PNS> pns = new ArrayList<PNS>();
+        if (result.next()) {
+            cek = new PNS();
+            cek.setNip_lama(result.getString(1));
+            cek.setNip_baru(result.getString(2));
+            cek.setNama_pns(result.getString(3));
+            pns.add(cek);
+        }
+        conn.commit();
+        return pns;
+    }
+
     public void insertPNS(PNS k) throws SQLException {
         PreparedStatement stmt = null;
         conn.setAutoCommit(false);
