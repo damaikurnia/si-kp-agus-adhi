@@ -20,12 +20,16 @@ public class SPTKG_Terakhir {
     private String gajipokok_lama;
     private String gajipokok_baru;
     private String tmt_baru;
+    private String nip_lama;
+    private String tanggal_penyimpanan_surat;
+    private String kode_operator;
     
     public SPTKG_Terakhir(){}
     
     public SPTKG_Terakhir(String id,String tmpt,String tgl,String nama,
             String nip,String pangkat,String gol,String sekolah,String gaji_lama,
-            String gaji_baru,String tmt){
+            String gaji_baru,String tmt,String nip_lm,String tgl_penyimp_sur,
+            String kode_op){
         this.id_SuratSPTKGTerakhir = id;
         this.tempat_surat = tmpt;
         this.tanggal_surat = tgl;
@@ -37,8 +41,11 @@ public class SPTKG_Terakhir {
         this.gajipokok_lama = gaji_lama;
         this.gajipokok_baru = gaji_baru;
         this.tmt_baru = tmt;
+        this.nip_lama = nip_lm;
+        this.tanggal_penyimpanan_surat = tgl_penyimp_sur;
+        this.kode_operator = kode_op;
     }
-    
+
     /**
      * @return the id_SuratSPTKGTerakhir
      */
@@ -192,4 +199,47 @@ public class SPTKG_Terakhir {
     public void setTmt_baru(String tmt_baru) {
         this.tmt_baru = tmt_baru;
     }
+
+    /**
+     * @return the nip_lama
+     */
+    public String getNip_lama() {
+        return nip_lama;
+    }
+
+    /**
+     * @param nip_lama the nip_lama to set
+     */
+    public void setNip_lama(String nip_lama) {
+        this.nip_lama = nip_lama;
+    }
+
+    /**
+     * @return the tanggal_penyimpanan_surat
+     */
+    public String getTanggal_penyimpanan_surat() {
+        return tanggal_penyimpanan_surat;
+    }
+
+    /**
+     * @param tanggal_penyimpanan_surat the tanggal_penyimpanan_surat to set
+     */
+    public void setTanggal_penyimpanan_surat(String tanggal_penyimpanan_surat) {
+        this.tanggal_penyimpanan_surat = tanggal_penyimpanan_surat;
+    }
+
+    /**
+     * @return the kode_operator
+     */
+    public String getKode_operator() {
+        return kode_operator;
+    }
+
+    /**
+     * @param kode_operator the kode_operator to set
+     */
+    public void setKode_operator(String kode_operator) {
+        this.kode_operator = kode_operator;
+    }
+
 }

@@ -8,6 +8,7 @@ import Model.Operator;
 import Model.PNS;
 import Model.SK_CPNS;
 import Model.SK_PangkatTerakhir;
+import Model.SPTKG_Terakhir;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -170,7 +171,7 @@ public class ControlData {
             conn.setAutoCommit(false);
             String query = "update pns set id_suratcpns = ? where nip_baru = ?";
             stmt = conn.prepareStatement(query);
-            stmt.setString(1, idSurat);
+            stmt.setString(1, idSurat.toUpperCase());
             stmt.setString(2, nip);
 
             stmt.executeUpdate();
@@ -179,7 +180,16 @@ public class ControlData {
             conn.setAutoCommit(false);
             String query = "update pns set id_SuratPangkatTerakhir = ? where nip_baru = ?";
             stmt = conn.prepareStatement(query);
-            stmt.setString(1, idSurat);
+            stmt.setString(1, idSurat.toUpperCase());
+            stmt.setString(2, nip);
+
+            stmt.executeUpdate();
+            conn.commit();
+        } else if (kodeSandi.equals("SPTKG")) {
+            conn.setAutoCommit(false);
+            String query = "update pns set id_SuratSPTKGTerakhir = ? where nip_baru = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, idSurat.toUpperCase());
             stmt.setString(2, nip);
 
             stmt.executeUpdate();
@@ -279,6 +289,29 @@ public class ControlData {
         stmt.setString(16, k.getKode_operator().toUpperCase());
         stmt.setString(17, k.getProfesi().toUpperCase());
         stmt.setString(18, k.getSekolah().toUpperCase());
+
+        stmt.executeUpdate();
+        conn.commit();
+    }
+    
+    public void insertSPTKG_Terakhir(SPTKG_Terakhir k) throws SQLException {
+        PreparedStatement stmt = null;
+        conn.setAutoCommit(false);
+        String query = "INSERT INTO sptkg_terakhir VALUES(?,?,?,?,?,?,?,?,?,?,?,?,CURRENT_DATE,?)";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, k.getId_SuratSPTKGTerakhir().toUpperCase());
+        stmt.setString(2, k.getTempat_surat().toUpperCase());
+        stmt.setString(3, k.getTanggal_surat());
+        stmt.setString(4, k.getNama_pemilik().toUpperCase());
+        stmt.setString(5, k.getNip_baru());
+        stmt.setString(6, k.getPangkat_baru().toUpperCase());
+        stmt.setString(7, k.getGolongan_ruang_baru());
+        stmt.setString(8, k.getSekolah().toUpperCase());
+        stmt.setString(9, k.getGajipokok_lama());
+        stmt.setInt(10, Integer.parseInt(k.getGajipokok_baru()));
+        stmt.setString(11, k.getTmt_baru());
+        stmt.setString(12, k.getNip_lama());
+        stmt.setString(13, k.getKode_operator().toUpperCase());
 
         stmt.executeUpdate();
         conn.commit();
