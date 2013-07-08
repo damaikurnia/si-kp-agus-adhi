@@ -253,12 +253,13 @@ public class ProsesPensiun extends javax.swing.JFrame {
 }//GEN-LAST:event_button_prosesActionPerformed
 
     private void exit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exit_buttonActionPerformed
-
+//       System.out.println(P_Nama_Label.getText().toUpperCase());
         int status = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin keluar", "Konfirmasi keluar",
                 JOptionPane.OK_CANCEL_OPTION);
         if (status == 0) {
             this.dispose();
             FrameOperator FO = new FrameOperator();
+            FO.dataOperator(P_Nama_Label.getText(), P_Kode_Label.getText());
             FO.setVisible(true);
 
         }
@@ -303,13 +304,12 @@ public class ProsesPensiun extends javax.swing.JFrame {
         for (int count = 0; count < pages.size(); count++) {
             page1.addPage(pages.get(count));
         }
-
         return page1;
     }
 
     private void inputAngka(String angka) {
         if (!angka.matches("[0-9]*")) {
-            JOptionPane.showMessageDialog(rootPane, "masukan angka", "", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "masukan angka", "peringatan", JOptionPane.WARNING_MESSAGE);
         }
     }
 
@@ -378,8 +378,6 @@ public class ProsesPensiun extends javax.swing.JFrame {
             JasperPrint ninethLinked = multipageLinking(eighthLinked, ninethjasperprint);
 
             JasperViewer.viewReport(ninethLinked, false);
-
-
 
             Map<String, Object> params = new HashMap<String, Object>();
             params.put("NIP", nip);
