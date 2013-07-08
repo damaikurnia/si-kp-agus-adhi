@@ -7,6 +7,7 @@ package Controller;
 import Model.Operator;
 import Model.PNS;
 import Model.SK_CPNS;
+import Model.SK_Karpeg;
 import Model.SK_PangkatTerakhir;
 import Model.SPTKG_Terakhir;
 import java.sql.Connection;
@@ -194,6 +195,15 @@ public class ControlData {
 
             stmt.executeUpdate();
             conn.commit();
+        } else if (kodeSandi.equals("KARPEG")) {
+            conn.setAutoCommit(false);
+            String query = "update pns set id_SuratKarpeg = ? where nip_baru = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, idSurat.toUpperCase());
+            stmt.setString(2, nip);
+
+            stmt.executeUpdate();
+            conn.commit();
         }
     }
 
@@ -312,6 +322,23 @@ public class ControlData {
         stmt.setString(11, k.getTmt_baru());
         stmt.setString(12, k.getNip_lama());
         stmt.setString(13, k.getKode_operator().toUpperCase());
+
+        stmt.executeUpdate();
+        conn.commit();
+    }
+    
+    public void insertSK_Karpeg(SK_Karpeg k) throws SQLException {
+        PreparedStatement stmt = null;
+        conn.setAutoCommit(false);
+        String query = "INSERT INTO sk_karpeg VALUES(?,?,?,?,?,?,CURRENT_DATE,?)";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, k.getId_SuratKarpeg().toUpperCase());
+        stmt.setString(2, k.getNip_lama());
+        stmt.setString(3, k.getNip_baru());
+        stmt.setString(4, k.getNama_pemilik().toUpperCase());
+        stmt.setString(5, k.getTanggal_lahir());
+        stmt.setString(6, k.getTmt_cpns());
+        stmt.setString(7, k.getKode_operator().toUpperCase());
 
         stmt.executeUpdate();
         conn.commit();
