@@ -11,6 +11,7 @@
 package View;
 
 import Controller.ControlData;
+import Model.Operator;
 import javax.swing.JOptionPane;
 
 /**
@@ -54,7 +55,7 @@ public class HomeUtama extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("E:\\KP\\SistemInformasiPensiunPegawai\\picture\\header2.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("E:\\Subversion\\SistemInformasiPensiunPegawai\\picture\\header2.jpg")); // NOI18N
         jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -206,7 +207,7 @@ public class HomeUtama extends javax.swing.JFrame {
         } else if (a.equalsIgnoreCase("") && !b.equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(rootPane, "inputan tidak lengkap \n ID kosong"
                     + "", "peringatan", JOptionPane.ERROR_MESSAGE);
-        } else if (!a.matches("[0-9]*")) {
+        } else if (a.matches("[0-9]*")) {
             JOptionPane.showMessageDialog(rootPane, "ID tidak valid"
                     + "", "peringatan", JOptionPane.ERROR_MESSAGE);
         } else {
@@ -218,8 +219,9 @@ public class HomeUtama extends javax.swing.JFrame {
                     FrameOperator FP = new FrameOperator();
                     FP.setVisible(true);
                     emptyField();
-                    String nama = ControlData.getKoneksi().cariPegawai(id);
-                    //FP.Nama_label.setText(nama);
+                    this.dispose();
+                    Operator op = ControlData.getKoneksi().cariPegawai(id);
+                    FP.dataOperator(op.getNamaOperator(),op.getKode_operator());
 
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "username dan password salah\n silahkan username dan "
@@ -229,8 +231,9 @@ public class HomeUtama extends javax.swing.JFrame {
 
                 }
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(rootPane, "Tidak dapat koneksi ke Database \n"
-                        + "cek settingan dahulu");
+//                JOptionPane.showMessageDialog(rootPane, "Tidak dapat koneksi ke Database \n"
+//                        + "cek settingan dahulu");
+                 JOptionPane.showMessageDialog(rootPane,ex.getMessage());
             }
         }
     }//GEN-LAST:event_masuk_button2ActionPerformed

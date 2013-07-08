@@ -41,10 +41,11 @@ public class ControlData {
         boolean cek = false;
         ResultSet result = null;
         conn.setAutoCommit(false);
-        String query = "SELECT idPegawai,passwordpegawai FROM operator "
-                + "where idPegawai=? AND passwordpegawai=? ";
+        String query = "SELECT kode_operator,passwordpegawai FROM operator "
+                + "where kode_operator=? AND passwordpegawai=? ";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, id);
+        stmt.setString(2, password);
         result = stmt.executeQuery();
         if (result.next()) {
             cek = true;
@@ -72,8 +73,24 @@ public class ControlData {
 
     }
 
-    public String cariPegawai(String id) {
-        throw new UnsupportedOperationException("Not yet implemented");
+    public Operator cariPegawai(String id) throws SQLException {
+       PreparedStatement stmt = null;
+        Operator ptr = null;
+        ResultSet result = null;
+        conn.setAutoCommit(false);
+        String query = "SELECT kode_operator,namaOperator FROM Operator "
+                + "where kode_operator=? ";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, id);
+        result = stmt.executeQuery();
+        if (result.next()) {
+            ptr=new Operator();
+            ptr.setKode_operator(result.getString(1));
+            ptr.setNamaOperator(result.getString(2));
+        }
+        conn.commit();
+        return ptr;
+
     }
 
     public List<PNS> SearchPNS(String id) throws SQLException {

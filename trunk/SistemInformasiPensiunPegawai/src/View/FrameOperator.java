@@ -12,6 +12,7 @@ package View;
 
 import Controller.ConnMySql;
 import Controller.ControlData;
+import Model.Operator;
 import java.sql.Connection;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -38,6 +39,7 @@ public class FrameOperator extends javax.swing.JFrame {
         Clock clock = new Clock();
         clock.showDigitalClock(time);
         disabledButton();
+        kode_op.setVisible(false);
     }
 
     private void disabledButton() {
@@ -69,7 +71,7 @@ public class FrameOperator extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         time = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        nama_operator = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         pegawai_button = new javax.swing.JButton();
         Pensiun_Button = new javax.swing.JButton();
@@ -80,12 +82,14 @@ public class FrameOperator extends javax.swing.JFrame {
         buttonEditPeg = new javax.swing.JButton();
         buttonHpsPeg = new javax.swing.JButton();
         buttonSearch = new javax.swing.JButton();
+        kode_op = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon("E:\\Subversion\\SistemInformasiPensiunPegawai\\picture\\header2.jpg")); // NOI18N
         jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -111,7 +115,7 @@ public class FrameOperator extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(164, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 180));
@@ -119,14 +123,14 @@ public class FrameOperator extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        time.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        time.setFont(new java.awt.Font("Tahoma", 1, 14));
         time.setText("time");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel2.setText("Selamat Datang,");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setText("nama");
+        nama_operator.setFont(new java.awt.Font("Tahoma", 0, 18));
+        nama_operator.setText("nama");
 
         pegawai_button.setText("PEGAWAI");
         pegawai_button.addActionListener(new java.awt.event.ActionListener() {
@@ -228,22 +232,25 @@ public class FrameOperator extends javax.swing.JFrame {
                 .addContainerGap(84, Short.MAX_VALUE))
         );
 
+        kode_op.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        kode_op.setText("id");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(303, 303, 303)
+                        .addComponent(kode_op)
+                        .addGap(285, 285, 285)
                         .addComponent(jLabel2))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addComponent(nama_operator)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 335, Short.MAX_VALUE)
                         .addComponent(time))
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -252,11 +259,14 @@ public class FrameOperator extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(time))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(time)
+                            .addComponent(nama_operator, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(kode_op, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -325,14 +335,19 @@ public class FrameOperator extends javax.swing.JFrame {
             this.dispose();
             ProsesPensiun PP = new ProsesPensiun();
             PP.setVisible(true);
-        } else if(buttonTmbhPeg.getText().startsWith("T")) {
-             this.dispose();
+        } else if (buttonTmbhPeg.getText().startsWith("T")) {
+            this.dispose();
             TambahPegawai tmbhPeg = new TambahPegawai();
+            tmbhPeg.isiNama(nama_operator.getText(),kode_op.getText());
             tmbhPeg.setVisible(true);
         }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonTmbhPegActionPerformed
+    public void dataOperator(String nama,String id) {
+        nama_operator.setText(nama);
+        kode_op.setText(id);
+    }
 
     /**
      * @param args the command line arguments
@@ -354,13 +369,14 @@ public class FrameOperator extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JButton keluar_button;
+    private javax.swing.JLabel kode_op;
+    private javax.swing.JLabel nama_operator;
     private javax.swing.JButton pegawai_button;
     private javax.swing.JLabel time;
     // End of variables declaration//GEN-END:variables
