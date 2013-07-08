@@ -27,6 +27,7 @@ import javax.swing.JOptionPane;
  * @author a9uszT
  */
 public class TambahPegawai extends javax.swing.JFrame {
+
     PNS pegawai = new PNS("-", "-", "-", "-", "-", "-", "-", "-", "-", "-");
 
     /**
@@ -265,6 +266,7 @@ public class TambahPegawai extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon("E:\\Subversion\\SistemInformasiPensiunPegawai\\picture\\header2.jpg")); // NOI18N
         jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -982,7 +984,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         getContentPane().add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 190, -1, -1));
 
         jLabel5.setText("Selamat Datang,");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
 
         jLabel8.setText("-");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, -1, -1));
@@ -990,8 +992,9 @@ public class TambahPegawai extends javax.swing.JFrame {
         TP_Nama_Label.setText("Nama");
         getContentPane().add(TP_Nama_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 120, -1));
 
+        TP_Kode_Label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         TP_Kode_Label.setText("Kode");
-        getContentPane().add(TP_Kode_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, -1, -1));
+        getContentPane().add(TP_Kode_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 10, -1));
 
         pack();
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -1133,7 +1136,7 @@ public class TambahPegawai extends javax.swing.JFrame {
 
     private void Karpeg_simpan_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Karpeg_simpan_buttonActionPerformed
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        
+
         SK_Karpeg karpeg = new SK_Karpeg();
         karpeg.setId_SuratKarpeg(Karpeg_NoSurat_TF.getText());
         karpeg.setNip_lama(Karpeg_NipLama_TF.getText());
@@ -1243,11 +1246,17 @@ public class TambahPegawai extends javax.swing.JFrame {
         SPTKG_GolBr_TF.setText(PT_GolBr_TF.getText());
     }
 
+    public void isiNama(String nama,String id) {
+        TP_Nama_Label.setText(nama);
+        TP_Kode_Label.setText(id);
+    }
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 try {
                     new TambahPegawai().setVisible(true);
