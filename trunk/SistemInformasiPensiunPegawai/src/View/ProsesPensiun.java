@@ -126,7 +126,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
         jenis_label.setText("Pilih Jenis Pensiun");
         jPanel4.add(jenis_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, -1, 30));
 
-        nip_TF.setFont(new java.awt.Font("Tahoma", 0, 12));
+        nip_TF.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         nip_TF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 nip_TFKeyReleased(evt);
@@ -199,10 +199,10 @@ public class ProsesPensiun extends javax.swing.JFrame {
             if (nip_TF.getDocument().getLength() == 0) {
                 JOptionPane.showMessageDialog(rootPane, "NIP masih Kosong");
                 nip_TF.requestFocus();
-                nip_TF.setBackground(Color.pink);
+               nip_TF.setBackground(Color.pink);
             } else if (nip_TF.getDocument().getLength() < 18) {
                 JOptionPane.showMessageDialog(rootPane, "NIP tidak lengkap");
-                nip_TF.requestFocus();
+               nip_TF.requestFocus();
                 nip_TF.setBackground(Color.pink);
             } else if (nip_TF.getDocument().getLength() > 18) {
                 JOptionPane.showMessageDialog(rootPane, "NIP terlalu panjang");
@@ -339,6 +339,10 @@ public class ProsesPensiun extends javax.swing.JFrame {
         }
     }
 
+    public void isiNIP(String id){
+        nip_TF.setText(id);
+        nip_TF.setEnabled(false);
+    }
     /**
      * @param args the command line arguments
      */
