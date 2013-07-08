@@ -363,11 +363,11 @@ public class TambahPegawai extends javax.swing.JFrame {
         });
         DU.add(DU_KabKota_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, 190, -1));
         DU.add(DU_RT_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 200, 60, 20));
-        DU.add(DU_Alamat_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 360, -1));
+        DU.add(DU_Alamat_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 360, -1));
 
         Alamat1.setFont(new java.awt.Font("Tahoma", 1, 14));
         Alamat1.setText("Tempat / Tgl Lahir");
-        DU.add(Alamat1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, -1, -1));
+        DU.add(Alamat1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, -1, -1));
 
         Alamat2.setFont(new java.awt.Font("Tahoma", 0, 14));
         Alamat2.setText("Kabupaten / Kota");
@@ -392,12 +392,12 @@ public class TambahPegawai extends javax.swing.JFrame {
         Alamat6.setFont(new java.awt.Font("Tahoma", 0, 14));
         Alamat6.setText("Kecamatan");
         DU.add(Alamat6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, -1, -1));
-        DU.add(DU_TglLhr_Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, 170, -1));
+        DU.add(DU_TglLhr_Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 140, 100, -1));
 
         Alamat7.setFont(new java.awt.Font("Tahoma", 1, 14));
         Alamat7.setText("Alamat");
-        DU.add(Alamat7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, -1, -1));
-        DU.add(DU_TmptLhr_Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 160, -1));
+        DU.add(Alamat7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, -1, -1));
+        DU.add(DU_TmptLhr_Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 140, -1));
 
         jLabel74.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLabel74.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
