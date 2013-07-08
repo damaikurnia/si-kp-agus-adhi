@@ -281,6 +281,10 @@ public class FrameOperator extends javax.swing.JFrame {
     }//GEN-LAST:event_keluar_buttonActionPerformed
 
     private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
+        PencarianPegawai search = new PencarianPegawai();
+        this.dispose();
+        search.dataOperator(nama_operator.getText(), kode_op.getText());
+        search.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonSearchActionPerformed
 
@@ -288,18 +292,18 @@ public class FrameOperator extends javax.swing.JFrame {
         if (buttonTmbhPeg.getText().startsWith("P")) {
             this.dispose();
             ProsesPensiun PP = new ProsesPensiun();
-            PP.isiNama(nama_operator.getText(),kode_op.getText());
+            PP.dataOperator(nama_operator.getText(), kode_op.getText());
             PP.setVisible(true);
         } else if (buttonTmbhPeg.getText().startsWith("T")) {
             this.dispose();
             TambahPegawai tmbhPeg = new TambahPegawai();
-            tmbhPeg.isiNama(nama_operator.getText(),kode_op.getText());
+            tmbhPeg.isiNama(nama_operator.getText(), kode_op.getText());
             tmbhPeg.setVisible(true);
         }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonTmbhPegActionPerformed
-    public void dataOperator(String nama,String id) {
+    public void dataOperator(String nama, String id) {
         nama_operator.setText(nama);
         kode_op.setText(id);
     }

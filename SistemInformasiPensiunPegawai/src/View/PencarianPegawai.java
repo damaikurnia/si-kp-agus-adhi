@@ -13,6 +13,7 @@ package View;
 import Controller.ControlData;
 import Model.PNS;
 import TableModel.CariPegawaiTableModel;
+import java.awt.Color;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -67,6 +68,11 @@ public class PencarianPegawai extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         combo_jenis = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
+        P_Nama_Label = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        P_Kode_Label = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        exit_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -236,7 +242,7 @@ public class PencarianPegawai extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabel_cari);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 830, 100));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 830, 90));
 
         jPanel4.setBackground(new java.awt.Color(153, 153, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -272,6 +278,27 @@ public class PencarianPegawai extends javax.swing.JFrame {
         jLabel3.setText("Pencarian Pegawai");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, -1, -1));
 
+        P_Nama_Label.setText("Nama");
+        jPanel3.add(P_Nama_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 120, -1));
+
+        jLabel8.setText("-");
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, -1));
+
+        P_Kode_Label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        P_Kode_Label.setText("Kode");
+        jPanel3.add(P_Kode_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 10, -1));
+
+        jLabel6.setText("Selamat Datang,");
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        exit_button.setText("Keluar");
+        exit_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exit_buttonActionPerformed(evt);
+            }
+        });
+        jPanel3.add(exit_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 360, -1, -1));
+
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 870, 400));
 
         pack();
@@ -287,7 +314,9 @@ public class PencarianPegawai extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "pilih salah satu jenis pencarian", "alert", JOptionPane.WARNING_MESSAGE);
             } else if (pilihan.matches("NIP Lama")) {
                 List<PNS> search = ControlData.getKoneksi().SearchPNS_NIPLama(cari_txt.getText());
-                if (search.isEmpty()) {
+                if (cari_txt.getText().equalsIgnoreCase("")) {
+                    inputKosong();
+                } else if (search.isEmpty()) {
                     JOptionPane.showMessageDialog(rootPane, "data Pegawai tidak ditemukan");
                 } else {
                     CariPegawaiTableModel dataPensiun = new CariPegawaiTableModel(search);
@@ -295,7 +324,9 @@ public class PencarianPegawai extends javax.swing.JFrame {
                 }
             } else if (pilihan.matches("NIP Baru")) {
                 List<PNS> search = ControlData.getKoneksi().SearchPNS_NIPBaru(cari_txt.getText());
-                if (search.isEmpty()) {
+                if (cari_txt.getText().equalsIgnoreCase("")) {
+                    inputKosong();
+                } else if (search.isEmpty()) {
                     JOptionPane.showMessageDialog(rootPane, "data Pegawai tidak ditemukan");
                 } else {
                     CariPegawaiTableModel dataPensiun = new CariPegawaiTableModel(search);
@@ -303,7 +334,9 @@ public class PencarianPegawai extends javax.swing.JFrame {
                 }
             } else {
                 List<PNS> search = ControlData.getKoneksi().SearchPNS_Nama(cari_txt.getText());
-                if (search.isEmpty()) {
+                if (cari_txt.getText().equalsIgnoreCase("")) {
+                    inputKosong();
+                } else if (search.isEmpty()) {
                     JOptionPane.showMessageDialog(rootPane, "data Pegawai tidak ditemukan");
                 } else {
                     CariPegawaiTableModel dataPensiun = new CariPegawaiTableModel(search);
@@ -364,6 +397,24 @@ public class PencarianPegawai extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_button_proses_pensiunActionPerformed
 
+    private void exit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exit_buttonActionPerformed
+        //       System.out.println(P_Nama_Label.getText().toUpperCase());
+        int status = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin keluar", "Konfirmasi keluar",
+                JOptionPane.OK_CANCEL_OPTION);
+        if (status == 0) {
+            this.dispose();
+            FrameOperator FO = new FrameOperator();
+            FO.dataOperator(P_Nama_Label.getText(), P_Kode_Label.getText());
+            FO.setVisible(true);
+
+        }
+        // TODO add your handling code here:
+}//GEN-LAST:event_exit_buttonActionPerformed
+    public void dataOperator(String nama, String id) {
+        P_Nama_Label.setText(nama);
+        P_Kode_Label.setText(id);
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -376,9 +427,12 @@ public class PencarianPegawai extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel P_Kode_Label;
+    private javax.swing.JLabel P_Nama_Label;
     private javax.swing.JButton button_proses_pensiun;
     private javax.swing.JTextField cari_txt;
     private javax.swing.JComboBox combo_jenis;
+    private javax.swing.JButton exit_button;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -389,6 +443,8 @@ public class PencarianPegawai extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -402,4 +458,10 @@ public class PencarianPegawai extends javax.swing.JFrame {
     private javax.swing.JTable tabel_cari;
     private javax.swing.JLabel time;
     // End of variables declaration//GEN-END:variables
+
+    private void inputKosong() {
+        JOptionPane.showMessageDialog(rootPane, "NIP kosong", "", JOptionPane.WARNING_MESSAGE);
+        cari_txt.setBackground(Color.red);
+        cari_txt.requestFocus();
+    }
 }
