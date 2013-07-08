@@ -318,7 +318,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
         nip_TF.setEnabled(false);
     }
 
-    public void isiNama(String nama, String id) {
+    public void dataOperator(String nama, String id) {
         P_Nama_Label.setText(nama);
         P_Kode_Label.setText(id);
     }
