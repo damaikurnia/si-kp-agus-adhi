@@ -233,7 +233,9 @@ public class FrameOperator extends javax.swing.JFrame {
         );
 
         kode_op.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        kode_op.setForeground(new java.awt.Color(255, 255, 255));
         kode_op.setText("id");
+        kode_op.setEnabled(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
