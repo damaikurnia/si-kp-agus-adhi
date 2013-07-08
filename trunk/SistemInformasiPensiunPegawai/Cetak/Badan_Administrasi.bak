@@ -23,8 +23,9 @@
 	<import value="net.sf.jasperreports.engine.*" />
 	<import value="net.sf.jasperreports.engine.data.*" />
 
-	<parameter name="SUBREPORT_DIR" isForPrompting="true" class="java.lang.String">
-		<defaultValueExpression ><![CDATA["E:\\KP\\SistemInformasiPensiunPegawai\\Cetak\\"]]></defaultValueExpression>
+	<parameter name="SUBREPORT_DIR" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA[""]]></parameterDescription>
+		<defaultValueExpression ><![CDATA["E:\\KP\\trunk\\SistemInformasiPensiunPegawai\\Cetak\\"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="NIP" isForPrompting="true" class="java.lang.String">
 		<defaultValueExpression ><![CDATA[""]]></defaultValueExpression>
@@ -50,12 +51,12 @@
      kk.`provinsi` AS provinsi,
      DATE_FORMAT(CURRENT_DATE,'%d-%m-%Y')AS hari_Ini,
      DATE_FORMAT(sk_pangkatterakhir.`tmt_baru`,'%d-%m-%Y') AS sk_pangkatterakhir_tmt_baru,
-     sk_pangkatterakhir.`masa_kerja_tahun` AS sk_pangkatterakhir_masa_kerja_tahun,
-     sk_pangkatterakhir.`masa_kerja_bulan` AS sk_pangkatterakhir_masa_kerja_bulan,
+     sk_pangkatterakhir.`masa_kerja_golongan` AS sk_pangkatterakhir_masa_kerja_tahun,
+     sk_pangkatterakhir.`masa_kerja_golongan_bulan` AS sk_pangkatterakhir_masa_kerja_bulan,
 	ROUND(DATEDIFF(CURRENT_DATE,sk_cpns.tanggal_surat)/365,0)AS tahun,
 	ROUND(MOD(DATEDIFF(CURRENT_DATE,sk_cpns.tanggal_surat)/365,12)) AS Bulan,
-year(sk_cpns.`tmt_partikelir`) as tahun_cpns,
-year(sk_pangkatterakhir.`tanggal_lahir`)+60 as tahun_skrng
+YEAR(sk_cpns.`tmt_partikelir`) AS tahun_cpns,
+YEAR(sk_pangkatterakhir.`tanggal_lahir`)+60 AS tahun_skrng
 FROM
      `sk_pangkatterakhir` sk_pangkatterakhir,
      `sk_cpns` sk_cpns,
@@ -1223,9 +1224,6 @@ WHERE
 						width="421"
 						height="164"
 						key="subreport-1"/>
-					<subreportParameter  name="SUBREPORT_DIR">
-						<subreportParameterExpression><![CDATA[""]]></subreportParameterExpression>
-					</subreportParameter>
 					<subreportParameter  name="NIP">
 						<subreportParameterExpression><![CDATA[$P{NIP}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -1239,11 +1237,11 @@ WHERE
 						width="423"
 						height="109"
 						key="subreport-2"/>
-					<subreportParameter  name="SUBREPORT_DIR">
-						<subreportParameterExpression><![CDATA[""]]></subreportParameterExpression>
-					</subreportParameter>
 					<subreportParameter  name="NIP">
 						<subreportParameterExpression><![CDATA[$P{NIP}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
 					</subreportParameter>
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_anak_dpcp.jasper"]]></subreportExpression>
