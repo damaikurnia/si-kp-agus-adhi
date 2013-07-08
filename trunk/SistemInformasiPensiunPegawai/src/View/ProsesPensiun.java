@@ -12,6 +12,7 @@ package View;
 
 import Controller.ConnMySql;
 import Controller.ControlData;
+import Model.Operator;
 import Model.PNS;
 import TableModel.DataProsesPensiunTableModel;
 import TableModel.RataTengah;
@@ -252,14 +253,14 @@ public class ProsesPensiun extends javax.swing.JFrame {
 }//GEN-LAST:event_button_prosesActionPerformed
 
     private void exit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exit_buttonActionPerformed
-        String a=P_Nama_Label.getText();
-        System.out.println(a);
+
         int status = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin keluar", "Konfirmasi keluar",
                 JOptionPane.OK_CANCEL_OPTION);
         if (status == 0) {
             this.dispose();
             FrameOperator FO = new FrameOperator();
             FO.setVisible(true);
+
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_exit_buttonActionPerformed
