@@ -25,26 +25,6 @@ public class SPTKG_Terakhir {
     private String kode_operator;
     
     public SPTKG_Terakhir(){}
-    
-    public SPTKG_Terakhir(String id,String tmpt,String tgl,String nama,
-            String nip,String pangkat,String gol,String sekolah,String gaji_lama,
-            String gaji_baru,String tmt,String nip_lm,String tgl_penyimp_sur,
-            String kode_op){
-        this.id_SuratSPTKGTerakhir = id;
-        this.tempat_surat = tmpt;
-        this.tanggal_surat = tgl;
-        this.nama_pemilik = nama;
-        this.nip_baru = nip;
-        this.pangkat_baru = pangkat;
-        this.golongan_ruang_baru = gol;
-        this.Sekolah = sekolah;
-        this.gajipokok_lama = gaji_lama;
-        this.gajipokok_baru = gaji_baru;
-        this.tmt_baru = tmt;
-        this.nip_lama = nip_lm;
-        this.tanggal_penyimpanan_surat = tgl_penyimp_sur;
-        this.kode_operator = kode_op;
-    }
 
     /**
      * @return the id_SuratSPTKGTerakhir
