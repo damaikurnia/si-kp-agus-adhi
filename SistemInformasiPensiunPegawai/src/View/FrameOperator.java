@@ -10,22 +10,7 @@
  */
 package View;
 
-import Controller.ConnMySql;
-import Controller.ControlData;
-import Model.Operator;
-import java.sql.Connection;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -75,7 +60,6 @@ public class FrameOperator extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         pegawai_button = new javax.swing.JButton();
         Pensiun_Button = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         keluar_button = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         buttonTmbhPeg = new javax.swing.JButton();
@@ -146,13 +130,6 @@ public class FrameOperator extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Cetak");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
         keluar_button.setText("Keluar");
         keluar_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,7 +146,6 @@ public class FrameOperator extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(keluar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pegawai_button, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Pensiun_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(81, Short.MAX_VALUE))
         );
@@ -181,10 +157,8 @@ public class FrameOperator extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(Pensiun_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addComponent(keluar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
 
         buttonTmbhPeg.setText("Tambah Pegawai");
@@ -297,28 +271,6 @@ public class FrameOperator extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Pensiun_ButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        try {
-            Connection kon = null;
-            String reportSource = "";
-            try {
-                kon = ConnMySql.getConnections();
-            } catch (Exception ex) {
-//                Logger.getLogger(FrameOperator.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(rootPane, "terjadi gagal koneksi ke Database \n Coba cek koneksi ke Database");
-            }
-            reportSource = "./Cetak/CoverBUP.jasper";
-            Map<String, Object> params = new HashMap<String, Object>();
-            JasperPrint jasperPrint = JasperFillManager.fillReport(reportSource, params, kon);
-            JasperViewer.viewReport(jasperPrint, false);
-
-        } catch (JRException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
-        }
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void keluar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keluar_buttonActionPerformed
         int status = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin keluar", "Konfirmasi keluar",
                 JOptionPane.OK_CANCEL_OPTION);
@@ -336,6 +288,7 @@ public class FrameOperator extends javax.swing.JFrame {
         if (buttonTmbhPeg.getText().startsWith("P")) {
             this.dispose();
             ProsesPensiun PP = new ProsesPensiun();
+            PP.isiNama(nama_operator.getText(),kode_op.getText());
             PP.setVisible(true);
         } else if (buttonTmbhPeg.getText().startsWith("T")) {
             this.dispose();
@@ -368,7 +321,6 @@ public class FrameOperator extends javax.swing.JFrame {
     private javax.swing.JButton buttonHpsPeg;
     private javax.swing.JButton buttonSearch;
     private javax.swing.JButton buttonTmbhPeg;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

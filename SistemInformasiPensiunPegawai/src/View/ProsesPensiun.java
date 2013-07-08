@@ -73,6 +73,10 @@ public class ProsesPensiun extends javax.swing.JFrame {
         tabel_cari = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         exit_button = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        P_Kode_Label = new javax.swing.JLabel();
+        P_Nama_Label = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -126,7 +130,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
         jenis_label.setText("Pilih Jenis Pensiun");
         jPanel4.add(jenis_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, -1, 30));
 
-        nip_TF.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        nip_TF.setFont(new java.awt.Font("Tahoma", 0, 12));
         nip_TF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 nip_TFKeyReleased(evt);
@@ -175,7 +179,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Arial Black", 1, 18));
         jLabel3.setText("Proses Pensiun Pegawai");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, -1, -1));
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, -1, -1));
 
         exit_button.setText("Keluar");
         exit_button.addActionListener(new java.awt.event.ActionListener() {
@@ -184,6 +188,19 @@ public class ProsesPensiun extends javax.swing.JFrame {
             }
         });
         jPanel3.add(exit_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 360, -1, -1));
+
+        jLabel5.setText("Selamat Datang,");
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        P_Kode_Label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        P_Kode_Label.setText("Kode");
+        jPanel3.add(P_Kode_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 10, -1));
+
+        P_Nama_Label.setText("Nama");
+        jPanel3.add(P_Nama_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 120, -1));
+
+        jLabel8.setText("-");
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, -1));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 870, 400));
 
@@ -235,6 +252,8 @@ public class ProsesPensiun extends javax.swing.JFrame {
 }//GEN-LAST:event_button_prosesActionPerformed
 
     private void exit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exit_buttonActionPerformed
+        String a=P_Nama_Label.getText();
+        System.out.println(a);
         int status = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin keluar", "Konfirmasi keluar",
                 JOptionPane.OK_CANCEL_OPTION);
         if (status == 0) {
@@ -251,7 +270,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
             // try {
             try {
                 boolean status = ControlData.getKoneksi().StatusGuru(nip_TF.getText());
-                System.out.println(status);
+//                System.out.println(status);
                 if (status == true) {
                     int age = ControlData.getKoneksi().cek_BUP(nip_TF.getText());
                     if (age >= 59) {
@@ -296,6 +315,11 @@ public class ProsesPensiun extends javax.swing.JFrame {
     public void isiNIP(String id) {
         nip_TF.setText(id);
         nip_TF.setEnabled(false);
+    }
+
+    public void isiNama(String nama, String id) {
+        P_Nama_Label.setText(nama);
+        P_Kode_Label.setText(id);
     }
 
     private void cetak(String nip) {
@@ -377,12 +401,16 @@ public class ProsesPensiun extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel P_Kode_Label;
+    private javax.swing.JLabel P_Nama_Label;
     private javax.swing.JButton button_proses;
     private javax.swing.JComboBox combo_jenisPensiun;
     private javax.swing.JButton exit_button;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
