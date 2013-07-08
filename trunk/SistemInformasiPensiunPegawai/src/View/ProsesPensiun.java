@@ -342,7 +342,6 @@ public class ProsesPensiun extends javax.swing.JFrame {
             JasperPrint ninethjasperprint = new JasperPrint();
             ninethjasperprint = JasperFillManager.fillReport(reportSource9, reportparametermap1, kon);
 
-
             JasperPrint firstsecondlinked = multipageLinking(firstjasperprint, secondjasperprint);
             JasperPrint firstsecondthirdlinked = multipageLinking(firstsecondlinked, thirdjasperprint);
             JasperPrint fourthlinked = multipageLinking(firstsecondthirdlinked, fourthjasperprint);
@@ -356,8 +355,6 @@ public class ProsesPensiun extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
-
-
     }
 
     /**
