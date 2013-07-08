@@ -28,7 +28,7 @@ import javax.swing.JOptionPane;
  */
 public class TambahPegawai extends javax.swing.JFrame {
 
-    PNS pegawai = new PNS("-", "-", "-", "-", "-", "-", "-", "-", "-", "-","-","-");
+    PNS pegawai = new PNS("-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-");
 
     /**
      * Creates new form TambahPegawai
@@ -1017,11 +1017,14 @@ public class TambahPegawai extends javax.swing.JFrame {
         sebarkanNIPBaru(DU_NipBaru_TF.getText());
         sebarkanKeKK();
         sebarkanTTL();
-        String status = (String) DU_StatusHub_CB.getSelectedItem(); //sampe sini
-        if(status.equals("NIKAH")||status.equals("JANDA")||status.equals("DUDA")){
-            
-        }else{
-            
+        String status = (String) DU_StatusHub_CB.getSelectedItem();
+        if (status.equals("NIKAH") || status.equals("JANDA") || status.equals("DUDA")) {
+            JOptionPane.showMessageDialog(rootPane, "Status Pengaju : " + status + ", Menampilkan form Surat Nikah dan KK.");
+            Tab_PNS.setEnabledAt(5, true);
+            Tab_PNS.setEnabledAt(6, true);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Status Pengaju : " + status + ", Hanya Menampilkan Form KK.");
+            Tab_PNS.setEnabledAt(6, true);
         }
 
         pegawai.setNip_baru(DU_NipBaru_TF.getText());
@@ -1044,6 +1047,7 @@ public class TambahPegawai extends javax.swing.JFrame {
     }//GEN-LAST:event_DU_next_buttonActionPerformed
 
     private void CPNS_simpan_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CPNS_simpan_buttonActionPerformed
+        sebarkanProfesidanSekolah();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         SK_CPNS cpns = new SK_CPNS();
@@ -1137,6 +1141,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         sptkg.setNip_baru(SPTKG_NipBaru_TF.getText());
         sptkg.setPangkat_baru(SPTKG_PangkatBr_TF.getText());
         sptkg.setGolongan_ruang_baru(SPTKG_GolBr_TF.getText());
+        sptkg.setSekolah(SPTKG_Sekolah_TF.getText());
         sptkg.setGajipokok_lama(SPTKG_GajiLama_TF.getText());
         sptkg.setGajipokok_baru(SPTKG_GajiBaru_TF.getText());
         sptkg.setTmt_baru(sdf.format(SPTKG_TmtBr_TF.getDate()));
@@ -1263,7 +1268,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         SPTKG_GolBr_TF.setText(PT_GolBr_TF.getText());
     }
 
-    public void isiNama(String nama,String id) {
+    public void isiNama(String nama, String id) {
         TP_Nama_Label.setText(nama);
         TP_Kode_Label.setText(id);
     }
@@ -1273,7 +1278,6 @@ public class TambahPegawai extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
-
             public void run() {
                 try {
                     new TambahPegawai().setVisible(true);
