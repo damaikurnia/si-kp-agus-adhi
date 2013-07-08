@@ -30,6 +30,7 @@ public class PencarianPegawai extends javax.swing.JFrame {
         Clock clock = new Clock();
         clock.showDigitalClock(time);
         cari_txt.setVisible(false);
+        jInternalFrame_proses.setVisible(false);
     }
 
     /** This method is called from within the constructor to
@@ -41,6 +42,17 @@ public class PencarianPegawai extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jInternalFrame_proses = new javax.swing.JInternalFrame();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        button_proses_pensiun = new javax.swing.JButton();
+        nip = new javax.swing.JLabel();
+        nama1 = new javax.swing.JLabel();
+        keluar_button = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -54,9 +66,108 @@ public class PencarianPegawai extends javax.swing.JFrame {
         cari_txt = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         combo_jenis = new javax.swing.JComboBox();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jInternalFrame_proses.setVisible(true);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14));
+        jLabel4.setText("Nama :");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14));
+        jLabel5.setText("NIP    : ");
+
+        jButton2.setText("Lihat Detail");
+
+        jButton3.setText("Edit Pegawai");
+
+        jButton4.setText("Hapus Pegawai");
+
+        button_proses_pensiun.setText("Proses pensiun");
+        button_proses_pensiun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_proses_pensiunActionPerformed(evt);
+            }
+        });
+
+        nip.setFont(new java.awt.Font("Tahoma", 1, 14));
+
+        nama1.setFont(new java.awt.Font("Tahoma", 1, 14));
+
+        keluar_button.setText("Keluar");
+        keluar_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                keluar_buttonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(162, 162, 162)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nama1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nip, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(jButton2)
+                        .addGap(36, 36, 36)
+                        .addComponent(jButton3)
+                        .addGap(31, 31, 31)
+                        .addComponent(jButton4)
+                        .addGap(38, 38, 38)
+                        .addComponent(button_proses_pensiun)))
+                .addContainerGap(108, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(581, Short.MAX_VALUE)
+                .addComponent(keluar_button)
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(nama1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(nip, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4)
+                    .addComponent(button_proses_pensiun))
+                .addGap(32, 32, 32)
+                .addComponent(keluar_button))
+        );
+
+        javax.swing.GroupLayout jInternalFrame_prosesLayout = new javax.swing.GroupLayout(jInternalFrame_proses.getContentPane());
+        jInternalFrame_proses.getContentPane().setLayout(jInternalFrame_prosesLayout);
+        jInternalFrame_prosesLayout.setHorizontalGroup(
+            jInternalFrame_prosesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jInternalFrame_prosesLayout.setVerticalGroup(
+            jInternalFrame_prosesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrame_prosesLayout.createSequentialGroup()
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        getContentPane().add(jInternalFrame_proses, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 670, 260));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -67,11 +178,15 @@ public class PencarianPegawai extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 868, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 871, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -99,9 +214,9 @@ public class PencarianPegawai extends javax.swing.JFrame {
         time.setText("time");
         jPanel3.add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 10, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 18));
-        jLabel2.setText("Pencarian Pegawai");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, -1, -1));
+        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 12));
+        jLabel2.setText("Klik salah satu Pegawai untuk proses lain");
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
 
         tabel_cari.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -114,6 +229,11 @@ public class PencarianPegawai extends javax.swing.JFrame {
                 "NIP lama", "NIP baru", "Nama lengkap"
             }
         ));
+        tabel_cari.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabel_cariMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabel_cari);
 
         jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 830, 100));
@@ -146,7 +266,11 @@ public class PencarianPegawai extends javax.swing.JFrame {
         });
         jPanel4.add(combo_jenis, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 110, -1));
 
-        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 540, 130));
+        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 540, 130));
+
+        jLabel3.setFont(new java.awt.Font("Arial Black", 0, 18));
+        jLabel3.setText("Pencarian Pegawai");
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, -1, -1));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 870, 400));
 
@@ -170,7 +294,7 @@ public class PencarianPegawai extends javax.swing.JFrame {
                     tabel_cari.setModel(dataPensiun);
                 }
             } else if (pilihan.matches("NIP Baru")) {
-                 List<PNS> search = ControlData.getKoneksi().SearchPNS_NIPBaru(cari_txt.getText());
+                List<PNS> search = ControlData.getKoneksi().SearchPNS_NIPBaru(cari_txt.getText());
                 if (search.isEmpty()) {
                     JOptionPane.showMessageDialog(rootPane, "data Pegawai tidak ditemukan");
                 } else {
@@ -178,7 +302,7 @@ public class PencarianPegawai extends javax.swing.JFrame {
                     tabel_cari.setModel(dataPensiun);
                 }
             } else {
-                 List<PNS> search = ControlData.getKoneksi().SearchPNS_Nama(cari_txt.getText());
+                List<PNS> search = ControlData.getKoneksi().SearchPNS_Nama(cari_txt.getText());
                 if (search.isEmpty()) {
                     JOptionPane.showMessageDialog(rootPane, "data Pegawai tidak ditemukan");
                 } else {
@@ -212,6 +336,34 @@ public class PencarianPegawai extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_combo_jenisActionPerformed
 
+    private void tabel_cariMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_cariMouseClicked
+
+        int row = tabel_cari.getSelectedRow();
+        String nipPeg = tabel_cari.getValueAt(row, 1).toString();
+        String nama = tabel_cari.getValueAt(row, 2).toString();
+        nama1.setText(nama);
+        nip.setText(nipPeg);
+        jInternalFrame_proses.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tabel_cariMouseClicked
+
+    private void keluar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keluar_buttonActionPerformed
+        jInternalFrame_proses.setVisible(false);
+        cari_txt.setText("");
+        combo_jenis.setSelectedItem("==pilih==");
+        tabel_cari.setVisible(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_keluar_buttonActionPerformed
+
+    private void button_proses_pensiunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_proses_pensiunActionPerformed
+        ProsesPensiun pro = new ProsesPensiun();
+        pro.isiNIP(nip.getText());
+        this.dispose();
+        pro.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_button_proses_pensiunActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -224,16 +376,28 @@ public class PencarianPegawai extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton button_proses_pensiun;
     private javax.swing.JTextField cari_txt;
     private javax.swing.JComboBox combo_jenis;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JInternalFrame jInternalFrame_proses;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton keluar_button;
+    private javax.swing.JLabel nama1;
+    private javax.swing.JLabel nip;
     private javax.swing.JLabel nip_br;
     private javax.swing.JTable tabel_cari;
     private javax.swing.JLabel time;
