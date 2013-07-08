@@ -322,8 +322,8 @@ public class ProsesPensiun extends javax.swing.JFrame {
             JasperPrint secondjasperprint = new JasperPrint();
             secondjasperprint = JasperFillManager.fillReport(reportSource2, reportparametermap1, kon);
 
-            JasperPrint thirdjasperprint = new JasperPrint();
-            thirdjasperprint = JasperFillManager.fillReport(reportSource3, reportparametermap1, kon);
+//            JasperPrint thirdjasperprint = new JasperPrint();
+//            thirdjasperprint = JasperFillManager.fillReport(reportSource3, reportparametermap1, kon);
 
             JasperPrint fourthjasperprint = new JasperPrint();
             fourthjasperprint = JasperFillManager.fillReport(reportSource4, reportparametermap1, kon);
@@ -343,8 +343,9 @@ public class ProsesPensiun extends javax.swing.JFrame {
             ninethjasperprint = JasperFillManager.fillReport(reportSource9, reportparametermap1, kon);
 
             JasperPrint firstsecondlinked = multipageLinking(firstjasperprint, secondjasperprint);
-            JasperPrint firstsecondthirdlinked = multipageLinking(firstsecondlinked, thirdjasperprint);
-            JasperPrint fourthlinked = multipageLinking(firstsecondthirdlinked, fourthjasperprint);
+//            JasperPrint firstsecondthirdlinked = multipageLinking(firstsecondlinked, thirdjasperprint);
+            //JasperPrint fourthlinked = multipageLinking(firstsecondthirdlinked, fourthjasperprint);
+            JasperPrint fourthlinked = multipageLinking(firstsecondlinked, fourthjasperprint);
             JasperPrint fifthLinked = multipageLinking(fourthlinked, fifthjasperprint);
             JasperPrint sixthLinked = multipageLinking(fifthLinked, sixthjasperprint);
             JasperPrint seventhLinked = multipageLinking(sixthLinked, seventhjasperprint);
@@ -352,6 +353,13 @@ public class ProsesPensiun extends javax.swing.JFrame {
             JasperPrint ninethLinked = multipageLinking(eighthLinked, ninethjasperprint);
 
             JasperViewer.viewReport(ninethLinked, false);
+
+
+
+            Map<String, Object> params = new HashMap<String, Object>();
+            params.put("NIP", nip);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(reportSource3, params, kon);
+            JasperViewer.viewReport(jasperPrint, false);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
