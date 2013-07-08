@@ -45,7 +45,24 @@ public class ControlData {
                 + "where idPegawai=? AND passwordpegawai=? ";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, id);
-        stmt.setString(2, password);
+        result = stmt.executeQuery();
+        if (result.next()) {
+            cek = true;
+        }
+        conn.commit();
+        return cek;
+
+    }
+
+    public boolean StatusGuru(String id) throws SQLException {
+        PreparedStatement stmt = null;
+        boolean cek = false;
+        ResultSet result = null;
+        conn.setAutoCommit(false);
+        String query = "SELECT sekolah FROM sptkg_terakhir "
+                + "where nip_baru=? ";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, id);
         result = stmt.executeQuery();
         if (result.next()) {
             cek = true;
@@ -303,7 +320,7 @@ public class ControlData {
         stmt.executeUpdate();
         conn.commit();
     }
-    
+
     public void insertSPTKG_Terakhir(SPTKG_Terakhir k) throws SQLException {
         PreparedStatement stmt = null;
         conn.setAutoCommit(false);

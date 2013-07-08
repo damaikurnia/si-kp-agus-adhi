@@ -199,10 +199,10 @@ public class ProsesPensiun extends javax.swing.JFrame {
             if (nip_TF.getDocument().getLength() == 0) {
                 JOptionPane.showMessageDialog(rootPane, "NIP masih Kosong");
                 nip_TF.requestFocus();
-               nip_TF.setBackground(Color.pink);
+                nip_TF.setBackground(Color.pink);
             } else if (nip_TF.getDocument().getLength() < 18) {
                 JOptionPane.showMessageDialog(rootPane, "NIP tidak lengkap");
-               nip_TF.requestFocus();
+                nip_TF.requestFocus();
                 nip_TF.setBackground(Color.pink);
             } else if (nip_TF.getDocument().getLength() > 18) {
                 JOptionPane.showMessageDialog(rootPane, "NIP terlalu panjang");
@@ -249,68 +249,22 @@ public class ProsesPensiun extends javax.swing.JFrame {
         String kat = (String) combo_jenisPensiun.getSelectedItem();
         if (kat.matches("B U P")) {
             // try {
-            Connection kon = null;
             try {
-                int age = ControlData.getKoneksi().cek_BUP(nip_TF.getText());
-                if (age >= 59) {
-                    kon = ConnMySql.getConnections();
+                boolean status = ControlData.getKoneksi().StatusGuru(nip_TF.getText());
+                System.out.println(status);
+                if (status == true) {
+                    int age = ControlData.getKoneksi().cek_BUP(nip_TF.getText());
+                    if (age >= 59) {
 //                        } catch (Exception ex) {
 //                            JOptionPane.showMessageDialog(rootPane, "terjadi gagal koneksi ke Database \n Coba cek koneksi ke Database");
 //                        }
-                    Map reportparametermap1 = new HashMap();
-
-                    reportparametermap1.put("NIP", nip_TF.getText());
-                    String reportSource = "./Cetak/CoverBUP.jasper";
-                    String reportSource2 = "./Cetak/Surat_keterangan.jasper";
-                    String reportSource3 = "./Cetak/Badan_Administrasi.jasper";
-                    String reportSource4 = "./Cetak/SP-4A.jasper";
-                    String reportSource5 = "./Cetak/Surat_keterangan.jasper";
-                    String reportSource6 = "./Cetak/Surat_keterangan_tidak_kena_hukuman.jasper";
-                    String reportSource7 = "./Cetak/Surat_permohonan_berhenti.jasper";
-                    String reportSource8 = "./Cetak/Surat_usul_permohonan.jasper";
-                    String reportSource9 = "./Cetak/Daftar-Susunan_keluarga.jasper";
-
-
-                    JasperPrint firstjasperprint = new JasperPrint();
-                    firstjasperprint = JasperFillManager.fillReport(reportSource, reportparametermap1, kon);
-
-                    JasperPrint secondjasperprint = new JasperPrint();
-                    secondjasperprint = JasperFillManager.fillReport(reportSource2, reportparametermap1, kon);
-
-                    JasperPrint thirdjasperprint = new JasperPrint();
-                    thirdjasperprint = JasperFillManager.fillReport(reportSource3, reportparametermap1, kon);
-
-                    JasperPrint fourthjasperprint = new JasperPrint();
-                    fourthjasperprint = JasperFillManager.fillReport(reportSource4, reportparametermap1, kon);
-
-                    JasperPrint fifthjasperprint = new JasperPrint();
-                    fifthjasperprint = JasperFillManager.fillReport(reportSource5, reportparametermap1, kon);
-
-                    JasperPrint sixthjasperprint = new JasperPrint();
-                    sixthjasperprint = JasperFillManager.fillReport(reportSource6, reportparametermap1, kon);
-
-                    JasperPrint seventhjasperprint = new JasperPrint();
-                    seventhjasperprint = JasperFillManager.fillReport(reportSource7, reportparametermap1, kon);
-                    JasperPrint eighthjasperprint = new JasperPrint();
-                    eighthjasperprint = JasperFillManager.fillReport(reportSource8, reportparametermap1, kon);
-
-                    JasperPrint ninethjasperprint = new JasperPrint();
-                    ninethjasperprint = JasperFillManager.fillReport(reportSource9, reportparametermap1, kon);
-
-
-                    JasperPrint firstsecondlinked = multipageLinking(firstjasperprint, secondjasperprint);
-                    JasperPrint firstsecondthirdlinked = multipageLinking(firstsecondlinked, thirdjasperprint);
-                    JasperPrint fourthlinked = multipageLinking(firstsecondthirdlinked, fourthjasperprint);
-                    JasperPrint fifthLinked = multipageLinking(fourthlinked, fifthjasperprint);
-                    JasperPrint sixthLinked = multipageLinking(fifthLinked, sixthjasperprint);
-                    JasperPrint seventhLinked = multipageLinking(sixthLinked, seventhjasperprint);
-                    JasperPrint eighthLinked = multipageLinking(seventhLinked, eighthjasperprint);
-                    JasperPrint ninethLinked = multipageLinking(eighthLinked, ninethjasperprint);
-
-                    JasperViewer.viewReport(ninethLinked, false);
+                        cetak(nip_TF.getText());
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "umur dibawah batas BUP", "", JOptionPane.ERROR_MESSAGE);
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "umur dibawah batas BUP", "", JOptionPane.ERROR_MESSAGE);
                 }
+
 
 
             } catch (Exception ex) {
@@ -339,10 +293,73 @@ public class ProsesPensiun extends javax.swing.JFrame {
         }
     }
 
-    public void isiNIP(String id){
+    public void isiNIP(String id) {
         nip_TF.setText(id);
         nip_TF.setEnabled(false);
     }
+
+    private void cetak(String nip) {
+        Connection kon = null;
+        try {
+            kon = ConnMySql.getConnections();
+            Map reportparametermap1 = new HashMap();
+
+            reportparametermap1.put("NIP", nip);
+            String reportSource = "./Cetak/CoverBUP.jasper";
+            String reportSource2 = "./Cetak/Surat_keterangan.jasper";
+            String reportSource3 = "./Cetak/Badan_Administrasi.jasper";
+            String reportSource4 = "./Cetak/SP-4A.jasper";
+            String reportSource5 = "./Cetak/Surat_keterangan.jasper";
+            String reportSource6 = "./Cetak/Surat_keterangan_tidak_kena_hukuman.jasper";
+            String reportSource7 = "./Cetak/Surat_permohonan_berhenti.jasper";
+            String reportSource8 = "./Cetak/Surat_usul_permohonan.jasper";
+            String reportSource9 = "./Cetak/Daftar-Susunan_keluarga.jasper";
+
+
+            JasperPrint firstjasperprint = new JasperPrint();
+            firstjasperprint = JasperFillManager.fillReport(reportSource, reportparametermap1, kon);
+
+            JasperPrint secondjasperprint = new JasperPrint();
+            secondjasperprint = JasperFillManager.fillReport(reportSource2, reportparametermap1, kon);
+
+            JasperPrint thirdjasperprint = new JasperPrint();
+            thirdjasperprint = JasperFillManager.fillReport(reportSource3, reportparametermap1, kon);
+
+            JasperPrint fourthjasperprint = new JasperPrint();
+            fourthjasperprint = JasperFillManager.fillReport(reportSource4, reportparametermap1, kon);
+
+            JasperPrint fifthjasperprint = new JasperPrint();
+            fifthjasperprint = JasperFillManager.fillReport(reportSource5, reportparametermap1, kon);
+
+            JasperPrint sixthjasperprint = new JasperPrint();
+            sixthjasperprint = JasperFillManager.fillReport(reportSource6, reportparametermap1, kon);
+
+            JasperPrint seventhjasperprint = new JasperPrint();
+            seventhjasperprint = JasperFillManager.fillReport(reportSource7, reportparametermap1, kon);
+            JasperPrint eighthjasperprint = new JasperPrint();
+            eighthjasperprint = JasperFillManager.fillReport(reportSource8, reportparametermap1, kon);
+
+            JasperPrint ninethjasperprint = new JasperPrint();
+            ninethjasperprint = JasperFillManager.fillReport(reportSource9, reportparametermap1, kon);
+
+
+            JasperPrint firstsecondlinked = multipageLinking(firstjasperprint, secondjasperprint);
+            JasperPrint firstsecondthirdlinked = multipageLinking(firstsecondlinked, thirdjasperprint);
+            JasperPrint fourthlinked = multipageLinking(firstsecondthirdlinked, fourthjasperprint);
+            JasperPrint fifthLinked = multipageLinking(fourthlinked, fifthjasperprint);
+            JasperPrint sixthLinked = multipageLinking(fifthLinked, sixthjasperprint);
+            JasperPrint seventhLinked = multipageLinking(sixthLinked, seventhjasperprint);
+            JasperPrint eighthLinked = multipageLinking(seventhLinked, eighthjasperprint);
+            JasperPrint ninethLinked = multipageLinking(eighthLinked, ninethjasperprint);
+
+            JasperViewer.viewReport(ninethLinked, false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+        }
+
+
+    }
+
     /**
      * @param args the command line arguments
      */
