@@ -183,7 +183,7 @@ public class ControlData {
     public void insertPNS(PNS k) throws SQLException {
         PreparedStatement stmt = null;
         conn.setAutoCommit(false);
-        String query = "INSERT INTO pns VALUES(?,?,?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO pns VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, k.getNip_baru());
         stmt.setString(2, k.getNip_lama());
@@ -195,6 +195,8 @@ public class ControlData {
         stmt.setString(8, k.getId_SuratNikah());
         stmt.setString(9, k.getId_SuratNIPBaru());
         stmt.setString(10, k.getId_Suratkk());
+        stmt.setString(11, k.getJk().toUpperCase());
+        stmt.setString(12, k.getStatus().toUpperCase());
 
         stmt.executeUpdate();
         conn.commit();

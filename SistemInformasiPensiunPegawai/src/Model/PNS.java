@@ -19,8 +19,14 @@ public class PNS {
     private String id_SuratNikah;
     private String id_SuratNIPBaru;
     private String id_Suratkk;
+    private String jk;
+    private String status;
 
-    public PNS(String nip_baru, String nip_lama, String nama_pns, String id_SuratCPNS, String id_SuratPangkatTerakhir, String id_SuratSPTKGTerakhir, String id_SuratKarpeg, String id_SuratNikah, String id_SuratNIPBaru, String id_Suratkk) {
+    public PNS(String nip_baru, String nip_lama, String nama_pns, 
+            String id_SuratCPNS, String id_SuratPangkatTerakhir,
+            String id_SuratSPTKGTerakhir, String id_SuratKarpeg,
+            String id_SuratNikah, String id_SuratNIPBaru, String id_Suratkk,
+            String jk,String status) {
         this.nip_baru = nip_baru;
         this.nip_lama = nip_lama;
         this.nama_pns = nama_pns;
@@ -31,6 +37,8 @@ public class PNS {
         this.id_SuratNikah = id_SuratNikah;
         this.id_SuratNIPBaru = id_SuratNIPBaru;
         this.id_Suratkk = id_Suratkk;
+        this.jk = jk;
+        this.status = status;
     }
 
     public PNS() {
@@ -175,4 +183,33 @@ public class PNS {
     public void setId_Suratkk(String id_Suratkk) {
         this.id_Suratkk = id_Suratkk;
     }
+
+    /**
+     * @return the jk
+     */
+    public String getJk() {
+        return jk;
+    }
+
+    /**
+     * @param jk the jk to set
+     */
+    public void setJk(String jk) {
+        this.jk = jk;
+    }
+
+    /**
+     * @return the status
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
 }
