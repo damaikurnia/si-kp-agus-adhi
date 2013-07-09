@@ -28,26 +28,26 @@
 	</parameter>
 	<queryString><![CDATA[SELECT
 	
-     pns.nama_pns AS pns_nama_pns,
+     Upper(pns.nama_pns) AS pns_nama_pns,
      sk_nipbaru.`nip_lama` AS sk_nipbaru_nip_lama,
      sk_nipbaru.`nip_baru` AS sk_nipbaru_nip_baru,
      sk_nipbaru.tanggal_lahir    AS sk_nipbaru_tanggal_lahir ,
-     anggotakeluarga.`tempat_lahir` AS anggotakeluarga_tempat_lahir,
-     sptkg_terakhir.`pangkat_baru` AS sptkg_terakhir_pangkat_baru,
+     Upper(anggotakeluarga.`tempat_lahir`) AS anggotakeluarga_tempat_lahir,
+     Upper(sptkg_terakhir.`pangkat_baru`) AS sptkg_terakhir_pangkat_baru,
      sptkg_terakhir.`golongan_ruang_baru` AS sptkg_terakhir_golongan_ruang_baru,
      sptkg_terakhir.`gajipokok_baru` AS sptkg_terakhir_gajipokok_baru,
 	DATE_FORMAT(sptkg_terakhir.`tmt_baru`, '%d-%m-%Y') AS sptkg_terakhir_tmt_baru,
      sk_karpeg.`id_SuratKarpeg` AS sk_karpeg_id_SuratKarpeg,
-     sk_cpns.`Profesi` AS sk_cpns_Profesi,
-     kk.`Alamat` AS kk_Alamat,
-     kk.`Kabupaten_Kota` AS kk_Kabupaten_Kota,
-     sptkg_terakhir.`Sekolah` AS sptkg_terakhir_Sekolah,
+     Upper(sk_cpns.`Profesi`) AS sk_cpns_Profesi,
+     Upper(kk.`Alamat`) AS kk_Alamat,
+     Upper(kk.`Kabupaten_Kota`) AS kk_Kabupaten_Kota,
+     Upper(sptkg_terakhir.`Sekolah`) AS sptkg_terakhir_Sekolah,
 	ROUND(DATEDIFF(CURRENT_DATE,sk_cpns.tanggal_surat)/365,0)AS tahun,
 	ROUND(MOD(DATEDIFF(CURRENT_DATE,sk_cpns.tanggal_surat)/365,12)) AS Bulan,
 	sk_cpns.tanggal_lahir AS tanggaltmt,
 	DAY(sk_cpns.tanggal_lahir) AS hari_TMT,
 	YEAR(sk_cpns.tanggal_lahir)+60 AS Tahun_TMT,
-	MONTH(sk_cpns.tanggal_lahir) AS bulan_TMT
+	MONTH(sk_cpns.tanggal_lahir)+1 AS bulan_TMT
 
 
 FROM
@@ -809,19 +809,6 @@ WHERE
 					</textElement>
 				<textFieldExpression   class="java.lang.Long"><![CDATA[$F{bulan_TMT}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="253"
-						y="0"
-						width="68"
-						height="37"
-						key="textField-17"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="26" isBold="true"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.Long"><![CDATA[$F{hari_TMT}]]></textFieldExpression>
-				</textField>
 				<staticText>
 					<reportElement
 						x="320"
@@ -847,6 +834,19 @@ WHERE
 						<font fontName="Arial Black" size="26"/>
 					</textElement>
 				<text><![CDATA[-]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="264"
+						y="0"
+						width="36"
+						height="37"
+						key="staticText-35"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial Black" pdfFontName="Helvetica" size="26" isBold="false"/>
+					</textElement>
+				<text><![CDATA[01]]></text>
 				</staticText>
 			</band>
 		</detail>
