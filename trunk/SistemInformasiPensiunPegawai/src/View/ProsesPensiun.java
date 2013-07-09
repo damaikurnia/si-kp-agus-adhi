@@ -263,7 +263,6 @@ public class ProsesPensiun extends javax.swing.JFrame {
             FO.setVisible(true);
 
         }
-        // TODO add your handling code here:
     }//GEN-LAST:event_exit_buttonActionPerformed
 
     private void combo_jenisPensiunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_jenisPensiunActionPerformed
@@ -272,24 +271,25 @@ public class ProsesPensiun extends javax.swing.JFrame {
             // try {
             try {
                 boolean status = ControlData.getKoneksi().StatusGuru(nip_TF.getText());
-//                System.out.println(status);
+                int age = ControlData.getKoneksi().cek_BUP(nip_TF.getText());
                 if (status == true) {
-                    int age = ControlData.getKoneksi().cek_BUP(nip_TF.getText());
                     if (age >= 59) {
 //                        } catch (Exception ex) {
 //                            JOptionPane.showMessageDialog(rootPane, "terjadi gagal koneksi ke Database \n Coba cek koneksi ke Database");
 //                        }
                         cetak(nip_TF.getText());
                     } else {
-                        JOptionPane.showMessageDialog(rootPane, "umur dibawah batas BUP", "", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(rootPane, "umur dibawah batas BUP", "", JOptionPane.WARNING_MESSAGE);
                     }
                 } else {
+                    if (age >= 55) {
+                        cetak(nip_TF.getText());
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "umur dibawah batas BUP", "", JOptionPane.WARNING_MESSAGE);
+                    }
                 }
-
-
-
             } catch (Exception ex) {
-                Logger.getLogger(ProsesPensiun.class.getName()).log(Level.SEVERE, null, ex);
+                //Logger.getLogger(ProsesPensiun.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "", JOptionPane.ERROR_MESSAGE);
             }
         }

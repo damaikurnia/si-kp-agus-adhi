@@ -253,6 +253,11 @@ public class PencarianPegawai extends javax.swing.JFrame {
         jPanel4.add(nip_br, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         cari_txt.setFont(new java.awt.Font("Tahoma", 0, 14));
+        cari_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cari_txtKeyReleased(evt);
+            }
+        });
         jPanel4.add(cari_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 310, -1));
 
         jButton1.setText("Cari");
@@ -321,6 +326,7 @@ public class PencarianPegawai extends javax.swing.JFrame {
                 } else {
                     CariPegawaiTableModel dataPensiun = new CariPegawaiTableModel(search);
                     tabel_cari.setModel(dataPensiun);
+                    tabel_cari.setVisible(true);
                 }
             } else if (pilihan.matches("NIP Baru")) {
                 List<PNS> search = ControlData.getKoneksi().SearchPNS_NIPBaru(cari_txt.getText());
@@ -331,6 +337,7 @@ public class PencarianPegawai extends javax.swing.JFrame {
                 } else {
                     CariPegawaiTableModel dataPensiun = new CariPegawaiTableModel(search);
                     tabel_cari.setModel(dataPensiun);
+                    tabel_cari.setVisible(true);
                 }
             } else {
                 List<PNS> search = ControlData.getKoneksi().SearchPNS_Nama(cari_txt.getText());
@@ -341,9 +348,10 @@ public class PencarianPegawai extends javax.swing.JFrame {
                 } else {
                     CariPegawaiTableModel dataPensiun = new CariPegawaiTableModel(search);
                     tabel_cari.setModel(dataPensiun);
+                    tabel_cari.setVisible(true);
                 }
             }
-            tabel_cari.setVisible(true);
+
         } catch (Exception e) {
         }
 
@@ -354,15 +362,19 @@ public class PencarianPegawai extends javax.swing.JFrame {
 
         String pilihan = (String) combo_jenis.getSelectedItem();
         if (pilihan.matches("==pilih==")) {
+            cari_txt.setText("");
             cari_txt.setVisible(false);
             JOptionPane.showMessageDialog(rootPane, "pilih salah satu jenis pencarian", "alert", JOptionPane.WARNING_MESSAGE);
         } else if (pilihan.matches("NIP Lama")) {
+            cari_txt.setText("");
             cari_txt.setVisible(true);
             cari_txt.requestFocus();
         } else if (pilihan.matches("NIP Baru")) {
+            cari_txt.setText("");
             cari_txt.setVisible(true);
             cari_txt.requestFocus();
         } else {
+            cari_txt.setText("");
             cari_txt.setVisible(true);
             cari_txt.requestFocus();
         }
@@ -410,9 +422,32 @@ public class PencarianPegawai extends javax.swing.JFrame {
         }
         // TODO add your handling code here:
 }//GEN-LAST:event_exit_buttonActionPerformed
+
+    private void cari_txtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cari_txtKeyReleased
+
+        String pilihan = (String) combo_jenis.getSelectedItem();
+        if (pilihan.matches("NIP Lama")) {
+            inputAngka(cari_txt.getText());
+            cari_txt.setBackground(Color.white);
+        } else if (pilihan.matches("NIP Baru")) {
+            inputAngka(cari_txt.getText());
+            cari_txt.setBackground(Color.white);
+        } else {
+            cari_txt.setBackground(Color.white);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cari_txtKeyReleased
     public void dataOperator(String nama, String id) {
         P_Nama_Label.setText(nama);
         P_Kode_Label.setText(id);
+    }
+
+    private void inputAngka(String angka) {
+        if (!angka.matches("[0-9]*")) {
+            cari_txt.setBackground(Color.red);
+            JOptionPane.showMessageDialog(rootPane, "masukan angka", "peringatan", JOptionPane.WARNING_MESSAGE);
+
+        }
     }
 
     /**
