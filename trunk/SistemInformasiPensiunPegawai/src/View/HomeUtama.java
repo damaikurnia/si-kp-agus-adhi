@@ -12,6 +12,7 @@ package View;
 
 import Controller.ControlData;
 import Model.Operator;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /**
@@ -104,11 +105,23 @@ public class HomeUtama extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14));
         jLabel16.setText("Password");
 
+        usernameTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                usernameTFKeyReleased(evt);
+            }
+        });
+
         masuk_button2.setFont(new java.awt.Font("Tahoma", 1, 14));
         masuk_button2.setText("Masuk");
         masuk_button2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 masuk_button2ActionPerformed(evt);
+            }
+        });
+
+        password_TF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                password_TFKeyReleased(evt);
             }
         });
 
@@ -201,15 +214,20 @@ public class HomeUtama extends javax.swing.JFrame {
         if (a.equalsIgnoreCase("") && b.equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(rootPane, "inputan tidak lengkap \n ID dan password kosong"
                     + "", "peringatan", JOptionPane.ERROR_MESSAGE);
+            password_TF.setBackground(Color.red);
+            usernameTF.setBackground(Color.red);
         } else if (!a.equalsIgnoreCase("") && b.equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(rootPane, "inputan tidak lengkap \n  password kosong"
                     + "", "peringatan", JOptionPane.ERROR_MESSAGE);
+            password_TF.setBackground(Color.red);
         } else if (a.equalsIgnoreCase("") && !b.equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(rootPane, "inputan tidak lengkap \n ID kosong"
                     + "", "peringatan", JOptionPane.ERROR_MESSAGE);
+            usernameTF.setBackground(Color.red);
         } else if (a.matches("[0-9]*")) {
             JOptionPane.showMessageDialog(rootPane, "ID tidak valid"
                     + "", "peringatan", JOptionPane.ERROR_MESSAGE);
+            usernameTF.setBackground(Color.red);
         } else {
             String id = usernameTF.getText();
             String passwd = password_TF.getText();
@@ -221,7 +239,7 @@ public class HomeUtama extends javax.swing.JFrame {
                     emptyField();
                     this.dispose();
                     Operator op = ControlData.getKoneksi().cariPegawai(id);
-                    FP.dataOperator(op.getNamaOperator(),op.getKode_operator());
+                    FP.dataOperator(op.getNamaOperator(), op.getKode_operator());
 
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "username dan password salah\n silahkan username dan "
@@ -233,10 +251,20 @@ public class HomeUtama extends javax.swing.JFrame {
             } catch (Exception ex) {
 //                JOptionPane.showMessageDialog(rootPane, "Tidak dapat koneksi ke Database \n"
 //                        + "cek settingan dahulu");
-                 JOptionPane.showMessageDialog(rootPane,ex.getMessage());
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
             }
         }
     }//GEN-LAST:event_masuk_button2ActionPerformed
+
+    private void usernameTFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameTFKeyReleased
+        usernameTF.setBackground(Color.white);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameTFKeyReleased
+
+    private void password_TFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_password_TFKeyReleased
+        password_TF.setBackground(Color.white);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_password_TFKeyReleased
 
     /**
      * @param args the command line arguments
