@@ -191,8 +191,8 @@
                   <StringArray count="4">
                     <StringItem index="0" value="-- Pilih Jenis--"/>
                     <StringItem index="1" value="B U P"/>
-                    <StringItem index="2" value="Janda / Duda"/>
-                    <StringItem index="3" value="Meninggal Dunia"/>
+                    <StringItem index="2" value="A P S"/>
+                    <StringItem index="3" value="Janda / Duda"/>
                   </StringArray>
                 </Property>
               </Properties>
