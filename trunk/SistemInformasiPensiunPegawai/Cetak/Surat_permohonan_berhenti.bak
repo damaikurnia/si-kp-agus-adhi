@@ -28,23 +28,23 @@
 	</parameter>
 	<queryString><![CDATA[SELECT
   sk_pangkatterakhir.`nama_pemilik`    AS sk_pangkatterakhir_nama_pemilik,
-  DATE_FORMAT( sk_pangkatterakhir.`tanggal_lahir`, '%d-%M-%Y')   AS sk_pangkatterakhir_tanggal_lahir,
+  DATE_FORMAT( sk_pangkatterakhir.`tanggal_lahir`, '%d-%m-%Y')   AS sk_pangkatterakhir_tanggal_lahir,
   sk_pangkatterakhir.`nip_lama`        AS sk_pangkatterakhir_nip_lama,
   sptkg_terakhir.`nip_baru`            AS sptkg_terakhir_nip_baru,
   sptkg_terakhir.`pangkat_baru`        AS sptkg_terakhir_pangkat_baru,
   sptkg_terakhir.`golongan_ruang_baru` AS sptkg_terakhir_golongan_banggotakeluargaruang_aru,
- DATE_FORMAT(  sk_pangkatterakhir.`tmt_baru`, '%d-%M-%Y')        AS sk_pangkatterakhir_tmt_baru,
+ DATE_FORMAT(  sk_pangkatterakhir.`tmt_baru`, '%d-%m-%Y')        AS sk_pangkatterakhir_tmt_baru,
   sk_karpeg.`id_SuratKarpeg`           AS sk_karpeg_id_SuratKarpeg,
   sk_cpns.`Profesi`                    AS sk_cpns_Profesi,
   kk.`Alamat`                          AS kk_Alamat,
   sk_cpns.`tempat_lahir`               AS sk_cpns_tempat_lahir,
-  DATE_FORMAT( s_nikah.`tanggal_nikah`, '%d-%M-%Y') AS s_nikah_tanggal_nikah,
+  DATE_FORMAT( s_nikah.`tanggal_nikah`, '%d-%m-%Y') AS s_nikah_tanggal_nikah,
   sptkg_terakhir.`Sekolah`             AS sptkg_terakhir_Sekolah,
   sptkg_terakhir.`gajipokok_baru`             AS sptkg_terakhir_gajipokok_baru,
 ROUND(DATEDIFF(CURRENT_DATE,sk_cpns.tanggal_surat)/365,0)AS tahun,
-	ROUND(MOD(DATEDIFF(CURRENT_DATE,sk_cpns.tanggal_surat)/365,12)) As Bulan,
-	YEAR(sk_cpns.tanggal_lahir)+60 As Tahun_TMT,
-	MONTHNAME(sk_cpns.tanggal_lahir) As bulan_TMT,
+	ROUND(MOD(DATEDIFF(CURRENT_DATE,sk_cpns.tanggal_surat)/365,12)) AS Bulan,
+	YEAR(sk_cpns.tanggal_lahir)+60 AS Tahun_TMT,
+	MONTHNAME(sk_cpns.tanggal_lahir) AS bulan_TMT,
 kk.`Kabupaten_kota`                          AS kk_Kabupaten_kota
 FROM `sk_pangkatterakhir` sk_pangkatterakhir,
   `sk_karpeg` sk_karpeg,
@@ -55,7 +55,13 @@ FROM `sk_pangkatterakhir` sk_pangkatterakhir,
   `pns` pns
 WHERE
      pns.nip_baru LIKE $P{NIP}
-    AND pns.`id_SuratKarpeg` = sk_karpeg.`id_SuratKarpeg`]]></queryString>
+    AND pns.`id_SuratKarpeg` = sk_karpeg.`id_SuratKarpeg`
+    AND pns.id_SuratCPNS    =sk_cpns.id_SuratCPNS    
+    AND pns.id_SuratSPTKGTerakhir    =sptkg_terakhir.id_SuratSPTKGTerakhir    
+    AND pns.id_Suratkk    =kk.id_Suratkk    
+    AND pns.id_SuratPangkatTerakhir    =sk_pangkatterakhir.id_SuratPangkatTerakhir    
+    AND pns.id_SuratNikah    =s_nikah.id_SuratNikah   
+     ]]></queryString>
 
 	<field name="sk_pangkatterakhir_nama_pemilik" class="java.lang.String"/>
 	<field name="sk_pangkatterakhir_tanggal_lahir" class="java.lang.String"/>
