@@ -147,8 +147,8 @@ public class ProsesPensiun extends javax.swing.JFrame {
         });
         jPanel4.add(button_proses, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, -1, -1));
 
-        combo_jenisPensiun.setFont(new java.awt.Font("Tahoma", 1, 14));
-        combo_jenisPensiun.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Pilih Jenis--", "B U P", "Janda / Duda", "Meninggal Dunia" }));
+        combo_jenisPensiun.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        combo_jenisPensiun.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Pilih Jenis--", "B U P", "A P S", "Janda / Duda" }));
         combo_jenisPensiun.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combo_jenisPensiunActionPerformed(evt);
@@ -292,6 +292,8 @@ public class ProsesPensiun extends javax.swing.JFrame {
                 //Logger.getLogger(ProsesPensiun.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "", JOptionPane.ERROR_MESSAGE);
             }
+        } else if (kat.matches("A P S")) {
+            cetak(nip_TF.getText());
         }
     }//GEN-LAST:event_combo_jenisPensiunActionPerformed
 
