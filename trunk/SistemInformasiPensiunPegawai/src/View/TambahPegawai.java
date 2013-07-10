@@ -31,6 +31,7 @@ public class TambahPegawai extends javax.swing.JFrame {
 
     PNS pegawai = new PNS("-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-");
 
+    
     /**
      * Creates new form TambahPegawai
      */
