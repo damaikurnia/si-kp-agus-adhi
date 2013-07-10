@@ -16,6 +16,7 @@ import Model.SK_CPNS;
 import Model.SK_Karpeg;
 import Model.SK_PangkatTerakhir;
 import Model.SPTKG_Terakhir;
+import Model.S_Nikah;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
@@ -222,15 +223,15 @@ public class TambahPegawai extends javax.swing.JFrame {
         jLabel86 = new javax.swing.JLabel();
         Surat_Nikah = new javax.swing.JPanel();
         jLabel47 = new javax.swing.JLabel();
-        jTextField47 = new javax.swing.JTextField();
-        jTextField44 = new javax.swing.JTextField();
-        jTextField45 = new javax.swing.JTextField();
+        SN_NoSurat_TF = new javax.swing.JTextField();
+        SN_NamaSuami_TF = new javax.swing.JTextField();
+        SN_NamaIstri_TF = new javax.swing.JTextField();
         jLabel53 = new javax.swing.JLabel();
         jLabel54 = new javax.swing.JLabel();
         jLabel55 = new javax.swing.JLabel();
-        jDateChooser13 = new com.toedter.calendar.JDateChooser();
-        simpan_button5 = new javax.swing.JButton();
-        next_button5 = new javax.swing.JButton();
+        SN_TglNikah_Date = new com.toedter.calendar.JDateChooser();
+        SN_simpan_button = new javax.swing.JButton();
+        SN_next_button = new javax.swing.JButton();
         KK = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel8 = new javax.swing.JPanel();
@@ -853,9 +854,9 @@ public class TambahPegawai extends javax.swing.JFrame {
         jLabel47.setFont(new java.awt.Font("Tahoma", 0, 14));
         jLabel47.setText("Nomor Surat");
         Surat_Nikah.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, -1, -1));
-        Surat_Nikah.add(jTextField47, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 230, -1));
-        Surat_Nikah.add(jTextField44, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, 230, -1));
-        Surat_Nikah.add(jTextField45, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, 230, -1));
+        Surat_Nikah.add(SN_NoSurat_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 230, -1));
+        Surat_Nikah.add(SN_NamaSuami_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, 230, -1));
+        Surat_Nikah.add(SN_NamaIstri_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, 230, -1));
 
         jLabel53.setFont(new java.awt.Font("Tahoma", 0, 14));
         jLabel53.setText("Nama Istri");
@@ -869,26 +870,26 @@ public class TambahPegawai extends javax.swing.JFrame {
         jLabel55.setText("Tanggal Nikah");
         Surat_Nikah.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, -1, -1));
 
-        jDateChooser13.setDateFormatString("d MMM yyyy");
-        Surat_Nikah.add(jDateChooser13, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 230, -1));
+        SN_TglNikah_Date.setDateFormatString("d MMM yyyy");
+        Surat_Nikah.add(SN_TglNikah_Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 230, -1));
 
-        simpan_button5.setFont(new java.awt.Font("Tahoma", 1, 14));
-        simpan_button5.setText("Simpan");
-        simpan_button5.addActionListener(new java.awt.event.ActionListener() {
+        SN_simpan_button.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        SN_simpan_button.setText("Simpan");
+        SN_simpan_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                simpan_button5ActionPerformed(evt);
+                SN_simpan_buttonActionPerformed(evt);
             }
         });
-        Surat_Nikah.add(simpan_button5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, -1, -1));
+        Surat_Nikah.add(SN_simpan_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, -1, -1));
 
-        next_button5.setFont(new java.awt.Font("Tahoma", 1, 14));
-        next_button5.setText("Next");
-        next_button5.addActionListener(new java.awt.event.ActionListener() {
+        SN_next_button.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        SN_next_button.setText("Next");
+        SN_next_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                next_button5ActionPerformed(evt);
+                SN_next_buttonActionPerformed(evt);
             }
         });
-        Surat_Nikah.add(next_button5, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 260, -1, -1));
+        Surat_Nikah.add(SN_next_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 260, -1, -1));
 
         Tab_PNS.addTab("Surat Nikah", Surat_Nikah);
 
@@ -997,14 +998,14 @@ public class TambahPegawai extends javax.swing.JFrame {
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
 
         jLabel8.setText("-");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 190, 10, -1));
 
         TP_Nama_Label.setText("Nama");
-        getContentPane().add(TP_Nama_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 120, -1));
+        getContentPane().add(TP_Nama_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 190, -1));
 
         TP_Kode_Label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         TP_Kode_Label.setText("Kode");
-        getContentPane().add(TP_Kode_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 10, -1));
+        getContentPane().add(TP_Kode_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 20, -1));
 
         pack();
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -1023,6 +1024,7 @@ public class TambahPegawai extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Status Pengaju : " + status + ", Menampilkan form Surat Nikah dan KK.");
             Tab_PNS.setEnabledAt(5, true);
             Tab_PNS.setEnabledAt(6, true);
+            isiNamaSuamiIstri();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Status Pengaju : " + status + ", Hanya Menampilkan Form KK.");
             Tab_PNS.setEnabledAt(6, true);
@@ -1073,7 +1075,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         cpns.setPersetujuan_dr(CPNS_PersetujuanDr_TF.getText());
         cpns.setNmr_persetujuan(CPNS_NmrPersetujuan_TF.getText());
         cpns.setTmt_persetujuan(sdf.format(CPNS_TMTPersetujuan_Date.getDate()));
-        cpns.setKode_operator("P");
+        cpns.setKode_operator(TP_Kode_Label.getText().toUpperCase());
         try {
             Controller.ControlData.getKoneksi().insertCPNS(cpns);
             Controller.ControlData.getKoneksi().updatePNS("CPNS", cpns.getNip_baru(), cpns.getId_SuratCPNS().toUpperCase());
@@ -1109,7 +1111,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         pt.setMasa_kerja_golongan(PT_MsKerjaGolThn_TF.getText());
         pt.setGaji_pokok(PT_GajiPokok_TF.getText());
         pt.setMasa_kerja_golongan_bulan(PT_MsKerjaGolBln_TF.getText());
-        pt.setKode_operator("P");
+        pt.setKode_operator(TP_Kode_Label.getText().toUpperCase());
         pt.setProfesi(PT_Profesi_TF.getText());
         pt.setSekolah(PT_Sekolah_TF.getText());
         try {
@@ -1147,7 +1149,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         sptkg.setGajipokok_baru(SPTKG_GajiBaru_TF.getText());
         sptkg.setTmt_baru(sdf.format(SPTKG_TmtBr_TF.getDate()));
         sptkg.setNip_lama(SPTKG_NipLama_TF.getText());
-        sptkg.setKode_operator("P");
+        sptkg.setKode_operator(TP_Kode_Label.getText().toUpperCase());
         try {
             Controller.ControlData.getKoneksi().insertSPTKG_Terakhir(sptkg);
             Controller.ControlData.getKoneksi().updatePNS("SPTKG", sptkg.getNip_baru(), sptkg.getId_SuratSPTKGTerakhir().toUpperCase());
@@ -1167,7 +1169,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         karpeg.setNama_pemilik(Karpeg_Nama_TF.getText());
         karpeg.setTanggal_lahir(sdf.format(Karpeg_TglLhr_Date.getDate()));
         karpeg.setTmt_cpns(sdf.format(Karpeg_TMT_Date.getDate()));
-        karpeg.setKode_operator("P");
+        karpeg.setKode_operator(TP_Kode_Label.getText().toUpperCase());
         try {
             Controller.ControlData.getKoneksi().insertSK_Karpeg(karpeg);
             Controller.ControlData.getKoneksi().updatePNS("KARPEG", karpeg.getNip_baru(), karpeg.getId_SuratKarpeg().toUpperCase());
@@ -1182,14 +1184,28 @@ public class TambahPegawai extends javax.swing.JFrame {
         Tab_PNS.setSelectedIndex(5);
     }//GEN-LAST:event_Karpeg_next_buttonActionPerformed
 
-    private void simpan_button5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpan_button5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_simpan_button5ActionPerformed
+    private void SN_simpan_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SN_simpan_buttonActionPerformed
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        S_Nikah nikah = new S_Nikah();
+        nikah.setId_SuratNikah(SN_NoSurat_TF.getText());
+        nikah.setTanggal_nikah(sdf.format(SN_TglNikah_Date.getDate()));
+        nikah.setNama_suami(SN_NamaSuami_TF.getText());
+        nikah.setNama_istri(SN_NamaIstri_TF.getText());
+        nikah.setKode_operator(TP_Kode_Label.getText().toUpperCase());
+        
+        try {
+            Controller.ControlData.getKoneksi().insertS_Nikah(nikah);
+            Controller.ControlData.getKoneksi().updatePNS("NIKAH", pegawai.getNip_baru(), nikah.getId_SuratNikah().toUpperCase());
+            JOptionPane.showMessageDialog(rootPane, "Data SURAT NIKAH Berhasil Disimpan");
+        } catch (Exception ex) {
+            Logger.getLogger(TambahPegawai.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_SN_simpan_buttonActionPerformed
 
-    private void next_button5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_next_button5ActionPerformed
+    private void SN_next_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SN_next_buttonActionPerformed
         Tab_PNS.setEnabledAt(6, true);
         Tab_PNS.setSelectedIndex(6);
-    }//GEN-LAST:event_next_button5ActionPerformed
+    }//GEN-LAST:event_SN_next_buttonActionPerformed
 
     private void DU_NipLama_TFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DU_NipLama_TFKeyPressed
         int res = cekAngka(DU_NipLama_TF.getText());
@@ -1272,6 +1288,16 @@ public class TambahPegawai extends javax.swing.JFrame {
     public void isiNama(String nama, String id) {
         TP_Nama_Label.setText(nama);
         TP_Kode_Label.setText(id);
+    }
+    
+    public void isiNamaSuamiIstri(){
+        String jenisKelamin = (String) DU_JenisKelamin_CB.getSelectedItem();
+        if(jenisKelamin.equals("PRIA")){
+            SN_NamaSuami_TF.setText(DU_Nama_TF.getText());
+        }
+        else{
+            SN_NamaIstri_TF.setText(DU_Nama_TF.getText());
+        }
     }
 
     /**
@@ -1376,6 +1402,12 @@ public class TambahPegawai extends javax.swing.JFrame {
     private javax.swing.JPanel SK_CPNS;
     private javax.swing.JPanel SK_Karpeg;
     private javax.swing.JPanel SK_PangkatTerakhir;
+    private javax.swing.JTextField SN_NamaIstri_TF;
+    private javax.swing.JTextField SN_NamaSuami_TF;
+    private javax.swing.JTextField SN_NoSurat_TF;
+    private com.toedter.calendar.JDateChooser SN_TglNikah_Date;
+    private javax.swing.JButton SN_next_button;
+    private javax.swing.JButton SN_simpan_button;
     private javax.swing.JTextField SPTKG_GajiBaru_TF;
     private javax.swing.JTextField SPTKG_GajiLama_TF;
     private javax.swing.JTextField SPTKG_GolBr_TF;
@@ -1395,7 +1427,6 @@ public class TambahPegawai extends javax.swing.JFrame {
     private javax.swing.JLabel TP_Kode_Label;
     private javax.swing.JLabel TP_Nama_Label;
     private javax.swing.JTabbedPane Tab_PNS;
-    private com.toedter.calendar.JDateChooser jDateChooser13;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1481,17 +1512,12 @@ public class TambahPegawai extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField41;
-    private javax.swing.JTextField jTextField44;
-    private javax.swing.JTextField jTextField45;
-    private javax.swing.JTextField jTextField47;
     private javax.swing.JTextField jTextField52;
     private javax.swing.JTextField jTextField53;
     private javax.swing.JTextField jTextField55;
     private javax.swing.JLabel nama;
-    private javax.swing.JButton next_button5;
     private javax.swing.JLabel nip_br;
     private javax.swing.JLabel nip_br1;
-    private javax.swing.JButton simpan_button5;
     private javax.swing.JLabel time;
     // End of variables declaration//GEN-END:variables
 }
