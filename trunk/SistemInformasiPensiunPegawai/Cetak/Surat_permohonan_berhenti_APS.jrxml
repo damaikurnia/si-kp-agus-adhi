@@ -2,7 +2,7 @@
 <!-- Created with iReport - A designer for JasperReports -->
 <!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
 <jasperReport
-		 name="Surat_usul_permohonan"
+		 name="Surat_permohonan_berhenti_APS"
 		 columnCount="1"
 		 printOrder="Vertical"
 		 orientation="Portrait"
@@ -17,9 +17,6 @@
 		 whenNoDataType="NoPages"
 		 isTitleNewPage="false"
 		 isSummaryNewPage="false">
-	<property name="ireport.zoom" value="1.5" />
-	<property name="ireport.x" value="31" />
-	<property name="ireport.y" value="144" />
 	<property name="ireport.scriptlethandling" value="0" />
 	<property name="ireport.encoding" value="UTF-8" />
 	<import value="java.util.*" />
@@ -30,119 +27,258 @@
 		<defaultValueExpression ><![CDATA[""]]></defaultValueExpression>
 	</parameter>
 	<queryString><![CDATA[SELECT
-	a.nama_pemilik, c.nip_lama, c.nip_baru, d.tempat_lahir, DATE_FORMAT(d.tanggal_lahir, '%d-%m-%Y') AS tanggal_lahir,
-	a.pangkat_baru, a.golongan_baru,ROUND(DATEDIFF(CURRENT_DATE,d.tanggal_surat)/365,0) AS tahun,
-	ROUND(MOD(DATEDIFF(CURRENT_DATE,d.tanggal_surat)/365,12)) AS Bulan,e.gajipokok_baru,d.Profesi, f.id_SuratKarpeg,
-	DATE_FORMAT(g.tanggal_nikah, '%d-%m-%Y') AS tanggal_nikah,e.Sekolah, h.Alamat, DATE_FORMAT(a.tmt_baru, '%d-%m-%Y') AS tmt,
-	DATE_FORMAT(CURRENT_DATE, '%d-%m-%Y') AS tanggalsekarang
-FROM
-	sk_pangkatterakhir a, pns b, sk_nipbaru c, sk_cpns d, sptkg_terakhir e, sk_karpeg f, s_nikah g, kk h
+  sk_pangkatterakhir.`nama_pemilik`    AS sk_pangkatterakhir_nama_pemilik,
+  DATE_FORMAT( sk_pangkatterakhir.`tanggal_lahir`, '%d-%m-%Y')   AS sk_pangkatterakhir_tanggal_lahir,
+  sk_pangkatterakhir.`nip_lama`        AS sk_pangkatterakhir_nip_lama,
+  sptkg_terakhir.`nip_baru`            AS sptkg_terakhir_nip_baru,
+  sptkg_terakhir.`pangkat_baru`        AS sptkg_terakhir_pangkat_baru,
+  sptkg_terakhir.`golongan_ruang_baru` AS sptkg_terakhir_golongan_banggotakeluargaruang_aru,
+ DATE_FORMAT(  sk_pangkatterakhir.`tmt_baru`, '%d-%m-%Y')        AS sk_pangkatterakhir_tmt_baru,
+  sk_karpeg.`id_SuratKarpeg`           AS sk_karpeg_id_SuratKarpeg,
+  sk_cpns.`Profesi`                    AS sk_cpns_Profesi,
+  kk.`Alamat`                          AS kk_Alamat,
+  sk_cpns.`tempat_lahir`               AS sk_cpns_tempat_lahir,
+  DATE_FORMAT( s_nikah.`tanggal_nikah`, '%d-%m-%Y') AS s_nikah_tanggal_nikah,
+  sptkg_terakhir.`Sekolah`             AS sptkg_terakhir_Sekolah,
+  sptkg_terakhir.`gajipokok_baru`             AS sptkg_terakhir_gajipokok_baru,
+ROUND(DATEDIFF(CURRENT_DATE,sk_cpns.tanggal_surat)/365,0)AS tahun,
+	ROUND(MOD(DATEDIFF(CURRENT_DATE,sk_cpns.tanggal_surat)/365,12)) AS Bulan,
+	YEAR(sk_cpns.tanggal_lahir)+60 AS Tahun_TMT,
+	MONTHNAME(sk_cpns.tanggal_lahir) AS bulan_TMT,
+kk.`Kabupaten_kota`                          AS kk_Kabupaten_kota
+FROM `sk_pangkatterakhir` sk_pangkatterakhir,
+  `sk_karpeg` sk_karpeg,
+  `sk_cpns` sk_cpns,
+  `s_nikah` s_nikah,
+  `kk` kk,
+  `sptkg_terakhir` sptkg_terakhir,
+  `pns` pns
 WHERE
-	b.nip_baru LIKE $P{NIP} AND
-	b.id_SuratPangkatTerakhir=a.id_SuratPangkatTerakhir AND
-	b.id_SuratNIPBaru = c.id_SuratNIPBaru AND
-	b.id_SuratCPNS=d.id_SuratCPNS AND
-	b.id_SuratSPTKGTerakhir	= e.id_SuratSPTKGTerakhir AND
-	b.id_SuratKarpeg = f.id_SuratKarpeg AND
-	b.id_SuratNikah	= g.id_SuratNikah AND
-	b.id_Suratkk = h.id_Suratkk;]]></queryString>
+     pns.nip_baru LIKE $P{NIP}
+    AND pns.`id_SuratKarpeg` = sk_karpeg.`id_SuratKarpeg`
+    AND pns.id_SuratCPNS    =sk_cpns.id_SuratCPNS    
+    AND pns.id_SuratSPTKGTerakhir    =sptkg_terakhir.id_SuratSPTKGTerakhir    
+    AND pns.id_Suratkk    =kk.id_Suratkk    
+    AND pns.id_SuratPangkatTerakhir    =sk_pangkatterakhir.id_SuratPangkatTerakhir    
+    AND pns.id_SuratNikah    =s_nikah.id_SuratNikah]]></queryString>
 
-	<field name="nama_pemilik" class="java.lang.String"/>
-	<field name="nip_lama" class="java.lang.String"/>
-	<field name="nip_baru" class="java.lang.String"/>
-	<field name="tempat_lahir" class="java.lang.String"/>
-	<field name="tanggal_lahir" class="java.lang.String"/>
-	<field name="pangkat_baru" class="java.lang.String"/>
-	<field name="golongan_baru" class="java.lang.String"/>
+	<field name="sk_pangkatterakhir_nama_pemilik" class="java.lang.String"/>
+	<field name="sk_pangkatterakhir_tanggal_lahir" class="java.lang.String"/>
+	<field name="sk_pangkatterakhir_nip_lama" class="java.lang.String"/>
+	<field name="sptkg_terakhir_nip_baru" class="java.lang.String"/>
+	<field name="sptkg_terakhir_pangkat_baru" class="java.lang.String"/>
+	<field name="sptkg_terakhir_golongan_banggotakeluargaruang_aru" class="java.lang.String"/>
+	<field name="sk_pangkatterakhir_tmt_baru" class="java.lang.String"/>
+	<field name="sk_karpeg_id_SuratKarpeg" class="java.lang.String"/>
+	<field name="sk_cpns_Profesi" class="java.lang.String"/>
+	<field name="kk_Alamat" class="java.lang.String"/>
+	<field name="sk_cpns_tempat_lahir" class="java.lang.String"/>
+	<field name="s_nikah_tanggal_nikah" class="java.lang.String"/>
+	<field name="sptkg_terakhir_Sekolah" class="java.lang.String"/>
+	<field name="sptkg_terakhir_gajipokok_baru" class="java.lang.Integer"/>
 	<field name="tahun" class="java.math.BigDecimal"/>
 	<field name="Bulan" class="java.math.BigDecimal"/>
-	<field name="gajipokok_baru" class="java.lang.Integer"/>
-	<field name="Profesi" class="java.lang.String"/>
-	<field name="id_SuratKarpeg" class="java.lang.String"/>
-	<field name="tanggal_nikah" class="java.lang.String"/>
-	<field name="Sekolah" class="java.lang.String"/>
-	<field name="Alamat" class="java.lang.String"/>
-	<field name="tmt" class="java.lang.String"/>
-	<field name="tanggalsekarang" class="java.lang.String"/>
+	<field name="Tahun_TMT" class="java.lang.Long"/>
+	<field name="bulan_TMT" class="java.lang.String"/>
+	<field name="kk_Kabupaten_kota" class="java.lang.String"/>
 
 		<background>
 			<band height="0"  isSplitAllowed="true" >
 			</band>
 		</background>
 		<title>
-			<band height="128"  isSplitAllowed="true" >
+			<band height="173"  isSplitAllowed="true" >
 				<staticText>
 					<reportElement
-						x="109"
-						y="6"
-						width="348"
-						height="24"
+						x="0"
+						y="14"
+						width="50"
+						height="15"
 						key="staticText-1"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="18"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[PEMERINTAH KABUPATEN KLATEN]]></text>
+				<text><![CDATA[Perihal]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="109"
-						y="31"
-						width="348"
-						height="33"
+						x="55"
+						y="14"
+						width="5"
+						height="15"
 						key="staticText-2"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="Helvetica-Bold" size="28" isBold="true"/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[DINAS PENDIDIKAN]]></text>
+				<text><![CDATA[:]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="109"
-						y="63"
-						width="348"
-						height="19"
-						key="staticText-3"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="14"/>
-					</textElement>
-				<text><![CDATA[Jalan Pemuda Selatan No. 151 Klaten telepon (0272) 321 780]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="109"
-						y="81"
-						width="348"
-						height="24"
+						x="65"
+						y="31"
+						width="141"
+						height="15"
 						key="staticText-4"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="18"/>
+					<textElement textAlignment="Justified" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[KLATEN]]></text>
+				<text><![CDATA[dengan hormat sebagai PNS]]></text>
 				</staticText>
-				<image  evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+				<staticText>
 					<reportElement
-						x="24"
-						y="6"
-						width="72"
-						height="99"
-						key="image-1"/>
+						x="65"
+						y="64"
+						width="141"
+						height="15"
+						key="staticText-5"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<graphicElement stretchType="NoStretch"/>
-					<imageExpression class="java.lang.String"><![CDATA["E:\\KP\\trunk\\SistemInformasiPensiunPegawai\\picture\\klaten.jpg"]]></imageExpression>
-				</image>
+					<textElement textAlignment="Justified" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[dengan hak pensiun.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="64"
+						y="14"
+						width="142"
+						height="15"
+						key="staticText-6"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Justified" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[Permohonan Pemberhentian]]></text>
+				</staticText>
 				<line direction="TopDown">
 					<reportElement
-						x="3"
-						y="112"
-						width="548"
+						x="64"
+						y="81"
+						width="143"
 						height="1"
 						key="line-1"/>
 					<graphicElement stretchType="NoStretch"/>
 				</line>
+				<staticText>
+					<reportElement
+						x="324"
+						y="1"
+						width="133"
+						height="15"
+						key="staticText-7"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[Klaten,     Juni 2013]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="323"
+						y="64"
+						width="50"
+						height="15"
+						key="staticText-8"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[Kepada :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="297"
+						y="80"
+						width="94"
+						height="15"
+						key="staticText-9"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[Yth. Bupati Klaten]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="297"
+						y="96"
+						width="202"
+						height="15"
+						key="staticText-10"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[U.p. Kepala Badan kepegawaian Daerah]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="323"
+						y="113"
+						width="90"
+						height="15"
+						key="staticText-11"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[Kabupaten Klaten]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="324"
+						y="145"
+						width="22"
+						height="15"
+						key="staticText-12"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[di :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="373"
+						y="156"
+						width="40"
+						height="15"
+						key="staticText-13"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" pdfFontName="Helvetica-Bold" size="12" isBold="true" isUnderline="true"/>
+					</textElement>
+				<text><![CDATA[Klaten]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="297"
+						y="128"
+						width="237"
+						height="15"
+						key="staticText-14"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[Lewat Kepala Dinas Pendidikan Kab.Klaten]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="65"
+						y="48"
+						width="148"
+						height="15"
+						key="staticText-70"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Justified" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[Atas permintaan Sendiri(APS)]]></text>
+				</staticText>
 			</band>
 		</title>
 		<pageHeader>
@@ -154,362 +290,219 @@ WHERE
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="766"  isSplitAllowed="true" >
+			<band height="720"  isSplitAllowed="true" >
 				<staticText>
 					<reportElement
-						x="4"
-						y="2"
-						width="50"
-						height="15"
-						key="staticText-5"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
-				<text><![CDATA[Nomor]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="4"
-						y="22"
-						width="50"
-						height="15"
-						key="staticText-6"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
-				<text><![CDATA[Lampiran]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="4"
-						y="42"
-						width="50"
-						height="15"
-						key="staticText-7"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
-				<text><![CDATA[Perihal]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="59"
-						y="2"
-						width="5"
-						height="15"
-						key="staticText-8"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
-				<text><![CDATA[:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="59"
-						y="22"
-						width="5"
-						height="15"
-						key="staticText-9"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
-				<text><![CDATA[:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="59"
-						y="42"
-						width="5"
-						height="15"
-						key="staticText-10"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
-				<text><![CDATA[:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="70"
-						y="22"
-						width="50"
-						height="15"
-						key="staticText-11"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
-				<text><![CDATA[1 Bendel]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="69"
-						y="41"
-						width="155"
-						height="15"
-						key="staticText-12"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
-				<text><![CDATA[Usul Permohonan Pensiun A.n. : ]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="69"
-						y="62"
-						width="29"
-						height="15"
-						key="staticText-13"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
-				<text><![CDATA[Sdr.]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="69"
-						y="84"
-						width="30"
-						height="15"
-						key="staticText-14"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
-				<text><![CDATA[NIP.]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="347"
-						y="1"
-						width="50"
+						x="42"
+						y="6"
+						width="211"
 						height="15"
 						key="staticText-15"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[Klaten,]]></text>
+				<text><![CDATA[1. Yang bertanda tangan dibawah ini saya :]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="348"
-						y="42"
-						width="50"
+						x="55"
+						y="24"
+						width="130"
 						height="15"
 						key="staticText-16"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[Kepada :]]></text>
+				<text><![CDATA[a. Nama]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="348"
-						y="62"
-						width="94"
+						x="55"
+						y="42"
+						width="131"
 						height="15"
 						key="staticText-17"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[Yth. Bupati Klaten]]></text>
+				<text><![CDATA[b. NIP]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="349"
-						y="84"
-						width="202"
+						x="54"
+						y="77"
+						width="133"
 						height="15"
 						key="staticText-18"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[U.p. Kepala Badan Kepegawaian Daerah]]></text>
+				<text><![CDATA[d. Pangkat Gol./Ruang]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="374"
-						y="106"
-						width="90"
+						x="54"
+						y="59"
+						width="131"
 						height="15"
 						key="staticText-19"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[Kabupaten Klaten]]></text>
+				<text><![CDATA[c. Tempat/Tanggal Lahir]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="348"
-						y="126"
-						width="22"
+						x="54"
+						y="148"
+						width="133"
 						height="15"
 						key="staticText-20"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[Di :]]></text>
+				<text><![CDATA[h. Nomor Seri Karpeg]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="374"
-						y="145"
-						width="40"
+						x="54"
+						y="130"
+						width="132"
 						height="15"
 						key="staticText-21"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font fontName="Times New Roman" pdfFontName="Helvetica-Bold" size="12" isBold="true" isUnderline="true"/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[Klaten]]></text>
+				<text><![CDATA[g. Jabatan]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="69"
-						y="193"
-						width="387"
+						x="55"
+						y="113"
+						width="132"
 						height="15"
 						key="staticText-22"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[Bersama ini kami kirimkan dengan hormat permohonan pensiun bagi Saudara :]]></text>
+				<text><![CDATA[f. Masa Kerja Pensiun]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="69"
-						y="233"
-						width="140"
+						x="55"
+						y="95"
+						width="131"
 						height="15"
 						key="staticText-23"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[NIP Lama/Baru]]></text>
+				<text><![CDATA[e. Gaji Pokok terakhir]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="69"
-						y="213"
-						width="140"
+						x="54"
+						y="166"
+						width="134"
 						height="15"
-						key="staticText-24"/>
+						key="staticText-25"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[Nama]]></text>
+				<text><![CDATA[i. Tanggal Perkawinan]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="216"
-						y="213"
-						width="5"
-						height="15"
-						key="staticText-25"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
-				<text><![CDATA[:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="216"
-						y="233"
-						width="5"
+						x="54"
+						y="183"
+						width="135"
 						height="15"
 						key="staticText-26"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
+					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[:]]></text>
+				<text><![CDATA[j. Unit Kerja]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="216"
-						y="253"
-						width="5"
+						x="54"
+						y="218"
+						width="134"
 						height="15"
 						key="staticText-27"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
+					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[:]]></text>
+				<text><![CDATA[k. Alamat rumah sekarang]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="69"
+						x="54"
 						y="253"
-						width="140"
+						width="133"
 						height="15"
 						key="staticText-28"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[Tempat/Tanggal Lahir]]></text>
+				<text><![CDATA[l. Alamat rumah pensiun]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="70"
-						y="313"
-						width="140"
-						height="15"
+						x="208"
+						y="269"
+						width="56"
+						height="14"
 						key="staticText-29"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" size="12"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
 					</textElement>
-				<text><![CDATA[Gaji Pokok terakhir]]></text>
+				<text><![CDATA[Kabupaten]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="70"
-						y="293"
-						width="140"
+						x="201"
+						y="252"
+						width="5"
 						height="15"
 						key="staticText-30"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[Masa kerja]]></text>
+				<text><![CDATA[:]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="70"
-						y="273"
-						width="140"
+						x="208"
+						y="234"
+						width="57"
 						height="15"
 						key="staticText-31"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" size="12"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
 					</textElement>
-				<text><![CDATA[Pangkat/Golongan Ruang]]></text>
+				<text><![CDATA[Kabupaten]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="217"
-						y="313"
+						x="201"
+						y="217"
 						width="5"
 						height="15"
 						key="staticText-32"/>
@@ -521,21 +514,21 @@ WHERE
 				</staticText>
 				<staticText>
 					<reportElement
-						x="217"
-						y="293"
-						width="5"
-						height="15"
+						x="208"
+						y="198"
+						width="182"
+						height="18"
 						key="staticText-33"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
 					</textElement>
-				<text><![CDATA[:]]></text>
+				<text><![CDATA[Dinas Pendidikan Kabupaten Klaten]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="217"
-						y="273"
+						x="201"
+						y="182"
 						width="5"
 						height="15"
 						key="staticText-34"/>
@@ -547,60 +540,60 @@ WHERE
 				</staticText>
 				<staticText>
 					<reportElement
-						x="69"
-						y="393"
-						width="140"
+						x="200"
+						y="24"
+						width="5"
 						height="15"
 						key="staticText-35"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[Unit Kerja]]></text>
+				<text><![CDATA[:]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="69"
-						y="373"
-						width="140"
+						x="200"
+						y="42"
+						width="5"
 						height="15"
 						key="staticText-36"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[Tanggal Perkawinan]]></text>
+				<text><![CDATA[:]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="69"
-						y="353"
-						width="140"
+						x="200"
+						y="59"
+						width="5"
 						height="15"
 						key="staticText-37"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[Nomor Seri KARPEG]]></text>
+				<text><![CDATA[:]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="68"
-						y="333"
-						width="140"
+						x="200"
+						y="77"
+						width="5"
 						height="15"
 						key="staticText-38"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[Jabatan]]></text>
+				<text><![CDATA[:]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="215"
-						y="333"
+						x="200"
+						y="95"
 						width="5"
 						height="15"
 						key="staticText-39"/>
@@ -612,8 +605,8 @@ WHERE
 				</staticText>
 				<staticText>
 					<reportElement
-						x="216"
-						y="353"
+						x="200"
+						y="112"
 						width="5"
 						height="15"
 						key="staticText-40"/>
@@ -625,8 +618,8 @@ WHERE
 				</staticText>
 				<staticText>
 					<reportElement
-						x="216"
-						y="373"
+						x="200"
+						y="130"
 						width="5"
 						height="15"
 						key="staticText-41"/>
@@ -638,8 +631,8 @@ WHERE
 				</staticText>
 				<staticText>
 					<reportElement
-						x="216"
-						y="393"
+						x="200"
+						y="148"
 						width="5"
 						height="15"
 						key="staticText-42"/>
@@ -651,115 +644,284 @@ WHERE
 				</staticText>
 				<staticText>
 					<reportElement
-						x="223"
-						y="413"
-						width="291"
-						height="22"
+						x="200"
+						y="165"
+						width="5"
+						height="15"
 						key="staticText-43"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[DINAS PENDIDIKAN KABUPATEN KLATEN]]></text>
+				<text><![CDATA[:]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="223"
-						y="458"
-						width="151"
-						height="18"
+						x="41"
+						y="288"
+						width="492"
+						height="15"
+						key="staticText-44"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Justified">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[dengan ini mengajukan berhenti dengan hormat sebagai Pegawai Negeri Sipil Atas Permintaan Sendiri]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="41"
+						y="307"
+						width="137"
+						height="15"
+						key="staticText-45"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Justified">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[terhitung mulai akhir bulan :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="288"
+						y="306"
+						width="246"
+						height="15"
 						key="staticText-46"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
+					<textElement textAlignment="Justified">
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[KABUPATEN KLATEN]]></text>
+				<text><![CDATA[karena ..............................................................]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="69"
-						y="439"
-						width="140"
+						x="41"
+						y="328"
+						width="283"
 						height="15"
 						key="staticText-47"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[Alamat rumah sekarang]]></text>
+				<text><![CDATA[2. Sebagai Bahan Administrasi bersama ini saya lampirkan]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="216"
-						y="438"
-						width="5"
+						x="54"
+						y="346"
+						width="373"
 						height="15"
 						key="staticText-48"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
+					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[:]]></text>
+				<text><![CDATA[a. Data perorangan Calon Penerima Pensiun (DPCP)]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="69"
-						y="483"
-						width="140"
+						x="54"
+						y="364"
+						width="131"
 						height="15"
 						key="staticText-49"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[Alamat rumah pensiun]]></text>
+				<text><![CDATA[b. Fotocopy sah SK CPNS]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="216"
-						y="482"
-						width="5"
+						x="53"
+						y="381"
+						width="131"
 						height="15"
 						key="staticText-50"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
+					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[:]]></text>
+				<text><![CDATA[c. Fotocopy sah SK PNS]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="223"
-						y="502"
-						width="151"
-						height="14"
+						x="53"
+						y="399"
+						width="374"
+						height="15"
 						key="staticText-51"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[KABUPATEN KLATEN]]></text>
+				<text><![CDATA[d. Fotocopy sah SK Kenaikan Pangkat terakhir]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="69"
-						y="524"
-						width="140"
+						x="54"
+						y="417"
+						width="373"
 						height="15"
 						key="staticText-52"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[Batas Usia Pensiun]]></text>
+				<text><![CDATA[e. Fotocopy sah Gaji Berkala terakhir.]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="216"
-						y="523"
-						width="5"
+						x="54"
+						y="435"
+						width="373"
 						height="15"
 						key="staticText-53"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[f. Fotocopy sah Karpeg]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="53"
+						y="452"
+						width="374"
+						height="15"
+						key="staticText-54"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[g. Daftar Susunan Keluarga]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="53"
+						y="470"
+						width="374"
+						height="15"
+						key="staticText-55"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[h. Fotocopy sah  Surat Nikah dan Surat Kelahiran Anak.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="53"
+						y="488"
+						width="374"
+						height="15"
+						key="staticText-56"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[i. Surat Keterangan Penyerahan Barang Milik Negara.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="53"
+						y="505"
+						width="374"
+						height="15"
+						key="staticText-57"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[j. Surat Permintaan pembayaran Pensiun Pertama (SP-4).]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="53"
+						y="559"
+						width="374"
+						height="15"
+						key="staticText-58"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[m. Phas Photo Hitam Putih 4 x 6 sebanyak 7 lembar.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="53"
+						y="542"
+						width="374"
+						height="15"
+						key="staticText-59"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[l. Fotocopy sah DP.3 dua tahun terakhir]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="53"
+						y="524"
+						width="417"
+						height="15"
+						key="staticText-60"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[k. Surat keterangan Belum Pernah dikenakan Hukuman Disiplin Tingkat Berat]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="41"
+						y="576"
+						width="492"
+						height="15"
+						key="staticText-61"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[3. Dengan ini saya menyatakan, bahwa saya tidak / akan menjalankan bebas tugas.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="42"
+						y="593"
+						width="492"
+						height="15"
+						key="staticText-62"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[4. Demikian surat permohonan saya buat, untuk dapat dipergunakan sebagaimana mestinya.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="324"
+						y="622"
+						width="130"
+						height="15"
+						key="staticText-63"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[Hormat Saya,]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="415"
+						y="77"
+						width="5"
+						height="15"
+						key="staticText-64"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="12"/>
@@ -768,576 +930,372 @@ WHERE
 				</staticText>
 				<staticText>
 					<reportElement
-						x="223"
-						y="523"
-						width="38"
-						height="16"
-						key="staticText-54"/>
+						x="373"
+						y="77"
+						width="36"
+						height="15"
+						key="staticText-65"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<text><![CDATA[T.M.T]]></text>
 				</staticText>
-				<staticText>
-					<reportElement
-						x="69"
-						y="552"
-						width="178"
-						height="15"
-						key="staticText-55"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
-				<text><![CDATA[Demikian untuk menjadikan periksa]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="266"
-						y="572"
-						width="271"
-						height="15"
-						key="staticText-56"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
-				<text><![CDATA[A.n. KEPALA DINAS PENDIDIKAN KAB.KLATEN]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="267"
-						y="587"
-						width="270"
-						height="15"
-						key="staticText-57"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
-				<text><![CDATA[SEKRETARIS]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="266"
-						y="647"
-						width="271"
-						height="17"
-						key="staticText-58"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="Helvetica-Bold" size="12" isBold="true" isUnderline="true"/>
-					</textElement>
-				<text><![CDATA[Drs. SUGIARTO,M.M.]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="266"
-						y="663"
-						width="271"
-						height="17"
-						key="staticText-59"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false" isUnderline="false"/>
-					</textElement>
-				<text><![CDATA[Pembina]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="266"
-						y="679"
-						width="271"
-						height="17"
-						key="staticText-60"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false" isUnderline="false"/>
-					</textElement>
-				<text><![CDATA[NIP. 19640914 198508 1 003]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="2"
-						y="701"
-						width="148"
-						height="17"
-						key="staticText-63"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="10" isBold="false" isUnderline="false"/>
-					</textElement>
-				<text><![CDATA[tembusan disampaikan kepada Yth. :]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="2"
-						y="718"
-						width="245"
-						height="17"
-						key="staticText-64"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="10" isBold="false" isUnderline="false"/>
-					</textElement>
-				<text><![CDATA[1. Kepala Dinas Pendidikan Kab.Klaten sebagai laporan]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="2"
-						y="734"
-						width="221"
-						height="17"
-						key="staticText-65"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="10" isBold="false" isUnderline="false"/>
-					</textElement>
-				<text><![CDATA[2. Arsip]]></text>
-				</staticText>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="109"
-						y="62"
-						width="115"
-						height="15"
+						x="207"
+						y="24"
+						width="221"
+						height="16"
 						key="textField-1"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nama_pemilik}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sk_pangkatterakhir_nama_pemilik}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="109"
-						y="84"
-						width="115"
-						height="15"
+						x="208"
+						y="42"
+						width="80"
+						height="16"
 						key="textField-2"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nip_baru}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sk_pangkatterakhir_nip_lama}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="223"
-						y="213"
-						width="233"
-						height="15"
+						x="303"
+						y="42"
+						width="196"
+						height="16"
 						key="textField-3"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nama_pemilik}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sptkg_terakhir_nip_baru}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="224"
-						y="233"
-						width="53"
-						height="15"
+						x="207"
+						y="59"
+						width="80"
+						height="16"
 						key="textField-4"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nip_lama}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sk_cpns_tempat_lahir}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="224"
-						y="253"
-						width="53"
-						height="15"
+						x="288"
+						y="59"
+						width="182"
+						height="16"
 						key="textField-5"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{tempat_lahir}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sk_pangkatterakhir_tanggal_lahir}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="224"
-						y="273"
-						width="52"
-						height="15"
+						x="207"
+						y="77"
+						width="46"
+						height="16"
 						key="textField-6"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{pangkat_baru}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sptkg_terakhir_pangkat_baru}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="224"
-						y="293"
-						width="23"
-						height="15"
+						x="253"
+						y="77"
+						width="29"
+						height="16"
 						key="textField-7"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$F{tahun}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sptkg_terakhir_golongan_banggotakeluargaruang_aru}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="246"
-						y="313"
-						width="211"
-						height="15"
+						x="427"
+						y="77"
+						width="97"
+						height="16"
 						key="textField-8"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{gajipokok_baru}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sk_pangkatterakhir_tmt_baru}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="223"
-						y="333"
-						width="233"
-						height="15"
+						x="230"
+						y="95"
+						width="46"
+						height="16"
 						key="textField-9"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{Profesi}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="223"
-						y="353"
-						width="233"
-						height="15"
-						key="textField-10"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{id_SuratKarpeg}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="224"
-						y="373"
-						width="233"
-						height="15"
-						key="textField-11"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{tanggal_nikah}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="223"
-						y="393"
-						width="233"
-						height="15"
-						key="textField-12"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{Sekolah}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="224"
-						y="439"
-						width="233"
-						height="15"
-						key="textField-13"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{Alamat}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="223"
-						y="483"
-						width="233"
-						height="15"
-						key="textField-14"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{Alamat}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="311"
-						y="233"
-						width="110"
-						height="15"
-						key="textField-16"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nip_baru}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{sptkg_terakhir_gajipokok_baru}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement
-						x="288"
-						y="233"
-						width="11"
+						x="206"
+						y="95"
+						width="18"
 						height="15"
 						key="staticText-66"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[/]]></text>
+				<text><![CDATA[Rp.]]></text>
 				</staticText>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="311"
-						y="253"
-						width="133"
-						height="15"
-						key="textField-17"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{tanggal_lahir}]]></textFieldExpression>
-				</textField>
 				<staticText>
 					<reportElement
-						x="287"
-						y="253"
-						width="11"
+						x="238"
+						y="113"
+						width="45"
 						height="15"
 						key="staticText-67"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font/>
-					</textElement>
-				<text><![CDATA[/]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="277"
-						y="273"
-						width="11"
-						height="15"
-						key="staticText-68"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font/>
-					</textElement>
-				<text><![CDATA[/]]></text>
-				</staticText>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="295"
-						y="273"
-						width="33"
-						height="15"
-						key="textField-18"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{golongan_baru}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="288"
-						y="293"
-						width="23"
-						height="15"
-						key="textField-19"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font/>
-					</textElement>
-				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$F{Bulan}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement
-						x="247"
-						y="293"
-						width="39"
-						height="15"
-						key="staticText-69"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<text><![CDATA[Tahun]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="316"
-						y="293"
-						width="39"
+						x="313"
+						y="113"
+						width="45"
 						height="15"
-						key="staticText-70"/>
+						key="staticText-68"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<text><![CDATA[Bulan]]></text>
 				</staticText>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="213"
+						y="113"
+						width="17"
+						height="16"
+						key="textField-10"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$F{tahun}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="288"
+						y="113"
+						width="25"
+						height="16"
+						key="textField-11"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$F{Bulan}]]></textFieldExpression>
+				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="369"
-						y="273"
-						width="119"
-						height="15"
+						x="207"
+						y="130"
+						width="111"
+						height="16"
+						key="textField-12"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sk_cpns_Profesi}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="207"
+						y="148"
+						width="111"
+						height="16"
+						key="textField-13"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sk_karpeg_id_SuratKarpeg}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="208"
+						y="166"
+						width="111"
+						height="16"
+						key="textField-14"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{s_nikah_tanggal_nikah}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="208"
+						y="181"
+						width="111"
+						height="16"
+						key="textField-15"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sptkg_terakhir_Sekolah}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="207"
+						y="217"
+						width="327"
+						height="16"
+						key="textField-16"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{kk_Alamat}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="208"
+						y="251"
+						width="326"
+						height="16"
+						key="textField-17"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{kk_Alamat}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="185"
+						y="306"
+						width="45"
+						height="16"
+						key="textField-18"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{bulan_TMT}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="230"
+						y="306"
+						width="52"
+						height="16"
+						key="textField-19"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Long"><![CDATA[$F{Tahun_TMT}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="324"
+						y="683"
+						width="221"
+						height="16"
 						key="textField-20"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{tmt}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sk_pangkatterakhir_nama_pemilik}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement
-						x="334"
-						y="273"
-						width="30"
+						x="324"
+						y="704"
+						width="26"
 						height="15"
-						key="staticText-71"/>
+						key="staticText-69"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[T.M.T]]></text>
-				</staticText>
-				<rectangle>
-					<reportElement
-						x="54"
-						y="597"
-						width="154"
-						height="100"
-						key="rectangle-1"/>
-					<graphicElement stretchType="NoStretch"/>
-				</rectangle>
-				<staticText>
-					<reportElement
-						x="58"
-						y="602"
-						width="144"
-						height="15"
-						key="staticText-73"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
-					</textElement>
-				<text><![CDATA[DITERIMA OLEH :]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="58"
-						y="673"
-						width="144"
-						height="15"
-						key="staticText-74"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font pdfFontName="Helvetica-Bold" isBold="true" isUnderline="true"/>
-					</textElement>
-				<text><![CDATA[.............................................]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="502"
-						y="735"
-						width="11"
-						height="15"
-						key="staticText-75"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font size="10"/>
-					</textElement>
-				<text><![CDATA[P]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="513"
-						y="735"
-						width="27"
-						height="15"
-						key="staticText-76"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font/>
-					</textElement>
-				<text><![CDATA[307]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="462"
-						y="751"
-						width="78"
-						height="12"
-						key="staticText-77"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="5" isBold="false" isUnderline="false"/>
-					</textElement>
-				<text><![CDATA[PENSIUN FILE KOORD.PEG.GM]]></text>
+				<text><![CDATA[NIP.]]></text>
 				</staticText>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="397"
-						y="2"
-						width="115"
-						height="14"
-						key="textField-1"/>
+						x="350"
+						y="704"
+						width="196"
+						height="16"
+						key="textField-21"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{tanggalsekarang}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sptkg_terakhir_nip_baru}]]></textFieldExpression>
 				</textField>
-				<staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="70"
-						y="2"
-						width="26"
-						height="15"
-						key="staticText-5"/>
+						x="265"
+						y="234"
+						width="111"
+						height="16"
+						key="textField-22"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[882.]]></text>
-				</staticText>
-				<staticText>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{kk_Kabupaten_kota}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="223"
-						y="313"
-						width="23"
-						height="15"
-						key="staticText-78"/>
+						x="265"
+						y="268"
+						width="111"
+						height="16"
+						key="textField-23"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
+					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[Rp.]]></text>
-				</staticText>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{kk_Kabupaten_kota}]]></textFieldExpression>
+				</textField>
 			</band>
 		</detail>
 		<columnFooter>
-			<band height="1"  isSplitAllowed="true" >
+			<band height="2"  isSplitAllowed="true" >
 			</band>
 		</columnFooter>
 		<pageFooter>

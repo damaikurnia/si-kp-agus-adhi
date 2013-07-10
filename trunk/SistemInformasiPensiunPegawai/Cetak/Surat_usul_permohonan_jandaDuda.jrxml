@@ -2,7 +2,7 @@
 <!-- Created with iReport - A designer for JasperReports -->
 <!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
 <jasperReport
-		 name="Surat_usul_permohonan"
+		 name="Surat_usul_permohonan_jandaDuda"
 		 columnCount="1"
 		 printOrder="Vertical"
 		 orientation="Portrait"
@@ -158,7 +158,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="4"
-						y="2"
+						y="13"
 						width="50"
 						height="15"
 						key="staticText-5"/>
@@ -171,7 +171,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="4"
-						y="22"
+						y="33"
 						width="50"
 						height="15"
 						key="staticText-6"/>
@@ -184,7 +184,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="4"
-						y="42"
+						y="53"
 						width="50"
 						height="15"
 						key="staticText-7"/>
@@ -197,7 +197,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="59"
-						y="2"
+						y="13"
 						width="5"
 						height="15"
 						key="staticText-8"/>
@@ -210,7 +210,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="59"
-						y="22"
+						y="33"
 						width="5"
 						height="15"
 						key="staticText-9"/>
@@ -223,7 +223,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="59"
-						y="42"
+						y="53"
 						width="5"
 						height="15"
 						key="staticText-10"/>
@@ -236,7 +236,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="70"
-						y="22"
+						y="33"
 						width="50"
 						height="15"
 						key="staticText-11"/>
@@ -249,7 +249,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="69"
-						y="41"
+						y="52"
 						width="155"
 						height="15"
 						key="staticText-12"/>
@@ -261,8 +261,8 @@ WHERE
 				</staticText>
 				<staticText>
 					<reportElement
-						x="69"
-						y="62"
+						x="70"
+						y="103"
 						width="29"
 						height="15"
 						key="staticText-13"/>
@@ -274,8 +274,8 @@ WHERE
 				</staticText>
 				<staticText>
 					<reportElement
-						x="69"
-						y="84"
+						x="70"
+						y="121"
 						width="30"
 						height="15"
 						key="staticText-14"/>
@@ -288,7 +288,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="347"
-						y="1"
+						y="12"
 						width="50"
 						height="15"
 						key="staticText-15"/>
@@ -301,7 +301,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="348"
-						y="42"
+						y="53"
 						width="50"
 						height="15"
 						key="staticText-16"/>
@@ -314,7 +314,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="348"
-						y="62"
+						y="70"
 						width="94"
 						height="15"
 						key="staticText-17"/>
@@ -327,7 +327,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="349"
-						y="84"
+						y="86"
 						width="202"
 						height="15"
 						key="staticText-18"/>
@@ -340,7 +340,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="374"
-						y="106"
+						y="102"
 						width="90"
 						height="15"
 						key="staticText-19"/>
@@ -353,7 +353,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="348"
-						y="126"
+						y="119"
 						width="22"
 						height="15"
 						key="staticText-20"/>
@@ -366,7 +366,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="374"
-						y="145"
+						y="138"
 						width="40"
 						height="15"
 						key="staticText-21"/>
@@ -378,21 +378,21 @@ WHERE
 				</staticText>
 				<staticText>
 					<reportElement
-						x="69"
-						y="193"
-						width="387"
+						x="70"
+						y="197"
+						width="444"
 						height="15"
 						key="staticText-22"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[Bersama ini kami kirimkan dengan hormat permohonan pensiun bagi Saudara :]]></text>
+				<text><![CDATA[Bersama ini kami kirimkan dengan hormat permohonan pensiun Janda / Duda bagi Saudara :]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
 						x="69"
-						y="233"
+						y="302"
 						width="140"
 						height="15"
 						key="staticText-23"/>
@@ -405,7 +405,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="69"
-						y="213"
+						y="284"
 						width="140"
 						height="15"
 						key="staticText-24"/>
@@ -418,7 +418,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="216"
-						y="213"
+						y="284"
 						width="5"
 						height="15"
 						key="staticText-25"/>
@@ -431,7 +431,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="216"
-						y="233"
+						y="302"
 						width="5"
 						height="15"
 						key="staticText-26"/>
@@ -444,7 +444,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="216"
-						y="253"
+						y="319"
 						width="5"
 						height="15"
 						key="staticText-27"/>
@@ -457,7 +457,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="69"
-						y="253"
+						y="319"
 						width="140"
 						height="15"
 						key="staticText-28"/>
@@ -470,7 +470,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="70"
-						y="313"
+						y="370"
 						width="140"
 						height="15"
 						key="staticText-29"/>
@@ -483,7 +483,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="70"
-						y="293"
+						y="353"
 						width="140"
 						height="15"
 						key="staticText-30"/>
@@ -496,7 +496,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="70"
-						y="273"
+						y="336"
 						width="140"
 						height="15"
 						key="staticText-31"/>
@@ -509,7 +509,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="217"
-						y="313"
+						y="370"
 						width="5"
 						height="15"
 						key="staticText-32"/>
@@ -522,7 +522,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="217"
-						y="293"
+						y="353"
 						width="5"
 						height="15"
 						key="staticText-33"/>
@@ -535,7 +535,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="217"
-						y="273"
+						y="336"
 						width="5"
 						height="15"
 						key="staticText-34"/>
@@ -548,7 +548,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="69"
-						y="393"
+						y="438"
 						width="140"
 						height="15"
 						key="staticText-35"/>
@@ -561,7 +561,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="69"
-						y="373"
+						y="421"
 						width="140"
 						height="15"
 						key="staticText-36"/>
@@ -574,7 +574,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="69"
-						y="353"
+						y="404"
 						width="140"
 						height="15"
 						key="staticText-37"/>
@@ -587,7 +587,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="68"
-						y="333"
+						y="387"
 						width="140"
 						height="15"
 						key="staticText-38"/>
@@ -600,7 +600,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="215"
-						y="333"
+						y="387"
 						width="5"
 						height="15"
 						key="staticText-39"/>
@@ -613,7 +613,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="216"
-						y="353"
+						y="404"
 						width="5"
 						height="15"
 						key="staticText-40"/>
@@ -626,7 +626,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="216"
-						y="373"
+						y="421"
 						width="5"
 						height="15"
 						key="staticText-41"/>
@@ -639,7 +639,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="216"
-						y="393"
+						y="438"
 						width="5"
 						height="15"
 						key="staticText-42"/>
@@ -652,7 +652,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="223"
-						y="413"
+						y="455"
 						width="291"
 						height="22"
 						key="staticText-43"/>
@@ -665,7 +665,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="223"
-						y="458"
+						y="500"
 						width="151"
 						height="18"
 						key="staticText-46"/>
@@ -678,7 +678,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="69"
-						y="439"
+						y="481"
 						width="140"
 						height="15"
 						key="staticText-47"/>
@@ -686,12 +686,12 @@ WHERE
 					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[Alamat rumah sekarang]]></text>
+				<text><![CDATA[Alamat rumah ]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
 						x="216"
-						y="438"
+						y="480"
 						width="5"
 						height="15"
 						key="staticText-48"/>
@@ -704,46 +704,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="69"
-						y="483"
-						width="140"
-						height="15"
-						key="staticText-49"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
-				<text><![CDATA[Alamat rumah pensiun]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="216"
-						y="482"
-						width="5"
-						height="15"
-						key="staticText-50"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
-				<text><![CDATA[:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="223"
-						y="502"
-						width="151"
-						height="14"
-						key="staticText-51"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
-					</textElement>
-				<text><![CDATA[KABUPATEN KLATEN]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="69"
-						y="524"
+						y="522"
 						width="140"
 						height="15"
 						key="staticText-52"/>
@@ -751,12 +712,12 @@ WHERE
 					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[Batas Usia Pensiun]]></text>
+				<text><![CDATA[Meninggal Dunia Tanggal]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
 						x="216"
-						y="523"
+						y="521"
 						width="5"
 						height="15"
 						key="staticText-53"/>
@@ -765,19 +726,6 @@ WHERE
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<text><![CDATA[:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="223"
-						y="523"
-						width="38"
-						height="16"
-						key="staticText-54"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
-					</textElement>
-				<text><![CDATA[T.M.T]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -898,8 +846,8 @@ WHERE
 				</staticText>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="109"
-						y="62"
+						x="110"
+						y="103"
 						width="115"
 						height="15"
 						key="textField-1"/>
@@ -911,8 +859,8 @@ WHERE
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="109"
-						y="84"
+						x="110"
+						y="121"
 						width="115"
 						height="15"
 						key="textField-2"/>
@@ -925,7 +873,7 @@ WHERE
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="223"
-						y="213"
+						y="284"
 						width="233"
 						height="15"
 						key="textField-3"/>
@@ -938,7 +886,7 @@ WHERE
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="224"
-						y="233"
+						y="302"
 						width="53"
 						height="15"
 						key="textField-4"/>
@@ -951,7 +899,7 @@ WHERE
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="224"
-						y="253"
+						y="319"
 						width="53"
 						height="15"
 						key="textField-5"/>
@@ -964,7 +912,7 @@ WHERE
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="224"
-						y="273"
+						y="336"
 						width="52"
 						height="15"
 						key="textField-6"/>
@@ -977,7 +925,7 @@ WHERE
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="224"
-						y="293"
+						y="353"
 						width="23"
 						height="15"
 						key="textField-7"/>
@@ -990,7 +938,7 @@ WHERE
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="246"
-						y="313"
+						y="370"
 						width="211"
 						height="15"
 						key="textField-8"/>
@@ -1003,7 +951,7 @@ WHERE
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="223"
-						y="333"
+						y="387"
 						width="233"
 						height="15"
 						key="textField-9"/>
@@ -1016,7 +964,7 @@ WHERE
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="223"
-						y="353"
+						y="404"
 						width="233"
 						height="15"
 						key="textField-10"/>
@@ -1029,7 +977,7 @@ WHERE
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="224"
-						y="373"
+						y="421"
 						width="233"
 						height="15"
 						key="textField-11"/>
@@ -1042,7 +990,7 @@ WHERE
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="223"
-						y="393"
+						y="438"
 						width="233"
 						height="15"
 						key="textField-12"/>
@@ -1055,7 +1003,7 @@ WHERE
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="224"
-						y="439"
+						y="481"
 						width="233"
 						height="15"
 						key="textField-13"/>
@@ -1067,21 +1015,8 @@ WHERE
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="223"
-						y="483"
-						width="233"
-						height="15"
-						key="textField-14"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{Alamat}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
 						x="311"
-						y="233"
+						y="302"
 						width="110"
 						height="15"
 						key="textField-16"/>
@@ -1094,7 +1029,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="288"
-						y="233"
+						y="302"
 						width="11"
 						height="15"
 						key="staticText-66"/>
@@ -1107,7 +1042,7 @@ WHERE
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="311"
-						y="253"
+						y="319"
 						width="133"
 						height="15"
 						key="textField-17"/>
@@ -1120,7 +1055,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="287"
-						y="253"
+						y="319"
 						width="11"
 						height="15"
 						key="staticText-67"/>
@@ -1133,7 +1068,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="277"
-						y="273"
+						y="336"
 						width="11"
 						height="15"
 						key="staticText-68"/>
@@ -1146,7 +1081,7 @@ WHERE
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="295"
-						y="273"
+						y="336"
 						width="33"
 						height="15"
 						key="textField-18"/>
@@ -1159,7 +1094,7 @@ WHERE
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="288"
-						y="293"
+						y="353"
 						width="23"
 						height="15"
 						key="textField-19"/>
@@ -1172,7 +1107,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="247"
-						y="293"
+						y="353"
 						width="39"
 						height="15"
 						key="staticText-69"/>
@@ -1185,7 +1120,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="316"
-						y="293"
+						y="353"
 						width="39"
 						height="15"
 						key="staticText-70"/>
@@ -1198,7 +1133,7 @@ WHERE
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="369"
-						y="273"
+						y="336"
 						width="119"
 						height="15"
 						key="textField-20"/>
@@ -1211,7 +1146,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="334"
-						y="273"
+						y="336"
 						width="30"
 						height="15"
 						key="staticText-71"/>
@@ -1298,7 +1233,7 @@ WHERE
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="397"
-						y="2"
+						y="13"
 						width="115"
 						height="14"
 						key="textField-1"/>
@@ -1311,7 +1246,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="70"
-						y="2"
+						y="13"
 						width="26"
 						height="15"
 						key="staticText-5"/>
@@ -1324,7 +1259,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="223"
-						y="313"
+						y="370"
 						width="23"
 						height="15"
 						key="staticText-78"/>
@@ -1333,6 +1268,149 @@ WHERE
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<text><![CDATA[Rp.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="70"
+						y="69"
+						width="29"
+						height="15"
+						key="staticText-79"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[Sdr.]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="110"
+						y="69"
+						width="115"
+						height="15"
+						key="textField-21"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nama_pemilik}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="70"
+						y="85"
+						width="155"
+						height="15"
+						key="staticText-80"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[Janda/Duda dari Almarhum :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="70"
+						y="216"
+						width="140"
+						height="15"
+						key="staticText-81"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[Nama]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="217"
+						y="216"
+						width="5"
+						height="15"
+						key="staticText-82"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="224"
+						y="216"
+						width="233"
+						height="15"
+						key="textField-22"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nama_pemilik}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="70"
+						y="234"
+						width="140"
+						height="15"
+						key="staticText-83"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[Alamat rumah sekarang]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="217"
+						y="233"
+						width="5"
+						height="15"
+						key="staticText-84"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="225"
+						y="234"
+						width="233"
+						height="15"
+						key="textField-23"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{Alamat}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="224"
+						y="252"
+						width="75"
+						height="18"
+						key="staticText-85"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
+					</textElement>
+				<text><![CDATA[KABUPATEN ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="70"
+						y="268"
+						width="154"
+						height="15"
+						key="staticText-86"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[Janda / Duda dari Almarhum :]]></text>
 				</staticText>
 			</band>
 		</detail>
