@@ -1076,6 +1076,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         cpns.setNmr_persetujuan(CPNS_NmrPersetujuan_TF.getText());
         cpns.setTmt_persetujuan(sdf.format(CPNS_TMTPersetujuan_Date.getDate()));
         cpns.setKode_operator(TP_Kode_Label.getText().toUpperCase());
+        
         try {
             Controller.ControlData.getKoneksi().insertCPNS(cpns);
             Controller.ControlData.getKoneksi().updatePNS("CPNS", cpns.getNip_baru(), cpns.getId_SuratCPNS().toUpperCase());
@@ -1192,7 +1193,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         nikah.setNama_suami(SN_NamaSuami_TF.getText());
         nikah.setNama_istri(SN_NamaIstri_TF.getText());
         nikah.setKode_operator(TP_Kode_Label.getText().toUpperCase());
-        
+
         try {
             Controller.ControlData.getKoneksi().insertS_Nikah(nikah);
             Controller.ControlData.getKoneksi().updatePNS("NIKAH", pegawai.getNip_baru(), nikah.getId_SuratNikah().toUpperCase());
@@ -1289,13 +1290,12 @@ public class TambahPegawai extends javax.swing.JFrame {
         TP_Nama_Label.setText(nama);
         TP_Kode_Label.setText(id);
     }
-    
-    public void isiNamaSuamiIstri(){
+
+    public void isiNamaSuamiIstri() {
         String jenisKelamin = (String) DU_JenisKelamin_CB.getSelectedItem();
-        if(jenisKelamin.equals("PRIA")){
+        if (jenisKelamin.equals("PRIA")) {
             SN_NamaSuami_TF.setText(DU_Nama_TF.getText());
-        }
-        else{
+        } else {
             SN_NamaIstri_TF.setText(DU_Nama_TF.getText());
         }
     }
@@ -1305,6 +1305,7 @@ public class TambahPegawai extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 try {
                     new TambahPegawai().setVisible(true);
