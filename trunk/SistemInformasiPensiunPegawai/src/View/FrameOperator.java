@@ -61,11 +61,13 @@ public class FrameOperator extends javax.swing.JFrame {
         pegawai_button = new javax.swing.JButton();
         Pensiun_Button = new javax.swing.JButton();
         keluar_button = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         buttonTmbhPeg = new javax.swing.JButton();
         buttonEditPeg = new javax.swing.JButton();
         buttonHpsPeg = new javax.swing.JButton();
         buttonSearch = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         kode_op = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -106,151 +108,99 @@ public class FrameOperator extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         time.setFont(new java.awt.Font("Tahoma", 1, 14));
         time.setText("time");
+        jPanel3.add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 10, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel2.setText("Selamat Datang,");
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, -1, -1));
 
         nama_operator.setFont(new java.awt.Font("Tahoma", 0, 18));
         nama_operator.setText("nama");
+        jPanel3.add(nama_operator, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, -1, -1));
 
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pegawai_button.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         pegawai_button.setText("PEGAWAI");
         pegawai_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pegawai_buttonActionPerformed(evt);
             }
         });
+        jPanel4.add(pegawai_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 184, 37));
 
+        Pensiun_Button.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Pensiun_Button.setText("PENSIUN");
         Pensiun_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Pensiun_ButtonActionPerformed(evt);
             }
         });
+        jPanel4.add(Pensiun_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 184, 37));
 
+        keluar_button.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         keluar_button.setText("Keluar");
         keluar_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 keluar_buttonActionPerformed(evt);
             }
         });
+        jPanel4.add(keluar_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 184, 37));
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(149, 149, 149)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(keluar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pegawai_button, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Pensiun_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(81, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(pegawai_button, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Pensiun_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(keluar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(129, Short.MAX_VALUE))
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PIcture/back1.jpg"))); // NOI18N
+        jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 300));
 
+        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 360, -1));
+
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        buttonTmbhPeg.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         buttonTmbhPeg.setText("Tambah Pegawai");
         buttonTmbhPeg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonTmbhPegActionPerformed(evt);
             }
         });
+        jPanel5.add(buttonTmbhPeg, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 184, 37));
 
-        buttonEditPeg.setText("edit Pegawai");
+        buttonEditPeg.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        buttonEditPeg.setText("Edit Pegawai");
+        buttonEditPeg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEditPegActionPerformed(evt);
+            }
+        });
+        jPanel5.add(buttonEditPeg, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 184, 37));
 
+        buttonHpsPeg.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         buttonHpsPeg.setText("Hapus Pegawai");
+        jPanel5.add(buttonHpsPeg, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 184, 37));
 
+        buttonSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         buttonSearch.setText("Pencarian Pegawai");
         buttonSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonSearchActionPerformed(evt);
             }
         });
+        jPanel5.add(buttonSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 184, 37));
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(149, 149, 149)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonHpsPeg, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonTmbhPeg, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonEditPeg, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(75, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(buttonTmbhPeg, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(buttonEditPeg, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(buttonHpsPeg, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(84, Short.MAX_VALUE))
-        );
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PIcture/back2.jpg"))); // NOI18N
+        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-60, 0, 410, 300));
+
+        jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 70, 350, 300));
 
         kode_op.setFont(new java.awt.Font("Tahoma", 0, 10));
         kode_op.setForeground(new java.awt.Color(255, 255, 255));
         kode_op.setText("id");
         kode_op.setEnabled(false);
+        jPanel3.add(kode_op, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, 22));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(kode_op)
-                        .addGap(285, 285, 285)
-                        .addComponent(jLabel2))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(nama_operator)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 335, Short.MAX_VALUE)
-                        .addComponent(time))
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(time)
-                            .addComponent(nama_operator, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(kode_op, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 870, 360));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 870, 390));
 
         pack();
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -303,6 +253,10 @@ public class FrameOperator extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonTmbhPegActionPerformed
+
+    private void buttonEditPegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditPegActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonEditPegActionPerformed
     public void dataOperator(String nama, String id) {
         nama_operator.setText(nama);
         kode_op.setText(id);
@@ -327,6 +281,8 @@ public class FrameOperator extends javax.swing.JFrame {
     private javax.swing.JButton buttonTmbhPeg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
