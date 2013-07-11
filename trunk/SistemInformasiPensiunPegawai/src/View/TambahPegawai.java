@@ -872,7 +872,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         SN_TglNikah_Date.setDateFormatString("d MMM yyyy");
         Surat_Nikah.add(SN_TglNikah_Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 230, -1));
 
-        SN_simpan_button.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        SN_simpan_button.setFont(new java.awt.Font("Tahoma", 1, 14));
         SN_simpan_button.setText("Simpan");
         SN_simpan_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -881,7 +881,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         });
         Surat_Nikah.add(SN_simpan_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, -1, -1));
 
-        SN_next_button.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        SN_next_button.setFont(new java.awt.Font("Tahoma", 1, 14));
         SN_next_button.setText("Next");
         SN_next_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
