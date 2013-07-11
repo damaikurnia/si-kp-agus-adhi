@@ -44,6 +44,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         Tab_PNS.setEnabledAt(4, false);
         Tab_PNS.setEnabledAt(5, false);
         Tab_PNS.setEnabledAt(6, false);
+        KK_Internal.setVisible(false);
         Clock clock = new Clock();
         clock.showDigitalClock(time);
     }
@@ -291,6 +292,8 @@ public class TambahPegawai extends javax.swing.JFrame {
         KK_NoKK_TF = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        KK_SimpanKK_button = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         time = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -347,6 +350,11 @@ public class TambahPegawai extends javax.swing.JFrame {
         });
 
         jButton2.setText("SIMPAN");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         AK_JK_Combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "LAKI - LAKI", "PEREMPUAN" }));
 
@@ -1106,7 +1114,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         SN_TglNikah_Date.setDateFormatString("d MMM yyyy");
         Surat_Nikah.add(SN_TglNikah_Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 230, -1));
 
-        SN_simpan_button.setFont(new java.awt.Font("Tahoma", 1, 14));
+        SN_simpan_button.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         SN_simpan_button.setText("Simpan");
         SN_simpan_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1115,7 +1123,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         });
         Surat_Nikah.add(SN_simpan_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, -1, -1));
 
-        SN_next_button.setFont(new java.awt.Font("Tahoma", 1, 14));
+        SN_next_button.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         SN_next_button.setText("Next");
         SN_next_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1192,6 +1200,19 @@ public class TambahPegawai extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jTable1);
 
         jPanel8.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 1120, 120));
+
+        KK_SimpanKK_button.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        KK_SimpanKK_button.setText("SIMPAN KK");
+        jPanel8.add(KK_SimpanKK_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, -1, -1));
+
+        jButton4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton4.setText("TAMBAH ANGGOTA KELUARGA");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel8.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 320, -1, -1));
 
         jScrollPane2.setViewportView(jPanel8);
 
@@ -1466,8 +1487,20 @@ public class TambahPegawai extends javax.swing.JFrame {
     }//GEN-LAST:event_DU_KabKota_TFKeyPressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        KK_Internal.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if (KK_Internal.isVisible() == true) {
+            KK_Internal.setVisible(false);
+        } else {
+            KK_Internal.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        KK_Internal.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private int cekAngka(String isian) {
         if (!isian.matches("[0-9]*")) {
@@ -1624,6 +1657,7 @@ public class TambahPegawai extends javax.swing.JFrame {
     private javax.swing.JTextField KK_Provinsi_TF;
     private javax.swing.JTextField KK_RT_TF;
     private javax.swing.JTextField KK_RW_TF;
+    private javax.swing.JButton KK_SimpanKK_button;
     private javax.swing.JTextField Karpeg_Nama_TF;
     private javax.swing.JTextField Karpeg_NipBaru_TF;
     private javax.swing.JTextField Karpeg_NipLama_TF;
@@ -1682,6 +1716,7 @@ public class TambahPegawai extends javax.swing.JFrame {
     private javax.swing.JTabbedPane Tab_PNS;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
