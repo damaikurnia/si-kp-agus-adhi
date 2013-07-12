@@ -323,6 +323,8 @@ public class PencarianPegawai extends javax.swing.JFrame {
                     inputKosong();
                 } else if (cari_txt.getDocument().getLength() < 9) {
                     JOptionPane.showMessageDialog(rootPane, "NIP Pegawai tidak Lengkap","perhatian",JOptionPane.WARNING_MESSAGE);
+                } else if (cari_txt.getDocument().getLength() > 9) {
+                    JOptionPane.showMessageDialog(rootPane, "NIP Pegawai tidak Lengkap","perhatian",JOptionPane.WARNING_MESSAGE);
                 }
                 else if (search.isEmpty()) {
                     JOptionPane.showMessageDialog(rootPane, "data Pegawai tidak ditemukan");
