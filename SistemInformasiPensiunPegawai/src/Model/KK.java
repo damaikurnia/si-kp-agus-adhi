@@ -19,6 +19,8 @@ public class KK {
     private String Kabupaten_Kota;
     private String kode_pos;
     private String provinsi;
+    private String tanggal_penyimpanan_surat;
+    private String kode_operator;
 
     public KK() {
     }
@@ -175,5 +177,33 @@ public class KK {
     public void setProvinsi(String provinsi) {
         this.provinsi = provinsi;
     }
-    
+
+    /**
+     * @return the tanggal_penyimpanan_surat
+     */
+    public String getTanggal_penyimpanan_surat() {
+        return tanggal_penyimpanan_surat;
+    }
+
+    /**
+     * @param tanggal_penyimpanan_surat the tanggal_penyimpanan_surat to set
+     */
+    public void setTanggal_penyimpanan_surat(String tanggal_penyimpanan_surat) {
+        this.tanggal_penyimpanan_surat = tanggal_penyimpanan_surat;
+    }
+
+    /**
+     * @return the kode_operator
+     */
+    public String getKode_operator() {
+        return kode_operator;
+    }
+
+    /**
+     * @param kode_operator the kode_operator to set
+     */
+    public void setKode_operator(String kode_operator) {
+        this.kode_operator = kode_operator;
+    }
+
 }
