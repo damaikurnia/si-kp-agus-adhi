@@ -73,11 +73,10 @@ public class PencarianPegawai extends javax.swing.JFrame {
         P_Kode_Label = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         exit_button = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jInternalFrame_proses.setVisible(true);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14));
         jLabel4.setText("Nama :");
@@ -222,12 +221,10 @@ public class PencarianPegawai extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 0, 12));
         jLabel2.setText("Klik salah satu Pegawai untuk proses lain");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
 
         tabel_cari.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
                 {null, null, null},
                 {null, null, null}
             },
@@ -242,7 +239,7 @@ public class PencarianPegawai extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabel_cari);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 830, 90));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 830, 70));
 
         jPanel4.setBackground(new java.awt.Color(153, 153, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -302,9 +299,12 @@ public class PencarianPegawai extends javax.swing.JFrame {
                 exit_buttonActionPerformed(evt);
             }
         });
-        jPanel3.add(exit_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 360, -1, -1));
+        jPanel3.add(exit_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 330, -1, -1));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 870, 400));
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PIcture/wall1.jpg"))); // NOI18N
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 360));
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 870, 360));
 
         pack();
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -321,7 +321,10 @@ public class PencarianPegawai extends javax.swing.JFrame {
                 List<PNS> search = ControlData.getKoneksi().SearchPNS_NIPLama(cari_txt.getText());
                 if (cari_txt.getText().equalsIgnoreCase("")) {
                     inputKosong();
-                } else if (search.isEmpty()) {
+                } else if (cari_txt.getDocument().getLength() < 9) {
+                    JOptionPane.showMessageDialog(rootPane, "NIP Pegawai tidak Lengkap","perhatian",JOptionPane.WARNING_MESSAGE);
+                }
+                else if (search.isEmpty()) {
                     JOptionPane.showMessageDialog(rootPane, "data Pegawai tidak ditemukan");
                 } else {
                     CariPegawaiTableModel dataPensiun = new CariPegawaiTableModel(search);
@@ -332,6 +335,8 @@ public class PencarianPegawai extends javax.swing.JFrame {
                 List<PNS> search = ControlData.getKoneksi().SearchPNS_NIPBaru(cari_txt.getText());
                 if (cari_txt.getText().equalsIgnoreCase("")) {
                     inputKosong();
+                } else if (cari_txt.getDocument().getLength() < 18) {
+                    JOptionPane.showMessageDialog(rootPane, "NIP Pegawai tidak Lengkap","perhatian",JOptionPane.WARNING_MESSAGE);
                 } else if (search.isEmpty()) {
                     JOptionPane.showMessageDialog(rootPane, "data Pegawai tidak ditemukan");
                 } else {
@@ -479,6 +484,7 @@ public class PencarianPegawai extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
