@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import Model.AnggotaKeluarga;
 import Model.Operator;
 import Model.PNS;
 import Model.SK_CPNS;
@@ -75,7 +76,7 @@ public class ControlData {
     }
 
     public Operator cariPegawai(String id) throws SQLException {
-       PreparedStatement stmt = null;
+        PreparedStatement stmt = null;
         Operator ptr = null;
         ResultSet result = null;
         conn.setAutoCommit(false);
@@ -85,7 +86,7 @@ public class ControlData {
         stmt.setString(1, id);
         result = stmt.executeQuery();
         if (result.next()) {
-            ptr=new Operator();
+            ptr = new Operator();
             ptr.setKode_operator(result.getString(1));
             ptr.setNamaOperator(result.getString(2));
         }
@@ -372,7 +373,7 @@ public class ControlData {
         stmt.executeUpdate();
         conn.commit();
     }
-    
+
     public void insertSK_Karpeg(SK_Karpeg k) throws SQLException {
         PreparedStatement stmt = null;
         conn.setAutoCommit(false);
@@ -389,7 +390,7 @@ public class ControlData {
         stmt.executeUpdate();
         conn.commit();
     }
-    
+
     public void insertS_Nikah(S_Nikah k) throws SQLException {
         PreparedStatement stmt = null;
         conn.setAutoCommit(false);
@@ -402,5 +403,41 @@ public class ControlData {
         stmt.setString(5, k.getKode_operator().toUpperCase());
         stmt.executeUpdate();
         conn.commit();
+    }
+
+    public List<AnggotaKeluarga> tampilAnggotaKeluarga() throws SQLException {
+        PreparedStatement stmt = null;
+        ResultSet result = null;
+        conn.setAutoCommit(false);
+        String query = "SELECT nama_lengkap,nik,jenis_kelamin,tempat_lahir,"
+                + "tanggal_lahir,agama,pendidikan,pekerjaan,status_perkawinan,"
+                + "status_hub_keluarga,kewarganegaraan,no_paspor,no_kitas_kitap,"
+                + "nama_ayah,nama_ibu FROM anggotakeluarga WHERE id_suratKK = ? "
+                + "ORDER BY tanggal_lahir";
+        stmt = conn.prepareStatement(query);
+        result = stmt.executeQuery();
+        List<AnggotaKeluarga> at = new ArrayList<AnggotaKeluarga>();
+        AnggotaKeluarga a;
+        if (result.next()) {
+            a = new AnggotaKeluarga();
+            a.setNama_lengkap(result.getString(1));
+            a.setNik(result.getString(2));
+            a.setJenis_kelamin(result.getString(3));
+            a.setTempat_lahir(result.getString(4));
+            a.setTanggal_lahir(result.getString(5));
+            a.setAgama(result.getString(6));
+            a.setPendidikan(result.getString(7));
+            a.setPekerjaan(result.getString(8));
+            a.setStatus_perkawinan(result.getString(9));
+            a.setStatus_hub_keluarga(result.getString(10));
+            a.setKewarganegaraan(result.getString(11));
+            a.setNo_paspor(result.getString(12));
+            a.setNo_kitas_kitab(result.getString(13));
+            a.setNama_ayah(result.getString(14));
+            a.setNama_ibu(result.getString(15));
+            at.add(a);
+        }
+        conn.commit();
+        return at;
     }
 }

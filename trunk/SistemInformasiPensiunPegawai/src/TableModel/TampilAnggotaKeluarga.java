@@ -27,7 +27,7 @@ public class TampilAnggotaKeluarga extends AbstractTableModel {
     }
 
     public int getColumnCount() {
-        return 15;
+        return 16;
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {
@@ -62,8 +62,10 @@ public class TampilAnggotaKeluarga extends AbstractTableModel {
             case 12:
                 return k.getNo_paspor();
             case 13:
-                return k.getNama_ayah();
+                return k.getNo_kitas_kitab();
             case 14:
+                return k.getNama_ayah();
+            case 15:
                 return k.getNama_ibu();
             default:
                 return "";
@@ -98,10 +100,12 @@ public class TampilAnggotaKeluarga extends AbstractTableModel {
             case 11:
                 return "Kewarganegaraan";
             case 12:
-                return "No Paspor/Kitas";
+                return "No Paspor";
             case 13:
-                return "Nama Ayah";
+                return "No Kitas Kitab";
             case 14:
+                return "Nama Ayah";
+            case 15:
                 return "Nama Ibu";
             default:
                 return "";
