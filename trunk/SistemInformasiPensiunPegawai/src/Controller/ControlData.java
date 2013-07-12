@@ -5,6 +5,7 @@
 package Controller;
 
 import Model.AnggotaKeluarga;
+import Model.KK;
 import Model.Operator;
 import Model.PNS;
 import Model.SK_CPNS;
@@ -404,8 +405,29 @@ public class ControlData {
         stmt.executeUpdate();
         conn.commit();
     }
+    
+    public void insertKK(KK k) throws SQLException {
+        PreparedStatement stmt = null;
+        conn.setAutoCommit(false);
+        String query = "INSERT INTO kk VALUES(?,?,?,?,?,?,?,?,?,?,CURRENT_DATE,?)";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, k.getId_Suratkk().toUpperCase());
+        stmt.setString(2, k.getNama_kk().toUpperCase());
+        stmt.setString(3, k.getAlamat().toUpperCase());
+        stmt.setString(4, k.getRT().toUpperCase());
+        stmt.setString(5, k.getRW().toUpperCase());
+        stmt.setString(6, k.getKelurahan_Desa().toUpperCase());
+        stmt.setString(7, k.getKecamatan().toUpperCase());
+        stmt.setString(8, k.getKabupaten_Kota().toUpperCase());
+        stmt.setString(9, k.getKode_pos().toUpperCase());
+        stmt.setString(10, k.getProvinsi().toUpperCase());
+        stmt.setString(11, k.getKode_operator().toUpperCase());
+        
+        stmt.executeUpdate();
+        conn.commit();
+    }
 
-    public List<AnggotaKeluarga> tampilAnggotaKeluarga() throws SQLException {
+    public List<AnggotaKeluarga> tampilAnggotaKeluarga(KK k) throws SQLException {
         PreparedStatement stmt = null;
         ResultSet result = null;
         conn.setAutoCommit(false);
@@ -415,6 +437,7 @@ public class ControlData {
                 + "nama_ayah,nama_ibu FROM anggotakeluarga WHERE id_suratKK = ? "
                 + "ORDER BY tanggal_lahir";
         stmt = conn.prepareStatement(query);
+        stmt.setString(1, k.getId_Suratkk().toUpperCase());
         result = stmt.executeQuery();
         List<AnggotaKeluarga> at = new ArrayList<AnggotaKeluarga>();
         AnggotaKeluarga a;
