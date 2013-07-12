@@ -1193,7 +1193,15 @@ public class TambahPegawai extends javax.swing.JFrame {
             new String [] {
                 "No", "Nama lengkap", "NIK", "JK", "tempat Lahir", "Tanggal Lahir", "Agama", "Pendidikan", "Pekerjaan", "Status Perkawinan", "Hub Keluarga", "Kewarganegaraan", "No Paspor/Kitas", "Nama Ayah", "Nama Ibu"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane3.setViewportView(jTable1);
 
         jPanel8.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 1120, 120));

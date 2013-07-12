@@ -21,29 +21,10 @@ public class AnggotaKeluarga {
     private String status_hub_keluarga;
     private String kewarganegaraan;
     private String no_paspor;
-    private String no_kitas_kitap;
     private String nama_ayah;
     private String nama_ibu;
 
     public AnggotaKeluarga() {
-    }
-
-    public AnggotaKeluarga(String nik, String nama_lengkap, String jenis_kelamin, String tempat_lahir, String tanggal_lahir, String agama, String pendidikan, String pekerjaan, String status_perkawinan, String status_hub_keluarga, String kewarganegaraan, String no_paspor, String no_kitas_kitap, String nama_ayah, String nama_ibu) {
-        this.nik = nik;
-        this.nama_lengkap = nama_lengkap;
-        this.jenis_kelamin = jenis_kelamin;
-        this.tempat_lahir = tempat_lahir;
-        this.tanggal_lahir = tanggal_lahir;
-        this.agama = agama;
-        this.pendidikan = pendidikan;
-        this.pekerjaan = pekerjaan;
-        this.status_perkawinan = status_perkawinan;
-        this.status_hub_keluarga = status_hub_keluarga;
-        this.kewarganegaraan = kewarganegaraan;
-        this.no_paspor = no_paspor;
-        this.no_kitas_kitap = no_kitas_kitap;
-        this.nama_ayah = nama_ayah;
-        this.nama_ibu = nama_ibu;
     }
 
     /**
@@ -215,20 +196,6 @@ public class AnggotaKeluarga {
     }
 
     /**
-     * @return the no_kitas_kitap
-     */
-    public String getNo_kitas_kitap() {
-        return no_kitas_kitap;
-    }
-
-    /**
-     * @param no_kitas_kitap the no_kitas_kitap to set
-     */
-    public void setNo_kitas_kitap(String no_kitas_kitap) {
-        this.no_kitas_kitap = no_kitas_kitap;
-    }
-
-    /**
      * @return the nama_ayah
      */
     public String getNama_ayah() {
@@ -255,6 +222,4 @@ public class AnggotaKeluarga {
     public void setNama_ibu(String nama_ibu) {
         this.nama_ibu = nama_ibu;
     }
-
-    
 }
