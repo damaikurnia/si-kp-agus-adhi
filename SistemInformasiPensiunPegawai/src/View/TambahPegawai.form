@@ -115,32 +115,6 @@
                           </Group>
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="AK_JK_Combo" min="-2" max="-2" attributes="0"/>
-                                      <Component id="AK_TempatLahir_TF" min="-2" pref="182" max="-2" attributes="0"/>
-                                      <Component id="AK_NIK_TF" min="-2" pref="182" max="-2" attributes="0"/>
-                                      <Component id="AK_Nama_TF" min="-2" pref="182" max="-2" attributes="0"/>
-                                      <Component id="AK_TempatLahir_Date" alignment="0" min="-2" pref="123" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel88" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel89" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel90" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel91" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel92" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="AK_NamaIbu_TF" min="-2" pref="182" max="-2" attributes="0"/>
-                                      <Component id="AK_NamaAyah_TF" min="-2" pref="182" max="-2" attributes="0"/>
-                                      <Component id="AK_NoPaspor_TF" min="-2" pref="182" max="-2" attributes="0"/>
-                                      <Component id="AK_HubKeluarga_Combo" min="-2" max="-2" attributes="0"/>
-                                      <Component id="AK_Kewarganegaraan_Combo" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Component id="AK_Agama_Combo" min="-2" max="-2" attributes="0"/>
                               <Component id="AK_Pendidikan_Combo" min="-2" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Component id="AK_Pekerjaan_Combo" min="-2" pref="134" max="-2" attributes="0"/>
@@ -152,6 +126,34 @@
                                   <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="AK_StatusKawin_Combo" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="AK_JK_Combo" min="-2" max="-2" attributes="0"/>
+                                      <Component id="AK_TempatLahir_TF" min="-2" pref="182" max="-2" attributes="0"/>
+                                      <Component id="AK_NIK_TF" min="-2" pref="182" max="-2" attributes="0"/>
+                                      <Component id="AK_Nama_TF" min="-2" pref="182" max="-2" attributes="0"/>
+                                      <Component id="AK_TempatLahir_Date" alignment="0" min="-2" pref="123" max="-2" attributes="0"/>
+                                      <Component id="AK_Agama_Combo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel88" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel89" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel90" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel91" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel92" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel93" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="AK_NamaIbu_TF" pref="182" max="32767" attributes="0"/>
+                                      <Component id="AK_NamaAyah_TF" pref="182" max="32767" attributes="0"/>
+                                      <Component id="AK_NoPaspor_TF" pref="182" max="32767" attributes="0"/>
+                                      <Component id="AK_HubKeluarga_Combo" min="-2" max="-2" attributes="0"/>
+                                      <Component id="AK_Kewarganegaraan_Combo" min="-2" max="-2" attributes="0"/>
+                                      <Component id="AK_NoKitasKitap_TF" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                           <EmptySpace pref="52" max="32767" attributes="0"/>
                       </Group>
@@ -184,41 +186,49 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel29" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel91" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="AK_TempatLahir_TF" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="AK_NamaAyah_TF" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="AK_NoKitasKitap_TF" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel93" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel30" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel92" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="AK_NamaIbu_TF" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel30" min="-2" max="-2" attributes="0"/>
+                                      <Component id="AK_TempatLahir_Date" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel37" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="AK_Agama_Combo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel92" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="AK_NamaIbu_TF" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jLabel38" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="AK_Pendidikan_Combo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jLabel50" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="AK_Pekerjaan_Combo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="AK_Pekerjaan_TF" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jLabel87" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="AK_StatusKawin_Combo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <Component id="AK_TempatLahir_Date" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel37" min="-2" max="-2" attributes="0"/>
-                              <Component id="AK_Agama_Combo" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel38" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="AK_Pendidikan_Combo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel50" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="AK_Pekerjaan_Combo" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="AK_Pekerjaan_TF" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel87" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="AK_StatusKawin_Combo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="AK_NamaAyah_TF" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel91" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace pref="51" max="32767" attributes="0"/>
                       </Group>
@@ -283,7 +293,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel90">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="No Paspor/ KITAS"/>
+                    <Property name="text" type="java.lang.String" value="No Paspor"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel91">
@@ -396,11 +406,12 @@
                 <Component class="javax.swing.JComboBox" name="AK_HubKeluarga_Combo">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
+                      <StringArray count="5">
                         <StringItem index="0" value="KEPALA KELUARGA"/>
-                        <StringItem index="1" value="ISTRI"/>
-                        <StringItem index="2" value="ANAK"/>
-                        <StringItem index="3" value="SAUDARA"/>
+                        <StringItem index="1" value="SUAMI"/>
+                        <StringItem index="2" value="ISTRI"/>
+                        <StringItem index="3" value="ANAK"/>
+                        <StringItem index="4" value="SAUDARA"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -416,6 +427,13 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="AK_Pekerjaan_TF">
+                </Component>
+                <Component class="javax.swing.JTextField" name="AK_NoKitasKitap_TF">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel93">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="No Kitas/Kitap"/>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
@@ -2689,7 +2707,7 @@
                             <Component class="javax.swing.JTable" name="jTable1">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                  <Table columnCount="15" rowCount="6">
+                                  <Table columnCount="16" rowCount="6">
                                     <Column editable="true" title="No" type="java.lang.Integer"/>
                                     <Column editable="true" title="Nama lengkap" type="java.lang.Object"/>
                                     <Column editable="true" title="NIK" type="java.lang.Object"/>
@@ -2703,12 +2721,18 @@
                                     <Column editable="true" title="Hub Keluarga" type="java.lang.Object"/>
                                     <Column editable="true" title="Kewarganegaraan" type="java.lang.Object"/>
                                     <Column editable="true" title="No Paspor/Kitas" type="java.lang.Object"/>
+                                    <Column editable="true" title="No Kitas Kitab" type="java.lang.Object"/>
                                     <Column editable="true" title="Nama Ayah" type="java.lang.Object"/>
                                     <Column editable="true" title="Nama Ibu" type="java.lang.Object"/>
                                   </Table>
                                 </Property>
                                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                   <TableColumnModel selectionModel="0">
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
                                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                                       <Title/>
                                       <Editor/>

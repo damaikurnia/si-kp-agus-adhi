@@ -21,6 +21,7 @@ public class AnggotaKeluarga {
     private String status_hub_keluarga;
     private String kewarganegaraan;
     private String no_paspor;
+    private String no_kitas_kitab;
     private String nama_ayah;
     private String nama_ibu;
 
@@ -222,4 +223,19 @@ public class AnggotaKeluarga {
     public void setNama_ibu(String nama_ibu) {
         this.nama_ibu = nama_ibu;
     }
+
+    /**
+     * @return the no_kitas_kitab
+     */
+    public String getNo_kitas_kitab() {
+        return no_kitas_kitab;
+    }
+
+    /**
+     * @param no_kitas_kitab the no_kitas_kitab to set
+     */
+    public void setNo_kitas_kitab(String no_kitas_kitab) {
+        this.no_kitas_kitab = no_kitas_kitab;
+    }
+    
 }
