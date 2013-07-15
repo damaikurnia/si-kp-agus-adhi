@@ -527,7 +527,7 @@ public class ControlData {
         conn.commit();
     }
 
-    public List<AnggotaKeluarga> tampilAnggotaKeluarga(KK k) throws SQLException {
+    public List<AnggotaKeluarga> tampilAnggotaKeluarga(String idSuratKK) throws SQLException {
         PreparedStatement stmt = null;
         ResultSet result = null;
         conn.setAutoCommit(false);
@@ -537,7 +537,7 @@ public class ControlData {
                 + "nama_ayah,nama_ibu FROM anggotakeluarga WHERE id_suratKK = ? "
                 + "ORDER BY tanggal_lahir";
         stmt = conn.prepareStatement(query);
-        stmt.setString(1, k.getId_Suratkk().toUpperCase());
+        stmt.setString(1, idSuratKK);
         result = stmt.executeQuery();
         List<AnggotaKeluarga> at = new ArrayList<AnggotaKeluarga>();
         AnggotaKeluarga a;
@@ -567,7 +567,7 @@ public class ControlData {
     public void insertAnggotaKeluarga(AnggotaKeluarga k) throws SQLException {
         PreparedStatement stmt = null;
         conn.setAutoCommit(false);
-        String query = "INSERT INTO anggotakeluarga VALUES('105314024','Paimin','L','Tangerang','2010-01-02','Kristen','Mahasiswa','-','belum kawin','anak','WNI','-','-','A','B','0012999222')";
+        String query = "INSERT INTO anggotakeluarga VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, k.getNik().toUpperCase());
         stmt.setString(2, k.getNama_lengkap().toUpperCase());

@@ -132,7 +132,7 @@
                                       <Component id="AK_TempatLahir_TF" min="-2" pref="182" max="-2" attributes="0"/>
                                       <Component id="AK_NIK_TF" min="-2" pref="182" max="-2" attributes="0"/>
                                       <Component id="AK_Nama_TF" min="-2" pref="182" max="-2" attributes="0"/>
-                                      <Component id="AK_TempatLahir_Date" alignment="0" min="-2" pref="123" max="-2" attributes="0"/>
+                                      <Component id="AK_TanggalLahir_Date" alignment="0" min="-2" pref="123" max="-2" attributes="0"/>
                                       <Component id="AK_Agama_Combo" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
@@ -195,7 +195,7 @@
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel30" min="-2" max="-2" attributes="0"/>
-                                      <Component id="AK_TempatLahir_Date" min="-2" max="-2" attributes="0"/>
+                                      <Component id="AK_TanggalLahir_Date" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -338,9 +338,12 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="com.toedter.calendar.JDateChooser" name="AK_TempatLahir_Date">
+                <Component class="com.toedter.calendar.JDateChooser" name="AK_TanggalLahir_Date">
                 </Component>
                 <Component class="javax.swing.JTextField" name="AK_NoPaspor_TF">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="-"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="AK_NamaAyah_TF">
                 </Component>
@@ -392,6 +395,9 @@
                       </StringArray>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AK_Pekerjaan_ComboActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="AK_StatusKawin_Combo">
                   <Properties>
@@ -427,8 +433,14 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="AK_Pekerjaan_TF">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="-"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="AK_NoKitasKitap_TF">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="-"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel93">
                   <Properties>
@@ -2717,7 +2729,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTable" name="jTable1">
+                            <Component class="javax.swing.JTable" name="KK_TabelAnggotaKel_Table">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                   <Table columnCount="16" rowCount="6">
