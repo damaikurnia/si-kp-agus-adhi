@@ -1546,9 +1546,6 @@ public class TambahPegawai extends javax.swing.JFrame {
     private void AK_Simpan_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AK_Simpan_buttonActionPerformed
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String pekerjaan = (String) AK_Pekerjaan_Combo.getSelectedItem();
-        if(!pekerjaan.equals("Lainnya...")){
-            
-        }
         
         AnggotaKeluarga ak = new AnggotaKeluarga();
         ak.setNik(AK_NIK_TF.getText());
