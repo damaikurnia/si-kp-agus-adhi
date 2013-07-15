@@ -99,17 +99,17 @@ public class ProsesPensiun extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabel_cari = new javax.swing.JTable();
+        jLabel17 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         exit_button = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         P_Kode_Label = new javax.swing.JLabel();
         P_Nama_Label = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        inter_proses_meninggal.setVisible(true);
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -260,13 +260,13 @@ public class ProsesPensiun extends javax.swing.JFrame {
         time.setText("time");
         jPanel3.add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 10, -1, -1));
 
-        jPanel4.setBackground(new java.awt.Color(153, 153, 255));
+        jPanel4.setBackground(new java.awt.Color(102, 51, 0));
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jenis_label.setFont(new java.awt.Font("Tahoma", 1, 14));
         jenis_label.setText("Pilih Jenis Pensiun");
-        jPanel4.add(jenis_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, -1, 30));
+        jPanel4.add(jenis_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, -1, 30));
 
         nip_TF.setFont(new java.awt.Font("Tahoma", 0, 12));
         nip_TF.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -291,15 +291,15 @@ public class ProsesPensiun extends javax.swing.JFrame {
                 combo_jenisPensiunActionPerformed(evt);
             }
         });
-        jPanel4.add(combo_jenisPensiun, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 230, -1));
+        jPanel4.add(combo_jenisPensiun, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 230, -1));
 
         nip_br1.setFont(new java.awt.Font("Tahoma", 1, 14));
         nip_br1.setText("Masukan NIP");
         jPanel4.add(nip_br1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 18));
+        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel2.setText("Data Pegawai yang diproses");
-        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, -1, -1));
+        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, -1, -1));
 
         tabel_cari.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -311,9 +311,13 @@ public class ProsesPensiun extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabel_cari);
 
-        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 520, 60));
+        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 520, 60));
 
-        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 540, 290));
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PIcture/wall1.jpg"))); // NOI18N
+        jLabel17.setText("jLabel17");
+        jPanel4.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 540, 210));
+
+        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 560, 230));
 
         jLabel3.setFont(new java.awt.Font("Arial Black", 1, 18));
         jLabel3.setText("Proses Pensiun Pegawai");
@@ -325,7 +329,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
                 exit_buttonActionPerformed(evt);
             }
         });
-        jPanel3.add(exit_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 360, -1, -1));
+        jPanel3.add(exit_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 330, -1, -1));
 
         jLabel5.setText("Selamat Datang,");
         jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -340,7 +344,10 @@ public class ProsesPensiun extends javax.swing.JFrame {
         jLabel8.setText("-");
         jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, -1));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 870, 400));
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PIcture/wall1.jpg"))); // NOI18N
+        jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 360));
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 870, 360));
 
         pack();
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -683,6 +690,8 @@ public class ProsesPensiun extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
