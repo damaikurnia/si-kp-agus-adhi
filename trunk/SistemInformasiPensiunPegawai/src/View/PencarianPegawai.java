@@ -67,6 +67,7 @@ public class PencarianPegawai extends javax.swing.JFrame {
         cari_txt = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         combo_jenis = new javax.swing.JComboBox();
+        jLabel9 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         P_Nama_Label = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -241,8 +242,8 @@ public class PencarianPegawai extends javax.swing.JFrame {
 
         jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 830, 70));
 
-        jPanel4.setBackground(new java.awt.Color(153, 153, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         nip_br.setFont(new java.awt.Font("Tahoma", 1, 14));
@@ -273,6 +274,9 @@ public class PencarianPegawai extends javax.swing.JFrame {
             }
         });
         jPanel4.add(combo_jenis, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 110, -1));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PIcture/wall1.jpg"))); // NOI18N
+        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 520, 110));
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 540, 130));
 
@@ -488,6 +492,7 @@ public class PencarianPegawai extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

@@ -12,19 +12,20 @@ package View;
 
 import Controller.ConnMySql;
 import Controller.ControlData;
-import Model.Operator;
+import Model.DataMeninggal;
 import Model.PNS;
 import TableModel.DataProsesPensiunTableModel;
 import TableModel.RataTengah;
 import java.awt.Color;
 import java.sql.Connection;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.table.TableCellRenderer;
 import net.sf.jasperreports.engine.JRPrintPage;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -48,6 +49,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
         combo_jenisPensiun.setVisible(false);
         tabel_cari.getColumnModel().getColumn(1).setCellRenderer(tengah);
         inter_proses_meninggal.setVisible(false);
+        cetak_internal.setEnabled(false);
     }
 
     /** This method is called from within the constructor to
@@ -78,6 +80,11 @@ public class ProsesPensiun extends javax.swing.JFrame {
         label_sumai_istri = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         pekerjaan = new javax.swing.JTextField();
+        batal_internal = new javax.swing.JButton();
+        simpan_internal = new javax.swing.JButton();
+        cetak_internal = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
+        no_surat_kematian = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -112,10 +119,10 @@ public class ProsesPensiun extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Data Keluarga :");
-        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 100, -1));
+        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 100, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel7.setText("Tanggal meninggal");
+        jLabel7.setText("No Surat kematian");
         jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -129,7 +136,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
         NIP_inter_meninggal.setFont(new java.awt.Font("Tahoma", 1, 12));
         NIP_inter_meninggal.setEnabled(false);
         jPanel5.add(NIP_inter_meninggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 170, -1));
-        jPanel5.add(date_meninggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 170, -1));
+        jPanel5.add(date_meninggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 170, -1));
 
         jk_label.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jk_label.setText("....");
@@ -145,31 +152,57 @@ public class ProsesPensiun extends javax.swing.JFrame {
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel12.setText("Nama");
-        jPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, -1, 20));
+        jPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, -1, 20));
 
         nm_anggotaKel.setFont(new java.awt.Font("Tahoma", 1, 12));
         nm_anggotaKel.setEnabled(false);
-        jPanel5.add(nm_anggotaKel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 170, -1));
+        jPanel5.add(nm_anggotaKel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 170, -1));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel13.setText("Alamat");
-        jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, 20));
+        jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, -1, 20));
 
         alamat.setFont(new java.awt.Font("Tahoma", 1, 12));
         alamat.setEnabled(false);
-        jPanel5.add(alamat, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 350, -1));
+        jPanel5.add(alamat, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 350, -1));
 
         label_sumai_istri.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         label_sumai_istri.setText("....");
-        jPanel5.add(label_sumai_istri, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, -1, -1));
+        jPanel5.add(label_sumai_istri, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel14.setText("Pekerjaan");
-        jPanel5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, -1, 20));
+        jPanel5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, -1, 20));
 
         pekerjaan.setFont(new java.awt.Font("Tahoma", 1, 12));
         pekerjaan.setEnabled(false);
-        jPanel5.add(pekerjaan, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 350, -1));
+        jPanel5.add(pekerjaan, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 350, -1));
+
+        batal_internal.setText("Batal");
+        batal_internal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                batal_internalActionPerformed(evt);
+            }
+        });
+        jPanel5.add(batal_internal, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 360, -1, -1));
+
+        simpan_internal.setText("Simpan");
+        simpan_internal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                simpan_internalActionPerformed(evt);
+            }
+        });
+        jPanel5.add(simpan_internal, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 360, -1, -1));
+
+        cetak_internal.setText("Cetak");
+        jPanel5.add(cetak_internal, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 360, -1, -1));
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel15.setText("Tanggal meninggal");
+        jPanel5.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
+
+        no_surat_kematian.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jPanel5.add(no_surat_kematian, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 170, -1));
 
         javax.swing.GroupLayout inter_proses_meninggalLayout = new javax.swing.GroupLayout(inter_proses_meninggal.getContentPane());
         inter_proses_meninggal.getContentPane().setLayout(inter_proses_meninggalLayout);
@@ -180,11 +213,11 @@ public class ProsesPensiun extends javax.swing.JFrame {
         inter_proses_meninggalLayout.setVerticalGroup(
             inter_proses_meninggalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(inter_proses_meninggalLayout.createSequentialGroup()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        getContentPane().add(inter_proses_meninggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 570, 400));
+        getContentPane().add(inter_proses_meninggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 570, 440));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -404,8 +437,8 @@ public class ProsesPensiun extends javax.swing.JFrame {
                     String Nama = tabel_cari.getValueAt(i, 1).toString();
                     String jk = ControlData.getKoneksi().cariJK(NIP);
                     String nmAnggotakel = ControlData.getKoneksi().cariAnggotaKel(NIP);
-                    String alamatKel=ControlData.getKoneksi().cariAlamat(NIP);
-                    String Pekerjaan=ControlData.getKoneksi().cariPekerjaan(NIP);
+                    String alamatKel = ControlData.getKoneksi().cariAlamat(NIP);
+                    String Pekerjaan = ControlData.getKoneksi().cariPekerjaan(NIP);
                     NIP_inter_meninggal.setText(NIP);
                     nama_inter_meninggal.setText(Nama);
                     if (jk.matches("L")) {
@@ -433,6 +466,35 @@ public class ProsesPensiun extends javax.swing.JFrame {
         inputAngka(nip_TF.getText());
         nip_TF.setBackground(Color.white);
     }//GEN-LAST:event_nip_TFKeyReleased
+
+    private void batal_internalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_batal_internalActionPerformed
+        inter_proses_meninggal.setVisible(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_batal_internalActionPerformed
+
+    private void simpan_internalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpan_internalActionPerformed
+        try {
+            String no = no_surat_kematian.getText();
+            String nama = nama_inter_meninggal.getText();
+            String nip = NIP_inter_meninggal.getText();
+            Date tgl = date_meninggal.getDate();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String tanggal = sdf.format(tgl);
+            String angg_nama = nm_anggotaKel.getText();
+            String angg_alamat = alamat.getText();
+            String angg_pekerjaan = pekerjaan.getText();
+            DataMeninggal dm = new DataMeninggal(no, nama, nip, tanggal, angg_nama, angg_alamat, angg_pekerjaan);
+            ControlData.getKoneksi().insertDataMeninggal(dm);
+            JOptionPane.showMessageDialog(rootPane, "data disimpan");
+            simpan_internal.setEnabled(false);
+            cetak_internal.setEnabled(true);
+            batal_internal.setText("Keluar");
+            // TODO add your handling code here:
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, "data gagal disimpan");
+            Logger.getLogger(ProsesPensiun.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_simpan_internalActionPerformed
     private JasperPrint multipageLinking(JasperPrint page1, JasperPrint page2) {
         List<JRPrintPage> pages = page2.getPages();
         for (int count = 0; count < pages.size(); count++) {
@@ -607,7 +669,9 @@ public class ProsesPensiun extends javax.swing.JFrame {
     private javax.swing.JLabel P_Kode_Label;
     private javax.swing.JLabel P_Nama_Label;
     private javax.swing.JTextField alamat;
+    private javax.swing.JButton batal_internal;
     private javax.swing.JButton button_proses;
+    private javax.swing.JButton cetak_internal;
     private javax.swing.JComboBox combo_jenisPensiun;
     private com.toedter.calendar.JDateChooser date_meninggal;
     private javax.swing.JButton exit_button;
@@ -618,6 +682,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -639,7 +704,9 @@ public class ProsesPensiun extends javax.swing.JFrame {
     private javax.swing.JTextField nip_TF;
     private javax.swing.JLabel nip_br1;
     private javax.swing.JTextField nm_anggotaKel;
+    private javax.swing.JTextField no_surat_kematian;
     private javax.swing.JTextField pekerjaan;
+    private javax.swing.JButton simpan_internal;
     private javax.swing.JTable tabel_cari;
     private javax.swing.JLabel time;
     // End of variables declaration//GEN-END:variables

@@ -61,14 +61,15 @@ public class FrameOperator extends javax.swing.JFrame {
         pegawai_button = new javax.swing.JButton();
         Pensiun_Button = new javax.swing.JButton();
         keluar_button = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         buttonTmbhPeg = new javax.swing.JButton();
         buttonEditPeg = new javax.swing.JButton();
         buttonHpsPeg = new javax.swing.JButton();
         buttonSearch = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         kode_op = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -112,7 +113,7 @@ public class FrameOperator extends javax.swing.JFrame {
 
         time.setFont(new java.awt.Font("Tahoma", 1, 14));
         time.setText("time");
-        jPanel3.add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 10, -1, -1));
+        jPanel3.add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel2.setText("Selamat Datang,");
@@ -122,77 +123,79 @@ public class FrameOperator extends javax.swing.JFrame {
         nama_operator.setText("nama");
         jPanel3.add(nama_operator, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, -1, -1));
 
+        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pegawai_button.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        pegawai_button.setFont(new java.awt.Font("Tahoma", 1, 12));
         pegawai_button.setText("PEGAWAI");
         pegawai_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pegawai_buttonActionPerformed(evt);
             }
         });
-        jPanel4.add(pegawai_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 184, 37));
+        jPanel4.add(pegawai_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 184, 37));
 
-        Pensiun_Button.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Pensiun_Button.setFont(new java.awt.Font("Tahoma", 1, 12));
         Pensiun_Button.setText("PENSIUN");
         Pensiun_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Pensiun_ButtonActionPerformed(evt);
             }
         });
-        jPanel4.add(Pensiun_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 184, 37));
+        jPanel4.add(Pensiun_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 184, 37));
 
-        keluar_button.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        keluar_button.setFont(new java.awt.Font("Tahoma", 1, 12));
         keluar_button.setText("Keluar");
         keluar_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 keluar_buttonActionPerformed(evt);
             }
         });
-        jPanel4.add(keluar_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 184, 37));
+        jPanel4.add(keluar_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 184, 37));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PIcture/back1.jpg"))); // NOI18N
-        jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 300));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PIcture/wall1.jpg"))); // NOI18N
+        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 340, 200));
 
-        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 360, -1));
+        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 360, 220));
 
+        jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        buttonTmbhPeg.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        buttonTmbhPeg.setFont(new java.awt.Font("Tahoma", 1, 12));
         buttonTmbhPeg.setText("Tambah Pegawai");
         buttonTmbhPeg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonTmbhPegActionPerformed(evt);
             }
         });
-        jPanel5.add(buttonTmbhPeg, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 184, 37));
+        jPanel5.add(buttonTmbhPeg, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 184, 37));
 
-        buttonEditPeg.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        buttonEditPeg.setFont(new java.awt.Font("Tahoma", 1, 12));
         buttonEditPeg.setText("Edit Pegawai");
         buttonEditPeg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonEditPegActionPerformed(evt);
             }
         });
-        jPanel5.add(buttonEditPeg, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 184, 37));
+        jPanel5.add(buttonEditPeg, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 184, 37));
 
-        buttonHpsPeg.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        buttonHpsPeg.setFont(new java.awt.Font("Tahoma", 1, 12));
         buttonHpsPeg.setText("Hapus Pegawai");
-        jPanel5.add(buttonHpsPeg, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 184, 37));
+        jPanel5.add(buttonHpsPeg, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 184, 37));
 
-        buttonSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        buttonSearch.setFont(new java.awt.Font("Tahoma", 1, 12));
         buttonSearch.setText("Pencarian Pegawai");
         buttonSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonSearchActionPerformed(evt);
             }
         });
-        jPanel5.add(buttonSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 184, 37));
+        jPanel5.add(buttonSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 184, 37));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PIcture/back2.jpg"))); // NOI18N
-        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-60, 0, 410, 300));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PIcture/wall1.jpg"))); // NOI18N
+        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 330, 230));
 
-        jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 70, 350, 300));
+        jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 70, 350, 250));
 
         kode_op.setFont(new java.awt.Font("Tahoma", 0, 10));
         kode_op.setForeground(new java.awt.Color(255, 255, 255));
@@ -200,7 +203,10 @@ public class FrameOperator extends javax.swing.JFrame {
         kode_op.setEnabled(false);
         jPanel3.add(kode_op, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, 22));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 870, 390));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PIcture/wall1.jpg"))); // NOI18N
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 360));
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 870, 360));
 
         pack();
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -281,8 +287,9 @@ public class FrameOperator extends javax.swing.JFrame {
     private javax.swing.JButton buttonTmbhPeg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
