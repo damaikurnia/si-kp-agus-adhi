@@ -10,6 +10,7 @@
  */
 package View;
 
+import Model.KK;
 import Model.Operator;
 import Model.PNS;
 import Model.SK_CPNS;
@@ -45,6 +46,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         Tab_PNS.setEnabledAt(5, false);
         Tab_PNS.setEnabledAt(6, false);
         KK_Internal.setVisible(false);
+        KK_TambahAnggota_button.setEnabled(false);
         Clock clock = new Clock();
         clock.showDigitalClock(time);
     }
@@ -76,8 +78,8 @@ public class TambahPegawai extends javax.swing.JFrame {
         jLabel90 = new javax.swing.JLabel();
         jLabel91 = new javax.swing.JLabel();
         jLabel92 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        AK_Batal_button = new javax.swing.JButton();
+        AK_Simpan_button = new javax.swing.JButton();
         AK_Nama_TF = new javax.swing.JTextField();
         AK_NIK_TF = new javax.swing.JTextField();
         AK_TempatLahir_TF = new javax.swing.JTextField();
@@ -131,6 +133,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         DU_JenisKelamin_CB = new javax.swing.JComboBox();
         Alamat8 = new javax.swing.JLabel();
         DU_StatusHub_CB = new javax.swing.JComboBox();
+        Alamat9 = new javax.swing.JLabel();
         SK_CPNS = new javax.swing.JPanel();
         CPNS_simpan_button = new javax.swing.JButton();
         CPNS_next_button = new javax.swing.JButton();
@@ -287,7 +290,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         jLabel64 = new javax.swing.JLabel();
         jLabel63 = new javax.swing.JLabel();
         KK_Provinsi_TF = new javax.swing.JTextField();
-        jTextField52 = new javax.swing.JTextField();
+        KK_KodePos_TF = new javax.swing.JTextField();
         KK_KabKota_TF = new javax.swing.JTextField();
         KK_Kec_TF = new javax.swing.JTextField();
         jLabel59 = new javax.swing.JLabel();
@@ -295,7 +298,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         KK_SimpanKK_button = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        KK_TambahAnggota_button = new javax.swing.JButton();
         time = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -344,21 +347,21 @@ public class TambahPegawai extends javax.swing.JFrame {
 
         jLabel92.setText("Nama Ibu");
 
-        jButton1.setText("BATAL");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        AK_Batal_button.setText("BATAL");
+        AK_Batal_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                AK_Batal_buttonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("SIMPAN");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        AK_Simpan_button.setText("SIMPAN");
+        AK_Simpan_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                AK_Simpan_buttonActionPerformed(evt);
             }
         });
 
-        AK_JK_Combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "LAKI - LAKI", "PEREMPUAN" }));
+        AK_JK_Combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "L", "P" }));
 
         AK_Agama_Combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ISLAM", "KRISTEN", "KATOLIK", "HINDU", "BUDHA", "KHONGHUCU" }));
 
@@ -398,9 +401,9 @@ public class TambahPegawai extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(AK_Pekerjaan_TF, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(47, 47, 47)
-                        .addComponent(jButton2)
+                        .addComponent(AK_Simpan_button)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1))
+                        .addComponent(AK_Batal_button))
                     .addComponent(AK_StatusKawin_Combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -477,8 +480,8 @@ public class TambahPegawai extends javax.swing.JFrame {
                             .addComponent(jLabel50)
                             .addComponent(AK_Pekerjaan_Combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(AK_Pekerjaan_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2)
-                            .addComponent(jButton1))
+                            .addComponent(AK_Simpan_button)
+                            .addComponent(AK_Batal_button))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel87)
@@ -616,8 +619,8 @@ public class TambahPegawai extends javax.swing.JFrame {
         DU.add(DU_Alamat_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 200, 360, -1));
 
         Alamat1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        Alamat1.setText("Tempat / Tgl Lahir");
-        DU.add(Alamat1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, -1, -1));
+        Alamat1.setText("Jenis Kelamin");
+        DU.add(Alamat1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 140, 100, -1));
 
         Alamat2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Alamat2.setText("Kabupaten / Kota");
@@ -654,8 +657,8 @@ public class TambahPegawai extends javax.swing.JFrame {
         jLabel74.setText("DATA UTAMA");
         DU.add(jLabel74, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 840, 30));
 
-        DU_JenisKelamin_CB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PRIA", "WANITA" }));
-        DU.add(DU_JenisKelamin_CB, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, -1, -1));
+        DU_JenisKelamin_CB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "L", "P" }));
+        DU.add(DU_JenisKelamin_CB, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 140, -1, -1));
 
         Alamat8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Alamat8.setText("Alamat");
@@ -663,6 +666,10 @@ public class TambahPegawai extends javax.swing.JFrame {
 
         DU_StatusHub_CB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "NIKAH", "BELUM NIKAH", "JANDA", "DUDA" }));
         DU.add(DU_StatusHub_CB, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 180, -1));
+
+        Alamat9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Alamat9.setText("Tempat / Tgl Lahir");
+        DU.add(Alamat9, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, -1, -1));
 
         Tab_PNS.addTab("Data Utama", DU);
 
@@ -1183,7 +1190,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         jLabel63.setText("Provinsi");
         jPanel8.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 130, -1, -1));
         jPanel8.add(KK_Provinsi_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, 230, -1));
-        jPanel8.add(jTextField52, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, 230, -1));
+        jPanel8.add(KK_KodePos_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, 230, -1));
         jPanel8.add(KK_KabKota_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, 230, -1));
         jPanel8.add(KK_Kec_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 230, -1));
 
@@ -1219,16 +1226,21 @@ public class TambahPegawai extends javax.swing.JFrame {
 
         KK_SimpanKK_button.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         KK_SimpanKK_button.setText("SIMPAN KK");
-        jPanel8.add(KK_SimpanKK_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, -1, -1));
-
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton4.setText("TAMBAH ANGGOTA KELUARGA");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        KK_SimpanKK_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                KK_SimpanKK_buttonActionPerformed(evt);
             }
         });
-        jPanel8.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 320, -1, -1));
+        jPanel8.add(KK_SimpanKK_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, -1, -1));
+
+        KK_TambahAnggota_button.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        KK_TambahAnggota_button.setText("TAMBAH ANGGOTA KELUARGA");
+        KK_TambahAnggota_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KK_TambahAnggota_buttonActionPerformed(evt);
+            }
+        });
+        jPanel8.add(KK_TambahAnggota_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 320, -1, -1));
 
         jScrollPane2.setViewportView(jPanel8);
 
@@ -1502,21 +1514,47 @@ public class TambahPegawai extends javax.swing.JFrame {
         DU_Simpan_button.setEnabled(true);
     }//GEN-LAST:event_DU_KabKota_TFKeyPressed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void AK_Batal_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AK_Batal_buttonActionPerformed
         KK_Internal.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_AK_Batal_buttonActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void KK_TambahAnggota_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KK_TambahAnggota_buttonActionPerformed
         if (KK_Internal.isVisible() == true) {
             KK_Internal.setVisible(false);
         } else {
             KK_Internal.setVisible(true);
         }
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_KK_TambahAnggota_buttonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void AK_Simpan_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AK_Simpan_buttonActionPerformed
         KK_Internal.setVisible(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_AK_Simpan_buttonActionPerformed
+
+    private void KK_SimpanKK_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KK_SimpanKK_buttonActionPerformed
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        
+        KK k = new KK();
+        k.setId_Suratkk(KK_NoKK_TF.getText());
+        k.setNama_kk(KK_NamaKK_TF.getText());
+        k.setAlamat(KK_Alamat_TF.getText());
+        k.setRT(KK_RT_TF.getText());
+        k.setRW(KK_RW_TF.getText());
+        k.setKelurahan_Desa(KK_KelDesa_TF.getText());
+        k.setKecamatan(KK_Kec_TF.getText());
+        k.setKabupaten_Kota(KK_KabKota_TF.getText());
+        k.setKode_pos(KK_KodePos_TF.getText());
+        k.setProvinsi(KK_Provinsi_TF.getText());
+        k.setKode_operator(TP_Kode_Label.getText().toUpperCase());
+        
+        try {
+            Controller.ControlData.getKoneksi().insertKK(k);
+            Controller.ControlData.getKoneksi().updatePNS("KK", pegawai.getNip_baru(), k.getId_Suratkk().toUpperCase());
+            JOptionPane.showMessageDialog(rootPane, "Data KARTU KELUARGA Berhasil Disimpan, Silahkan Masukkan Anggota Keluarga");
+            KK_TambahAnggota_button.setEnabled(true);
+        } catch (Exception ex) {
+            Logger.getLogger(TambahPegawai.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_KK_SimpanKK_buttonActionPerformed
 
     private int cekAngka(String isian) {
         if (!isian.matches("[0-9]*")) {
@@ -1599,6 +1637,7 @@ public class TambahPegawai extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox AK_Agama_Combo;
+    private javax.swing.JButton AK_Batal_button;
     private javax.swing.JComboBox AK_HubKeluarga_Combo;
     private javax.swing.JComboBox AK_JK_Combo;
     private javax.swing.JComboBox AK_Kewarganegaraan_Combo;
@@ -1611,6 +1650,7 @@ public class TambahPegawai extends javax.swing.JFrame {
     private javax.swing.JComboBox AK_Pekerjaan_Combo;
     private javax.swing.JTextField AK_Pekerjaan_TF;
     private javax.swing.JComboBox AK_Pendidikan_Combo;
+    private javax.swing.JButton AK_Simpan_button;
     private javax.swing.JComboBox AK_StatusKawin_Combo;
     private com.toedter.calendar.JDateChooser AK_TempatLahir_Date;
     private javax.swing.JTextField AK_TempatLahir_TF;
@@ -1623,6 +1663,7 @@ public class TambahPegawai extends javax.swing.JFrame {
     private javax.swing.JLabel Alamat6;
     private javax.swing.JLabel Alamat7;
     private javax.swing.JLabel Alamat8;
+    private javax.swing.JLabel Alamat9;
     private javax.swing.JTextField CPNS_Berijazah_TF;
     private javax.swing.JTextField CPNS_GPdari_TF;
     private javax.swing.JTextField CPNS_Golongan_TF;
@@ -1669,12 +1710,14 @@ public class TambahPegawai extends javax.swing.JFrame {
     private javax.swing.JTextField KK_KabKota_TF;
     private javax.swing.JTextField KK_Kec_TF;
     private javax.swing.JTextField KK_KelDesa_TF;
+    private javax.swing.JTextField KK_KodePos_TF;
     private javax.swing.JTextField KK_NamaKK_TF;
     private javax.swing.JTextField KK_NoKK_TF;
     private javax.swing.JTextField KK_Provinsi_TF;
     private javax.swing.JTextField KK_RT_TF;
     private javax.swing.JTextField KK_RW_TF;
     private javax.swing.JButton KK_SimpanKK_button;
+    private javax.swing.JButton KK_TambahAnggota_button;
     private javax.swing.JTextField Karpeg_Nama_TF;
     private javax.swing.JTextField Karpeg_NipBaru_TF;
     private javax.swing.JTextField Karpeg_NipLama_TF;
@@ -1731,9 +1774,6 @@ public class TambahPegawai extends javax.swing.JFrame {
     private javax.swing.JLabel TP_Kode_Label;
     private javax.swing.JLabel TP_Nama_Label;
     private javax.swing.JTabbedPane Tab_PNS;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1836,7 +1876,6 @@ public class TambahPegawai extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField52;
     private javax.swing.JLabel nama;
     private javax.swing.JLabel nip_br;
     private javax.swing.JLabel nip_br1;
