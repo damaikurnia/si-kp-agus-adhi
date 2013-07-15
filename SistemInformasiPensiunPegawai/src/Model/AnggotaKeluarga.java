@@ -24,6 +24,7 @@ public class AnggotaKeluarga {
     private String no_kitas_kitab;
     private String nama_ayah;
     private String nama_ibu;
+    private String id_suratkk;
 
     public AnggotaKeluarga() {
     }
@@ -236,6 +237,20 @@ public class AnggotaKeluarga {
      */
     public void setNo_kitas_kitab(String no_kitas_kitab) {
         this.no_kitas_kitab = no_kitas_kitab;
+    }
+
+    /**
+     * @return the id_suratkk
+     */
+    public String getId_suratkk() {
+        return id_suratkk;
+    }
+
+    /**
+     * @param id_suratkk the id_suratkk to set
+     */
+    public void setId_suratkk(String id_suratkk) {
+        this.id_suratkk = id_suratkk;
     }
     
 }

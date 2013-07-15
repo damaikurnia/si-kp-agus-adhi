@@ -270,6 +270,15 @@ public class ControlData {
 
             stmt.executeUpdate();
             conn.commit();
+        } else if (kodeSandi.equals("KK")) {
+            conn.setAutoCommit(false);
+            String query = "update pns set id_Suratkk = ? where nip_baru = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, idSurat.toUpperCase());
+            stmt.setString(2, nip);
+
+            stmt.executeUpdate();
+            conn.commit();
         }
     }
 
@@ -480,5 +489,31 @@ public class ControlData {
         }
         conn.commit();
         return at;
+    }
+    
+    public void insertAnggotaKeluarga(AnggotaKeluarga k) throws SQLException {
+        PreparedStatement stmt = null;
+        conn.setAutoCommit(false);
+        String query = "INSERT INTO anggotakeluarga VALUES('105314024','Paimin','L','Tangerang','2010-01-02','Kristen','Mahasiswa','-','belum kawin','anak','WNI','-','-','A','B','0012999222')";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, k.getNik().toUpperCase());
+        stmt.setString(2, k.getNama_lengkap().toUpperCase());
+        stmt.setString(3, k.getJenis_kelamin());
+        stmt.setString(4, k.getTempat_lahir().toUpperCase());
+        stmt.setString(5, k.getTanggal_lahir());
+        stmt.setString(6, k.getAgama());
+        stmt.setString(7, k.getPendidikan());
+        stmt.setString(8, k.getPekerjaan().toUpperCase());
+        stmt.setString(9, k.getStatus_perkawinan());
+        stmt.setString(10, k.getStatus_hub_keluarga());
+        stmt.setString(11, k.getKewarganegaraan());
+        stmt.setString(12, k.getNo_paspor().toUpperCase());
+        stmt.setString(13, k.getNo_kitas_kitab().toUpperCase());
+        stmt.setString(14, k.getNama_ayah().toUpperCase());
+        stmt.setString(15, k.getNama_ibu().toUpperCase());
+        stmt.setString(16, k.getId_suratkk().toUpperCase());
+
+        stmt.executeUpdate();
+        conn.commit();
     }
 }
