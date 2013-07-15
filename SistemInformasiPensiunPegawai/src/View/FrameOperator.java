@@ -123,7 +123,8 @@ public class FrameOperator extends javax.swing.JFrame {
         nama_operator.setText("nama");
         jPanel3.add(nama_operator, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, -1, -1));
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel4.setBackground(new java.awt.Color(153, 51, 0));
+        jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pegawai_button.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -158,7 +159,8 @@ public class FrameOperator extends javax.swing.JFrame {
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 360, 220));
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel5.setBackground(new java.awt.Color(153, 51, 0));
+        jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         buttonTmbhPeg.setFont(new java.awt.Font("Tahoma", 1, 12));
