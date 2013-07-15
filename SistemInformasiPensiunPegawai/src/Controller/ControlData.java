@@ -5,6 +5,7 @@
 package Controller;
 
 import Model.AnggotaKeluarga;
+import Model.DataMeninggal;
 import Model.KK;
 import Model.Operator;
 import Model.PNS;
@@ -255,6 +256,22 @@ public class ControlData {
         }
         conn.commit();
         return pns;
+    }
+     public void insertDataMeninggal(DataMeninggal dm) throws SQLException {
+        PreparedStatement stmt = null;
+        conn.setAutoCommit(false);
+        String query = "INSERT INTO data_meninggal VALUES(?,?,?,?,?,?,?)";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, dm.getNo());
+        stmt.setString(2, dm.getNIP());
+        stmt.setString(3, dm.getNama().toUpperCase());
+        stmt.setString(4, dm.getTglMeninggal());
+        stmt.setString(5, dm.getAnggota_nama().toUpperCase());
+        stmt.setString(6, dm.getAnggota_alamat().toUpperCase());
+        stmt.setString(7, dm.getAnggota_pekerjaan().toUpperCase());
+
+        stmt.executeUpdate();
+        conn.commit();
     }
 
     public void insertPNS(PNS k) throws SQLException {
