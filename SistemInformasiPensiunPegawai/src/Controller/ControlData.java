@@ -96,6 +96,24 @@ public class ControlData {
 
     }
 
+    public String cariJK(String NIP) throws SQLException {
+        PreparedStatement stmt = null;
+        String jk = null;
+        ResultSet result = null;
+        conn.setAutoCommit(false);
+        String query = "SELECT jk FROM PNS "
+                + "where nip_baru=? ";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, NIP);
+        result = stmt.executeQuery();
+        if (result.next()) {
+            jk = (result.getString(1));
+        }
+        conn.commit();
+        return jk;
+
+    }
+
     public List<PNS> SearchPNS(String id) throws SQLException {
         PreparedStatement stmt = null;
         PNS cek = null;
@@ -405,7 +423,7 @@ public class ControlData {
         stmt.executeUpdate();
         conn.commit();
     }
-    
+
     public void insertKK(KK k) throws SQLException {
         PreparedStatement stmt = null;
         conn.setAutoCommit(false);
@@ -422,7 +440,7 @@ public class ControlData {
         stmt.setString(9, k.getKode_pos().toUpperCase());
         stmt.setString(10, k.getProvinsi().toUpperCase());
         stmt.setString(11, k.getKode_operator().toUpperCase());
-        
+
         stmt.executeUpdate();
         conn.commit();
     }
