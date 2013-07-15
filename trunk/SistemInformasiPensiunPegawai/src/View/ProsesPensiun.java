@@ -68,6 +68,8 @@ public class ProsesPensiun extends javax.swing.JFrame {
         nama_inter_meninggal = new javax.swing.JTextField();
         NIP_inter_meninggal = new javax.swing.JTextField();
         date_meninggal = new com.toedter.calendar.JDateChooser();
+        jk_label = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -96,40 +98,50 @@ public class ProsesPensiun extends javax.swing.JFrame {
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14));
         jLabel4.setText("Proses Pensiun Meninggal Dunia");
-        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, -1, -1));
+        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel6.setText("NIP");
-        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, -1, -1));
+        jLabel6.setText("Data");
+        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel7.setText("Tanggal meninggal");
         jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel9.setText("Nama");
         jPanel5.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, -1));
 
-        nama_inter_meninggal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        nama_inter_meninggal.setFont(new java.awt.Font("Tahoma", 1, 12));
         nama_inter_meninggal.setEnabled(false);
         jPanel5.add(nama_inter_meninggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 170, -1));
 
-        NIP_inter_meninggal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        NIP_inter_meninggal.setFont(new java.awt.Font("Tahoma", 1, 12));
         NIP_inter_meninggal.setEnabled(false);
         jPanel5.add(NIP_inter_meninggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 170, -1));
         jPanel5.add(date_meninggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 170, -1));
+
+        jk_label.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jk_label.setText("nama");
+        jPanel5.add(jk_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 80, -1));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel10.setText("NIP");
+        jPanel5.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, -1, -1));
 
         javax.swing.GroupLayout inter_proses_meninggalLayout = new javax.swing.GroupLayout(inter_proses_meninggal.getContentPane());
         inter_proses_meninggal.getContentPane().setLayout(inter_proses_meninggalLayout);
         inter_proses_meninggalLayout.setHorizontalGroup(
             inter_proses_meninggalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
         );
         inter_proses_meninggalLayout.setVerticalGroup(
             inter_proses_meninggalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
+            .addGroup(inter_proses_meninggalLayout.createSequentialGroup()
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         getContentPane().add(inter_proses_meninggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 500, 330));
@@ -199,7 +211,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
         });
         jPanel4.add(button_proses, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, -1, -1));
 
-        combo_jenisPensiun.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        combo_jenisPensiun.setFont(new java.awt.Font("Tahoma", 1, 14));
         combo_jenisPensiun.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Pilih Jenis--", "B U P", "A P S", "Meninggal Dunia" }));
         combo_jenisPensiun.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -347,11 +359,22 @@ public class ProsesPensiun extends javax.swing.JFrame {
             int a = tabel_cari.getColumnCount();
             int row = tabel_cari.getRowCount();
             for (int i = 0; i < row; i++) {
-                String NIP = tabel_cari.getValueAt(i, 0).toString();
-                String Nama = tabel_cari.getValueAt(i, 1).toString();
-                NIP_inter_meninggal.setText(NIP);
-                nama_inter_meninggal.setText(Nama);
+                try {
+                    String NIP = tabel_cari.getValueAt(i, 0).toString();
+                    String Nama = tabel_cari.getValueAt(i, 1).toString();
+                    String jk = ControlData.getKoneksi().cariJK(NIP);
+                    NIP_inter_meninggal.setText(NIP);
+                    nama_inter_meninggal.setText(Nama);
+                    if (jk.matches("L")) {
+                        jk_label.setText("Almarhum");
+                    }else{
+                        jk_label.setText("Almarhumah");
+                    }
+                } catch (Exception ex) {
+                    Logger.getLogger(ProsesPensiun.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
+
             inter_proses_meninggal.setVisible(true);
             date_meninggal.setRequestFocusEnabled(rootPaneCheckingEnabled);
         }
@@ -541,6 +564,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
     private javax.swing.JButton exit_button;
     private javax.swing.JInternalFrame inter_proses_meninggal;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -556,6 +580,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jenis_label;
+    private javax.swing.JLabel jk_label;
     private javax.swing.JTextField nama_inter_meninggal;
     private javax.swing.JTextField nip_TF;
     private javax.swing.JLabel nip_br1;
