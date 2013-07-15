@@ -114,6 +114,62 @@ public class ControlData {
 
     }
 
+    public String cariAnggotaKel(String NIP) throws SQLException {
+        PreparedStatement stmt = null;
+        String nama = null;
+        ResultSet result = null;
+        conn.setAutoCommit(false);
+        String query = "SELECT a.nama_lengkap FROM anggotakeluarga a,pns b,kk c "
+                +  " where b.nip_baru = ? AND c.id_suratkk = b.id_suratkk AND a.id_suratkk = b.id_suratkk "
+                + " AND b.nama_pns != a.nama_lengkap AND a.status_hub_keluarga != 'anak' ";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, NIP);
+        result = stmt.executeQuery();
+        if (result.next()) {
+            nama = (result.getString(1));
+        }
+        conn.commit();
+        return nama;
+
+    }
+     public String cariAlamat(String NIP) throws SQLException {
+        PreparedStatement stmt = null;
+        String nama = null;
+        ResultSet result = null;
+        conn.setAutoCommit(false);
+        String query = "SELECT c.alamat FROM anggotakeluarga a,pns b,kk c "
+                +  " where b.nip_baru = ? AND c.id_suratkk = b.id_suratkk AND a.id_suratkk = b.id_suratkk "
+                + " AND b.nama_pns != a.nama_lengkap ";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, NIP);
+        result = stmt.executeQuery();
+        if (result.next()) {
+            nama = (result.getString(1));
+        }
+        conn.commit();
+        return nama;
+
+    }
+
+     public String cariPekerjaan(String NIP) throws SQLException {
+        PreparedStatement stmt = null;
+        String nama = null;
+        ResultSet result = null;
+        conn.setAutoCommit(false);
+        String query = "SELECT a.pekerjaan FROM anggotakeluarga a,pns b,kk c "
+                +  " where b.nip_baru = ? AND c.id_suratkk = b.id_suratkk AND a.id_suratkk = b.id_suratkk "
+                + " AND b.nama_pns != a.nama_lengkap AND a.status_hub_keluarga != 'anak' ";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, NIP);
+        result = stmt.executeQuery();
+        if (result.next()) {
+            nama = (result.getString(1));
+        }
+        conn.commit();
+        return nama;
+
+    }
+
     public List<PNS> SearchPNS(String id) throws SQLException {
         PreparedStatement stmt = null;
         PNS cek = null;
