@@ -10,6 +10,7 @@
  */
 package View;
 
+import Model.AnggotaKeluarga;
 import Model.KK;
 import Model.Operator;
 import Model.PNS;
@@ -18,8 +19,11 @@ import Model.SK_Karpeg;
 import Model.SK_PangkatTerakhir;
 import Model.SPTKG_Terakhir;
 import Model.S_Nikah;
+import TableModel.TampilAnggotaKeluarga;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -31,6 +35,7 @@ import javax.swing.JOptionPane;
 public class TambahPegawai extends javax.swing.JFrame {
 
     PNS pegawai = new PNS("-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-");
+    String idSuratkk;
 
     /**
      * Creates new form TambahPegawai
@@ -47,6 +52,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         Tab_PNS.setEnabledAt(6, false);
         KK_Internal.setVisible(false);
         KK_TambahAnggota_button.setEnabled(false);
+        AK_Pekerjaan_TF.setEditable(false);
         Clock clock = new Clock();
         clock.showDigitalClock(time);
     }
@@ -84,7 +90,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         AK_NIK_TF = new javax.swing.JTextField();
         AK_TempatLahir_TF = new javax.swing.JTextField();
         AK_JK_Combo = new javax.swing.JComboBox();
-        AK_TempatLahir_Date = new com.toedter.calendar.JDateChooser();
+        AK_TanggalLahir_Date = new com.toedter.calendar.JDateChooser();
         AK_NoPaspor_TF = new javax.swing.JTextField();
         AK_NamaAyah_TF = new javax.swing.JTextField();
         AK_NamaIbu_TF = new javax.swing.JTextField();
@@ -296,7 +302,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         jLabel59 = new javax.swing.JLabel();
         KK_NoKK_TF = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        KK_TabelAnggotaKel_Table = new javax.swing.JTable();
         KK_SimpanKK_button = new javax.swing.JButton();
         KK_TambahAnggota_button = new javax.swing.JButton();
         time = new javax.swing.JLabel();
@@ -363,17 +369,28 @@ public class TambahPegawai extends javax.swing.JFrame {
 
         AK_JK_Combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "L", "P" }));
 
+        AK_NoPaspor_TF.setText("-");
+
         AK_Agama_Combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ISLAM", "KRISTEN", "KATOLIK", "HINDU", "BUDHA", "KHONGHUCU" }));
 
         AK_Pendidikan_Combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TIDAK/BLM SEKOLAH", "TK/SEDERAJAT", "SD/SEDERAJAT", "SLTP/SEDERAJAT", "SLTA/SEDERAJAT", "DIPLOMA III", "DIPLOMA IV/STRATA I", "TIDAK TAMAT TK/SEDERAJAT", "TIDAK TAMAT SD/SEDERAJAT", "TIDAK TAMAT SLTP/SEDERAJAT", "TIDAK TAMAT SLTA/SEDERAJAT" }));
 
         AK_Pekerjaan_Combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PEGAWAI NEGRI SIPIL", "KARYAWAN SWASTA", "MENGURUS RUMAH TANGGA", "PELAJAR/MAHASISWA", "WIRASWASTA", "Lainnya..." }));
+        AK_Pekerjaan_Combo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AK_Pekerjaan_ComboActionPerformed(evt);
+            }
+        });
 
         AK_StatusKawin_Combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "KAWIN", "BELUM KAWIN" }));
 
         AK_HubKeluarga_Combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "KEPALA KELUARGA", "SUAMI", "ISTRI", "ANAK", "SAUDARA" }));
 
         AK_Kewarganegaraan_Combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "WNI", "WNA" }));
+
+        AK_Pekerjaan_TF.setText("-");
+
+        AK_NoKitasKitap_TF.setText("-");
 
         jLabel93.setText("No Kitas/Kitap");
 
@@ -411,7 +428,7 @@ public class TambahPegawai extends javax.swing.JFrame {
                             .addComponent(AK_TempatLahir_TF, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(AK_NIK_TF, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(AK_Nama_TF, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AK_TempatLahir_Date, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AK_TanggalLahir_Date, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(AK_Agama_Combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(86, 86, 86)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -463,7 +480,7 @@ public class TambahPegawai extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel30)
-                            .addComponent(AK_TempatLahir_Date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(AK_TanggalLahir_Date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel37)
@@ -1199,7 +1216,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         jPanel8.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, -1, -1));
         jPanel8.add(KK_NoKK_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 230, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        KK_TabelAnggotaKel_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
@@ -1220,7 +1237,7 @@ public class TambahPegawai extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jTable1);
+        jScrollPane3.setViewportView(KK_TabelAnggotaKel_Table);
 
         jPanel8.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 1120, 120));
 
@@ -1462,7 +1479,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         try {
             Controller.ControlData.getKoneksi().insertSK_Karpeg(karpeg);
             Controller.ControlData.getKoneksi().updatePNS("KARPEG", karpeg.getNip_baru(), karpeg.getId_SuratKarpeg().toUpperCase());
-            JOptionPane.showMessageDialog(rootPane, "Data SPTKG TERAKHIR Berhasil Disimpan");
+            JOptionPane.showMessageDialog(rootPane, "Data KARPEG Berhasil Disimpan");
         } catch (Exception ex) {
             Logger.getLogger(TambahPegawai.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1527,12 +1544,48 @@ public class TambahPegawai extends javax.swing.JFrame {
     }//GEN-LAST:event_KK_TambahAnggota_buttonActionPerformed
 
     private void AK_Simpan_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AK_Simpan_buttonActionPerformed
-        KK_Internal.setVisible(false);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String pekerjaan = (String) AK_Pekerjaan_Combo.getSelectedItem();
+        if(!pekerjaan.equals("Lainnya...")){
+            
+        }
+        
+        AnggotaKeluarga ak = new AnggotaKeluarga();
+        ak.setNik(AK_NIK_TF.getText());
+        ak.setNama_lengkap(AK_Nama_TF.getText());
+        ak.setJenis_kelamin((String) AK_JK_Combo.getSelectedItem());
+        ak.setTempat_lahir(AK_TempatLahir_TF.getText());
+        ak.setTanggal_lahir(sdf.format(AK_TanggalLahir_Date.getDate()));
+        ak.setAgama((String) AK_Agama_Combo.getSelectedItem());
+        ak.setPendidikan((String) AK_Pendidikan_Combo.getSelectedItem());
+        if(!pekerjaan.equals("Lainnya...")){
+            ak.setPekerjaan((String) AK_Pekerjaan_Combo.getSelectedItem());
+        }else{
+            ak.setPekerjaan(AK_Pekerjaan_TF.getText());
+        }
+        ak.setStatus_perkawinan((String) AK_StatusKawin_Combo.getSelectedItem());
+        ak.setStatus_hub_keluarga((String) AK_HubKeluarga_Combo.getSelectedItem());
+        ak.setKewarganegaraan((String) AK_Kewarganegaraan_Combo.getSelectedItem());
+        ak.setNo_paspor(AK_NoPaspor_TF.getText());
+        ak.setNo_kitas_kitab(AK_NoKitasKitap_TF.getText());
+        ak.setNama_ayah(AK_NamaAyah_TF.getText());
+        ak.setNama_ibu(AK_NamaIbu_TF.getText());
+        ak.setId_suratkk(idSuratkk);
+        
+        try {
+            Controller.ControlData.getKoneksi().insertAnggotaKeluarga(ak);
+            JOptionPane.showMessageDialog(rootPane, "Berhasil Disimpan");
+            updateTerusTabelnyaKK(idSuratkk);
+            KK_Internal.setVisible(false);
+            
+            
+        } catch (Exception ex) {
+            Logger.getLogger(TambahPegawai.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_AK_Simpan_buttonActionPerformed
 
     private void KK_SimpanKK_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KK_SimpanKK_buttonActionPerformed
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        
         KK k = new KK();
         k.setId_Suratkk(KK_NoKK_TF.getText());
         k.setNama_kk(KK_NamaKK_TF.getText());
@@ -1549,12 +1602,23 @@ public class TambahPegawai extends javax.swing.JFrame {
         try {
             Controller.ControlData.getKoneksi().insertKK(k);
             Controller.ControlData.getKoneksi().updatePNS("KK", pegawai.getNip_baru(), k.getId_Suratkk().toUpperCase());
+            idSuratkk = k.getId_Suratkk();
             JOptionPane.showMessageDialog(rootPane, "Data KARTU KELUARGA Berhasil Disimpan, Silahkan Masukkan Anggota Keluarga");
             KK_TambahAnggota_button.setEnabled(true);
         } catch (Exception ex) {
             Logger.getLogger(TambahPegawai.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_KK_SimpanKK_buttonActionPerformed
+
+    private void AK_Pekerjaan_ComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AK_Pekerjaan_ComboActionPerformed
+        String jawab = (String) AK_Pekerjaan_Combo.getSelectedItem();
+        if(jawab.equals("Lainnya...")){
+            AK_Pekerjaan_TF.setEditable(true);
+        }else{
+            AK_Pekerjaan_TF.setText("-");
+            AK_Pekerjaan_TF.setEditable(false);
+        }
+    }//GEN-LAST:event_AK_Pekerjaan_ComboActionPerformed
 
     private int cekAngka(String isian) {
         if (!isian.matches("[0-9]*")) {
@@ -1620,6 +1684,12 @@ public class TambahPegawai extends javax.swing.JFrame {
         TP_Nama_Label.setText(nama);
         TP_Kode_Label.setText(id);
     }
+    
+    private void updateTerusTabelnyaKK(String idSuratKK) throws Exception{
+        List<AnggotaKeluarga> ak = Controller.ControlData.getKoneksi().tampilAnggotaKeluarga(idSuratKK);
+        TampilAnggotaKeluarga model = new TampilAnggotaKeluarga(ak);
+        KK_TabelAnggotaKel_Table.setModel(model);
+    }
 
     /**
      * @param args the command line arguments
@@ -1652,7 +1722,7 @@ public class TambahPegawai extends javax.swing.JFrame {
     private javax.swing.JComboBox AK_Pendidikan_Combo;
     private javax.swing.JButton AK_Simpan_button;
     private javax.swing.JComboBox AK_StatusKawin_Combo;
-    private com.toedter.calendar.JDateChooser AK_TempatLahir_Date;
+    private com.toedter.calendar.JDateChooser AK_TanggalLahir_Date;
     private javax.swing.JTextField AK_TempatLahir_TF;
     private javax.swing.JLabel Alamat;
     private javax.swing.JLabel Alamat1;
@@ -1717,6 +1787,7 @@ public class TambahPegawai extends javax.swing.JFrame {
     private javax.swing.JTextField KK_RT_TF;
     private javax.swing.JTextField KK_RW_TF;
     private javax.swing.JButton KK_SimpanKK_button;
+    private javax.swing.JTable KK_TabelAnggotaKel_Table;
     private javax.swing.JButton KK_TambahAnggota_button;
     private javax.swing.JTextField Karpeg_Nama_TF;
     private javax.swing.JTextField Karpeg_NipBaru_TF;
@@ -1875,7 +1946,6 @@ public class TambahPegawai extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel nama;
     private javax.swing.JLabel nip_br;
     private javax.swing.JLabel nip_br1;
