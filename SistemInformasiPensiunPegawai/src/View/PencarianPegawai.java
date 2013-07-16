@@ -22,7 +22,8 @@ import javax.swing.JOptionPane;
  * @author a9uszT
  */
 public class PencarianPegawai extends javax.swing.JFrame {
-
+    String actioon;
+    
     /** Creates new form PencarianPegawai */
     public PencarianPegawai() {
         initComponents();
@@ -32,6 +33,18 @@ public class PencarianPegawai extends javax.swing.JFrame {
         clock.showDigitalClock(time);
         cari_txt.setVisible(false);
         jInternalFrame_proses.setVisible(false);
+    }
+    
+    public PencarianPegawai(String act) {
+        initComponents();
+        this.actioon = act;
+        cari_txt.requestFocus();
+        tabel_cari.setVisible(false);
+        Clock clock = new Clock();
+        clock.showDigitalClock(time);
+        cari_txt.setVisible(false);
+        jInternalFrame_proses.setVisible(false);
+        jInternalFrame_proses.setTitle("Konfirmasi Pegawai untuk "+actioon);
     }
 
     /** This method is called from within the constructor to
@@ -47,13 +60,12 @@ public class PencarianPegawai extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        button_lanjut = new javax.swing.JButton();
         button_proses_pensiun = new javax.swing.JButton();
         nip = new javax.swing.JLabel();
         nama1 = new javax.swing.JLabel();
         keluar_button = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -79,17 +91,15 @@ public class PencarianPegawai extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14));
+        jInternalFrame_proses.setToolTipText("");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Nama :");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14));
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("NIP    : ");
 
-        jButton2.setText("Lihat Detail");
-
-        jButton3.setText("Edit Pegawai");
-
-        jButton4.setText("Hapus Pegawai");
+        button_lanjut.setText("YA");
 
         button_proses_pensiun.setText("Proses pensiun");
         button_proses_pensiun.addActionListener(new java.awt.event.ActionListener() {
@@ -98,16 +108,19 @@ public class PencarianPegawai extends javax.swing.JFrame {
             }
         });
 
-        nip.setFont(new java.awt.Font("Tahoma", 1, 14));
+        nip.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        nama1.setFont(new java.awt.Font("Tahoma", 1, 14));
+        nama1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        keluar_button.setText("Keluar");
+        keluar_button.setText("TIDAK");
         keluar_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 keluar_buttonActionPerformed(evt);
             }
         });
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setText("Apakah anda yakin untuk melanjutkan?");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -126,18 +139,15 @@ public class PencarianPegawai extends javax.swing.JFrame {
                             .addComponent(nip, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(53, 53, 53)
-                        .addComponent(jButton2)
-                        .addGap(36, 36, 36)
-                        .addComponent(jButton3)
-                        .addGap(31, 31, 31)
-                        .addComponent(jButton4)
-                        .addGap(38, 38, 38)
-                        .addComponent(button_proses_pensiun)))
-                .addContainerGap(108, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(581, Short.MAX_VALUE)
-                .addComponent(keluar_button)
-                .addContainerGap())
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(button_lanjut, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(keluar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(128, 128, 128)
+                                .addComponent(button_proses_pensiun)))))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,14 +160,14 @@ public class PencarianPegawai extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(nip, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addComponent(jLabel10)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(button_proses_pensiun))
-                .addGap(32, 32, 32)
-                .addComponent(keluar_button))
+                    .addComponent(button_lanjut)
+                    .addComponent(button_proses_pensiun)
+                    .addComponent(keluar_button))
+                .addGap(55, 55, 55))
         );
 
         javax.swing.GroupLayout jInternalFrame_prosesLayout = new javax.swing.GroupLayout(jInternalFrame_proses.getContentPane());
@@ -216,11 +226,11 @@ public class PencarianPegawai extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        time.setFont(new java.awt.Font("Tahoma", 1, 14));
+        time.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         time.setText("time");
         jPanel3.add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 10, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 12));
+        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel2.setText("Klik salah satu Pegawai untuk proses lain");
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
 
@@ -246,11 +256,11 @@ public class PencarianPegawai extends javax.swing.JFrame {
         jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        nip_br.setFont(new java.awt.Font("Tahoma", 1, 14));
+        nip_br.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         nip_br.setText("Cari berdasarkan");
         jPanel4.add(nip_br, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        cari_txt.setFont(new java.awt.Font("Tahoma", 0, 14));
+        cari_txt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cari_txt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 cari_txtKeyReleased(evt);
@@ -266,7 +276,7 @@ public class PencarianPegawai extends javax.swing.JFrame {
         });
         jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, -1, -1));
 
-        combo_jenis.setFont(new java.awt.Font("Tahoma", 1, 14));
+        combo_jenis.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         combo_jenis.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "==pilih==", "NIP Lama", "NIP Baru", "Nama" }));
         combo_jenis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -280,7 +290,7 @@ public class PencarianPegawai extends javax.swing.JFrame {
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 540, 130));
 
-        jLabel3.setFont(new java.awt.Font("Arial Black", 0, 18));
+        jLabel3.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jLabel3.setText("Pencarian Pegawai");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, -1, -1));
 
@@ -475,16 +485,15 @@ public class PencarianPegawai extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel P_Kode_Label;
     private javax.swing.JLabel P_Nama_Label;
+    private javax.swing.JButton button_lanjut;
     private javax.swing.JButton button_proses_pensiun;
     private javax.swing.JTextField cari_txt;
     private javax.swing.JComboBox combo_jenis;
     private javax.swing.JButton exit_button;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JInternalFrame jInternalFrame_proses;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
