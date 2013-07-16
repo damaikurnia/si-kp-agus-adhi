@@ -151,6 +151,28 @@ public class ControlData {
 
     }
 
+    public KK cariAlamatLengkap(String NIP) throws SQLException {
+        PreparedStatement stmt = null;
+        KK k=null;
+        String nama = null;
+        ResultSet result = null;
+        conn.setAutoCommit(false);
+        String query = "SELECT c.alamat,c.Kabupaten_kota FROM anggotakeluarga a,pns b,kk c "
+                + " where b.nip_baru = ? AND c.id_suratkk = b.id_suratkk AND a.id_suratkk = b.id_suratkk "
+                + " AND b.nama_pns != a.nama_lengkap ";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, NIP);
+        result = stmt.executeQuery();
+        if (result.next()) {
+            k=new KK();
+            k.setAlamat(result.getString(1));
+            k.setKabupaten_Kota(result.getString(2));
+        }
+        conn.commit();
+        return k;
+
+    }
+
     public String cariPekerjaan(String NIP) throws SQLException {
         PreparedStatement stmt = null;
         String nama = null;

@@ -13,6 +13,7 @@ package View;
 import Controller.ConnMySql;
 import Controller.ControlData;
 import Model.DataMeninggal;
+import Model.KK;
 import Model.PNS;
 import TableModel.DataProsesPensiunTableModel;
 import TableModel.RataTengah;
@@ -49,7 +50,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
         combo_jenisPensiun.setVisible(false);
         tabel_cari.getColumnModel().getColumn(1).setCellRenderer(tengah);
         inter_proses_meninggal.setVisible(false);
-        cetak_internal.setEnabled(false);
+        //cetak_internal.setEnabled(false);
     }
 
     /** This method is called from within the constructor to
@@ -166,7 +167,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
         jLabel13.setText("Kabupaten");
         jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, -1, 20));
 
-        alamat.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        alamat.setFont(new java.awt.Font("Tahoma", 1, 12));
         alamat.setEnabled(false);
         jPanel5.add(alamat, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, 350, -1));
 
@@ -199,6 +200,11 @@ public class ProsesPensiun extends javax.swing.JFrame {
         jPanel5.add(simpan_internal, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 360, -1, -1));
 
         cetak_internal.setText("Cetak");
+        cetak_internal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cetak_internalActionPerformed(evt);
+            }
+        });
         jPanel5.add(cetak_internal, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 360, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -212,7 +218,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
         jLabel18.setText("Alamat");
         jPanel5.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, -1, 20));
 
-        kabupaten_TF.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        kabupaten_TF.setFont(new java.awt.Font("Tahoma", 1, 12));
         kabupaten_TF.setEnabled(false);
         jPanel5.add(kabupaten_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 270, -1));
 
@@ -456,7 +462,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
                     String Nama = tabel_cari.getValueAt(i, 1).toString();
                     String jk = ControlData.getKoneksi().cariJK(NIP);
                     String nmAnggotakel = ControlData.getKoneksi().cariAnggotaKel(NIP);
-                    String alamatKel = ControlData.getKoneksi().cariAlamat(NIP);
+                    KK alamatLengkap = ControlData.getKoneksi().cariAlamatLengkap(NIP);
                     String Pekerjaan = ControlData.getKoneksi().cariPekerjaan(NIP);
                     NIP_inter_meninggal.setText(NIP);
                     nama_inter_meninggal.setText(Nama);
@@ -468,7 +474,8 @@ public class ProsesPensiun extends javax.swing.JFrame {
                         label_sumai_istri.setText("Suami");
                     }
                     nm_anggotaKel.setText(nmAnggotakel);
-                    alamat.setText(alamatKel);
+                    alamat.setText(alamatLengkap.getAlamat());
+                    kabupaten_TF.setText(alamatLengkap.getKabupaten_Kota());
                     pekerjaan.setText(Pekerjaan);
                 } catch (Exception ex) {
                     Logger.getLogger(ProsesPensiun.class.getName()).log(Level.SEVERE, null, ex);
@@ -502,8 +509,8 @@ public class ProsesPensiun extends javax.swing.JFrame {
             String angg_nama = nm_anggotaKel.getText();
             String angg_alamat = alamat.getText();
             String angg_pekerjaan = pekerjaan.getText();
-            String kab=kabupaten_TF.getText();
-            DataMeninggal dm = new DataMeninggal(no, nama, nip, tanggal, angg_nama, angg_alamat, angg_pekerjaan,kab);
+            String kab = kabupaten_TF.getText();
+            DataMeninggal dm = new DataMeninggal(no, nama, nip, tanggal, angg_nama, angg_alamat, angg_pekerjaan, kab);
             ControlData.getKoneksi().insertDataMeninggal(dm);
             JOptionPane.showMessageDialog(rootPane, "data disimpan");
             simpan_internal.setEnabled(false);
@@ -515,6 +522,20 @@ public class ProsesPensiun extends javax.swing.JFrame {
             Logger.getLogger(ProsesPensiun.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_simpan_internalActionPerformed
+
+    private void cetak_internalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cetak_internalActionPerformed
+        try {
+            String jk = ControlData.getKoneksi().cariJK(NIP_inter_meninggal.getText());
+            if (jk.matches("L")) {
+                System.out.println("L");
+            } else {
+                System.out.println("P");
+            }
+        } catch (Exception e) {
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cetak_internalActionPerformed
     private JasperPrint multipageLinking(JasperPrint page1, JasperPrint page2) {
         List<JRPrintPage> pages = page2.getPages();
         for (int count = 0; count < pages.size(); count++) {
@@ -544,6 +565,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
         try {
             if (kon == null) {
                 JOptionPane.showMessageDialog(rootPane, "cek koneksi database", "", JOptionPane.WARNING_MESSAGE);
+
             } else {
                 kon = ConnMySql.getConnections();
                 Map reportparametermap1 = new HashMap();
@@ -620,6 +642,71 @@ public class ProsesPensiun extends javax.swing.JFrame {
             String reportSource3 = "./Cetak/Badan_Administrasi.jasper";
             String reportSource4 = "./Cetak/SP-4A.jasper";
             String reportSource5 = "./Cetak/Surat_keterangan.jasper";
+            String reportSource6 = "./Cetak/Surat_keterangan_tidak_kena_hukuman.jasper";
+            String reportSource7 = "./Cetak/Surat_permohonan_berhenti_APS.jasper";
+            String reportSource8 = "./Cetak/Surat_usul_permohonan_APS.jasper";
+            String reportSource9 = "./Cetak/Daftar-Susunan_keluarga.jasper";
+
+
+            JasperPrint firstjasperprint = new JasperPrint();
+            firstjasperprint = JasperFillManager.fillReport(reportSource, reportparametermap1, kon);
+
+            JasperPrint secondjasperprint = new JasperPrint();
+            secondjasperprint = JasperFillManager.fillReport(reportSource2, reportparametermap1, kon);
+
+//            JasperPrint thirdjasperprint = new JasperPrint();
+//            thirdjasperprint = JasperFillManager.fillReport(reportSource3, reportparametermap1, kon);
+
+            JasperPrint fourthjasperprint = new JasperPrint();
+            fourthjasperprint = JasperFillManager.fillReport(reportSource4, reportparametermap1, kon);
+
+            JasperPrint fifthjasperprint = new JasperPrint();
+            fifthjasperprint = JasperFillManager.fillReport(reportSource5, reportparametermap1, kon);
+
+            JasperPrint sixthjasperprint = new JasperPrint();
+            sixthjasperprint = JasperFillManager.fillReport(reportSource6, reportparametermap1, kon);
+
+            JasperPrint seventhjasperprint = new JasperPrint();
+            seventhjasperprint = JasperFillManager.fillReport(reportSource7, reportparametermap1, kon);
+            JasperPrint eighthjasperprint = new JasperPrint();
+            eighthjasperprint = JasperFillManager.fillReport(reportSource8, reportparametermap1, kon);
+
+            JasperPrint ninethjasperprint = new JasperPrint();
+            ninethjasperprint = JasperFillManager.fillReport(reportSource9, reportparametermap1, kon);
+
+            JasperPrint firstsecondlinked = multipageLinking(firstjasperprint, secondjasperprint);
+//            JasperPrint firstsecondthirdlinked = multipageLinking(firstsecondlinked, thirdjasperprint);
+            //JasperPrint fourthlinked = multipageLinking(firstsecondthirdlinked, fourthjasperprint);
+            JasperPrint fourthlinked = multipageLinking(firstsecondlinked, fourthjasperprint);
+            JasperPrint fifthLinked = multipageLinking(fourthlinked, fifthjasperprint);
+            JasperPrint sixthLinked = multipageLinking(fifthLinked, sixthjasperprint);
+            JasperPrint seventhLinked = multipageLinking(sixthLinked, seventhjasperprint);
+            JasperPrint eighthLinked = multipageLinking(seventhLinked, eighthjasperprint);
+            JasperPrint ninethLinked = multipageLinking(eighthLinked, ninethjasperprint);
+
+            JasperViewer.viewReport(ninethLinked, false);
+
+            Map<String, Object> params = new HashMap<String, Object>();
+            params.put("NIP", nip);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(reportSource3, params, kon);
+            JasperViewer.viewReport(jasperPrint, false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+        }
+    }
+
+    private void cetakJanda(String nip) {
+        Connection kon = null;
+        try {
+            kon = ConnMySql.getConnections();
+            Map reportparametermap1 = new HashMap();
+
+            reportparametermap1.put("NIP", nip);
+            String reportSource = "./Cetak/Cover_Janda_duda.jasper";
+            String reportSource2 = "./Cetak/Surat_keterangan_JandaDuda.jasper";
+            String reportSource3 = "./Cetak/Badan_Administrasi.jasper";
+            String reportSource4 = "./Cetak/SP-4A.jasper";
+            String reportSource5 = "./Cetak/Surat_keterangan_JandaDuda.jasper";
             String reportSource6 = "./Cetak/Surat_keterangan_tidak_kena_hukuman.jasper";
             String reportSource7 = "./Cetak/Surat_permohonan_berhenti_APS.jasper";
             String reportSource8 = "./Cetak/Surat_usul_permohonan_APS.jasper";
