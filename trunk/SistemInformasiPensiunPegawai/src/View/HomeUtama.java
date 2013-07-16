@@ -93,7 +93,7 @@ public class HomeUtama extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        time.setFont(new java.awt.Font("Tahoma", 1, 14));
+        time.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         time.setText("time");
         jPanel3.add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 10, -1, -1));
 
@@ -101,16 +101,16 @@ public class HomeUtama extends javax.swing.JFrame {
         jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18));
-        jLabel13.setText("Login");
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel13.setText("LOGIN");
         jPanel6.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 61, 27));
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14));
-        jLabel14.setText("NIP");
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel14.setText("Kode OP");
         jPanel6.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
         jPanel6.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 146, -1, -1));
 
-        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14));
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel16.setText("Password");
         jPanel6.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 138, -1, -1));
 
@@ -121,7 +121,7 @@ public class HomeUtama extends javax.swing.JFrame {
         });
         jPanel6.add(usernameTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 100, 139, -1));
 
-        masuk_button2.setFont(new java.awt.Font("Tahoma", 1, 14));
+        masuk_button2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         masuk_button2.setText("Masuk");
         masuk_button2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
