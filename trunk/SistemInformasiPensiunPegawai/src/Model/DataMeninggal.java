@@ -17,11 +17,12 @@ private String no;
     private String anggota_nama;
     private String anggota_alamat;
     private String anggota_pekerjaan;
+    private  String Kabupaten;
 
     public DataMeninggal() {
     }
 
-    public DataMeninggal(String no, String nama, String NIP, String tglMeninggal, String anggota_nama, String anggota_alamat, String anggota_pekerjaan) {
+    public DataMeninggal(String no, String nama, String NIP, String tglMeninggal, String anggota_nama, String anggota_alamat, String anggota_pekerjaan, String Kabupaten) {
         this.no = no;
         this.nama = nama;
         this.NIP = NIP;
@@ -29,7 +30,10 @@ private String no;
         this.anggota_nama = anggota_nama;
         this.anggota_alamat = anggota_alamat;
         this.anggota_pekerjaan = anggota_pekerjaan;
+        this.Kabupaten = Kabupaten;
     }
+
+   
 
     
     /**
@@ -128,6 +132,20 @@ private String no;
      */
     public void setAnggota_pekerjaan(String anggota_pekerjaan) {
         this.anggota_pekerjaan = anggota_pekerjaan;
+    }
+
+    /**
+     * @return the Kabupaten
+     */
+    public String getKabupaten() {
+        return Kabupaten;
+    }
+
+    /**
+     * @param Kabupaten the Kabupaten to set
+     */
+    public void setKabupaten(String Kabupaten) {
+        this.Kabupaten = Kabupaten;
     }
 
 }
