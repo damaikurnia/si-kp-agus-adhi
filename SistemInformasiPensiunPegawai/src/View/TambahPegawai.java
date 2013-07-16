@@ -1568,7 +1568,9 @@ public class TambahPegawai extends javax.swing.JFrame {
         ak.setNo_kitas_kitab(AK_NoKitasKitap_TF.getText());
         ak.setNama_ayah(AK_NamaAyah_TF.getText());
         ak.setNama_ibu(AK_NamaIbu_TF.getText());
-        ak.setId_suratkk(idSuratkk);
+        KK kartu=new KK();
+        kartu.setId_Suratkk(idSuratkk);
+        ak.setId_suratkk(kartu);
         
         try {
             Controller.ControlData.getKoneksi().insertAnggotaKeluarga(ak);
@@ -1682,10 +1684,14 @@ public class TambahPegawai extends javax.swing.JFrame {
         TP_Kode_Label.setText(id);
     }
     
-    private void updateTerusTabelnyaKK(String idSuratKK) throws Exception{
-        List<AnggotaKeluarga> ak = Controller.ControlData.getKoneksi().tampilAnggotaKeluarga(idSuratKK);
-        TampilAnggotaKeluarga model = new TampilAnggotaKeluarga(ak);
-        KK_TabelAnggotaKel_Table.setModel(model);
+    private void updateTerusTabelnyaKK(String idSuratKK){
+        try {
+            List<AnggotaKeluarga> ak = Controller.ControlData.getKoneksi().tampilAnggotaKeluarga(idSuratKK);
+            TampilAnggotaKeluarga model = new TampilAnggotaKeluarga(ak);
+            KK_TabelAnggotaKel_Table.setModel(model);
+        } catch (Exception ex) {
+            Logger.getLogger(TambahPegawai.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

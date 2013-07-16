@@ -20,8 +20,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -121,7 +119,7 @@ public class ControlData {
         ResultSet result = null;
         conn.setAutoCommit(false);
         String query = "SELECT a.nama_lengkap FROM anggotakeluarga a,pns b,kk c "
-                +  " where b.nip_baru = ? AND c.id_suratkk = b.id_suratkk AND a.id_suratkk = b.id_suratkk "
+                + " where b.nip_baru = ? AND c.id_suratkk = b.id_suratkk AND a.id_suratkk = b.id_suratkk "
                 + " AND b.nama_pns != a.nama_lengkap AND a.status_hub_keluarga != 'anak' ";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, NIP);
@@ -133,13 +131,14 @@ public class ControlData {
         return nama;
 
     }
-     public String cariAlamat(String NIP) throws SQLException {
+
+    public String cariAlamat(String NIP) throws SQLException {
         PreparedStatement stmt = null;
         String nama = null;
         ResultSet result = null;
         conn.setAutoCommit(false);
         String query = "SELECT c.alamat FROM anggotakeluarga a,pns b,kk c "
-                +  " where b.nip_baru = ? AND c.id_suratkk = b.id_suratkk AND a.id_suratkk = b.id_suratkk "
+                + " where b.nip_baru = ? AND c.id_suratkk = b.id_suratkk AND a.id_suratkk = b.id_suratkk "
                 + " AND b.nama_pns != a.nama_lengkap ";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, NIP);
@@ -152,13 +151,13 @@ public class ControlData {
 
     }
 
-     public String cariPekerjaan(String NIP) throws SQLException {
+    public String cariPekerjaan(String NIP) throws SQLException {
         PreparedStatement stmt = null;
         String nama = null;
         ResultSet result = null;
         conn.setAutoCommit(false);
         String query = "SELECT a.pekerjaan FROM anggotakeluarga a,pns b,kk c "
-                +  " where b.nip_baru = ? AND c.id_suratkk = b.id_suratkk AND a.id_suratkk = b.id_suratkk "
+                + " where b.nip_baru = ? AND c.id_suratkk = b.id_suratkk AND a.id_suratkk = b.id_suratkk "
                 + " AND b.nama_pns != a.nama_lengkap AND a.status_hub_keluarga != 'anak' ";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, NIP);
@@ -257,10 +256,11 @@ public class ControlData {
         conn.commit();
         return pns;
     }
-     public void insertDataMeninggal(DataMeninggal dm) throws SQLException {
+
+    public void insertDataMeninggal(DataMeninggal dm) throws SQLException {
         PreparedStatement stmt = null;
         conn.setAutoCommit(false);
-        String query = "INSERT INTO data_meninggal VALUES(?,?,?,?,?,?,?)";
+        String query = "INSERT INTO data_meninggal VALUES(?,?,?,?,?,?,?,?)";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, dm.getNo());
         stmt.setString(2, dm.getNIP());
@@ -268,7 +268,8 @@ public class ControlData {
         stmt.setString(4, dm.getTglMeninggal());
         stmt.setString(5, dm.getAnggota_nama().toUpperCase());
         stmt.setString(6, dm.getAnggota_alamat().toUpperCase());
-        stmt.setString(7, dm.getAnggota_pekerjaan().toUpperCase());
+        stmt.setString(7, dm.getKabupaten().toUpperCase());
+        stmt.setString(8, dm.getAnggota_pekerjaan().toUpperCase());
 
         stmt.executeUpdate();
         conn.commit();
@@ -527,20 +528,17 @@ public class ControlData {
         conn.commit();
     }
 
-    public List<AnggotaKeluarga> tampilAnggotaKeluarga(String idSuratKK) throws SQLException {
+    public List<AnggotaKeluarga> tampilAllAnggotaKeluarga() throws SQLException {
         PreparedStatement stmt = null;
+        AnggotaKeluarga a = null;
         ResultSet result = null;
         conn.setAutoCommit(false);
-        String query = "SELECT nama_lengkap,nik,jenis_kelamin,tempat_lahir,"
-                + "tanggal_lahir,agama,pendidikan,pekerjaan,status_perkawinan,"
-                + "status_hub_keluarga,kewarganegaraan,no_paspor,no_kitas_kitap,"
-                + "nama_ayah,nama_ibu FROM anggotakeluarga WHERE id_suratKK = ? "
-                + "ORDER BY tanggal_lahir";
+        String query = "SELECT * FROM anggotakeluarga WHERE id_suratKK  "
+                + " ORDER BY tanggal_lahir";
         stmt = conn.prepareStatement(query);
-        stmt.setString(1, idSuratKK);
+//        stmt.setString(1, idSuratKK);
         result = stmt.executeQuery();
         List<AnggotaKeluarga> at = new ArrayList<AnggotaKeluarga>();
-        AnggotaKeluarga a;
         if (result.next()) {
             a = new AnggotaKeluarga();
             a.setNama_lengkap(result.getString(1));
@@ -563,7 +561,44 @@ public class ControlData {
         conn.commit();
         return at;
     }
-    
+
+    public List<AnggotaKeluarga> tampilAnggotaKeluarga(String idSuratKK) throws SQLException {
+        PreparedStatement stmt = null;
+        AnggotaKeluarga a = null;
+        ResultSet result = null;
+        conn.setAutoCommit(false);
+        String query = "SELECT * FROM anggotakeluarga,kk WHERE kk.id_suratKK = '" + idSuratKK + "' "
+                + "and kk.id_suratKK=anggotakeluarga.id_suratKK  ORDER BY tanggal_lahir";
+        stmt = conn.prepareStatement(query);
+//        stmt.setString(1, idSuratKK);
+        result = stmt.executeQuery();
+        List<AnggotaKeluarga> at = new ArrayList<AnggotaKeluarga>();
+        if (result.next()) {
+            a = new AnggotaKeluarga();
+            a.setNama_lengkap(result.getString(1));
+            a.setNik(result.getString(2));
+            a.setJenis_kelamin(result.getString(3));
+            a.setTempat_lahir(result.getString(4));
+            a.setTanggal_lahir(result.getString(5));
+            a.setAgama(result.getString(6));
+            a.setPendidikan(result.getString(7));
+            a.setPekerjaan(result.getString(8));
+            a.setStatus_perkawinan(result.getString(9));
+            a.setStatus_hub_keluarga(result.getString(10));
+            a.setKewarganegaraan(result.getString(11));
+            a.setNo_paspor(result.getString(12));
+            a.setNo_kitas_kitab(result.getString(13));
+            a.setNama_ayah(result.getString(14));
+            a.setNama_ibu(result.getString(15));
+            KK kartu = new KK();
+            kartu.setId_Suratkk(result.getString(16));
+            a.setId_suratkk(kartu);
+            at.add(a);
+        }
+        conn.commit();
+        return at;
+    }
+
     public void insertAnggotaKeluarga(AnggotaKeluarga k) throws SQLException {
         PreparedStatement stmt = null;
         conn.setAutoCommit(false);
@@ -584,7 +619,7 @@ public class ControlData {
         stmt.setString(13, k.getNo_kitas_kitab().toUpperCase());
         stmt.setString(14, k.getNama_ayah().toUpperCase());
         stmt.setString(15, k.getNama_ibu().toUpperCase());
-        stmt.setString(16, k.getId_suratkk().toUpperCase());
+        stmt.setString(16, k.getId_suratkk().getId_Suratkk().toUpperCase());
 
         stmt.executeUpdate();
         conn.commit();

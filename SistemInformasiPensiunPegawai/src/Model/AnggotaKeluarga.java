@@ -9,6 +9,7 @@ package Model;
  * @author a9uszT
  */
 public class AnggotaKeluarga {
+
     private String nik;
     private String nama_lengkap;
     private String jenis_kelamin;
@@ -24,9 +25,28 @@ public class AnggotaKeluarga {
     private String no_kitas_kitab;
     private String nama_ayah;
     private String nama_ibu;
-    private String id_suratkk;
+    private KK id_suratkk;
 
     public AnggotaKeluarga() {
+    }
+
+    public AnggotaKeluarga(String nik, String nama_lengkap, String jenis_kelamin, String tempat_lahir, String tanggal_lahir, String agama, String pendidikan, String pekerjaan, String status_perkawinan, String status_hub_keluarga, String kewarganegaraan, String no_paspor, String no_kitas_kitab, String nama_ayah, String nama_ibu, KK id_suratkk) {
+        this.nik = nik;
+        this.nama_lengkap = nama_lengkap;
+        this.jenis_kelamin = jenis_kelamin;
+        this.tempat_lahir = tempat_lahir;
+        this.tanggal_lahir = tanggal_lahir;
+        this.agama = agama;
+        this.pendidikan = pendidikan;
+        this.pekerjaan = pekerjaan;
+        this.status_perkawinan = status_perkawinan;
+        this.status_hub_keluarga = status_hub_keluarga;
+        this.kewarganegaraan = kewarganegaraan;
+        this.no_paspor = no_paspor;
+        this.no_kitas_kitab = no_kitas_kitab;
+        this.nama_ayah = nama_ayah;
+        this.nama_ibu = nama_ibu;
+        this.id_suratkk = id_suratkk;
     }
 
     /**
@@ -242,15 +262,14 @@ public class AnggotaKeluarga {
     /**
      * @return the id_suratkk
      */
-    public String getId_suratkk() {
+    public KK getId_suratkk() {
         return id_suratkk;
     }
 
     /**
      * @param id_suratkk the id_suratkk to set
      */
-    public void setId_suratkk(String id_suratkk) {
+    public void setId_suratkk(KK id_suratkk) {
         this.id_suratkk = id_suratkk;
     }
-    
 }

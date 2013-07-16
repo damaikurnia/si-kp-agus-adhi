@@ -26,6 +26,9 @@
 	<parameter name="NIP" isForPrompting="true" class="java.lang.String">
 		<parameterDescription><![CDATA[""]]></parameterDescription>
 	</parameter>
+	<parameter name="SUBREPORT_DIR" isForPrompting="true" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["E:\\Subversion\\SistemInformasiPensiunPegawai\\Cetak\\"]]></defaultValueExpression>
+	</parameter>
 	<queryString><![CDATA[SELECT
 	
      Upper(pns.nama_pns) AS pns_nama_pns,
@@ -159,16 +162,16 @@ WHERE
 			<band height="724"  isSplitAllowed="true" >
 				<staticText>
 					<reportElement
-						x="136"
+						x="43"
 						y="0"
-						width="117"
+						width="213"
 						height="37"
 						key="staticText-3"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font fontName="Arial Black" size="26"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" pdfFontName="Helvetica-Bold" size="24" isBold="true"/>
 					</textElement>
-				<text><![CDATA[T.M.T : ]]></text>
+				<text><![CDATA[MENINGGAL TGL. tgl.]]></text>
 				</staticText>
 				<line direction="TopDown">
 					<reportElement
@@ -181,8 +184,8 @@ WHERE
 				</line>
 				<staticText>
 					<reportElement
-						x="141"
-						y="84"
+						x="136"
+						y="60"
 						width="264"
 						height="37"
 						key="staticText-4"/>
@@ -195,7 +198,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="9"
-						y="279"
+						y="253"
 						width="182"
 						height="22"
 						key="staticText-5"/>
@@ -203,12 +206,12 @@ WHERE
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="16" isBold="true"/>
 					</textElement>
-				<text><![CDATA[1. NAMA]]></text>
+				<text><![CDATA[3. NAMA]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
 						x="9"
-						y="311"
+						y="285"
 						width="182"
 						height="22"
 						key="staticText-6"/>
@@ -216,7 +219,7 @@ WHERE
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="16" isBold="true"/>
 					</textElement>
-				<text><![CDATA[2. NIP LAMA / BARU]]></text>
+				<text><![CDATA[4. NIP LAMA / BARU]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -229,7 +232,7 @@ WHERE
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="16" isBold="true"/>
 					</textElement>
-				<text><![CDATA[3. PANGKAT GOL / RU]]></text>
+				<text><![CDATA[6. PANGKAT GOL / RU]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -255,7 +258,7 @@ WHERE
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="16" isBold="true"/>
 					</textElement>
-				<text><![CDATA[5. MASA KERJA]]></text>
+				<text><![CDATA[7. MASA KERJA]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -268,7 +271,7 @@ WHERE
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="16" isBold="true"/>
 					</textElement>
-				<text><![CDATA[6. GAJI POKOK]]></text>
+				<text><![CDATA[8. GAJI POKOK]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -281,7 +284,7 @@ WHERE
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="16" isBold="true"/>
 					</textElement>
-				<text><![CDATA[7. JABATAN]]></text>
+				<text><![CDATA[9. JABATAN]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -294,7 +297,7 @@ WHERE
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="16" isBold="true"/>
 					</textElement>
-				<text><![CDATA[8. NO. KARPEG]]></text>
+				<text><![CDATA[10. NO. KARPEG]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -307,7 +310,7 @@ WHERE
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="16" isBold="true"/>
 					</textElement>
-				<text><![CDATA[9. UNIT KERJA]]></text>
+				<text><![CDATA[11. UNIT KERJA]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -320,12 +323,12 @@ WHERE
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="16" isBold="true"/>
 					</textElement>
-				<text><![CDATA[10.ALAMAT RUMAH]]></text>
+				<text><![CDATA[12.ALAMAT RUMAH]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
 						x="203"
-						y="279"
+						y="253"
 						width="8"
 						height="22"
 						key="staticText-15"/>
@@ -338,7 +341,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="203"
-						y="311"
+						y="285"
 						width="8"
 						height="22"
 						key="staticText-16"/>
@@ -517,19 +520,6 @@ WHERE
 					</textElement>
 				<text><![CDATA[KABUPATEN]]></text>
 				</staticText>
-				<staticText>
-					<reportElement
-						x="441"
-						y="643"
-						width="100"
-						height="32"
-						key="staticText-30"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="24" isBold="true"/>
-					</textElement>
-				<text><![CDATA[]]></text>
-				</staticText>
 				<line direction="TopDown">
 					<reportElement
 						x="548"
@@ -583,7 +573,7 @@ WHERE
 						height="20"
 						key="textField-1"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
+					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="16"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sptkg_terakhir_Sekolah}]]></textFieldExpression>
@@ -596,7 +586,7 @@ WHERE
 						height="20"
 						key="textField-2"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
+					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="16"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sk_karpeg_id_SuratKarpeg}]]></textFieldExpression>
@@ -609,7 +599,7 @@ WHERE
 						height="20"
 						key="textField-3"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
+					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="16"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sk_cpns_Profesi}]]></textFieldExpression>
@@ -619,10 +609,10 @@ WHERE
 						x="253"
 						y="439"
 						width="257"
-						height="20"
+						height="22"
 						key="textField-4"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
+					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="16"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{sptkg_terakhir_gajipokok_baru}]]></textFieldExpression>
@@ -630,7 +620,7 @@ WHERE
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="351"
-						y="311"
+						y="285"
 						width="190"
 						height="20"
 						key="textField-5"/>
@@ -643,7 +633,7 @@ WHERE
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="226"
-						y="311"
+						y="285"
 						width="104"
 						height="20"
 						key="textField-6"/>
@@ -695,7 +685,7 @@ WHERE
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="226"
-						y="279"
+						y="253"
 						width="284"
 						height="20"
 						key="textField-10"/>
@@ -713,7 +703,7 @@ WHERE
 						height="20"
 						key="textField-11"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
+					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="16"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{kk_Alamat}]]></textFieldExpression>
@@ -723,10 +713,10 @@ WHERE
 						x="337"
 						y="618"
 						width="173"
-						height="20"
+						height="21"
 						key="textField-12"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
+					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="16"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{kk_Kabupaten_Kota}]]></textFieldExpression>
@@ -734,7 +724,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="330"
-						y="311"
+						y="285"
 						width="15"
 						height="22"
 						key="staticText-31"/>
@@ -783,153 +773,10 @@ WHERE
 					</textElement>
 				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$F{Bulan}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="416"
-						y="0"
-						width="68"
-						height="37"
-						key="textField-15"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="26" isBold="true"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.Long"><![CDATA[$F{Tahun_TMT}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="331"
-						y="0"
-						width="68"
-						height="37"
-						key="textField-16"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="26" isBold="true"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.Long"><![CDATA[$F{bulan_TMT}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement
-						x="320"
-						y="0"
-						width="11"
-						height="37"
-						key="staticText-33"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font fontName="Arial Black" size="26"/>
-					</textElement>
-				<text><![CDATA[-]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="398"
-						y="0"
-						width="11"
-						height="37"
-						key="staticText-34"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font fontName="Arial Black" size="26"/>
-					</textElement>
-				<text><![CDATA[-]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="264"
-						y="0"
-						width="36"
-						height="37"
-						key="staticText-35"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font fontName="Arial Black" pdfFontName="Helvetica" size="26" isBold="false"/>
-					</textElement>
-				<text><![CDATA[01]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="6"
-						y="195"
-						width="182"
-						height="22"
-						key="staticText-36"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="16" isBold="true"/>
-					</textElement>
-				<text><![CDATA[1. NAMA]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="209"
-						y="195"
-						width="8"
-						height="22"
-						key="staticText-37"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="16" isBold="true"/>
-					</textElement>
-				<text><![CDATA[:]]></text>
-				</staticText>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="223"
-						y="195"
-						width="284"
-						height="20"
-						key="textField-17"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Arial" size="16"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{pns_nama_pns}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement
-						x="9"
-						y="223"
-						width="182"
-						height="22"
-						key="staticText-38"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="16" isBold="true"/>
-					</textElement>
-				<text><![CDATA[2.ALAMAT RUMAH]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="210"
-						y="223"
-						width="8"
-						height="22"
-						key="staticText-39"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="16" isBold="true"/>
-					</textElement>
-				<text><![CDATA[:]]></text>
-				</staticText>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="226"
-						y="223"
-						width="291"
-						height="20"
-						key="textField-18"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Arial" size="16"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{kk_Alamat}]]></textFieldExpression>
-				</textField>
 				<staticText>
 					<reportElement
 						x="8"
-						y="250"
+						y="220"
 						width="268"
 						height="22"
 						key="staticText-40"/>
@@ -939,6 +786,155 @@ WHERE
 					</textElement>
 				<text><![CDATA[JANDA/DUDA DARI ALMARHUM :]]></text>
 				</staticText>
+				<staticText>
+					<reportElement
+						x="8"
+						y="314"
+						width="193"
+						height="22"
+						key="staticText-41"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="16" isBold="true"/>
+					</textElement>
+				<text><![CDATA[5. TEMPAT & TGL.LAHIR]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="202"
+						y="314"
+						width="8"
+						height="22"
+						key="staticText-42"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="16" isBold="true"/>
+					</textElement>
+				<text><![CDATA[:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="225"
+						y="314"
+						width="74"
+						height="20"
+						key="textField-19"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="16" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sptkg_terakhir_pangkat_baru}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="307"
+						y="314"
+						width="15"
+						height="22"
+						key="staticText-43"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="16" isBold="true"/>
+					</textElement>
+				<text><![CDATA[,]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="329"
+						y="314"
+						width="34"
+						height="20"
+						key="textField-20"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Arial" size="16"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sptkg_terakhir_golongan_ruang_baru}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="393"
+						y="315"
+						width="34"
+						height="20"
+						key="textField-21"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" size="16"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sptkg_terakhir_golongan_ruang_baru}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="371"
+						y="315"
+						width="15"
+						height="20"
+						key="staticText-44"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="16" isBold="true"/>
+					</textElement>
+				<text><![CDATA[-]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="457"
+						y="314"
+						width="59"
+						height="20"
+						key="textField-22"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Arial" size="16"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sptkg_terakhir_golongan_ruang_baru}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="434"
+						y="315"
+						width="15"
+						height="20"
+						key="staticText-45"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="16" isBold="true"/>
+					</textElement>
+				<text><![CDATA[-]]></text>
+				</staticText>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="9"
+						y="123"
+						width="526"
+						height="93"
+						key="subreport-1"/>
+					<subreportParameter  name="NIP">
+						<subreportParameterExpression><![CDATA[$P{NIP}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_data_kel_meininggal_cover.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="300"
+						y="0"
+						width="221"
+						height="34"
+						key="subreport-2"/>
+					<subreportParameter  name="NIP">
+						<subreportParameterExpression><![CDATA[$P{NIP}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_tgl_menininggal.jasper"]]></subreportExpression>
+				</subreport>
 			</band>
 		</detail>
 		<columnFooter>

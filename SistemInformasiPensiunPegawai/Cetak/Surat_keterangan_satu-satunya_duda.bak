@@ -26,33 +26,38 @@
 	<parameter name="NIP" isForPrompting="true" class="java.lang.String">
 		<defaultValueExpression ><![CDATA[""]]></defaultValueExpression>
 	</parameter>
+	<parameter name="SUBREPORT_DIR" isForPrompting="true" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["E:\\Subversion\\SistemInformasiPensiunPegawai\\Cetak\\"]]></defaultValueExpression>
+	</parameter>
 	<queryString><![CDATA[SELECT
-sptkg_terakhir.`nama_pemilik`  AS sptkg_terakhir_nama_pemilik,
-  sptkg_terakhir.`nip_baru`            AS sptkg_terakhir_nip_baru,
-  sptkg_terakhir.`pangkat_baru`        AS sptkg_terakhir_pangkat_baru,
-  sptkg_terakhir.`golongan_ruang_baru` AS sptkg_terakhir_golongan_banggotakeluargaruang_aru,
-  sk_cpns.`Profesi`                    AS sk_cpns_Profesi,
-  kk.`Alamat`                          AS kk_Alamat,
-kk.`Kabupaten_kota`                          AS kk_Kabupaten_kota,
-  sptkg_terakhir.`Sekolah`             AS sptkg_terakhir_Sekola
-FROM `sk_pangkatterakhir` sk_pangkatterakhir,
-  `sk_cpns` sk_cpns,
-  `kk` kk,
-  `sptkg_terakhir` sptkg_terakhir,
-  `pns` pns
-WHERE pns.nip_baru LIKE  $P{NIP}
-AND pns.id_SuratSPTKGTerakhir = sptkg_terakhir.id_SuratSPTKGTerakhir
-AND pns.id_Suratkk=kk.id_Suratkk
-AND pns.id_SuratCPNS=sk_cpns.id_SuratCPNS]]></queryString>
+     sptkg_terakhir.`nama_pemilik` AS sptkg_terakhir_nama_pemilik,
+     sptkg_terakhir.`nip_baru` AS sptkg_terakhir_nip_baru,
+     sk_cpns.`Profesi` AS sk_cpns_Profesi,
+     kk.`Alamat` AS kk_Alamat,
+     kk.`Kabupaten_kota` AS kk_Kabupaten_kota,
+     sptkg_terakhir.`Sekolah` AS sptkg_terakhir_Sekola,
+     kk.`Kecamatan` AS kk_Kecamatan,
+     kk.`Kelurahan_Desa` AS kk_Kelurahan_Desa
+FROM
+     `sk_cpns` sk_cpns,
+     `kk` kk,
+     `sptkg_terakhir` sptkg_terakhir,
+     `pns` pns
+WHERE
+     pns.nip_baru LIKE $P{NIP}
+ AND pns.id_SuratSPTKGTerakhir = sptkg_terakhir.id_SuratSPTKGTerakhir
+ AND pns.id_Suratkk = kk.id_Suratkk
+ AND pns.id_SuratCPNS = sk_cpns.id_SuratCPNS
+ AND sptkg_terakhir.`id_SuratSPTKGTerakhir` = pns.`id_SuratSPTKGTerakhir`]]></queryString>
 
 	<field name="sptkg_terakhir_nama_pemilik" class="java.lang.String"/>
 	<field name="sptkg_terakhir_nip_baru" class="java.lang.String"/>
-	<field name="sptkg_terakhir_pangkat_baru" class="java.lang.String"/>
-	<field name="sptkg_terakhir_golongan_banggotakeluargaruang_aru" class="java.lang.String"/>
 	<field name="sk_cpns_Profesi" class="java.lang.String"/>
 	<field name="kk_Alamat" class="java.lang.String"/>
 	<field name="kk_Kabupaten_kota" class="java.lang.String"/>
 	<field name="sptkg_terakhir_Sekola" class="java.lang.String"/>
+	<field name="kk_Kecamatan" class="java.lang.String"/>
+	<field name="kk_Kelurahan_Desa" class="java.lang.String"/>
 
 		<background>
 			<band height="0"  isSplitAllowed="true" >
@@ -114,32 +119,6 @@ AND pns.id_SuratCPNS=sk_cpns.id_SuratCPNS]]></queryString>
 				<staticText>
 					<reportElement
 						x="66"
-						y="103"
-						width="88"
-						height="15"
-						key="staticText-6"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
-				<text><![CDATA[Nama]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="67"
-						y="145"
-						width="86"
-						height="15"
-						key="staticText-7"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
-				<text><![CDATA[Tempat Tinggal]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="66"
 						y="41"
 						width="177"
 						height="15"
@@ -149,19 +128,6 @@ AND pns.id_SuratCPNS=sk_cpns.id_SuratCPNS]]></queryString>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<text><![CDATA[Yang bertanda tangan dibawah ini  :]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="67"
-						y="123"
-						width="86"
-						height="15"
-						key="staticText-15"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
-				<text><![CDATA[Pekerjaan]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -191,7 +157,7 @@ AND pns.id_SuratCPNS=sk_cpns.id_SuratCPNS]]></queryString>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="30"
+						x="31"
 						y="259"
 						width="80"
 						height="15"
@@ -308,47 +274,8 @@ AND pns.id_SuratCPNS=sk_cpns.id_SuratCPNS]]></queryString>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="160"
-						y="122"
-						width="5"
-						height="15"
-						key="staticText-43"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
-				<text><![CDATA[:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="160"
-						y="103"
-						width="5"
-						height="15"
-						key="staticText-44"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
-				<text><![CDATA[:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="160"
-						y="145"
-						width="5"
-						height="15"
-						key="staticText-45"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
-				<text><![CDATA[:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="378"
-						y="197"
+						x="369"
+						y="198"
 						width="57"
 						height="15"
 						key="staticText-46"/>
@@ -362,14 +289,14 @@ AND pns.id_SuratCPNS=sk_cpns.id_SuratCPNS]]></queryString>
 					<reportElement
 						x="31"
 						y="218"
-						width="52"
+						width="169"
 						height="15"
 						key="staticText-47"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[Kabupaten]]></text>
+				<text><![CDATA[Kabupaten Klaten .]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -386,7 +313,7 @@ AND pns.id_SuratCPNS=sk_cpns.id_SuratCPNS]]></queryString>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="30"
+						x="31"
 						y="238"
 						width="130"
 						height="15"
@@ -475,6 +402,113 @@ AND pns.id_SuratCPNS=sk_cpns.id_SuratCPNS]]></queryString>
 					</textElement>
 				<text><![CDATA[NIP.]]></text>
 				</staticText>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="31"
+						y="102"
+						width="477"
+						height="68"
+						key="subreport-1"/>
+					<subreportParameter  name="NIP">
+						<subreportParameterExpression><![CDATA[$P{NIP}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_data_kel_meininggal_satu_duda.jasper"]]></subreportExpression>
+				</subreport>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="151"
+						y="62"
+						width="146"
+						height="14"
+						key="textField-1"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{kk_Kelurahan_Desa}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="378"
+						y="61"
+						width="146"
+						height="14"
+						key="textField-2"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{kk_Kecamatan}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="88"
+						y="83"
+						width="124"
+						height="14"
+						key="textField-3"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{kk_Kabupaten_kota}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="59"
+						y="198"
+						width="146"
+						height="14"
+						key="textField-4"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sptkg_terakhir_nip_baru}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="254"
+						y="198"
+						width="112"
+						height="14"
+						key="textField-5"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sk_cpns_Profesi}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="428"
+						y="198"
+						width="119"
+						height="14"
+						key="textField-6"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sptkg_terakhir_Sekola}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="450"
+						y="237"
+						width="97"
+						height="15"
+						key="textField-7"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sptkg_terakhir_nama_pemilik}]]></textFieldExpression>
+				</textField>
 			</band>
 		</detail>
 		<columnFooter>
