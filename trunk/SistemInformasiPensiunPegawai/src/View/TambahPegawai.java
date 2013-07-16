@@ -35,6 +35,7 @@ import javax.swing.JOptionPane;
 public class TambahPegawai extends javax.swing.JFrame {
 
     PNS pegawai = new PNS("-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-");
+    AnggotaKeluarga ak;
     String idSuratkk;
 
     /**
@@ -1547,7 +1548,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String pekerjaan = (String) AK_Pekerjaan_Combo.getSelectedItem();
         
-        AnggotaKeluarga ak = new AnggotaKeluarga();
+        ak = new AnggotaKeluarga();
         ak.setNik(AK_NIK_TF.getText());
         ak.setNama_lengkap(AK_Nama_TF.getText());
         ak.setJenis_kelamin((String) AK_JK_Combo.getSelectedItem());
@@ -1573,9 +1574,8 @@ public class TambahPegawai extends javax.swing.JFrame {
             Controller.ControlData.getKoneksi().insertAnggotaKeluarga(ak);
             JOptionPane.showMessageDialog(rootPane, "Berhasil Disimpan");
             updateTerusTabelnyaKK(idSuratkk);
+            
             KK_Internal.setVisible(false);
-            
-            
         } catch (Exception ex) {
             Logger.getLogger(TambahPegawai.class.getName()).log(Level.SEVERE, null, ex);
         }
