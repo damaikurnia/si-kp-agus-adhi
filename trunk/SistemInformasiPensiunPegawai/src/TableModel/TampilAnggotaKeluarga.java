@@ -32,20 +32,11 @@ public class TampilAnggotaKeluarga extends AbstractTableModel {
 
     public Object getValueAt(int rowIndex, int columnIndex) {
         AnggotaKeluarga k = stock.get(rowIndex);
-<<<<<<< .mine
-//        int nomor = 0;
-=======
->>>>>>> .r108
         switch (columnIndex) {
             case 0:
-<<<<<<< .mine
-                //nomor = nomor + 1;
-                return "";
-=======
                 int nomor = rowIndex;
                 nomor = nomor+1;
                 return nomor;
->>>>>>> .r108
             case 1:
                 return k.getNama_lengkap();
             case 2:

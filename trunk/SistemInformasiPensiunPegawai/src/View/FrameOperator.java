@@ -263,7 +263,10 @@ public class FrameOperator extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonTmbhPegActionPerformed
 
     private void buttonEditPegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditPegActionPerformed
-        // TODO add your handling code here:
+        PencarianPegawai pen = new PencarianPegawai("Edit Pegawai");
+        pen.dataOperator(nama_operator.getText(),kode_op.getText());
+        pen.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_buttonEditPegActionPerformed
     public void dataOperator(String nama, String id) {
         nama_operator.setText(nama);
