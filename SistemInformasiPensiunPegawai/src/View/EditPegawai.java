@@ -43,17 +43,22 @@ public class EditPegawai extends javax.swing.JFrame {
      */
     public EditPegawai() {
         initComponents();
-        Tab_PNS.setEnabledAt(1, false);
-        Tab_PNS.setEnabledAt(2, false);
-        Tab_PNS.setEnabledAt(3, false);
-        Tab_PNS.setEnabledAt(4, false);
-        Tab_PNS.setEnabledAt(5, false);
-        Tab_PNS.setEnabledAt(6, false);
         KK_Internal.setVisible(false);
         KK_TambahAnggota_button.setEnabled(false);
         AK_Pekerjaan_TF.setEditable(false);
         Clock clock = new Clock();
         clock.showDigitalClock(time);
+    }
+    
+    public EditPegawai(String nipBaru) throws Exception {
+        initComponents();
+        KK_Internal.setVisible(false);
+        KK_TambahAnggota_button.setEnabled(false);
+        AK_Pekerjaan_TF.setEditable(false);
+        Clock clock = new Clock();
+        clock.showDigitalClock(time);
+        
+        isiCPNS(nipBaru);
     }
 
     /**
@@ -110,7 +115,6 @@ public class EditPegawai extends javax.swing.JFrame {
         Tab_PNS = new javax.swing.JTabbedPane();
         SK_CPNS = new javax.swing.JPanel();
         CPNS_simpan_button = new javax.swing.JButton();
-        CPNS_next_button = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         CPNS_TmpBuatSurat_TF = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -127,7 +131,7 @@ public class EditPegawai extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         CPNS_NmrPersetujuan_TF = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        CPNS_tanggalEdit = new javax.swing.JLabel();
         CPNS_NipBaru_TF = new javax.swing.JTextField();
         CPNS_NipLama_TF = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
@@ -152,6 +156,10 @@ public class EditPegawai extends javax.swing.JFrame {
         CPNS_TMTPartikelir_Date = new com.toedter.calendar.JDateChooser();
         jLabel73 = new javax.swing.JLabel();
         jLabel75 = new javax.swing.JLabel();
+        jLabel74 = new javax.swing.JLabel();
+        CPNS_kode_ope = new javax.swing.JLabel();
+        jLabel95 = new javax.swing.JLabel();
+        jLabel96 = new javax.swing.JLabel();
         SK_PangkatTerakhir = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         PT_Nama_TF = new javax.swing.JTextField();
@@ -168,7 +176,6 @@ public class EditPegawai extends javax.swing.JFrame {
         PT_NipLama_TF = new javax.swing.JTextField();
         PT_PngktLm_TF = new javax.swing.JTextField();
         PT_simpan_button = new javax.swing.JButton();
-        PT_next_button = new javax.swing.JButton();
         PT_NoSurat_TF = new javax.swing.JTextField();
         PT_GolLm_TF = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
@@ -203,7 +210,6 @@ public class EditPegawai extends javax.swing.JFrame {
         SPTKG_NipBaru_TF = new javax.swing.JTextField();
         jLabel43 = new javax.swing.JLabel();
         SPTKG_simpan_button = new javax.swing.JButton();
-        SPTKG_next_button = new javax.swing.JButton();
         jLabel36 = new javax.swing.JLabel();
         SPTKG_PangkatBr_TF = new javax.swing.JTextField();
         SPTKG_GolBr_TF = new javax.swing.JTextField();
@@ -231,7 +237,6 @@ public class EditPegawai extends javax.swing.JFrame {
         jLabel52 = new javax.swing.JLabel();
         Karpeg_NipLama_TF = new javax.swing.JTextField();
         Karpeg_simpan_button = new javax.swing.JButton();
-        Karpeg_next_button = new javax.swing.JButton();
         Karpeg_NoSurat_TF = new javax.swing.JTextField();
         Karpeg_TglLhr_Date = new com.toedter.calendar.JDateChooser();
         jLabel85 = new javax.swing.JLabel();
@@ -246,7 +251,6 @@ public class EditPegawai extends javax.swing.JFrame {
         jLabel55 = new javax.swing.JLabel();
         SN_TglNikah_Date = new com.toedter.calendar.JDateChooser();
         SN_simpan_button = new javax.swing.JButton();
-        SN_next_button = new javax.swing.JButton();
         KK = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel8 = new javax.swing.JPanel();
@@ -542,22 +546,13 @@ public class EditPegawai extends javax.swing.JFrame {
         SK_CPNS.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         CPNS_simpan_button.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        CPNS_simpan_button.setText("Simpan");
+        CPNS_simpan_button.setText("UPDATE");
         CPNS_simpan_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CPNS_simpan_buttonActionPerformed(evt);
             }
         });
-        SK_CPNS.add(CPNS_simpan_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, -1, -1));
-
-        CPNS_next_button.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        CPNS_next_button.setText("Next");
-        CPNS_next_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CPNS_next_buttonActionPerformed(evt);
-            }
-        });
-        SK_CPNS.add(CPNS_next_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 300, -1, -1));
+        SK_CPNS.add(CPNS_simpan_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Nomor Surat");
@@ -570,6 +565,8 @@ public class EditPegawai extends javax.swing.JFrame {
 
         CPNS_TMTPersetujuan_Date.setDateFormatString("d MMM yyyy");
         SK_CPNS.add(CPNS_TMTPersetujuan_Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 200, 120, -1));
+
+        CPNS_NoSurat_TF.setEditable(false);
         SK_CPNS.add(CPNS_NoSurat_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 230, -1));
 
         CPNS_nama_TF.setEditable(false);
@@ -602,9 +599,11 @@ public class EditPegawai extends javax.swing.JFrame {
         jLabel12.setText("Bulan");
         SK_CPNS.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, 50, 20));
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel13.setText("TMT Persetujuan");
-        SK_CPNS.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 200, -1, -1));
+        CPNS_tanggalEdit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        CPNS_tanggalEdit.setForeground(new java.awt.Color(255, 0, 0));
+        CPNS_tanggalEdit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CPNS_tanggalEdit.setText("--tanggal--");
+        SK_CPNS.add(CPNS_tanggalEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 360, 100, -1));
 
         CPNS_NipBaru_TF.setEditable(false);
         SK_CPNS.add(CPNS_NipBaru_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 250, -1));
@@ -675,6 +674,26 @@ public class EditPegawai extends javax.swing.JFrame {
         jLabel75.setText("Nmr Persetujuan");
         SK_CPNS.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, -1, -1));
 
+        jLabel74.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel74.setText("TMT Persetujuan");
+        SK_CPNS.add(jLabel74, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 200, -1, -1));
+
+        CPNS_kode_ope.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        CPNS_kode_ope.setForeground(new java.awt.Color(255, 0, 0));
+        CPNS_kode_ope.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CPNS_kode_ope.setText("Kode");
+        SK_CPNS.add(CPNS_kode_ope, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 360, 30, -1));
+
+        jLabel95.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel95.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel95.setText("Editan Terakhir ");
+        SK_CPNS.add(jLabel95, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 360, -1, -1));
+
+        jLabel96.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel96.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel96.setText("Oleh");
+        SK_CPNS.add(jLabel96, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 360, 30, -1));
+
         Tab_PNS.addTab("SK_CPNS", SK_CPNS);
 
         SK_PangkatTerakhir.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -730,15 +749,6 @@ public class EditPegawai extends javax.swing.JFrame {
             }
         });
         SK_PangkatTerakhir.add(PT_simpan_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 300, -1, -1));
-
-        PT_next_button.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        PT_next_button.setText("Next");
-        PT_next_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PT_next_buttonActionPerformed(evt);
-            }
-        });
-        SK_PangkatTerakhir.add(PT_next_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 300, -1, -1));
         SK_PangkatTerakhir.add(PT_NoSurat_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 130, -1));
         SK_PangkatTerakhir.add(PT_GolLm_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, 50, -1));
 
@@ -843,15 +853,6 @@ public class EditPegawai extends javax.swing.JFrame {
         });
         SPTKG_Terakhir.add(SPTKG_simpan_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 300, -1, -1));
 
-        SPTKG_next_button.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        SPTKG_next_button.setText("Next");
-        SPTKG_next_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SPTKG_next_buttonActionPerformed(evt);
-            }
-        });
-        SPTKG_Terakhir.add(SPTKG_next_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 300, -1, -1));
-
         jLabel36.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel36.setText("Pangkat,Gol Baru");
         SPTKG_Terakhir.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
@@ -945,15 +946,6 @@ public class EditPegawai extends javax.swing.JFrame {
             }
         });
         SK_Karpeg.add(Karpeg_simpan_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, -1, -1));
-
-        Karpeg_next_button.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        Karpeg_next_button.setText("Next");
-        Karpeg_next_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Karpeg_next_buttonActionPerformed(evt);
-            }
-        });
-        SK_Karpeg.add(Karpeg_next_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 300, -1, -1));
         SK_Karpeg.add(Karpeg_NoSurat_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 230, -1));
 
         Karpeg_TglLhr_Date.setDateFormatString("d MMM yyyy");
@@ -1002,15 +994,6 @@ public class EditPegawai extends javax.swing.JFrame {
             }
         });
         Surat_Nikah.add(SN_simpan_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, -1, -1));
-
-        SN_next_button.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        SN_next_button.setText("Next");
-        SN_next_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SN_next_buttonActionPerformed(evt);
-            }
-        });
-        Surat_Nikah.add(SN_next_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 260, -1, -1));
 
         Tab_PNS.addTab("Surat Nikah", Surat_Nikah);
 
@@ -1196,11 +1179,6 @@ public class EditPegawai extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_CPNS_simpan_buttonActionPerformed
 
-    private void CPNS_next_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CPNS_next_buttonActionPerformed
-        Tab_PNS.setEnabledAt(2, true);
-        Tab_PNS.setSelectedIndex(2);
-    }//GEN-LAST:event_CPNS_next_buttonActionPerformed
-
     private void PT_simpan_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PT_simpan_buttonActionPerformed
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -1231,16 +1209,6 @@ public class EditPegawai extends javax.swing.JFrame {
             Logger.getLogger(EditPegawai.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_PT_simpan_buttonActionPerformed
-
-    private void PT_next_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PT_next_buttonActionPerformed
-        Tab_PNS.setEnabledAt(3, true);
-        Tab_PNS.setSelectedIndex(3);
-    }//GEN-LAST:event_PT_next_buttonActionPerformed
-
-    private void SPTKG_next_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SPTKG_next_buttonActionPerformed
-        Tab_PNS.setEnabledAt(4, true);
-        Tab_PNS.setSelectedIndex(4);
-}//GEN-LAST:event_SPTKG_next_buttonActionPerformed
 
     private void SPTKG_simpan_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SPTKG_simpan_buttonActionPerformed
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -1288,11 +1256,6 @@ public class EditPegawai extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Karpeg_simpan_buttonActionPerformed
 
-    private void Karpeg_next_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Karpeg_next_buttonActionPerformed
-        Tab_PNS.setEnabledAt(5, true);
-        Tab_PNS.setSelectedIndex(5);
-    }//GEN-LAST:event_Karpeg_next_buttonActionPerformed
-
     private void SN_simpan_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SN_simpan_buttonActionPerformed
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         S_Nikah nikah = new S_Nikah();
@@ -1310,11 +1273,6 @@ public class EditPegawai extends javax.swing.JFrame {
             Logger.getLogger(EditPegawai.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_SN_simpan_buttonActionPerformed
-
-    private void SN_next_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SN_next_buttonActionPerformed
-        Tab_PNS.setEnabledAt(6, true);
-        Tab_PNS.setSelectedIndex(6);
-    }//GEN-LAST:event_SN_next_buttonActionPerformed
 
     private void AK_Batal_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AK_Batal_buttonActionPerformed
         KK_Internal.setVisible(false);
@@ -1420,6 +1378,34 @@ public class EditPegawai extends javax.swing.JFrame {
             Logger.getLogger(EditPegawai.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void isiCPNS(String nipBaru) throws Exception{
+        SK_CPNS cpns = Controller.ControlData.getKoneksi().tampilSK_CPNS(nipBaru);
+        CPNS_NoSurat_TF.setText(cpns.getId_SuratCPNS());
+        CPNS_TmpBuatSurat_TF.setText(cpns.getTempat_surat());
+        CPNS_TglSurat_Date.setDateFormatString(cpns.getTanggal_surat());
+        CPNS_nama_TF.setText(cpns.getNama_pemilik());
+        
+        CPNS_TmpLhr_TF.setText(nipBaru);
+        CPNS_TglLhr_Date.setDateFormatString(nipBaru);
+        CPNS_Partikelir_TF.setText(nipBaru);
+        CPNS_TMTPartikelir_Date.setDateFormatString(nipBaru);
+        CPNS_Profesi_TF.setText(nipBaru);
+        CPNS_Sekolah_TF.setText(nipBaru);
+        CPNS_GpBulan_TF.setText(nipBaru);
+        CPNS_GPdari_TF.setText(nipBaru);
+        CPNS_MasaKerjaTahun_TF.setText(nipBaru);
+        CPNS_MasaKerjaBulan_TF.setText(nipBaru);
+        CPNS_Golongan_TF.setText(nipBaru);
+        CPNS_NipLama_TF.setText(nipBaru);
+        CPNS_NipBaru_TF.setText(nipBaru);
+        CPNS_Berijazah_TF.setText(nipBaru);
+        CPNS_PersetujuanDr_TF.setText(nipBaru);
+        CPNS_NmrPersetujuan_TF.setText(nipBaru);
+        CPNS_TMTPersetujuan_Date.setDateFormatString(nipBaru);
+        CPNS_tanggalEdit.setText(nipBaru);
+        CPNS_kode_ope.setText(nipBaru);
+    }
 
     /**
      * @param args the command line arguments
@@ -1474,9 +1460,10 @@ public class EditPegawai extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser CPNS_TglSurat_Date;
     private javax.swing.JTextField CPNS_TmpBuatSurat_TF;
     private javax.swing.JTextField CPNS_TmpLhr_TF;
+    private javax.swing.JLabel CPNS_kode_ope;
     private javax.swing.JTextField CPNS_nama_TF;
-    private javax.swing.JButton CPNS_next_button;
     private javax.swing.JButton CPNS_simpan_button;
+    private javax.swing.JLabel CPNS_tanggalEdit;
     private javax.swing.JPanel KK;
     private javax.swing.JTextField KK_Alamat_TF;
     private javax.swing.JInternalFrame KK_Internal;
@@ -1498,7 +1485,6 @@ public class EditPegawai extends javax.swing.JFrame {
     private javax.swing.JTextField Karpeg_NoSurat_TF;
     private com.toedter.calendar.JDateChooser Karpeg_TMT_Date;
     private com.toedter.calendar.JDateChooser Karpeg_TglLhr_Date;
-    private javax.swing.JButton Karpeg_next_button;
     private javax.swing.JButton Karpeg_simpan_button;
     private javax.swing.JTextField PT_GajiPokok_TF;
     private javax.swing.JTextField PT_GolBr_TF;
@@ -1518,7 +1504,6 @@ public class EditPegawai extends javax.swing.JFrame {
     private javax.swing.JTextField PT_TmpLhr_TF;
     private com.toedter.calendar.JDateChooser PT_TmtBr_TF;
     private com.toedter.calendar.JDateChooser PT_TmtLm_TF;
-    private javax.swing.JButton PT_next_button;
     private javax.swing.JButton PT_simpan_button;
     private javax.swing.JPanel SK_CPNS;
     private javax.swing.JPanel SK_Karpeg;
@@ -1527,7 +1512,6 @@ public class EditPegawai extends javax.swing.JFrame {
     private javax.swing.JTextField SN_NamaSuami_TF;
     private javax.swing.JTextField SN_NoSurat_TF;
     private com.toedter.calendar.JDateChooser SN_TglNikah_Date;
-    private javax.swing.JButton SN_next_button;
     private javax.swing.JButton SN_simpan_button;
     private javax.swing.JTextField SPTKG_GajiBaru_TF;
     private javax.swing.JTextField SPTKG_GajiLama_TF;
@@ -1542,7 +1526,6 @@ public class EditPegawai extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser SPTKG_TglSurat_TF;
     private javax.swing.JTextField SPTKG_TmpSurat_TF;
     private com.toedter.calendar.JDateChooser SPTKG_TmtBr_TF;
-    private javax.swing.JButton SPTKG_next_button;
     private javax.swing.JButton SPTKG_simpan_button;
     private javax.swing.JPanel Surat_Nikah;
     private javax.swing.JLabel TP_Kode_Label;
@@ -1552,7 +1535,6 @@ public class EditPegawai extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -1619,6 +1601,7 @@ public class EditPegawai extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel72;
     private javax.swing.JLabel jLabel73;
+    private javax.swing.JLabel jLabel74;
     private javax.swing.JLabel jLabel75;
     private javax.swing.JLabel jLabel76;
     private javax.swing.JLabel jLabel77;
@@ -1640,6 +1623,8 @@ public class EditPegawai extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel91;
     private javax.swing.JLabel jLabel92;
     private javax.swing.JLabel jLabel93;
+    private javax.swing.JLabel jLabel95;
+    private javax.swing.JLabel jLabel96;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
