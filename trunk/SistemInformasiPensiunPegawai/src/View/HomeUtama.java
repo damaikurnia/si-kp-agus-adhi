@@ -154,7 +154,7 @@ public class HomeUtama extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void masuk_button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masuk_button2ActionPerformed
-        String a = usernameTF.getText();
+        String a = usernameTF.getText().toUpperCase();
         String b = password_TF.getText();
         if (a.equalsIgnoreCase("") && b.equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(rootPane, "inputan tidak lengkap \n ID dan password kosong"
