@@ -49,7 +49,7 @@ public class EditPegawai extends javax.swing.JFrame {
         Clock clock = new Clock();
         clock.showDigitalClock(time);
     }
-    
+
     public EditPegawai(String nipBaru) throws Exception {
         initComponents();
         KK_Internal.setVisible(false);
@@ -57,7 +57,7 @@ public class EditPegawai extends javax.swing.JFrame {
         AK_Pekerjaan_TF.setEditable(false);
         Clock clock = new Clock();
         clock.showDigitalClock(time);
-        
+
         isiCPNS(nipBaru);
     }
 
@@ -540,7 +540,8 @@ public class EditPegawai extends javax.swing.JFrame {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 888, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Tambah PNS");
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("EDIT PNS");
 
         SK_CPNS.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         SK_CPNS.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -563,7 +564,7 @@ public class EditPegawai extends javax.swing.JFrame {
         jLabel4.setText("Tempat ,Tanggal Surat");
         SK_CPNS.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
-        CPNS_TMTPersetujuan_Date.setDateFormatString("d MMM yyyy");
+        CPNS_TMTPersetujuan_Date.setDateFormatString("dd-MM-yyyy");
         SK_CPNS.add(CPNS_TMTPersetujuan_Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 200, 120, -1));
 
         CPNS_NoSurat_TF.setEditable(false);
@@ -581,7 +582,7 @@ public class EditPegawai extends javax.swing.JFrame {
         jLabel7.setText("Tempat, Tanggal Lahir");
         SK_CPNS.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
 
-        CPNS_TglSurat_Date.setDateFormatString("d MMM yyyy");
+        CPNS_TglSurat_Date.setDateFormatString("dd-MM-yyyy");
         SK_CPNS.add(CPNS_TglSurat_Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 110, -1));
         SK_CPNS.add(CPNS_Partikelir_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 110, -1));
 
@@ -615,7 +616,7 @@ public class EditPegawai extends javax.swing.JFrame {
         jLabel14.setText("NIP Lama");
         SK_CPNS.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, -1, -1));
 
-        CPNS_TglLhr_Date.setDateFormatString("d MMM yyyy");
+        CPNS_TglLhr_Date.setDateFormatString("dd-MM-yyyy");
         SK_CPNS.add(CPNS_TglLhr_Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 110, -1));
 
         jLabel49.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -662,7 +663,7 @@ public class EditPegawai extends javax.swing.JFrame {
         SK_CPNS.add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, -1, -1));
         SK_CPNS.add(CPNS_PersetujuanDr_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 140, 250, -1));
 
-        CPNS_TMTPartikelir_Date.setDateFormatString("d MMM yyyy");
+        CPNS_TMTPartikelir_Date.setDateFormatString("dd-MM-yyyy");
         SK_CPNS.add(CPNS_TMTPartikelir_Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 170, 110, -1));
 
         jLabel73.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -1103,12 +1104,12 @@ public class EditPegawai extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(355, 355, 355))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(Tab_PNS)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(28, 28, 28))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1289,7 +1290,7 @@ public class EditPegawai extends javax.swing.JFrame {
     private void AK_Simpan_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AK_Simpan_buttonActionPerformed
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String pekerjaan = (String) AK_Pekerjaan_Combo.getSelectedItem();
-        
+
         ak = new AnggotaKeluarga();
         ak.setNik(AK_NIK_TF.getText());
         ak.setNama_lengkap(AK_Nama_TF.getText());
@@ -1298,9 +1299,9 @@ public class EditPegawai extends javax.swing.JFrame {
         ak.setTanggal_lahir(sdf.format(AK_TanggalLahir_Date.getDate()));
         ak.setAgama((String) AK_Agama_Combo.getSelectedItem());
         ak.setPendidikan((String) AK_Pendidikan_Combo.getSelectedItem());
-        if(!pekerjaan.equals("Lainnya...")){
+        if (!pekerjaan.equals("Lainnya...")) {
             ak.setPekerjaan((String) AK_Pekerjaan_Combo.getSelectedItem());
-        }else{
+        } else {
             ak.setPekerjaan(AK_Pekerjaan_TF.getText());
         }
         ak.setStatus_perkawinan((String) AK_StatusKawin_Combo.getSelectedItem());
@@ -1310,20 +1311,20 @@ public class EditPegawai extends javax.swing.JFrame {
         ak.setNo_kitas_kitab(AK_NoKitasKitap_TF.getText());
         ak.setNama_ayah(AK_NamaAyah_TF.getText());
         ak.setNama_ibu(AK_NamaIbu_TF.getText());
-        KK kartu=new KK();
+        KK kartu = new KK();
         kartu.setId_Suratkk(idSuratkk);
         ak.setId_suratkk(kartu);
-        
+
         try {
             Controller.ControlData.getKoneksi().insertAnggotaKeluarga(ak);
             JOptionPane.showMessageDialog(rootPane, "Berhasil Disimpan");
             updateTerusTabelnyaKK(idSuratkk);
-            
+
             KK_Internal.setVisible(false);
         } catch (Exception ex) {
             Logger.getLogger(EditPegawai.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_AK_Simpan_buttonActionPerformed
 
     private void KK_SimpanKK_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KK_SimpanKK_buttonActionPerformed
@@ -1339,7 +1340,7 @@ public class EditPegawai extends javax.swing.JFrame {
         k.setKode_pos(KK_KodePos_TF.getText());
         k.setProvinsi(KK_Provinsi_TF.getText());
         k.setKode_operator(TP_Kode_Label.getText().toUpperCase());
-        
+
         try {
             Controller.ControlData.getKoneksi().insertKK(k);
             Controller.ControlData.getKoneksi().updatePNS("KK", pegawai.getNip_baru(), k.getId_Suratkk().toUpperCase());
@@ -1353,9 +1354,9 @@ public class EditPegawai extends javax.swing.JFrame {
 
     private void AK_Pekerjaan_ComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AK_Pekerjaan_ComboActionPerformed
         String jawab = (String) AK_Pekerjaan_Combo.getSelectedItem();
-        if(jawab.equals("Lainnya...")){
+        if (jawab.equals("Lainnya...")) {
             AK_Pekerjaan_TF.setEditable(true);
-        }else{
+        } else {
             AK_Pekerjaan_TF.setText("-");
             AK_Pekerjaan_TF.setEditable(false);
         }
@@ -1368,8 +1369,8 @@ public class EditPegawai extends javax.swing.JFrame {
         }
         return 1;
     }
-    
-    private void updateTerusTabelnyaKK(String idSuratKK){
+
+    private void updateTerusTabelnyaKK(String idSuratKK) {
         try {
             List<AnggotaKeluarga> ak = Controller.ControlData.getKoneksi().tampilAnggotaKeluarga(idSuratKK);
             TampilAnggotaKeluarga model = new TampilAnggotaKeluarga(ak);
@@ -1378,33 +1379,44 @@ public class EditPegawai extends javax.swing.JFrame {
             Logger.getLogger(EditPegawai.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void isiCPNS(String nipBaru) throws Exception{
+
+    public void isiCPNS(String nipBaru) throws Exception {
         SK_CPNS cpns = Controller.ControlData.getKoneksi().tampilSK_CPNS(nipBaru);
         CPNS_NoSurat_TF.setText(cpns.getId_SuratCPNS());
         CPNS_TmpBuatSurat_TF.setText(cpns.getTempat_surat());
-        CPNS_TglSurat_Date.setDateFormatString(cpns.getTanggal_surat());
+        CPNS_TglSurat_Date.setDate(new SimpleDateFormat("dd-MM-yyyy").parse(tukangSplit(cpns.getTanggal_surat())));
         CPNS_nama_TF.setText(cpns.getNama_pemilik());
-        
-        CPNS_TmpLhr_TF.setText(nipBaru);
-        CPNS_TglLhr_Date.setDateFormatString(nipBaru);
-        CPNS_Partikelir_TF.setText(nipBaru);
-        CPNS_TMTPartikelir_Date.setDateFormatString(nipBaru);
-        CPNS_Profesi_TF.setText(nipBaru);
-        CPNS_Sekolah_TF.setText(nipBaru);
-        CPNS_GpBulan_TF.setText(nipBaru);
-        CPNS_GPdari_TF.setText(nipBaru);
-        CPNS_MasaKerjaTahun_TF.setText(nipBaru);
-        CPNS_MasaKerjaBulan_TF.setText(nipBaru);
-        CPNS_Golongan_TF.setText(nipBaru);
-        CPNS_NipLama_TF.setText(nipBaru);
-        CPNS_NipBaru_TF.setText(nipBaru);
-        CPNS_Berijazah_TF.setText(nipBaru);
-        CPNS_PersetujuanDr_TF.setText(nipBaru);
-        CPNS_NmrPersetujuan_TF.setText(nipBaru);
-        CPNS_TMTPersetujuan_Date.setDateFormatString(nipBaru);
-        CPNS_tanggalEdit.setText(nipBaru);
-        CPNS_kode_ope.setText(nipBaru);
+        CPNS_TmpLhr_TF.setText(cpns.getTempat_lahir());
+        CPNS_TglLhr_Date.setDate(new SimpleDateFormat("dd-MM-yyyy").parse(tukangSplit(cpns.getTanggal_lahir())));
+        CPNS_Partikelir_TF.setText(cpns.getPartikelir());
+        CPNS_TMTPartikelir_Date.setDate(new SimpleDateFormat("dd-MM-yyyy").parse(tukangSplit(cpns.getTmt_partikelir())));
+        CPNS_Profesi_TF.setText(cpns.getProfesi());
+        CPNS_Sekolah_TF.setText(cpns.getSekolah());
+        CPNS_GpBulan_TF.setText(cpns.getGp_bulanan());
+        CPNS_GPdari_TF.setText(cpns.getDari_gaji());
+        CPNS_MasaKerjaTahun_TF.setText(cpns.getMasa_kerja_tahun());
+        CPNS_MasaKerjaBulan_TF.setText(cpns.getMasa_kerja_bulan());
+        CPNS_Golongan_TF.setText(cpns.getGolongan());
+        CPNS_NipLama_TF.setText(cpns.getNip_lama());
+        CPNS_NipBaru_TF.setText(cpns.getNip_baru());
+        CPNS_Berijazah_TF.setText(cpns.getBerijazah());
+        CPNS_PersetujuanDr_TF.setText(cpns.getPersetujuan_dr());
+        CPNS_NmrPersetujuan_TF.setText(cpns.getNmr_persetujuan());
+        CPNS_TMTPersetujuan_Date.setDate(new SimpleDateFormat("dd-MM-yyyy").parse(tukangSplit(cpns.getTmt_persetujuan())));
+        CPNS_tanggalEdit.setText(tukangSplit(cpns.getTanggal_penyimpanan_surat()));
+        CPNS_kode_ope.setText(cpns.getKode_operator());
+    }
+
+    public void dataOperatorEditPegawai(String nama, String id) {
+        TP_Nama_Label.setText(nama);
+        TP_Kode_Label.setText(id);
+    }
+
+    public String tukangSplit(String tanggal) {
+        String[] split = tanggal.split("-");
+        String formatBener = split[2] + "-" + split[1] + "-" + split[0];
+
+        return formatBener;
     }
 
     /**
