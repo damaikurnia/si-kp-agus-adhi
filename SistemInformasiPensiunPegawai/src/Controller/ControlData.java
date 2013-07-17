@@ -646,4 +646,36 @@ public class ControlData {
         stmt.executeUpdate();
         conn.commit();
     }
+    
+    public SK_CPNS tampilSK_CPNS(String nipBaru) throws SQLException{
+        PreparedStatement stmt = null;
+        SK_CPNS cpns = null;
+        ResultSet result = null;
+        conn.setAutoCommit(false);
+        String query = "SELECT a.id_SuratCPNS,a.tempat_surat,a.tanggal_surat,"
+                + "a.nama_pemilik,a.tempat_lahir,a.tanggal_lahir,a.partikelir,"
+                + "a.tmt_partikelir,a.Profesi,a.Sekolah,a.nip_lama,a.nip_baru,"
+                + "a.gp_bulanan,a.dari_gaji,a.masa_kerja_tahun,a.masa_kerja_bulan,"
+                + "a.golongan,a.berijazah,a.persetujuan_dr,a.nmr_persetujuan,"
+                + "a.tmt_persetujuan,a.tanggal_penyimpanan_surat,a.kode_operator "
+                + "FROM sk_cpns a, pns b WHERE a.id_SuratCPNS = b.id_SuratCPNS "
+                + "AND b.nip_baru = ?";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, nipBaru);
+        result = stmt.executeQuery();
+        cpns = new SK_CPNS();
+        if (result.next()) {
+            cpns = new SK_CPNS();
+            cpns.setId_SuratCPNS(result.getString(1));
+            cpns.setTempat_surat(nipBaru);
+            cpns.setTanggal_surat(nipBaru);
+            cpns.setNama_pemilik(nipBaru);
+            cpns.setTempat_lahir(nipBaru);
+            cpns.setTanggal_lahir(nipBaru);
+            cpns.setPartikelir(query);
+            
+        }
+        conn.commit();
+        return cpns;  
+    }
 }
