@@ -667,13 +667,28 @@ public class ControlData {
         if (result.next()) {
             cpns = new SK_CPNS();
             cpns.setId_SuratCPNS(result.getString(1));
-            cpns.setTempat_surat(nipBaru);
-            cpns.setTanggal_surat(nipBaru);
-            cpns.setNama_pemilik(nipBaru);
-            cpns.setTempat_lahir(nipBaru);
-            cpns.setTanggal_lahir(nipBaru);
-            cpns.setPartikelir(query);
-            
+            cpns.setTempat_surat(result.getString(2));
+            cpns.setTanggal_surat(result.getString(3));
+            cpns.setNama_pemilik(result.getString(4));
+            cpns.setTempat_lahir(result.getString(5));
+            cpns.setTanggal_lahir(result.getString(6));
+            cpns.setPartikelir(result.getString(7));
+            cpns.setTmt_partikelir(result.getString(8));
+            cpns.setProfesi(result.getString(9));
+            cpns.setSekolah(result.getString(10));
+            cpns.setNip_lama(result.getString(11));
+            cpns.setNip_baru(result.getString(12));
+            cpns.setGp_bulanan(result.getString(13));
+            cpns.setDari_gaji(result.getString(14));
+            cpns.setMasa_kerja_tahun(result.getString(15));
+            cpns.setMasa_kerja_bulan(result.getString(16));
+            cpns.setGolongan(result.getString(17));
+            cpns.setBerijazah(result.getString(18));
+            cpns.setPersetujuan_dr(result.getString(19));
+            cpns.setNmr_persetujuan(result.getString(20));
+            cpns.setTmt_persetujuan(result.getString(21));
+            cpns.setTanggal_penyimpanan_surat(result.getString(22));
+            cpns.setKode_operator(result.getString(23));
         }
         conn.commit();
         return cpns;  
