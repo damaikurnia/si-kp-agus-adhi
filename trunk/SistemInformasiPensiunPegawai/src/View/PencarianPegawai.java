@@ -15,6 +15,8 @@ import Model.PNS;
 import TableModel.CariPegawaiTableModel;
 import java.awt.Color;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -100,6 +102,11 @@ public class PencarianPegawai extends javax.swing.JFrame {
         jLabel5.setText("NIP    : ");
 
         button_lanjut.setText("YA");
+        button_lanjut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_lanjutActionPerformed(evt);
+            }
+        });
 
         button_proses_pensiun.setText("Proses pensiun");
         button_proses_pensiun.addActionListener(new java.awt.event.ActionListener() {
@@ -458,6 +465,17 @@ public class PencarianPegawai extends javax.swing.JFrame {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_cari_txtKeyReleased
+
+    private void button_lanjutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_lanjutActionPerformed
+        try {
+            EditPegawai edit = new EditPegawai(nip.getText());
+            edit.dataOperatorEditPegawai(P_Nama_Label.getText(), P_Kode_Label.getText());
+            edit.setVisible(true);
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(PencarianPegawai.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_button_lanjutActionPerformed
     public void dataOperator(String nama, String id) {
         P_Nama_Label.setText(nama);
         P_Kode_Label.setText(id);

@@ -136,6 +136,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="YA"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button_lanjutActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="button_proses_pensiun">
               <Properties>
