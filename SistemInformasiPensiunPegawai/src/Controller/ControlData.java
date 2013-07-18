@@ -736,4 +736,40 @@ public class ControlData {
         conn.commit();
         return skpt;  
     }
+    
+    public SPTKG_Terakhir tampilSPTKG_Terakhir(String nipBaru) throws SQLException{
+        PreparedStatement stmt = null;
+        SPTKG_Terakhir sptkg = null;
+        ResultSet result = null;
+        conn.setAutoCommit(false);
+        String query = "SELECT a.id_SuratSPTKGTerakhir,a.tempat_surat,"
+                + "a.tanggal_surat,a.nama_pemilik,a.nip_baru,a.pangkat_baru,"
+                + "a.golongan_ruang_baru,a.Sekolah,a.gajipokok_lama,"
+                + "a.gajipokok_baru,a.tmt_baru,a.nip_lama,a.tanggal_penyimpanan_surat,"
+                + "a.kode_operator FROM sptkg_terakhir a, pns b WHERE "
+                + "a.id_SuratSPTKGTerakhir = b.id_SuratSPTKGTerakhir AND "
+                + "b.nip_baru = ?";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, nipBaru);
+        result = stmt.executeQuery();
+        if (result.next()) {
+            sptkg = new SPTKG_Terakhir();
+            sptkg.setId_SuratSPTKGTerakhir(result.getString(1));
+            sptkg.setTempat_surat(result.getString(2));
+            sptkg.setTanggal_surat(result.getString(3));
+            sptkg.setNama_pemilik(result.getString(4));
+            sptkg.setNip_baru(result.getString(5));
+            sptkg.setPangkat_baru(result.getString(6));
+            sptkg.setGolongan_ruang_baru(result.getString(7));
+            sptkg.setSekolah(result.getString(8));
+            sptkg.setGajipokok_lama(result.getString(9));
+            sptkg.setGajipokok_baru(result.getString(10));
+            sptkg.setTmt_baru(result.getString(11));
+            sptkg.setNip_lama(result.getString(12));
+            sptkg.setTanggal_penyimpanan_surat(result.getString(13));
+            sptkg.setKode_operator(result.getString(14));
+        }
+        conn.commit();
+        return sptkg;  
+    }
 }
