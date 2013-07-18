@@ -607,10 +607,14 @@ public class ControlData {
         AnggotaKeluarga a = null;
         ResultSet result = null;
         conn.setAutoCommit(false);
-        String query = "SELECT * FROM anggotakeluarga,kk WHERE kk.id_suratKK = '" + idSuratKK + "' "
-                + "and kk.id_suratKK=anggotakeluarga.id_suratKK  ORDER BY tanggal_lahir";
+        String query = "SELECT a.nik,a.nama_lengkap,a.jenis_kelamin,a.tempat_lahir,"
+                + "a.tanggal_lahir,a.agama,a.pendidikan,a.pekerjaan,a.status_perkawinan,"
+                + "a.status_hub_keluarga,a.kewarganegaraan,a.no_paspor,a.no_kitas_kitap,"
+                + "a.nama_ayah,a.nama_ibu FROM anggotakeluarga a,kk b WHERE "
+                + "a.id_suratKK = b.id_Suratkk AND a.id_suratKK = '0012999222' "
+                + "ORDER BY tanggal_lahir"; //belom jadi
         stmt = conn.prepareStatement(query);
-//        stmt.setString(1, idSuratKK);
+        stmt.setString(1, idSuratKK);
         result = stmt.executeQuery();
         List<AnggotaKeluarga> at = new ArrayList<AnggotaKeluarga>();
         if (result.next()) {
@@ -816,5 +820,62 @@ public class ControlData {
         }
         conn.commit();
         return karpeg;
+    }
+    
+    public S_Nikah tampilS_Nikah(String nipBaru) throws SQLException{
+        PreparedStatement stmt = null;
+        S_Nikah sn = null;
+        ResultSet result = null;
+        conn.setAutoCommit(false);
+        String query = "SELECT a.id_SuratNikah,a.tanggal_nikah,a.nama_suami,"
+                + "a.nama_istri,a.tanggal_penyimpanan_surat,a.kode_operator "
+                + "FROM s_nikah a, pns b WHERE a.id_SuratNikah = b.id_SuratNikah "
+                + "AND b.nip_baru = ?";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, nipBaru);
+        result = stmt.executeQuery();
+        if (result.next()) {
+            sn = new S_Nikah();
+            sn.setId_SuratNikah(result.getString(1));
+            sn.setTanggal_nikah(result.getString(2));
+            sn.setNama_suami(result.getString(3));
+            sn.setNama_istri(result.getString(4));
+            sn.setTanggal_penyimpanan_surat(result.getString(5));
+            sn.setKode_operator(result.getString(6));
+        }
+        conn.commit();
+        return sn;
+    }
+    
+    public KK tampilKK(String nipBaru) throws SQLException{
+        PreparedStatement stmt = null;
+        KK kk = null;
+        ResultSet result = null;
+        conn.setAutoCommit(false);
+        String query = "SELECT a.id_Suratkk,a.nama_kk,a.Alamat,a.RT,a.RW,"
+                + "a.Kelurahan_Desa,a.Kecamatan,a.Kabupaten_Kota,a.kode_pos,"
+                + "a.provinsi,a.tanggal_penyimpanan_surat,a.kode_operator "
+                + "FROM kk a, pns b WHERE a.id_Suratkk = b.id_Suratkk AND "
+                + "b.nip_baru = ?";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, nipBaru);
+        result = stmt.executeQuery();
+        if (result.next()) {
+            kk = new KK();
+            kk.setId_Suratkk(result.getString(1));
+            kk.setNama_kk(result.getString(2));
+            kk.setAlamat(result.getString(3));
+            kk.setRT(result.getString(4));
+            kk.setRW(result.getString(5));
+            kk.setKelurahan_Desa(result.getString(6));
+            kk.setKecamatan(result.getString(7));
+            kk.setKabupaten_Kota(result.getString(8));
+            kk.setKode_pos(result.getString(9));
+            kk.setProvinsi(result.getString(10));
+            kk.setTanggal_penyimpanan_surat(result.getString(11));
+            kk.setKode_operator(result.getString(12));
+        }
+        conn.commit();
+        return kk;
     }
 }
