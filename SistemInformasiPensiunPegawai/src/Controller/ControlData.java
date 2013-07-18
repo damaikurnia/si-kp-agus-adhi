@@ -131,6 +131,24 @@ public class ControlData {
         return nama;
 
     }
+     public DataMeninggal dataPegawaiMeninggal(String NIP) throws SQLException {
+        PreparedStatement stmt = null;
+        DataMeninggal data = null;
+        ResultSet result = null;
+        conn.setAutoCommit(false);
+        String query = "SELECT tanggal_meninggal,no from data_meninggal where NIP= ? ";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, NIP);
+        result = stmt.executeQuery();
+        if (result.next()) {
+            data=new DataMeninggal();
+            data.setTglMeninggal(result.getString(1));
+            data.setNo(result.getString(2));
+        }
+        conn.commit();
+        return data;
+
+    }
 
     public String cariAlamat(String NIP) throws SQLException {
         PreparedStatement stmt = null;
