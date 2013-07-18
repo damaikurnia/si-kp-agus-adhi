@@ -19,6 +19,7 @@ import TableModel.DataProsesPensiunTableModel;
 import TableModel.RataTengah;
 import java.awt.Color;
 import java.sql.Connection;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -88,6 +89,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
         no_surat_kematian = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         kabupaten_TF = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -141,6 +143,8 @@ public class ProsesPensiun extends javax.swing.JFrame {
         NIP_inter_meninggal.setFont(new java.awt.Font("Tahoma", 1, 12));
         NIP_inter_meninggal.setEnabled(false);
         jPanel5.add(NIP_inter_meninggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 170, -1));
+
+        date_meninggal.setDateFormatString("dd MMM  yyyy");
         jPanel5.add(date_meninggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 170, -1));
 
         jk_label.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -222,17 +226,20 @@ public class ProsesPensiun extends javax.swing.JFrame {
         kabupaten_TF.setEnabled(false);
         jPanel5.add(kabupaten_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 270, -1));
 
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PIcture/bg1.png"))); // NOI18N
+        jPanel5.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 410));
+
         javax.swing.GroupLayout inter_proses_meninggalLayout = new javax.swing.GroupLayout(inter_proses_meninggal.getContentPane());
         inter_proses_meninggal.getContentPane().setLayout(inter_proses_meninggalLayout);
         inter_proses_meninggalLayout.setHorizontalGroup(
             inter_proses_meninggalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
+            .addGroup(inter_proses_meninggalLayout.createSequentialGroup()
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 564, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         inter_proses_meninggalLayout.setVerticalGroup(
             inter_proses_meninggalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(inter_proses_meninggalLayout.createSequentialGroup()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
         );
 
         getContentPane().add(inter_proses_meninggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 570, 440));
@@ -475,9 +482,9 @@ public class ProsesPensiun extends javax.swing.JFrame {
                         label_sumai_istri.setText("Suami");
                     }
                     no_surat_kematian.setText(dm.getNo());
-
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 //                    Date date=new Date();
-//                    date_meninggal.setDate(date);
+                    date_meninggal.setDate(getTanggal(dm.getTglMeninggal()));
                     nm_anggotaKel.setText(nmAnggotakel);
                     alamat.setText(alamatLengkap.getAlamat());
                     kabupaten_TF.setText(alamatLengkap.getKabupaten_Kota());
@@ -564,6 +571,13 @@ public class ProsesPensiun extends javax.swing.JFrame {
     public void dataOperator(String nama, String id) {
         P_Nama_Label.setText(nama);
         P_Kode_Label.setText(id);
+    }
+
+    public Date getTanggal(String tanggal) throws ParseException {
+        String[] split = tanggal.split("-");
+        String formatBener = split[2] + "-" + split[1] + "-" + split[0];
+        Date kirimFormat = new SimpleDateFormat("dd-MM-yyyy").parse(formatBener);
+        return kirimFormat;
     }
 
     private void cetakBUP(String nip) {
@@ -864,6 +878,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
