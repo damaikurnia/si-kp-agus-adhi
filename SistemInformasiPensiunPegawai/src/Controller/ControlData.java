@@ -663,7 +663,6 @@ public class ControlData {
         stmt = conn.prepareStatement(query);
         stmt.setString(1, nipBaru);
         result = stmt.executeQuery();
-        cpns = new SK_CPNS();
         if (result.next()) {
             cpns = new SK_CPNS();
             cpns.setId_SuratCPNS(result.getString(1));
@@ -692,5 +691,49 @@ public class ControlData {
         }
         conn.commit();
         return cpns;  
+    }
+    
+    public SK_PangkatTerakhir tampilSK_PangkatTerakhir(String nipBaru) throws SQLException{
+        PreparedStatement stmt = null;
+        SK_PangkatTerakhir skpt = null;
+        ResultSet result = null;
+        conn.setAutoCommit(false);
+        String query = "SELECT a.id_SuratPangkatTerakhir,a.nama_pemilik,"
+                + "a.tanggal_lahir,a.nip_lama,a.nip_baru,a.pendidikan,a.pangkat_lama,"
+                + "a.golongan_lama,a.tmt_lama,a.pangkat_baru,a.golongan_baru,"
+                + "a.tmt_baru,a.masa_kerja_golongan,a.gaji_pokok,"
+                + "a.masa_kerja_golongan_bulan,a.tanggal_penyimpanan_surat,"
+                + "a.kode_operator,a.Profesi,a.Sekolah,a.tempat_lahir"
+                + " FROM sk_pangkatterakhir a, pns b "
+                + "WHERE a.id_SuratPangkatTerakhir = b.id_SuratPangkatTerakhir "
+                + "AND b.nip_baru = ?";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, nipBaru);
+        result = stmt.executeQuery();
+        if (result.next()) {
+            skpt = new SK_PangkatTerakhir();
+            skpt.setId_SuratPangkatTerakhir(result.getString(1));
+            skpt.setNama_pemilik(result.getString(2));
+            skpt.setTanggal_lahir(result.getString(3));
+            skpt.setNip_lama(result.getString(4));
+            skpt.setNip_baru(result.getString(5));
+            skpt.setPendidikan(result.getString(6));
+            skpt.setPangkat_lama(result.getString(7));
+            skpt.setGolongan_lama(result.getString(8));
+            skpt.setTmt_lama(result.getString(9));
+            skpt.setPangkat_baru(result.getString(10));
+            skpt.setGolongan_baru(result.getString(11));
+            skpt.setTmt_baru(result.getString(12));
+            skpt.setMasa_kerja_golongan(result.getString(13));
+            skpt.setGaji_pokok(result.getString(14));
+            skpt.setMasa_kerja_golongan_bulan(result.getString(15));
+            skpt.setTanggal_penyimpanan_surat(result.getString(16));
+            skpt.setKode_operator(result.getString(17));
+            skpt.setProfesi(result.getString(18));
+            skpt.setSekolah(result.getString(19));
+            skpt.setTempat_lahir(result.getString(20));
+        }
+        conn.commit();
+        return skpt;  
     }
 }

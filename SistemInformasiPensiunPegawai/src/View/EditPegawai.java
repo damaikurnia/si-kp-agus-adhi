@@ -21,6 +21,7 @@ import Model.SPTKG_Terakhir;
 import Model.S_Nikah;
 import TableModel.TampilAnggotaKeluarga;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -59,6 +60,7 @@ public class EditPegawai extends javax.swing.JFrame {
         clock.showDigitalClock(time);
 
         isiCPNS(nipBaru);
+        isiSK_PangkatTerakhir(nipBaru);
     }
 
     /**
@@ -179,11 +181,11 @@ public class EditPegawai extends javax.swing.JFrame {
         PT_NoSurat_TF = new javax.swing.JTextField();
         PT_GolLm_TF = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
-        PT_TmtLm_TF = new com.toedter.calendar.JDateChooser();
+        PT_TmtLm_Date = new com.toedter.calendar.JDateChooser();
         jLabel28 = new javax.swing.JLabel();
         PT_PngktBr_TF = new javax.swing.JTextField();
         PT_GolBr_TF = new javax.swing.JTextField();
-        PT_TmtBr_TF = new com.toedter.calendar.JDateChooser();
+        PT_TmtBr_Date = new com.toedter.calendar.JDateChooser();
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         PT_MsKerjaGolBln_TF = new javax.swing.JTextField();
@@ -197,6 +199,10 @@ public class EditPegawai extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jLabel79 = new javax.swing.JLabel();
         PT_Sekolah_TF = new javax.swing.JTextField();
+        jLabel97 = new javax.swing.JLabel();
+        PT_tanggalEdit = new javax.swing.JLabel();
+        jLabel98 = new javax.swing.JLabel();
+        PT_kode_ope = new javax.swing.JLabel();
         SPTKG_Terakhir = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
@@ -604,7 +610,7 @@ public class EditPegawai extends javax.swing.JFrame {
         CPNS_tanggalEdit.setForeground(new java.awt.Color(255, 0, 0));
         CPNS_tanggalEdit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CPNS_tanggalEdit.setText("--tanggal--");
-        SK_CPNS.add(CPNS_tanggalEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 360, 100, -1));
+        SK_CPNS.add(CPNS_tanggalEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 350, 100, -1));
 
         CPNS_NipBaru_TF.setEditable(false);
         SK_CPNS.add(CPNS_NipBaru_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 250, -1));
@@ -683,17 +689,17 @@ public class EditPegawai extends javax.swing.JFrame {
         CPNS_kode_ope.setForeground(new java.awt.Color(255, 0, 0));
         CPNS_kode_ope.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CPNS_kode_ope.setText("Kode");
-        SK_CPNS.add(CPNS_kode_ope, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 360, 30, -1));
+        SK_CPNS.add(CPNS_kode_ope, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 350, 30, -1));
 
         jLabel95.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel95.setForeground(new java.awt.Color(255, 0, 0));
         jLabel95.setText("Editan Terakhir ");
-        SK_CPNS.add(jLabel95, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 360, -1, -1));
+        SK_CPNS.add(jLabel95, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 350, -1, -1));
 
         jLabel96.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel96.setForeground(new java.awt.Color(255, 0, 0));
         jLabel96.setText("Oleh");
-        SK_CPNS.add(jLabel96, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 360, 30, -1));
+        SK_CPNS.add(jLabel96, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 350, 30, -1));
 
         Tab_PNS.addTab("SK_CPNS", SK_CPNS);
 
@@ -723,7 +729,7 @@ public class EditPegawai extends javax.swing.JFrame {
         SK_PangkatTerakhir.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
         SK_PangkatTerakhir.add(PT_Pend_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 120, -1));
 
-        PT_TglLhr_Date.setDateFormatString("d MMM yyyy");
+        PT_TglLhr_Date.setDateFormatString("dd-MM-yyyy");
         SK_PangkatTerakhir.add(PT_TglLhr_Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 120, -1));
         SK_PangkatTerakhir.add(PT_TmpLhr_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 100, -1));
 
@@ -743,13 +749,15 @@ public class EditPegawai extends javax.swing.JFrame {
         SK_PangkatTerakhir.add(PT_PngktLm_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 120, -1));
 
         PT_simpan_button.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        PT_simpan_button.setText("Simpan");
+        PT_simpan_button.setText("UPDATE");
         PT_simpan_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PT_simpan_buttonActionPerformed(evt);
             }
         });
         SK_PangkatTerakhir.add(PT_simpan_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 300, -1, -1));
+
+        PT_NoSurat_TF.setEditable(false);
         SK_PangkatTerakhir.add(PT_NoSurat_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 130, -1));
         SK_PangkatTerakhir.add(PT_GolLm_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, 50, -1));
 
@@ -757,8 +765,8 @@ public class EditPegawai extends javax.swing.JFrame {
         jLabel27.setText("TMT lama");
         SK_PangkatTerakhir.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
 
-        PT_TmtLm_TF.setDateFormatString("d MMM yyyy");
-        SK_PangkatTerakhir.add(PT_TmtLm_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 180, -1));
+        PT_TmtLm_Date.setDateFormatString("dd-MM-yyyy");
+        SK_PangkatTerakhir.add(PT_TmtLm_Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 180, -1));
 
         jLabel28.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel28.setText("Pangkat, Gol Baru");
@@ -766,8 +774,8 @@ public class EditPegawai extends javax.swing.JFrame {
         SK_PangkatTerakhir.add(PT_PngktBr_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 50, 120, -1));
         SK_PangkatTerakhir.add(PT_GolBr_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 50, 50, -1));
 
-        PT_TmtBr_TF.setDateFormatString("d MMM yyyy");
-        SK_PangkatTerakhir.add(PT_TmtBr_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, 180, -1));
+        PT_TmtBr_Date.setDateFormatString("dd-MM-yyyy");
+        SK_PangkatTerakhir.add(PT_TmtBr_Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, 180, -1));
 
         jLabel31.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel31.setText("TMT baru");
@@ -806,6 +814,28 @@ public class EditPegawai extends javax.swing.JFrame {
         jLabel79.setText("Pangkat,Gol Lama");
         SK_PangkatTerakhir.add(jLabel79, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
         SK_PangkatTerakhir.add(PT_Sekolah_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, 230, -1));
+
+        jLabel97.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel97.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel97.setText("Editan Terakhir ");
+        SK_PangkatTerakhir.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 350, -1, -1));
+
+        PT_tanggalEdit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        PT_tanggalEdit.setForeground(new java.awt.Color(255, 0, 0));
+        PT_tanggalEdit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PT_tanggalEdit.setText("--tanggal--");
+        SK_PangkatTerakhir.add(PT_tanggalEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 350, 100, -1));
+
+        jLabel98.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel98.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel98.setText("Oleh");
+        SK_PangkatTerakhir.add(jLabel98, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 350, 30, -1));
+
+        PT_kode_ope.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        PT_kode_ope.setForeground(new java.awt.Color(255, 0, 0));
+        PT_kode_ope.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PT_kode_ope.setText("Kode");
+        SK_PangkatTerakhir.add(PT_kode_ope, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 350, 30, -1));
 
         Tab_PNS.addTab("SK_PangkatTerakhir", SK_PangkatTerakhir);
 
@@ -1192,10 +1222,10 @@ public class EditPegawai extends javax.swing.JFrame {
         pt.setPendidikan(PT_Pend_TF.getText());
         pt.setPangkat_lama(PT_PngktLm_TF.getText());
         pt.setGolongan_lama(PT_GolLm_TF.getText());
-        pt.setTmt_lama(sdf.format(PT_TmtLm_TF.getDate()));
+        pt.setTmt_lama(sdf.format(PT_TmtLm_Date.getDate()));
         pt.setPangkat_baru(PT_PngktBr_TF.getText());
         pt.setGolongan_baru(PT_GolBr_TF.getText());
-        pt.setTmt_baru(sdf.format(PT_TmtBr_TF.getDate()));
+        pt.setTmt_baru(sdf.format(PT_TmtBr_Date.getDate()));
         pt.setMasa_kerja_golongan(PT_MsKerjaGolThn_TF.getText());
         pt.setGaji_pokok(PT_GajiPokok_TF.getText());
         pt.setMasa_kerja_golongan_bulan(PT_MsKerjaGolBln_TF.getText());
@@ -1384,12 +1414,12 @@ public class EditPegawai extends javax.swing.JFrame {
         SK_CPNS cpns = Controller.ControlData.getKoneksi().tampilSK_CPNS(nipBaru);
         CPNS_NoSurat_TF.setText(cpns.getId_SuratCPNS());
         CPNS_TmpBuatSurat_TF.setText(cpns.getTempat_surat());
-        CPNS_TglSurat_Date.setDate(new SimpleDateFormat("dd-MM-yyyy").parse(tukangSplit(cpns.getTanggal_surat())));
+        CPNS_TglSurat_Date.setDate(tukangSplit(cpns.getTanggal_surat()));
         CPNS_nama_TF.setText(cpns.getNama_pemilik());
         CPNS_TmpLhr_TF.setText(cpns.getTempat_lahir());
-        CPNS_TglLhr_Date.setDate(new SimpleDateFormat("dd-MM-yyyy").parse(tukangSplit(cpns.getTanggal_lahir())));
+        CPNS_TglLhr_Date.setDate(tukangSplit(cpns.getTanggal_lahir()));
         CPNS_Partikelir_TF.setText(cpns.getPartikelir());
-        CPNS_TMTPartikelir_Date.setDate(new SimpleDateFormat("dd-MM-yyyy").parse(tukangSplit(cpns.getTmt_partikelir())));
+        CPNS_TMTPartikelir_Date.setDate(tukangSplit(cpns.getTmt_partikelir()));
         CPNS_Profesi_TF.setText(cpns.getProfesi());
         CPNS_Sekolah_TF.setText(cpns.getSekolah());
         CPNS_GpBulan_TF.setText(cpns.getGp_bulanan());
@@ -1402,9 +1432,33 @@ public class EditPegawai extends javax.swing.JFrame {
         CPNS_Berijazah_TF.setText(cpns.getBerijazah());
         CPNS_PersetujuanDr_TF.setText(cpns.getPersetujuan_dr());
         CPNS_NmrPersetujuan_TF.setText(cpns.getNmr_persetujuan());
-        CPNS_TMTPersetujuan_Date.setDate(new SimpleDateFormat("dd-MM-yyyy").parse(tukangSplit(cpns.getTmt_persetujuan())));
-        CPNS_tanggalEdit.setText(tukangSplit(cpns.getTanggal_penyimpanan_surat()));
+        CPNS_TMTPersetujuan_Date.setDate(tukangSplit(cpns.getTmt_persetujuan()));
+        CPNS_tanggalEdit.setText(tukangSplit2(cpns.getTanggal_penyimpanan_surat()).toString());
         CPNS_kode_ope.setText(cpns.getKode_operator());
+    }
+    
+    public void isiSK_PangkatTerakhir(String nipBaru) throws Exception{
+        SK_PangkatTerakhir skpt = Controller.ControlData.getKoneksi().tampilSK_PangkatTerakhir(nipBaru);
+        PT_NoSurat_TF.setText(skpt.getId_SuratPangkatTerakhir());
+        PT_Nama_TF.setText(skpt.getNama_pemilik());
+        PT_TmpLhr_TF.setText(skpt.getTempat_lahir());
+        PT_TglLhr_Date.setDate(tukangSplit(skpt.getTanggal_lahir()));
+        PT_NipLama_TF.setText(skpt.getNip_lama());
+        PT_NipBaru_TF.setText(skpt.getNip_baru());
+        PT_Pend_TF.setText(skpt.getPendidikan());
+        PT_PngktLm_TF.setText(skpt.getPangkat_lama());
+        PT_GolLm_TF.setText(skpt.getGolongan_lama());
+        PT_TmtLm_Date.setDate(tukangSplit(skpt.getTmt_lama()));
+        PT_Profesi_TF.setText(skpt.getProfesi());
+        PT_Sekolah_TF.setText(skpt.getSekolah());
+        PT_PngktBr_TF.setText(skpt.getPangkat_baru());
+        PT_GolBr_TF.setText(skpt.getGolongan_baru());
+        PT_TmtBr_Date.setDate(tukangSplit(skpt.getTmt_baru()));
+        PT_MsKerjaGolThn_TF.setText(skpt.getMasa_kerja_golongan());
+        PT_MsKerjaGolBln_TF.setText(skpt.getMasa_kerja_golongan_bulan());
+        PT_GajiPokok_TF.setText(skpt.getGaji_pokok());
+        PT_tanggalEdit.setText(tukangSplit2(skpt.getTanggal_penyimpanan_surat()).toString());
+        PT_kode_ope.setText(skpt.getKode_operator());
     }
 
     public void dataOperatorEditPegawai(String nama, String id) {
@@ -1412,10 +1466,16 @@ public class EditPegawai extends javax.swing.JFrame {
         TP_Kode_Label.setText(id);
     }
 
-    public String tukangSplit(String tanggal) {
+    public Date tukangSplit(String tanggal) throws ParseException {
         String[] split = tanggal.split("-");
         String formatBener = split[2] + "-" + split[1] + "-" + split[0];
-
+        Date kirimFormat = new SimpleDateFormat("dd-MM-yyyy").parse(formatBener);
+        return kirimFormat;
+    }
+    
+    public String tukangSplit2(String tanggal) { //buat tanggal penyimpanan
+        String[] split = tanggal.split("-");
+        String formatBener = split[2] + "-" + split[1] + "-" + split[0];
         return formatBener;
     }
 
@@ -1514,9 +1574,11 @@ public class EditPegawai extends javax.swing.JFrame {
     private javax.swing.JTextField PT_Sekolah_TF;
     private com.toedter.calendar.JDateChooser PT_TglLhr_Date;
     private javax.swing.JTextField PT_TmpLhr_TF;
-    private com.toedter.calendar.JDateChooser PT_TmtBr_TF;
-    private com.toedter.calendar.JDateChooser PT_TmtLm_TF;
+    private com.toedter.calendar.JDateChooser PT_TmtBr_Date;
+    private com.toedter.calendar.JDateChooser PT_TmtLm_Date;
+    private javax.swing.JLabel PT_kode_ope;
     private javax.swing.JButton PT_simpan_button;
+    private javax.swing.JLabel PT_tanggalEdit;
     private javax.swing.JPanel SK_CPNS;
     private javax.swing.JPanel SK_Karpeg;
     private javax.swing.JPanel SK_PangkatTerakhir;
@@ -1637,6 +1699,8 @@ public class EditPegawai extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel93;
     private javax.swing.JLabel jLabel95;
     private javax.swing.JLabel jLabel96;
+    private javax.swing.JLabel jLabel97;
+    private javax.swing.JLabel jLabel98;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
