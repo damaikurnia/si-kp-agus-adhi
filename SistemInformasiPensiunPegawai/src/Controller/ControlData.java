@@ -153,7 +153,7 @@ public class ControlData {
 
     public KK cariAlamatLengkap(String NIP) throws SQLException {
         PreparedStatement stmt = null;
-        KK k=null;
+        KK k = null;
         String nama = null;
         ResultSet result = null;
         conn.setAutoCommit(false);
@@ -164,7 +164,7 @@ public class ControlData {
         stmt.setString(1, NIP);
         result = stmt.executeQuery();
         if (result.next()) {
-            k=new KK();
+            k = new KK();
             k.setAlamat(result.getString(1));
             k.setKabupaten_Kota(result.getString(2));
         }
@@ -646,8 +646,8 @@ public class ControlData {
         stmt.executeUpdate();
         conn.commit();
     }
-    
-    public SK_CPNS tampilSK_CPNS(String nipBaru) throws SQLException{
+
+    public SK_CPNS tampilSK_CPNS(String nipBaru) throws SQLException {
         PreparedStatement stmt = null;
         SK_CPNS cpns = null;
         ResultSet result = null;
@@ -690,10 +690,10 @@ public class ControlData {
             cpns.setKode_operator(result.getString(23));
         }
         conn.commit();
-        return cpns;  
+        return cpns;
     }
-    
-    public SK_PangkatTerakhir tampilSK_PangkatTerakhir(String nipBaru) throws SQLException{
+
+    public SK_PangkatTerakhir tampilSK_PangkatTerakhir(String nipBaru) throws SQLException {
         PreparedStatement stmt = null;
         SK_PangkatTerakhir skpt = null;
         ResultSet result = null;
@@ -734,10 +734,10 @@ public class ControlData {
             skpt.setTempat_lahir(result.getString(20));
         }
         conn.commit();
-        return skpt;  
+        return skpt;
     }
-    
-    public SPTKG_Terakhir tampilSPTKG_Terakhir(String nipBaru) throws SQLException{
+
+    public SPTKG_Terakhir tampilSPTKG_Terakhir(String nipBaru) throws SQLException {
         PreparedStatement stmt = null;
         SPTKG_Terakhir sptkg = null;
         ResultSet result = null;
@@ -770,6 +770,33 @@ public class ControlData {
             sptkg.setKode_operator(result.getString(14));
         }
         conn.commit();
-        return sptkg;  
+        return sptkg;
+    }
+
+    public SK_Karpeg tampilSK_Karpeg(String nipBaru) throws SQLException{
+        PreparedStatement stmt = null;
+        SK_Karpeg karpeg = null;
+        ResultSet result = null;
+        conn.setAutoCommit(false);
+        String query = "SELECT a.id_SuratKarpeg,a.nip_lama,a.nip_baru,"
+                + "a.nama_pemilik,a.tanggal_lahir,a.tmt_cpns,a.tanggal_penyimpanan_surat,"
+                + "a.kode_operator FROM sk_karpeg a, pns b WHERE "
+                + "a.id_SuratKarpeg = b.id_SuratKarpeg AND b.nip_baru = ?";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, nipBaru);
+        result = stmt.executeQuery();
+        if (result.next()) {
+            karpeg = new SK_Karpeg();
+            karpeg.setId_SuratKarpeg(result.getString(1));
+            karpeg.setNip_lama(result.getString(2));
+            karpeg.setNip_baru(result.getString(3));
+            karpeg.setNama_pemilik(result.getString(4));
+            karpeg.setTanggal_lahir(result.getString(5));
+            karpeg.setTmt_cpns(result.getString(6));
+            karpeg.setTanggal_penyimpanan_surat(result.getString(7));
+            karpeg.setKode_operator(result.getString(8));
+        }
+        conn.commit();
+        return karpeg;
     }
 }
