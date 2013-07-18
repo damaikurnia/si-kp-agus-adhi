@@ -62,6 +62,7 @@ public class EditPegawai extends javax.swing.JFrame {
         isiCPNS(nipBaru);
         isiSK_PangkatTerakhir(nipBaru);
         isiSPTKG_Terakhir(nipBaru);
+        isiSK_Karpeg(nipBaru);
     }
 
     /**
@@ -252,6 +253,10 @@ public class EditPegawai extends javax.swing.JFrame {
         Karpeg_TglLhr_Date = new com.toedter.calendar.JDateChooser();
         jLabel85 = new javax.swing.JLabel();
         jLabel86 = new javax.swing.JLabel();
+        jLabel101 = new javax.swing.JLabel();
+        Karpeg_tanggalEdit = new javax.swing.JLabel();
+        jLabel102 = new javax.swing.JLabel();
+        Karpeg_kode_ope = new javax.swing.JLabel();
         Surat_Nikah = new javax.swing.JPanel();
         jLabel47 = new javax.swing.JLabel();
         SN_NoSurat_TF = new javax.swing.JTextField();
@@ -981,7 +986,7 @@ public class EditPegawai extends javax.swing.JFrame {
         jLabel48.setText("Tanggal Lahir");
         SK_Karpeg.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, -1, -1));
 
-        Karpeg_TMT_Date.setDateFormatString("d MMM yyyy");
+        Karpeg_TMT_Date.setDateFormatString("dd-MM-yyyy");
         SK_Karpeg.add(Karpeg_TMT_Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, 230, -1));
 
         Karpeg_NipBaru_TF.setEditable(false);
@@ -999,16 +1004,18 @@ public class EditPegawai extends javax.swing.JFrame {
         SK_Karpeg.add(Karpeg_NipLama_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 120, -1));
 
         Karpeg_simpan_button.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        Karpeg_simpan_button.setText("Simpan");
+        Karpeg_simpan_button.setText("UPDATE");
         Karpeg_simpan_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Karpeg_simpan_buttonActionPerformed(evt);
             }
         });
         SK_Karpeg.add(Karpeg_simpan_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, -1, -1));
+
+        Karpeg_NoSurat_TF.setEditable(false);
         SK_Karpeg.add(Karpeg_NoSurat_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 230, -1));
 
-        Karpeg_TglLhr_Date.setDateFormatString("d MMM yyyy");
+        Karpeg_TglLhr_Date.setDateFormatString("dd-MM-yyyy");
         SK_Karpeg.add(Karpeg_TglLhr_Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, 230, -1));
 
         jLabel85.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -1019,6 +1026,28 @@ public class EditPegawai extends javax.swing.JFrame {
         jLabel86.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel86.setText("TMT CPNS");
         SK_Karpeg.add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, -1, -1));
+
+        jLabel101.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel101.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel101.setText("Editan Terakhir ");
+        SK_Karpeg.add(jLabel101, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 350, -1, -1));
+
+        Karpeg_tanggalEdit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Karpeg_tanggalEdit.setForeground(new java.awt.Color(255, 0, 0));
+        Karpeg_tanggalEdit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Karpeg_tanggalEdit.setText("--tanggal--");
+        SK_Karpeg.add(Karpeg_tanggalEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 350, 100, -1));
+
+        jLabel102.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel102.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel102.setText("Oleh");
+        SK_Karpeg.add(jLabel102, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 350, 30, -1));
+
+        Karpeg_kode_ope.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Karpeg_kode_ope.setForeground(new java.awt.Color(255, 0, 0));
+        Karpeg_kode_ope.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Karpeg_kode_ope.setText("Kode");
+        SK_Karpeg.add(Karpeg_kode_ope, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 350, 30, -1));
 
         Tab_PNS.addTab("SK_Karpeg", SK_Karpeg);
 
@@ -1507,6 +1536,18 @@ public class EditPegawai extends javax.swing.JFrame {
         SPTKG_tanggalEdit.setText(tukangSplit2(sptkg.getTanggal_penyimpanan_surat()));
         SPTKG_kode_ope.setText(sptkg.getKode_operator());
     }
+    
+    public void isiSK_Karpeg(String nipBaru) throws Exception{
+        SK_Karpeg karpeg = Controller.ControlData.getKoneksi().tampilSK_Karpeg(nipBaru);
+        Karpeg_NoSurat_TF.setText(karpeg.getId_SuratKarpeg());
+        Karpeg_Nama_TF.setText(karpeg.getNama_pemilik());
+        Karpeg_NipLama_TF.setText(karpeg.getNip_lama());
+        Karpeg_NipBaru_TF.setText(karpeg.getNip_baru());
+        Karpeg_TglLhr_Date.setDate(tukangSplit(karpeg.getTanggal_lahir()));
+        Karpeg_TMT_Date.setDate(tukangSplit(karpeg.getTmt_cpns()));
+        Karpeg_tanggalEdit.setText(tukangSplit2(karpeg.getTanggal_penyimpanan_surat()));
+        Karpeg_kode_ope.setText(karpeg.getKode_operator());
+    }
 
     public void dataOperatorEditPegawai(String nama, String id) {
         TP_Nama_Label.setText(nama);
@@ -1604,7 +1645,9 @@ public class EditPegawai extends javax.swing.JFrame {
     private javax.swing.JTextField Karpeg_NoSurat_TF;
     private com.toedter.calendar.JDateChooser Karpeg_TMT_Date;
     private com.toedter.calendar.JDateChooser Karpeg_TglLhr_Date;
+    private javax.swing.JLabel Karpeg_kode_ope;
     private javax.swing.JButton Karpeg_simpan_button;
+    private javax.swing.JLabel Karpeg_tanggalEdit;
     private javax.swing.JTextField PT_GajiPokok_TF;
     private javax.swing.JTextField PT_GolBr_TF;
     private javax.swing.JTextField PT_GolLm_TF;
@@ -1657,6 +1700,8 @@ public class EditPegawai extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
+    private javax.swing.JLabel jLabel101;
+    private javax.swing.JLabel jLabel102;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
