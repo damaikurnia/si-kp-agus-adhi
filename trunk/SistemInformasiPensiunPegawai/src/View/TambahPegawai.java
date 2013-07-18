@@ -280,6 +280,7 @@ public class TambahPegawai extends javax.swing.JFrame {
         SN_TglNikah_Date = new com.toedter.calendar.JDateChooser();
         SN_simpan_button = new javax.swing.JButton();
         SN_next_button = new javax.swing.JButton();
+        jLabel94 = new javax.swing.JLabel();
         KK = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel8 = new javax.swing.JPanel();
@@ -517,7 +518,7 @@ public class TambahPegawai extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -1164,6 +1165,11 @@ public class TambahPegawai extends javax.swing.JFrame {
             }
         });
         Surat_Nikah.add(SN_next_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 260, -1, -1));
+
+        jLabel94.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel94.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel94.setText("SURAT NIKAH");
+        Surat_Nikah.add(jLabel94, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 840, 30));
 
         Tab_PNS.addTab("Surat Nikah", Surat_Nikah);
 
@@ -1941,6 +1947,7 @@ public class TambahPegawai extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel91;
     private javax.swing.JLabel jLabel92;
     private javax.swing.JLabel jLabel93;
+    private javax.swing.JLabel jLabel94;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
