@@ -98,7 +98,7 @@ public class PencarianPegawai extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Nama :");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14));
         jLabel5.setText("NIP    : ");
 
         button_lanjut.setText("YA");
@@ -115,9 +115,9 @@ public class PencarianPegawai extends javax.swing.JFrame {
             }
         });
 
-        nip.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        nip.setFont(new java.awt.Font("Tahoma", 1, 14));
 
-        nama1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        nama1.setFont(new java.awt.Font("Tahoma", 1, 14));
 
         keluar_button.setText("TIDAK");
         keluar_button.addActionListener(new java.awt.event.ActionListener() {
@@ -126,7 +126,7 @@ public class PencarianPegawai extends javax.swing.JFrame {
             }
         });
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14));
         jLabel10.setText("Apakah anda yakin untuk melanjutkan?");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -147,7 +147,7 @@ public class PencarianPegawai extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(53, 53, 53)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(button_lanjut, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -233,11 +233,11 @@ public class PencarianPegawai extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        time.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        time.setFont(new java.awt.Font("Tahoma", 1, 14));
         time.setText("time");
         jPanel3.add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 10, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 12));
         jLabel2.setText("Klik salah satu Pegawai untuk proses lain");
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
 
@@ -263,11 +263,11 @@ public class PencarianPegawai extends javax.swing.JFrame {
         jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        nip_br.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        nip_br.setFont(new java.awt.Font("Tahoma", 1, 14));
         nip_br.setText("Cari berdasarkan");
         jPanel4.add(nip_br, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        cari_txt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cari_txt.setFont(new java.awt.Font("Tahoma", 0, 14));
         cari_txt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 cari_txtKeyReleased(evt);
@@ -283,7 +283,7 @@ public class PencarianPegawai extends javax.swing.JFrame {
         });
         jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, -1, -1));
 
-        combo_jenis.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        combo_jenis.setFont(new java.awt.Font("Tahoma", 1, 14));
         combo_jenis.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "==pilih==", "NIP Lama", "NIP Baru", "Nama" }));
         combo_jenis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -297,7 +297,7 @@ public class PencarianPegawai extends javax.swing.JFrame {
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 540, 130));
 
-        jLabel3.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial Black", 0, 18));
         jLabel3.setText("Pencarian Pegawai");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, -1, -1));
 
