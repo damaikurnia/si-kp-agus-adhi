@@ -8,10 +8,10 @@
 		 orientation="Portrait"
 		 pageWidth="611"
 		 pageHeight="935"
-		 columnWidth="551"
+		 columnWidth="581"
 		 columnSpacing="0"
 		 leftMargin="30"
-		 rightMargin="30"
+		 rightMargin="0"
 		 topMargin="20"
 		 bottomMargin="20"
 		 whenNoDataType="NoPages"
@@ -94,7 +94,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="0"
-						y="14"
+						y="16"
 						width="50"
 						height="15"
 						key="staticText-1"/>
@@ -107,7 +107,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="55"
-						y="14"
+						y="16"
 						width="5"
 						height="15"
 						key="staticText-2"/>
@@ -120,7 +120,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="64"
-						y="14"
+						y="16"
 						width="142"
 						height="15"
 						key="staticText-6"/>
@@ -133,7 +133,7 @@ WHERE
 				<line direction="TopDown">
 					<reportElement
 						x="64"
-						y="30"
+						y="32"
 						width="143"
 						height="1"
 						key="line-1"/>
@@ -142,7 +142,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="324"
-						y="1"
+						y="3"
 						width="39"
 						height="15"
 						key="staticText-7"/>
@@ -155,7 +155,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="323"
-						y="28"
+						y="27"
 						width="50"
 						height="15"
 						key="staticText-8"/>
@@ -168,7 +168,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="297"
-						y="44"
+						y="43"
 						width="94"
 						height="15"
 						key="staticText-9"/>
@@ -181,7 +181,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="297"
-						y="60"
+						y="59"
 						width="202"
 						height="15"
 						key="staticText-10"/>
@@ -194,7 +194,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="323"
-						y="77"
+						y="76"
 						width="90"
 						height="15"
 						key="staticText-11"/>
@@ -207,7 +207,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="324"
-						y="109"
+						y="108"
 						width="22"
 						height="15"
 						key="staticText-12"/>
@@ -220,7 +220,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="345"
-						y="118"
+						y="117"
 						width="40"
 						height="15"
 						key="staticText-13"/>
@@ -233,7 +233,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="297"
-						y="92"
+						y="91"
 						width="237"
 						height="15"
 						key="staticText-14"/>
@@ -401,7 +401,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="244"
-						y="319"
+						y="317"
 						width="182"
 						height="18"
 						key="staticText-33"/>
@@ -1126,22 +1126,6 @@ WHERE
 					</textElement>
 				<text><![CDATA[NIP.]]></text>
 				</staticText>
-				<subreport  isUsingCache="true">
-					<reportElement
-						x="50"
-						y="37"
-						width="502"
-						height="66"
-						key="subreport-1"/>
-					<subreportParameter  name="NIP">
-						<subreportParameterExpression><![CDATA[$P{NIP}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter  name="SUBREPORT_DIR">
-						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
-					</subreportParameter>
-					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_data_kel_meininggal_sp_berhenti.jasper"]]></subreportExpression>
-				</subreport>
 				<staticText>
 					<reportElement
 						x="323"
@@ -1157,10 +1141,26 @@ WHERE
 				</staticText>
 				<subreport  isUsingCache="true">
 					<reportElement
-						x="324"
-						y="675"
-						width="174"
-						height="14"
+						x="60"
+						y="32"
+						width="484"
+						height="94"
+						key="subreport-1"/>
+					<subreportParameter  name="NIP">
+						<subreportParameterExpression><![CDATA[$P{NIP}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_data_kel_meininggal_sp_berhenti.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="244"
+						y="335"
+						width="102"
+						height="21"
 						key="subreport-2"/>
 					<subreportParameter  name="NIP">
 						<subreportParameterExpression><![CDATA[$P{NIP}]]></subreportParameterExpression>
@@ -1169,23 +1169,7 @@ WHERE
 						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
 					</subreportParameter>
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_nama_kel_meininggal.jasper"]]></subreportExpression>
-				</subreport>
-				<subreport  isUsingCache="true">
-					<reportElement
-						x="244"
-						y="337"
-						width="170"
-						height="15"
-						key="subreport-3"/>
-					<subreportParameter  name="NIP">
-						<subreportParameterExpression><![CDATA[$P{NIP}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter  name="SUBREPORT_DIR">
-						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
-					</subreportParameter>
-					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "/name.jasper"]]></subreportExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_tgl_menininggal_sk_satu-satunya.jasper"]]></subreportExpression>
 				</subreport>
 			</band>
 		</detail>

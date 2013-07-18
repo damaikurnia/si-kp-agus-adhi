@@ -2,7 +2,7 @@
 <!-- Created with iReport - A designer for JasperReports -->
 <!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
 <jasperReport
-		 name="Surat_keterangan_satu-satunya_duda"
+		 name="Surat_keterangan_satunya_Janda"
 		 columnCount="1"
 		 printOrder="Vertical"
 		 orientation="Portrait"
@@ -76,7 +76,7 @@ WHERE
 					<textElement textAlignment="Center">
 						<font fontName="Times New Roman" pdfFontName="Helvetica-Bold" size="20" isBold="true" isUnderline="true"/>
 					</textElement>
-				<text><![CDATA[SURAT KETERANGAN SATU-SATUNYA DUDA]]></text>
+				<text><![CDATA[SURAT KETERANGAN SATU-SATUNYA JANDA]]></text>
 				</staticText>
 			</band>
 		</title>
@@ -166,7 +166,7 @@ WHERE
 					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[Saudara (Duda)]]></text>
+				<text><![CDATA[Saudara (janda)]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -192,11 +192,11 @@ WHERE
 					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[adalah satu - satunya duda yang ditinggalkan almarhumah]]></text>
+				<text><![CDATA[adalah satu - satunya duda yang ditinggalkan almarhum]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="299"
+						x="323"
 						y="346"
 						width="35"
 						height="17"
@@ -209,7 +209,7 @@ WHERE
 				</staticText>
 				<staticText>
 					<reportElement
-						x="299"
+						x="323"
 						y="362"
 						width="118"
 						height="17"
@@ -222,7 +222,7 @@ WHERE
 				</staticText>
 				<staticText>
 					<reportElement
-						x="299"
+						x="323"
 						y="417"
 						width="101"
 						height="17"
@@ -235,7 +235,7 @@ WHERE
 				</staticText>
 				<staticText>
 					<reportElement
-						x="299"
+						x="323"
 						y="439"
 						width="101"
 						height="17"
@@ -335,7 +335,7 @@ WHERE
 					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[sebagai suami sah dari Almarhumah]]></text>
+				<text><![CDATA[sebagai suami sah dari Almarhum]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -525,7 +525,7 @@ WHERE
 				<subreport  isUsingCache="true">
 					<reportElement
 						x="164"
-						y="236"
+						y="238"
 						width="108"
 						height="15"
 						key="subreport-2"/>
@@ -541,7 +541,7 @@ WHERE
 				<subreport  isUsingCache="true">
 					<reportElement
 						x="111"
-						y="257"
+						y="259"
 						width="143"
 						height="15"
 						key="subreport-3"/>
@@ -556,8 +556,8 @@ WHERE
 				</subreport>
 				<subreport  isUsingCache="true">
 					<reportElement
-						x="403"
-						y="218"
+						x="406"
+						y="217"
 						width="144"
 						height="15"
 						key="subreport-4"/>
@@ -570,32 +570,6 @@ WHERE
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_tgl_menininggal_sk_satu-satunya.jasper"]]></subreportExpression>
 				</subreport>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="417"
-						y="363"
-						width="130"
-						height="14"
-						key="textField-9"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{kk_Kelurahan_Desa}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="111"
-						y="482"
-						width="146"
-						height="14"
-						key="textField-10"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" size="12"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{kk_Kecamatan}]]></textFieldExpression>
-				</textField>
 			</band>
 		</detail>
 		<columnFooter>

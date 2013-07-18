@@ -52,13 +52,13 @@ WHERE
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="67"  isSplitAllowed="true" >
+			<band height="45"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="5"
 						y="7"
 						width="396"
-						height="47"
+						height="30"
 						key="textField-1"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement verticalAlignment="Middle">

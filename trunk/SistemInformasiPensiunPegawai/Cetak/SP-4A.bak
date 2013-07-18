@@ -42,7 +42,7 @@ WHERE
 	b.id_SuratSPTKGTerakhir	= e.id_SuratSPTKGTerakhir AND
 	b.id_SuratKarpeg = f.id_SuratKarpeg AND
 	b.id_Suratkk = h.id_Suratkk And
- 	e.nip_baru LIKE "195210231979011003";]]></queryString>
+ 	e.nip_baru LIKE  $P{NIP};]]></queryString>
 
 	<field name="nama_pemilik" class="java.lang.String"/>
 	<field name="nip_baru" class="java.lang.String"/>
@@ -1099,7 +1099,7 @@ WHERE
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{pangkat_baru}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="false" pattern="¤ #,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="244"
 						y="177"

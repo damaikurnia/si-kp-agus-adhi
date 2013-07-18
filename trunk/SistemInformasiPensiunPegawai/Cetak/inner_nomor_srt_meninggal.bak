@@ -2,13 +2,13 @@
 <!-- Created with iReport - A designer for JasperReports -->
 <!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
 <jasperReport
-		 name="inner_tgl_menininggal"
+		 name="inner_nomor_srt_meninggal"
 		 columnCount="1"
 		 printOrder="Vertical"
 		 orientation="Landscape"
-		 pageWidth="595"
-		 pageHeight="421"
-		 columnWidth="595"
+		 pageWidth="170"
+		 pageHeight="141"
+		 columnWidth="170"
 		 columnSpacing="0"
 		 leftMargin="0"
 		 rightMargin="0"
@@ -27,13 +27,14 @@
 		<defaultValueExpression ><![CDATA[""]]></defaultValueExpression>
 	</parameter>
 	<queryString><![CDATA[SELECT
-      DATE_FORMAT(  data_meninggal.`tanggal_meninggal`, '%d-%m-%Y') AS data_meninggal_tanggal_meninggal
+      data_meninggal.`no`
+ AS data_meninggal_no_meninggal
 FROM
      `data_meninggal` data_meninggal
 WHERE
      data_meninggal.`NIP` LIKE $P{NIP}]]></queryString>
 
-	<field name="data_meninggal_tanggal_meninggal" class="java.lang.String"/>
+	<field name="data_meninggal_no_meninggal" class="java.lang.String"/>
 
 		<background>
 			<band height="0"  isSplitAllowed="true" >
@@ -52,19 +53,19 @@ WHERE
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="67"  isSplitAllowed="true" >
+			<band height="20"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="5"
-						y="7"
-						width="396"
-						height="47"
+						x="1"
+						y="2"
+						width="142"
+						height="13"
 						key="textField-1"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="24"/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{data_meninggal_tanggal_meninggal}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{data_meninggal_no_meninggal}]]></textFieldExpression>
 				</textField>
 			</band>
 		</detail>

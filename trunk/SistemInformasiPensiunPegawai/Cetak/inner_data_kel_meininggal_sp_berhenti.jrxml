@@ -6,9 +6,9 @@
 		 columnCount="1"
 		 printOrder="Vertical"
 		 orientation="Landscape"
-		 pageWidth="535"
-		 pageHeight="421"
-		 columnWidth="535"
+		 pageWidth="453"
+		 pageHeight="396"
+		 columnWidth="453"
 		 columnSpacing="0"
 		 leftMargin="0"
 		 rightMargin="0"
@@ -23,7 +23,7 @@
 	<import value="net.sf.jasperreports.engine.*" />
 	<import value="net.sf.jasperreports.engine.data.*" />
 
-	<parameter name="NIP" isForPrompting="false" class="java.lang.String">
+	<parameter name="NIP" isForPrompting="true" class="java.lang.String">
 		<defaultValueExpression ><![CDATA[""]]></defaultValueExpression>
 	</parameter>
 	<queryString><![CDATA[SELECT
@@ -86,7 +86,7 @@ where data_meninggal.`NIP` LIKE $P{NIP}]]></queryString>
 					<reportElement
 						x="151"
 						y="1"
-						width="233"
+						width="287"
 						height="15"
 						key="textField-1"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -99,7 +99,7 @@ where data_meninggal.`NIP` LIKE $P{NIP}]]></queryString>
 					<reportElement
 						x="151"
 						y="17"
-						width="339"
+						width="296"
 						height="15"
 						key="textField-2"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -151,7 +151,7 @@ where data_meninggal.`NIP` LIKE $P{NIP}]]></queryString>
 					<reportElement
 						x="214"
 						y="34"
-						width="276"
+						width="177"
 						height="15"
 						key="textField-3"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -190,7 +190,7 @@ where data_meninggal.`NIP` LIKE $P{NIP}]]></queryString>
 					<reportElement
 						x="151"
 						y="51"
-						width="339"
+						width="296"
 						height="15"
 						key="textField-4"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -216,7 +216,7 @@ where data_meninggal.`NIP` LIKE $P{NIP}]]></queryString>
 					<reportElement
 						x="214"
 						y="67"
-						width="276"
+						width="177"
 						height="15"
 						key="textField-5"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>

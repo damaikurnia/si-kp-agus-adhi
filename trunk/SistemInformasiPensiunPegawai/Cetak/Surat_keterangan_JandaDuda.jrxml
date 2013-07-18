@@ -26,6 +26,9 @@
 	<parameter name="NIP" isForPrompting="true" class="java.lang.String">
 		<defaultValueExpression ><![CDATA[""]]></defaultValueExpression>
 	</parameter>
+	<parameter name="SUBREPORT_DIR" isForPrompting="true" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["E:\\Subversion\\SistemInformasiPensiunPegawai\\Cetak\\"]]></defaultValueExpression>
+	</parameter>
 	<queryString><![CDATA[SELECT 
 sptkg_terakhir.`nama_pemilik`  AS sptkg_terakhir_nama_pemilik,
   sptkg_terakhir.`nip_baru`            AS sptkg_terakhir_nip_baru,
@@ -514,19 +517,22 @@ AND pns.id_SuratCPNS=sk_cpns.id_SuratCPNS]]></queryString>
 					</textElement>
 				<text><![CDATA[Suami/Istri PNS yang bersangkutan]]></text>
 				</staticText>
-				<staticText>
+				<subreport  isUsingCache="true">
 					<reportElement
-						x="292"
-						y="471"
-						width="172"
-						height="17"
-						key="staticText-36"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
-					</textElement>
-				<text><![CDATA[__________________________]]></text>
-				</staticText>
+						x="301"
+						y="467"
+						width="149"
+						height="25"
+						key="subreport-1"/>
+					<subreportParameter  name="NIP">
+						<subreportParameterExpression><![CDATA[$P{NIP}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_nama_kel_meininggal.jasper"]]></subreportExpression>
+				</subreport>
 			</band>
 		</detail>
 		<columnFooter>

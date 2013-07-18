@@ -30,32 +30,28 @@
 		<defaultValueExpression ><![CDATA["E:\\Subversion\\SistemInformasiPensiunPegawai\\Cetak\\"]]></defaultValueExpression>
 	</parameter>
 	<queryString><![CDATA[SELECT
-	
-     Upper(pns.nama_pns) AS pns_nama_pns,
+     UPPER(pns.nama_pns) AS pns_nama_pns,
      sk_nipbaru.`nip_lama` AS sk_nipbaru_nip_lama,
      sk_nipbaru.`nip_baru` AS sk_nipbaru_nip_baru,
-     sk_nipbaru.tanggal_lahir    AS sk_nipbaru_tanggal_lahir ,
-     Upper(anggotakeluarga.`tempat_lahir`) AS anggotakeluarga_tempat_lahir,
-     Upper(sptkg_terakhir.`pangkat_baru`) AS sptkg_terakhir_pangkat_baru,
+     DATE_FORMAT(sk_nipbaru.tanggal_lahir,'%d-%m-%Y') AS sk_nipbaru_tanggal_lahir ,
+     UPPER(sk_cpns.`tempat_lahir`) AS anggotakeluarga_tempat_lahir,
+     UPPER(sptkg_terakhir.`pangkat_baru`) AS sptkg_terakhir_pangkat_baru,
      sptkg_terakhir.`golongan_ruang_baru` AS sptkg_terakhir_golongan_ruang_baru,
      sptkg_terakhir.`gajipokok_baru` AS sptkg_terakhir_gajipokok_baru,
 	DATE_FORMAT(sptkg_terakhir.`tmt_baru`, '%d-%m-%Y') AS sptkg_terakhir_tmt_baru,
      sk_karpeg.`id_SuratKarpeg` AS sk_karpeg_id_SuratKarpeg,
-     Upper(sk_cpns.`Profesi`) AS sk_cpns_Profesi,
-     Upper(kk.`Alamat`) AS kk_Alamat,
-     Upper(kk.`Kabupaten_Kota`) AS kk_Kabupaten_Kota,
-     Upper(sptkg_terakhir.`Sekolah`) AS sptkg_terakhir_Sekolah,
+     UPPER(sk_cpns.`Profesi`) AS sk_cpns_Profesi,
+     UPPER(kk.`Alamat`) AS kk_Alamat,
+     UPPER(kk.`Kabupaten_Kota`) AS kk_Kabupaten_Kota,
+     UPPER(sptkg_terakhir.`Sekolah`) AS sptkg_terakhir_Sekolah,
 	ROUND(DATEDIFF(CURRENT_DATE,sk_cpns.tanggal_surat)/365,0)AS tahun,
 	ROUND(MOD(DATEDIFF(CURRENT_DATE,sk_cpns.tanggal_surat)/365,12)) AS Bulan,
 	sk_cpns.tanggal_lahir AS tanggaltmt,
 	DAY(sk_cpns.tanggal_lahir) AS hari_TMT,
 	YEAR(sk_cpns.tanggal_lahir)+60 AS Tahun_TMT,
 	MONTH(sk_cpns.tanggal_lahir)+1 AS bulan_TMT
-
-
 FROM
      `sk_nipbaru` sk_nipbaru,
-     `anggotakeluarga` anggotakeluarga,
      `sptkg_terakhir` sptkg_terakhir,
      `sk_karpeg` sk_karpeg,
      `sk_cpns` sk_cpns,
@@ -66,12 +62,13 @@ WHERE
  AND pns.`id_SuratCPNS` = sk_cpns.`id_SuratCPNS`
  AND pns.`id_SuratKarpeg` = sk_karpeg.`id_SuratKarpeg`
  AND pns.`id_SuratNIPBaru` = sk_nipbaru.`id_SuratNIPBaru`
- AND anggotakeluarga.nama_lengkap =pns.nama_pns]]></queryString>
+ AND pns.id_SuratSPTKGTerakhir =sptkg_terakhir.id_SuratSPTKGTerakhir 
+ AND pns.id_Suratkk =kk.id_Suratkk ]]></queryString>
 
 	<field name="pns_nama_pns" class="java.lang.String"/>
 	<field name="sk_nipbaru_nip_lama" class="java.lang.String"/>
 	<field name="sk_nipbaru_nip_baru" class="java.lang.String"/>
-	<field name="sk_nipbaru_tanggal_lahir" class="java.sql.Date"/>
+	<field name="sk_nipbaru_tanggal_lahir" class="java.lang.String"/>
 	<field name="anggotakeluarga_tempat_lahir" class="java.lang.String"/>
 	<field name="sptkg_terakhir_pangkat_baru" class="java.lang.String"/>
 	<field name="sptkg_terakhir_golongan_ruang_baru" class="java.lang.String"/>
@@ -94,11 +91,11 @@ WHERE
 			</band>
 		</background>
 		<title>
-			<band height="170"  isSplitAllowed="true" >
+			<band height="149"  isSplitAllowed="true" >
 				<staticText>
 					<reportElement
-						x="117"
-						y="50"
+						x="114"
+						y="29"
 						width="314"
 						height="50"
 						key="staticText-1"/>
@@ -111,7 +108,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="90"
-						y="106"
+						y="87"
 						width="367"
 						height="57"
 						key="staticText-2"/>
@@ -124,7 +121,7 @@ WHERE
 				<line direction="TopDown">
 					<reportElement
 						x="0"
-						y="47"
+						y="17"
 						width="548"
 						height="0"
 						key="line-2"/>
@@ -133,18 +130,18 @@ WHERE
 				<line direction="TopDown">
 					<reportElement
 						x="548"
-						y="49"
+						y="17"
 						width="0"
-						height="121"
+						height="127"
 						key="line-3"/>
 					<graphicElement stretchType="NoStretch"/>
 				</line>
 				<line direction="TopDown">
 					<reportElement
 						x="0"
-						y="49"
+						y="16"
 						width="0"
-						height="121"
+						height="128"
 						key="line-6"/>
 					<graphicElement stretchType="NoStretch"/>
 				</line>
@@ -162,10 +159,10 @@ WHERE
 			<band height="724"  isSplitAllowed="true" >
 				<staticText>
 					<reportElement
-						x="43"
-						y="0"
-						width="250"
-						height="37"
+						x="56"
+						y="14"
+						width="226"
+						height="30"
 						key="staticText-3"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -176,7 +173,7 @@ WHERE
 				<line direction="TopDown">
 					<reportElement
 						x="0"
-						y="37"
+						y="49"
 						width="548"
 						height="0"
 						key="line-1"/>
@@ -184,7 +181,7 @@ WHERE
 				</line>
 				<staticText>
 					<reportElement
-						x="136"
+						x="73"
 						y="60"
 						width="264"
 						height="37"
@@ -540,8 +537,8 @@ WHERE
 				</line>
 				<line direction="TopDown">
 					<reportElement
-						x="-6"
-						y="719"
+						x="0"
+						y="723"
 						width="548"
 						height="0"
 						key="line-7"/>
@@ -823,7 +820,7 @@ WHERE
 					<textElement>
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="16" isBold="true"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sptkg_terakhir_pangkat_baru}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{anggotakeluarga_tempat_lahir}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement
@@ -837,71 +834,6 @@ WHERE
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="16" isBold="true"/>
 					</textElement>
 				<text><![CDATA[,]]></text>
-				</staticText>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="329"
-						y="314"
-						width="34"
-						height="20"
-						key="textField-20"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Arial" size="16"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sptkg_terakhir_golongan_ruang_baru}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="393"
-						y="315"
-						width="34"
-						height="20"
-						key="textField-21"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font fontName="Arial" size="16"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sptkg_terakhir_golongan_ruang_baru}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement
-						x="371"
-						y="315"
-						width="15"
-						height="20"
-						key="staticText-44"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="16" isBold="true"/>
-					</textElement>
-				<text><![CDATA[-]]></text>
-				</staticText>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="457"
-						y="314"
-						width="59"
-						height="20"
-						key="textField-22"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Arial" size="16"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sptkg_terakhir_golongan_ruang_baru}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement
-						x="434"
-						y="315"
-						width="15"
-						height="20"
-						key="staticText-45"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="16" isBold="true"/>
-					</textElement>
-				<text><![CDATA[-]]></text>
 				</staticText>
 				<subreport  isUsingCache="true">
 					<reportElement
@@ -919,13 +851,26 @@ WHERE
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_data_kel_meininggal_cover.jasper"]]></subreportExpression>
 				</subreport>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="330"
+						y="314"
+						width="191"
+						height="20"
+						key="textField-20"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="16" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sk_nipbaru_tanggal_lahir}]]></textFieldExpression>
+				</textField>
 				<subreport  isUsingCache="true">
 					<reportElement
-						x="300"
-						y="0"
-						width="221"
-						height="34"
-						key="subreport-2"/>
+						x="293"
+						y="14"
+						width="61"
+						height="30"
+						key="subreport-3"/>
 					<subreportParameter  name="NIP">
 						<subreportParameterExpression><![CDATA[$P{NIP}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -933,7 +878,7 @@ WHERE
 						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
 					</subreportParameter>
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_tgl_menininggal.jasper"]]></subreportExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_tanggal_meninggal.jasper"]]></subreportExpression>
 				</subreport>
 			</band>
 		</detail>

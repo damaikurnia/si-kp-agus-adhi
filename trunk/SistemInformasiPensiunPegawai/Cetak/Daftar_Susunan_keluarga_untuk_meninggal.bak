@@ -2,7 +2,7 @@
 <!-- Created with iReport - A designer for JasperReports -->
 <!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
 <jasperReport
-		 name="Daftar-Susunan_keluarga"
+		 name="Daftar_Susunan_keluarga_untuk_meninggal"
 		 columnCount="1"
 		 printOrder="Vertical"
 		 orientation="Portrait"
@@ -35,7 +35,7 @@
 	<queryString><![CDATA[SELECT
 	a.nama_pemilik, c.nip_lama, c.nip_baru, d.tempat_lahir, DATE_FORMAT(d.tanggal_lahir, '%d-%M-%Y') AS tanggal_lahir,
 	a.pangkat_baru, a.golongan_baru,e.gajipokok_baru,d.Profesi, f.id_SuratKarpeg,
-	DATE_FORMAT(g.tanggal_nikah, '%d-%M-%Y') AS tanggal_nikah,e.Sekolah, h.Alamat
+	DATE_FORMAT(g.tanggal_nikah, '%d-%M-%Y') AS tanggal_nikah,e.Sekolah, h.Alamat,h.kabupaten_kota
 FROM
 	sk_pangkatterakhir a, pns b, sk_nipbaru c, sk_cpns d, sptkg_terakhir e, sk_karpeg f, s_nikah g, kk h
 WHERE
@@ -61,6 +61,7 @@ WHERE
 	<field name="tanggal_nikah" class="java.lang.String"/>
 	<field name="Sekolah" class="java.lang.String"/>
 	<field name="Alamat" class="java.lang.String"/>
+	<field name="kabupaten_kota" class="java.lang.String"/>
 
 		<background>
 			<band height="0"  isSplitAllowed="true" >
@@ -559,7 +560,7 @@ WHERE
 					<textElement>
 						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
 					</textElement>
-				<text><![CDATA[Pegawai Negeri Sipil]]></text>
+				<text><![CDATA[Istri/Suami PNS]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -654,19 +655,6 @@ WHERE
 				</staticText>
 				<staticText>
 					<reportElement
-						x="374"
-						y="590"
-						width="101"
-						height="17"
-						key="staticText-77"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
-					</textElement>
-				<text><![CDATA[________________]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
 						x="27"
 						y="605"
 						width="121"
@@ -687,19 +675,6 @@ WHERE
 						key="staticText-79"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Left">
-						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
-					</textElement>
-				<text><![CDATA[NIP.]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="375"
-						y="606"
-						width="101"
-						height="17"
-						key="staticText-80"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
 						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
 					</textElement>
 				<text><![CDATA[NIP.]]></text>
@@ -889,6 +864,45 @@ WHERE
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_DSK.jasper"]]></subreportExpression>
 				</subreport>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="240"
+						y="209"
+						width="200"
+						height="15"
+						key="textField-1"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{kabupaten_kota}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="242"
+						y="245"
+						width="200"
+						height="15"
+						key="textField-2"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{kabupaten_kota}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="373"
+						y="589"
+						width="121"
+						height="17"
+						key="staticText-84"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center">
+						<font fontName="Times New Roman" pdfFontName="Helvetica" size="12" isBold="false"/>
+					</textElement>
+				<text><![CDATA[____________________]]></text>
+				</staticText>
 			</band>
 		</detail>
 		<columnFooter>
