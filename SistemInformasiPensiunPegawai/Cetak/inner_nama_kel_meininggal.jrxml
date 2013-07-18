@@ -5,10 +5,10 @@
 		 name="inner_nama_kel_meininggal"
 		 columnCount="1"
 		 printOrder="Vertical"
-		 orientation="Landscape"
-		 pageWidth="535"
+		 orientation="Portrait"
+		 pageWidth="396"
 		 pageHeight="421"
-		 columnWidth="535"
+		 columnWidth="396"
 		 columnSpacing="0"
 		 leftMargin="0"
 		 rightMargin="0"
@@ -23,7 +23,7 @@
 	<import value="net.sf.jasperreports.engine.*" />
 	<import value="net.sf.jasperreports.engine.data.*" />
 
-	<parameter name="NIP" isForPrompting="false" class="java.lang.String">
+	<parameter name="NIP" isForPrompting="true" class="java.lang.String">
 		<defaultValueExpression ><![CDATA[""]]></defaultValueExpression>
 	</parameter>
 	<queryString><![CDATA[SELECT
@@ -51,11 +51,11 @@ where data_meninggal.`NIP` LIKE $P{NIP}]]></queryString>
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="16"  isSplitAllowed="true" >
+			<band height="24"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="0"
-						y="0"
+						x="5"
+						y="3"
 						width="233"
 						height="15"
 						key="textField-1"/>

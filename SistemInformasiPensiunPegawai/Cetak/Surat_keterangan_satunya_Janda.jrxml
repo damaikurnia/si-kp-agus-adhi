@@ -196,7 +196,7 @@ WHERE
 				</staticText>
 				<staticText>
 					<reportElement
-						x="323"
+						x="289"
 						y="346"
 						width="35"
 						height="17"
@@ -209,7 +209,7 @@ WHERE
 				</staticText>
 				<staticText>
 					<reportElement
-						x="323"
+						x="289"
 						y="362"
 						width="118"
 						height="17"
@@ -222,7 +222,7 @@ WHERE
 				</staticText>
 				<staticText>
 					<reportElement
-						x="323"
+						x="289"
 						y="417"
 						width="101"
 						height="17"
@@ -235,7 +235,7 @@ WHERE
 				</staticText>
 				<staticText>
 					<reportElement
-						x="323"
+						x="289"
 						y="439"
 						width="101"
 						height="17"
@@ -556,8 +556,8 @@ WHERE
 				</subreport>
 				<subreport  isUsingCache="true">
 					<reportElement
-						x="403"
-						y="218"
+						x="406"
+						y="217"
 						width="144"
 						height="15"
 						key="subreport-4"/>
@@ -570,6 +570,32 @@ WHERE
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_tgl_menininggal_sk_satu-satunya.jasper"]]></subreportExpression>
 				</subreport>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="409"
+						y="363"
+						width="129"
+						height="14"
+						key="textField-9"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{kk_Kelurahan_Desa}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="111"
+						y="482"
+						width="146"
+						height="14"
+						key="textField-10"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{kk_Kecamatan}]]></textFieldExpression>
+				</textField>
 			</band>
 		</detail>
 		<columnFooter>

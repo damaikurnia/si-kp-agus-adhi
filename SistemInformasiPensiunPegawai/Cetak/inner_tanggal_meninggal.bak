@@ -2,13 +2,13 @@
 <!-- Created with iReport - A designer for JasperReports -->
 <!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
 <jasperReport
-		 name="inner_tgl_menininggal"
+		 name="inner_tanggal_meninggal"
 		 columnCount="1"
 		 printOrder="Vertical"
-		 orientation="Landscape"
-		 pageWidth="595"
+		 orientation="Portrait"
+		 pageWidth="283"
 		 pageHeight="421"
-		 columnWidth="595"
+		 columnWidth="283"
 		 columnSpacing="0"
 		 leftMargin="0"
 		 rightMargin="0"
@@ -52,16 +52,16 @@ WHERE
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="67"  isSplitAllowed="true" >
+			<band height="36"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="5"
-						y="7"
-						width="396"
-						height="47"
+						x="1"
+						y="1"
+						width="177"
+						height="27"
 						key="textField-1"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement verticalAlignment="Middle">
+					<textElement>
 						<font fontName="Times New Roman" size="24"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{data_meninggal_tanggal_meninggal}]]></textFieldExpression>

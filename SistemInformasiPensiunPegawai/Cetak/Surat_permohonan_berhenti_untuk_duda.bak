@@ -128,7 +128,7 @@ WHERE
 					<textElement textAlignment="Justified" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[Permintaan pensiun Janda]]></text>
+				<text><![CDATA[Permintaan pensiun Duda]]></text>
 				</staticText>
 				<line direction="TopDown">
 					<reportElement
@@ -266,7 +266,7 @@ WHERE
 					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[d. Duda dari Almarhum yang semasa hidupnya :]]></text>
+				<text><![CDATA[d. Duda dari Almarhumah yang semasa hidupnya :]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -544,7 +544,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="41"
-						y="356"
+						y="358"
 						width="283"
 						height="15"
 						key="staticText-47"/>
@@ -1131,7 +1131,7 @@ WHERE
 						x="50"
 						y="37"
 						width="502"
-						height="66"
+						height="89"
 						key="subreport-1"/>
 					<subreportParameter  name="NIP">
 						<subreportParameterExpression><![CDATA[$P{NIP}]]></subreportParameterExpression>
@@ -1157,11 +1157,27 @@ WHERE
 				</staticText>
 				<subreport  isUsingCache="true">
 					<reportElement
-						x="324"
-						y="675"
-						width="174"
-						height="14"
+						x="244"
+						y="335"
+						width="140"
+						height="26"
 						key="subreport-2"/>
+					<subreportParameter  name="NIP">
+						<subreportParameterExpression><![CDATA[$P{NIP}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_tgl_menininggal_sk_satu-satunya.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="324"
+						y="697"
+						width="120"
+						height="29"
+						key="subreport-3"/>
 					<subreportParameter  name="NIP">
 						<subreportParameterExpression><![CDATA[$P{NIP}]]></subreportParameterExpression>
 					</subreportParameter>

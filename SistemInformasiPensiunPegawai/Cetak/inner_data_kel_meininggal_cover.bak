@@ -67,11 +67,11 @@ where data_meninggal.`NIP` LIKE $P{NIP}]]></queryString>
 					<textElement>
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="16" isBold="true"/>
 					</textElement>
-				<text><![CDATA[1. Nama]]></text>
+				<text><![CDATA[1. NAMA]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="138"
+						x="191"
 						y="6"
 						width="5"
 						height="19"
@@ -84,9 +84,9 @@ where data_meninggal.`NIP` LIKE $P{NIP}]]></queryString>
 				</staticText>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="151"
+						x="204"
 						y="6"
-						width="339"
+						width="265"
 						height="19"
 						key="textField-1"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -97,9 +97,9 @@ where data_meninggal.`NIP` LIKE $P{NIP}]]></queryString>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="151"
+						x="204"
 						y="28"
-						width="339"
+						width="265"
 						height="21"
 						key="textField-2"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -110,7 +110,7 @@ where data_meninggal.`NIP` LIKE $P{NIP}]]></queryString>
 				</textField>
 				<staticText>
 					<reportElement
-						x="138"
+						x="191"
 						y="28"
 						width="5"
 						height="21"
@@ -125,18 +125,18 @@ where data_meninggal.`NIP` LIKE $P{NIP}]]></queryString>
 					<reportElement
 						x="1"
 						y="28"
-						width="118"
+						width="185"
 						height="21"
 						key="staticText-4"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="16" isBold="true"/>
 					</textElement>
-				<text><![CDATA[2. Alamat Rumah]]></text>
+				<text><![CDATA[2. ALAMAT RUMAH]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="151"
+						x="204"
 						y="54"
 						width="78"
 						height="20"
@@ -149,9 +149,9 @@ where data_meninggal.`NIP` LIKE $P{NIP}]]></queryString>
 				</staticText>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="234"
+						x="287"
 						y="54"
-						width="256"
+						width="182"
 						height="20"
 						key="textField-3"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>

@@ -1099,7 +1099,7 @@ WHERE
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{pangkat_baru}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="false" pattern="¤ #,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="244"
 						y="177"

@@ -26,24 +26,31 @@
 	<parameter name="NIP" isForPrompting="true" class="java.lang.String">
 		<defaultValueExpression ><![CDATA[""]]></defaultValueExpression>
 	</parameter>
+	<parameter name="SUBREPORT_DIR" isForPrompting="true" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["E:\\Subversion\\SistemInformasiPensiunPegawai\\Cetak\\"]]></defaultValueExpression>
+	</parameter>
 	<queryString><![CDATA[SELECT
-sptkg_terakhir.`nama_pemilik`  AS sptkg_terakhir_nama_pemilik,
-  sptkg_terakhir.`nip_baru`            AS sptkg_terakhir_nip_baru,
-  sptkg_terakhir.`pangkat_baru`        AS sptkg_terakhir_pangkat_baru,
-  sptkg_terakhir.`golongan_ruang_baru` AS sptkg_terakhir_golongan_banggotakeluargaruang_aru,
-  sk_cpns.`Profesi`                    AS sk_cpns_Profesi,
-  kk.`Alamat`                          AS kk_Alamat,
-kk.`Kabupaten_kota`                          AS kk_Kabupaten_kota,
-  sptkg_terakhir.`Sekolah`             AS sptkg_terakhir_Sekola
-FROM `sk_pangkatterakhir` sk_pangkatterakhir,
-  `sk_cpns` sk_cpns,
-  `kk` kk,
-  `sptkg_terakhir` sptkg_terakhir,
-  `pns` pns
-WHERE pns.nip_baru LIKE  $P{NIP}
-AND pns.id_SuratSPTKGTerakhir = sptkg_terakhir.id_SuratSPTKGTerakhir
-AND pns.id_Suratkk=kk.id_Suratkk
-AND pns.id_SuratCPNS=sk_cpns.id_SuratCPNS]]></queryString>
+     sptkg_terakhir.`nama_pemilik` AS sptkg_terakhir_nama_pemilik,
+     sptkg_terakhir.`nip_baru` AS sptkg_terakhir_nip_baru,
+     sptkg_terakhir.`pangkat_baru` AS sptkg_terakhir_pangkat_baru,
+     sptkg_terakhir.`golongan_ruang_baru` AS sptkg_terakhir_golongan_banggotakeluargaruang_aru,
+     sk_cpns.`Profesi` AS sk_cpns_Profesi,
+     kk.`Alamat` AS kk_Alamat,
+     kk.`Kabupaten_kota` AS kk_Kabupaten_kota,
+     sptkg_terakhir.`Sekolah` AS sptkg_terakhir_Sekola,
+     kk.`Kelurahan_Desa` AS kk_Kelurahan_Desa,
+     kk.`Kecamatan` AS kk_Kecamatan
+FROM
+     `sk_pangkatterakhir` sk_pangkatterakhir,
+     `sk_cpns` sk_cpns,
+     `kk` kk,
+     `sptkg_terakhir` sptkg_terakhir,
+     `pns` pns
+WHERE
+     pns.nip_baru LIKE $P{NIP}
+ AND pns.id_SuratSPTKGTerakhir = sptkg_terakhir.id_SuratSPTKGTerakhir
+ AND pns.id_Suratkk = kk.id_Suratkk
+ AND pns.id_SuratCPNS = sk_cpns.id_SuratCPNS]]></queryString>
 
 	<field name="sptkg_terakhir_nama_pemilik" class="java.lang.String"/>
 	<field name="sptkg_terakhir_nip_baru" class="java.lang.String"/>
@@ -53,6 +60,8 @@ AND pns.id_SuratCPNS=sk_cpns.id_SuratCPNS]]></queryString>
 	<field name="kk_Alamat" class="java.lang.String"/>
 	<field name="kk_Kabupaten_kota" class="java.lang.String"/>
 	<field name="sptkg_terakhir_Sekola" class="java.lang.String"/>
+	<field name="kk_Kelurahan_Desa" class="java.lang.String"/>
+	<field name="kk_Kecamatan" class="java.lang.String"/>
 
 		<background>
 			<band height="0"  isSplitAllowed="true" >
@@ -518,7 +527,7 @@ AND pns.id_SuratCPNS=sk_cpns.id_SuratCPNS]]></queryString>
 					<reportElement
 						x="214"
 						y="307"
-						width="180"
+						width="324"
 						height="16"
 						key="textField-6"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -620,8 +629,8 @@ AND pns.id_SuratCPNS=sk_cpns.id_SuratCPNS]]></queryString>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="212"
-						y="363"
+						x="213"
+						y="367"
 						width="55"
 						height="15"
 						key="staticText-40"/>
@@ -631,6 +640,103 @@ AND pns.id_SuratCPNS=sk_cpns.id_SuratCPNS]]></queryString>
 					</textElement>
 				<text><![CDATA[Kabupaten]]></text>
 				</staticText>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="204"
+						y="430"
+						width="111"
+						height="17"
+						key="subreport-1"/>
+					<subreportParameter  name="NIP">
+						<subreportParameterExpression><![CDATA[$P{NIP}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_tgl_menininggal_sk_satu-satunya.jasper"]]></subreportExpression>
+				</subreport>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="212"
+						y="348"
+						width="330"
+						height="16"
+						key="textField-8"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{kk_Alamat}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="274"
+						y="367"
+						width="268"
+						height="16"
+						key="textField-9"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{kk_Kabupaten_kota}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="254"
+						y="411"
+						width="103"
+						height="16"
+						key="textField-10"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{kk_Kabupaten_kota}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="364"
+						y="390"
+						width="174"
+						height="16"
+						key="textField-11"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{kk_Kelurahan_Desa}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="83"
+						y="411"
+						width="103"
+						height="16"
+						key="textField-12"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{kk_Kecamatan}]]></textFieldExpression>
+				</textField>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="409"
+						y="407"
+						width="129"
+						height="17"
+						key="subreport-2"/>
+					<subreportParameter  name="NIP">
+						<subreportParameterExpression><![CDATA[$P{NIP}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_nomor_srt_meninggal.jasper"]]></subreportExpression>
+				</subreport>
 			</band>
 		</detail>
 		<columnFooter>

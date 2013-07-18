@@ -116,7 +116,7 @@ WHERE
 					<textElement textAlignment="Center">
 						<font fontName="Arial Black" size="40"/>
 					</textElement>
-				<text><![CDATA[B . U . P]]></text>
+				<text><![CDATA[A . P . S]]></text>
 				</staticText>
 				<line direction="TopDown">
 					<reportElement

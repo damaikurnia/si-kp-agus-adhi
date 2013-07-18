@@ -42,12 +42,12 @@ FROM sk_cpns,
   pns,
   kk,
   sptkg_terakhir
-WHERE anggotakeluarga.status_hub_keluarga IN (SELECT
-                                               anggotakeluarga.status_hub_keluarga
-                                             FROM anggotakeluarga,
-                                               pns,
-                                               sptkg_terakhir
-                                             WHERE sptkg_terakhir.nip_baru LIKE  $P{NIP})
+WHERE anggotakeluarga.id_suratKK IN(SELECT
+                                      anggotakeluarga.id_suratKK
+                                    FROM anggotakeluarga,KK,pns
+                                    WHERE PNS.nip_baru LIKE  $P{NIP}
+                                        AND anggotakeluarga.id_suratKK = kk.id_Suratkk
+                                        AND pns.id_Suratkk = kk.id_Suratkk)
     AND pns.id_SuratNikah = s_nikah.id_SuratNikah
     AND pns.id_SuratCPNS = sk_cpns.id_SuratCPNS
     AND kk.id_Suratkk = anggotakeluarga.id_suratKK
