@@ -28,34 +28,10 @@ public class SK_PangkatTerakhir {
     private String kode_operator;
     private String profesi;
     private String sekolah;
+    private String tempat_lahir;
 
     public SK_PangkatTerakhir(){}
     
-    public SK_PangkatTerakhir(String id,String nama,String tgl_lhr,String nip_lama,
-            String nip_baru,String pend,String pngkt_lm,String gol_lm,String tmt_lm,
-            String pngkt_br,String gol_br,String tmt_br,String masa,String gaji,
-            String masa_kerja_gol_bln,String tgl_surat,String kode_op,String prof,
-            String sekolah){
-        this.id_SuratPangkatTerakhir = id;
-        this.nama_pemilik = nama;
-        this.tanggal_lahir = tgl_lhr;
-        this.nip_lama = nip_lama;
-        this.nip_baru = nip_baru;
-        this.pendidikan = pend;
-        this.pangkat_lama = pngkt_lm;
-        this.golongan_lama = gol_lm;
-        this.tmt_lama = tmt_lm;
-        this.pangkat_baru = pngkt_br;
-        this.golongan_baru = gol_br;
-        this.tmt_baru = tmt_br;
-        this.masa_kerja_golongan = masa;
-        this.gaji_pokok = gaji;
-        this.masa_kerja_golongan_bulan = masa_kerja_gol_bln;
-        this.tanggal_penyimpanan_surat = tgl_surat;
-        this.kode_operator = kode_op;
-        this.profesi = prof;
-        this.sekolah = sekolah;
-    }
     /**
      * @return the id_SuratPangkatTerakhir
      */
@@ -320,6 +296,20 @@ public class SK_PangkatTerakhir {
      */
     public void setSekolah(String sekolah) {
         this.sekolah = sekolah;
+    }
+
+    /**
+     * @return the tempat_lahir
+     */
+    public String getTempat_lahir() {
+        return tempat_lahir;
+    }
+
+    /**
+     * @param tempat_lahir the tempat_lahir to set
+     */
+    public void setTempat_lahir(String tempat_lahir) {
+        this.tempat_lahir = tempat_lahir;
     }
 
 }
