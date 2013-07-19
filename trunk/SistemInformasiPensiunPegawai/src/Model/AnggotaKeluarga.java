@@ -9,7 +9,7 @@ package Model;
  * @author a9uszT
  */
 public class AnggotaKeluarga {
-
+    private String no;
     private String nik;
     private String nama_lengkap;
     private String jenis_kelamin;
@@ -30,23 +30,18 @@ public class AnggotaKeluarga {
     public AnggotaKeluarga() {
     }
 
-    public AnggotaKeluarga(String nik, String nama_lengkap, String jenis_kelamin, String tempat_lahir, String tanggal_lahir, String agama, String pendidikan, String pekerjaan, String status_perkawinan, String status_hub_keluarga, String kewarganegaraan, String no_paspor, String no_kitas_kitab, String nama_ayah, String nama_ibu, KK id_suratkk) {
-        this.nik = nik;
-        this.nama_lengkap = nama_lengkap;
-        this.jenis_kelamin = jenis_kelamin;
-        this.tempat_lahir = tempat_lahir;
-        this.tanggal_lahir = tanggal_lahir;
-        this.agama = agama;
-        this.pendidikan = pendidikan;
-        this.pekerjaan = pekerjaan;
-        this.status_perkawinan = status_perkawinan;
-        this.status_hub_keluarga = status_hub_keluarga;
-        this.kewarganegaraan = kewarganegaraan;
-        this.no_paspor = no_paspor;
-        this.no_kitas_kitab = no_kitas_kitab;
-        this.nama_ayah = nama_ayah;
-        this.nama_ibu = nama_ibu;
-        this.id_suratkk = id_suratkk;
+    /**
+     * @return the no
+     */
+    public String getNo() {
+        return no;
+    }
+
+    /**
+     * @param no the no to set
+     */
+    public void setNo(String no) {
+        this.no = no;
     }
 
     /**
@@ -218,6 +213,20 @@ public class AnggotaKeluarga {
     }
 
     /**
+     * @return the no_kitas_kitab
+     */
+    public String getNo_kitas_kitab() {
+        return no_kitas_kitab;
+    }
+
+    /**
+     * @param no_kitas_kitab the no_kitas_kitab to set
+     */
+    public void setNo_kitas_kitab(String no_kitas_kitab) {
+        this.no_kitas_kitab = no_kitas_kitab;
+    }
+
+    /**
      * @return the nama_ayah
      */
     public String getNama_ayah() {
@@ -246,20 +255,6 @@ public class AnggotaKeluarga {
     }
 
     /**
-     * @return the no_kitas_kitab
-     */
-    public String getNo_kitas_kitab() {
-        return no_kitas_kitab;
-    }
-
-    /**
-     * @param no_kitas_kitab the no_kitas_kitab to set
-     */
-    public void setNo_kitas_kitab(String no_kitas_kitab) {
-        this.no_kitas_kitab = no_kitas_kitab;
-    }
-
-    /**
      * @return the id_suratkk
      */
     public KK getId_suratkk() {
@@ -272,4 +267,5 @@ public class AnggotaKeluarga {
     public void setId_suratkk(KK id_suratkk) {
         this.id_suratkk = id_suratkk;
     }
+
 }
