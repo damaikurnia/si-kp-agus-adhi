@@ -604,23 +604,23 @@ public class ControlData {
 
     public List<AnggotaKeluarga> tampilAnggotaKeluarga(String idSuratKK) throws SQLException {
         PreparedStatement stmt = null;
-        AnggotaKeluarga a = null;
         ResultSet result = null;
         conn.setAutoCommit(false);
-        String query = "SELECT a.nik,a.nama_lengkap,a.jenis_kelamin,a.tempat_lahir,"
-                + "a.tanggal_lahir,a.agama,a.pendidikan,a.pekerjaan,a.status_perkawinan,"
-                + "a.status_hub_keluarga,a.kewarganegaraan,a.no_paspor,a.no_kitas_kitap,"
-                + "a.nama_ayah,a.nama_ibu FROM anggotakeluarga a,kk b WHERE "
-                + "a.id_suratKK = b.id_Suratkk AND a.id_suratKK = '0012999222' "
+        String query = "SELECT a.nik,a.nama_lengkap,a.jenis_kelamin,"
+                + "a.tempat_lahir,a.tanggal_lahir,a.agama,a.pendidikan,a.pekerjaan,"
+                + "a.status_perkawinan,a.status_hub_keluarga,a.kewarganegaraan,"
+                + "a.no_paspor,a.no_kitas_kitap,a.nama_ayah,a.nama_ibu FROM anggotakeluarga a,"
+                + "kk b WHERE a.id_suratKK = b.id_Suratkk AND a.id_suratKK = ? "
                 + "ORDER BY tanggal_lahir"; //belom jadi
         stmt = conn.prepareStatement(query);
         stmt.setString(1, idSuratKK);
         result = stmt.executeQuery();
         List<AnggotaKeluarga> at = new ArrayList<AnggotaKeluarga>();
         if (result.next()) {
-            a = new AnggotaKeluarga();
-            a.setNama_lengkap(result.getString(1));
-            a.setNik(result.getString(2));
+            AnggotaKeluarga a = new AnggotaKeluarga();
+            a.setNo(Integer.toString(result.getRow()));
+            a.setNik(result.getString(1));
+            a.setNama_lengkap(result.getString(2));          
             a.setJenis_kelamin(result.getString(3));
             a.setTempat_lahir(result.getString(4));
             a.setTanggal_lahir(result.getString(5));
@@ -634,9 +634,6 @@ public class ControlData {
             a.setNo_kitas_kitab(result.getString(13));
             a.setNama_ayah(result.getString(14));
             a.setNama_ibu(result.getString(15));
-            KK kartu = new KK();
-            kartu.setId_Suratkk(result.getString(16));
-            a.setId_suratkk(kartu);
             at.add(a);
         }
         conn.commit();
@@ -877,5 +874,15 @@ public class ControlData {
         }
         conn.commit();
         return kk;
+    }
+    public static void main(String[] args) throws Exception {
+        List<AnggotaKeluarga> at = ControlData.getKoneksi().tampilAnggotaKeluarga("0012999222");
+        int a=0;
+        System.out.println(at.size());
+        while(a < at.size()){
+            System.out.println(at.get(a).getNo());
+            System.out.println(at.get(a).getNama_lengkap());
+            a++;
+        }
     }
 }
