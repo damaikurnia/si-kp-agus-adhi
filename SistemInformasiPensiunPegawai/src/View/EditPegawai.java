@@ -366,6 +366,8 @@ public class EditPegawai extends javax.swing.JFrame {
             }
         });
 
+        AK_NIK_TF.setEditable(false);
+
         AK_JK_Combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "L", "P" }));
 
         AK_NoPaspor_TF.setText("-");
