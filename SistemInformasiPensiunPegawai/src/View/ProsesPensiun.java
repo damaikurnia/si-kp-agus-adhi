@@ -120,9 +120,10 @@ public class ProsesPensiun extends javax.swing.JFrame {
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14));
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Proses Pensiun Meninggal Dunia");
-        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, -1, -1));
+        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 9, 530, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel6.setText("Data Keluarga :");
@@ -242,7 +243,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
         );
 
-        getContentPane().add(inter_proses_meninggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 570, 440));
+        getContentPane().add(inter_proses_meninggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 570, 440));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
