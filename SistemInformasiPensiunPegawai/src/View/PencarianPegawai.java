@@ -39,17 +39,17 @@ public class PencarianPegawai extends javax.swing.JFrame {
 //        tampilTable();
     }
 
-    public PencarianPegawai(String act) {
-        initComponents();
-        this.actioon = act;
-        cari_txt.requestFocus();
-        jTable1.setVisible(false);
-        Clock clock = new Clock();
-        clock.showDigitalClock(time);
-        cari_txt.setVisible(false);
-        jInternalFrame_proses.setVisible(false);
-        jInternalFrame_proses.setTitle("Konfirmasi Pegawai untuk " + actioon);
-    }
+//    public PencarianPegawai(String act) {
+//        initComponents();
+//        this.actioon = act;
+//        cari_txt.requestFocus();
+//        jTable1.setVisible(false);
+//        Clock clock = new Clock();
+//        clock.showDigitalClock(time);
+//        cari_txt.setVisible(false);
+//        jInternalFrame_proses.setVisible(false);
+//        jInternalFrame_proses.setTitle("Konfirmasi Pegawai untuk " + actioon);
+//    }
 
     /** This method is called from within the constructor to
      * initialize the form.
