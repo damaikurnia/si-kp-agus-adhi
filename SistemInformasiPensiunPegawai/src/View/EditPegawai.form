@@ -262,17 +262,11 @@
                   </Constraints>
                 </Component>
                 <Component class="javax.swing.JTextField" name="AK_NIK_TF">
-<<<<<<< .mine
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="125" y="38" width="182" height="-1"/>
                     </Constraint>
                   </Constraints>
-=======
-                  <Properties>
-                    <Property name="editable" type="boolean" value="false"/>
-                  </Properties>
->>>>>>> .r144
                 </Component>
                 <Component class="javax.swing.JTextField" name="AK_TempatLahir_TF">
                   <Constraints>
@@ -297,11 +291,9 @@
                   </Constraints>
                 </Component>
                 <Component class="com.toedter.calendar.JDateChooser" name="AK_TanggalLahir_Date">
-                  <Constraints>
-                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="125" y="116" width="123" height="-1"/>
-                    </Constraint>
-                  </Constraints>
+                  <Properties>
+                    <Property name="dateFormatString" type="java.lang.String" value="dd-MM-yyyy"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="AK_NoPaspor_TF">
                   <Properties>
@@ -2842,6 +2834,9 @@
                                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                                 </Property>
                               </Properties>
+                              <Events>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="KK_TabelAnggotaKel_TablelMouseClicked"/>
+                              </Events>
                             </Component>
                           </SubComponents>
                         </Container>

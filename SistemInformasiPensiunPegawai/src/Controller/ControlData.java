@@ -475,7 +475,7 @@ public class ControlData {
     public void insertSK_PangkatTerakhir(SK_PangkatTerakhir k) throws SQLException {
         PreparedStatement stmt = null;
         conn.setAutoCommit(false);
-        String query = "INSERT INTO sk_pangkatterakhir VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,CURRENT_DATE,?,?,?)";
+        String query = "INSERT INTO sk_pangkatterakhir VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,CURRENT_DATE,?,?,?,?)";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, k.getId_SuratPangkatTerakhir().toUpperCase());
         stmt.setString(2, k.getNama_pemilik().toUpperCase());
@@ -495,6 +495,7 @@ public class ControlData {
         stmt.setString(16, k.getKode_operator().toUpperCase());
         stmt.setString(17, k.getProfesi().toUpperCase());
         stmt.setString(18, k.getSekolah().toUpperCase());
+        stmt.setString(19, k.getTempat_lahir().toUpperCase());
 
         stmt.executeUpdate();
         conn.commit();

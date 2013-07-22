@@ -403,6 +403,8 @@ public class EditPegawai extends javax.swing.JFrame {
         jPanel5.add(AK_JK_Combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 64, -1, -1));
         jPanel5.add(AK_TanggalLahir_Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 116, 123, -1));
 
+        AK_TanggalLahir_Date.setDateFormatString("dd-MM-yyyy");
+
         AK_NoPaspor_TF.setText("-");
         jPanel5.add(AK_NoPaspor_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(505, 64, 182, -1));
         jPanel5.add(AK_NamaAyah_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(505, 116, 182, -1));
@@ -1138,6 +1140,11 @@ public class EditPegawai extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        KK_TabelAnggotaKel_Tablel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                KK_TabelAnggotaKel_TablelMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(KK_TabelAnggotaKel_Tablel);
 
         jPanel8.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 1090, 120));
@@ -1439,6 +1446,36 @@ public class EditPegawai extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_AK_Pekerjaan_ComboActionPerformed
 
+    private void KK_TabelAnggotaKel_TablelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KK_TabelAnggotaKel_TablelMouseClicked
+        
+        int row = KK_TabelAnggotaKel_Tablel.getSelectedRow();
+        AK_Nama_TF.setText(ambilIsi(row, 1));
+        AK_NIK_TF.setText(ambilIsi(row, 2));
+        AK_JK_Combo.setSelectedItem(ambilIsi(row, 3));
+        AK_TempatLahir_TF.setText(ambilIsi(row, 4));
+        try {
+            AK_TanggalLahir_Date.setDate(tukangSplit(ambilIsi(row, 5)));
+        } catch (ParseException ex) {
+            Logger.getLogger(EditPegawai.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        AK_Agama_Combo.setSelectedItem(ambilIsi(row, 6));
+        AK_Pendidikan_Combo.setSelectedItem(ambilIsi(row, 7));
+        AK_Pekerjaan_Combo.setSelectedItem(ambilIsi(row, 8));
+        AK_Pekerjaan_TF.setText(ambilIsi(row, 8));
+        AK_StatusKawin_Combo.setSelectedItem(ambilIsi(row, 9));
+        AK_HubKeluarga_Combo.setSelectedItem(ambilIsi(row, 10));
+        AK_Kewarganegaraan_Combo.setSelectedItem(ambilIsi(row, 11));
+        AK_NoPaspor_TF.setText(ambilIsi(row, 12));
+        AK_NoKitasKitap_TF.setText(ambilIsi(row, 13));
+        AK_NamaAyah_TF.setText(ambilIsi(row, 14));
+        AK_NamaIbu_TF.setText(ambilIsi(row, 15));
+
+        KK_Internal.setVisible(true);
+    }//GEN-LAST:event_KK_TabelAnggotaKel_TablelMouseClicked
+
+    private String ambilIsi(int baris,int kolom){
+        return KK_TabelAnggotaKel_Tablel.getValueAt(baris, kolom).toString();
+    }
     private int cekAngka(String isian) {
         if (!isian.matches("[0-9]*")) {
             JOptionPane.showMessageDialog(rootPane, "Masukkan harus angka..!!");
