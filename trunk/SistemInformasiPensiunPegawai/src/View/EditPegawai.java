@@ -1522,10 +1522,10 @@ public class EditPegawai extends javax.swing.JFrame {
         return 1;
     }
 
-    private void updateTerusTabelnyaKK(String idSuratKK) {
+    private void updateTerusTabelnyaKK(String idSuratKK){
         try {
-            List<AnggotaKeluarga> ak = Controller.ControlData.getKoneksi().tampilAnggotaKeluarga(idSuratKK);
-            TampilAnggotaKeluarga model = new TampilAnggotaKeluarga(ak);
+            List<AnggotaKeluarga> listAk = Controller.ControlData.getKoneksi().SearchAllAnggota(idSuratKK);
+            TampilAnggotaKeluarga model = new TampilAnggotaKeluarga(listAk);
             KK_TabelAnggotaKel_Table.setModel(model);
         } catch (Exception ex) {
             Logger.getLogger(EditPegawai.class.getName()).log(Level.SEVERE, null, ex);
