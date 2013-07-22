@@ -20,6 +20,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -131,7 +133,8 @@ public class ControlData {
         return nama;
 
     }
-     public DataMeninggal dataPegawaiMeninggal(String NIP) throws SQLException {
+
+    public DataMeninggal dataPegawaiMeninggal(String NIP) throws SQLException {
         PreparedStatement stmt = null;
         DataMeninggal data = null;
         ResultSet result = null;
@@ -141,7 +144,7 @@ public class ControlData {
         stmt.setString(1, NIP);
         result = stmt.executeQuery();
         if (result.next()) {
-            data=new DataMeninggal();
+            data = new DataMeninggal();
             data.setTglMeninggal(result.getString(1));
             data.setNo(result.getString(2));
         }
@@ -280,12 +283,12 @@ public class ControlData {
         PreparedStatement psmt = null;
         ResultSet rset = null;
         conn.setAutoCommit(false);
-         String query = "SELECT * from pns ";
+        String query = "SELECT * from pns ";
 //        String query = "SELECT nip_lama,nip_baru,nama_pns FROM PNS "
 //                + "where Upper (nama_pns) like '%" + id.toUpperCase() + "%'";
         psmt = conn.prepareStatement(query);
         rset = psmt.executeQuery();
-       
+
         psmt = conn.prepareStatement(query);
         rset = psmt.executeQuery();
         List<PNS> pns = new ArrayList<PNS>();
@@ -757,7 +760,7 @@ public class ControlData {
         return sptkg;
     }
 
-    public SK_Karpeg tampilSK_Karpeg(String nipBaru) throws SQLException{
+    public SK_Karpeg tampilSK_Karpeg(String nipBaru) throws SQLException {
         PreparedStatement stmt = null;
         SK_Karpeg karpeg = null;
         ResultSet result = null;
@@ -783,8 +786,8 @@ public class ControlData {
         conn.commit();
         return karpeg;
     }
-    
-    public S_Nikah tampilS_Nikah(String nipBaru) throws SQLException{
+
+    public S_Nikah tampilS_Nikah(String nipBaru) throws SQLException {
         PreparedStatement stmt = null;
         S_Nikah sn = null;
         ResultSet result = null;
@@ -808,8 +811,8 @@ public class ControlData {
         conn.commit();
         return sn;
     }
-    
-    public KK tampilKK(String nipBaru) throws SQLException{
+
+    public KK tampilKK(String nipBaru) throws SQLException {
         PreparedStatement stmt = null;
         KK kk = null;
         ResultSet result = null;
@@ -842,11 +845,11 @@ public class ControlData {
     }
 
     public List<PNS> SearchAll(String id) throws SQLException {
-          PreparedStatement psmt = null;
+        PreparedStatement psmt = null;
         ResultSet rset = null;
         conn.setAutoCommit(false);
 //        String query = "SELECT * from pns ";
-                String query = "SELECT nip_lama,nip_baru,nama_pns FROM PNS "
+        String query = "SELECT nip_lama,nip_baru,nama_pns FROM PNS "
                 + "where Upper (nama_pns) like '%" + id.toUpperCase() + "%'";
         psmt = conn.prepareStatement(query);
         rset = psmt.executeQuery();
@@ -861,12 +864,12 @@ public class ControlData {
         conn.commit();
         return barang;
     }
-    
+
     public List<AnggotaKeluarga> SearchAllAnggota(String id) throws SQLException {
-          PreparedStatement psmt = null;
+        PreparedStatement psmt = null;
         ResultSet result = null;
         conn.setAutoCommit(false);
-         String query = "SELECT a.nik,a.nama_lengkap,a.jenis_kelamin,"
+        String query = "SELECT a.nik,a.nama_lengkap,a.jenis_kelamin,"
                 + "a.tempat_lahir,a.tanggal_lahir,a.agama,a.pendidikan,a.pekerjaan,"
                 + "a.status_perkawinan,a.status_hub_keluarga,a.kewarganegaraan,"
                 + "a.no_paspor,a.no_kitas_kitap,a.nama_ayah,a.nama_ibu FROM anggotakeluarga a,"
@@ -898,5 +901,257 @@ public class ControlData {
         }
         conn.commit();
         return at;
+    }
+
+    public void delete_PNS(String NIP) throws SQLException {
+        PreparedStatement stmt = null;
+        try {
+            conn.setAutoCommit(false);
+            String query = "delete from PNS where NIP_baru=? ";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, NIP);
+            stmt.executeUpdate();
+            conn.commit();
+        } catch (SQLException ex) {
+            conn.rollback();
+            throw ex;
+        } finally {
+            try {
+                conn.setAutoCommit(true);
+                if (stmt != null) {
+                    stmt.close();
+                }
+            } catch (Exception e) {
+                try {
+                    throw e;
+                } catch (Exception ex) {
+                    Logger.getLogger(ControlData.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+
+    public void delete_sptkg_terakhir(String NIP) throws SQLException {
+        PreparedStatement stmt = null;
+        try {
+            conn.setAutoCommit(false);
+            String query = "delete from sptkg_terakhir where NIP_baru=? ";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, NIP);
+            stmt.executeUpdate();
+            conn.commit();
+        } catch (SQLException ex) {
+            conn.rollback();
+            throw ex;
+        } finally {
+            try {
+                conn.setAutoCommit(true);
+                if (stmt != null) {
+                    stmt.close();
+                }
+            } catch (Exception e) {
+                try {
+                    throw e;
+                } catch (Exception ex) {
+                    Logger.getLogger(ControlData.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+
+    public void delete_sk_pangkatterakhir(String NIP) throws SQLException {
+        PreparedStatement stmt = null;
+        try {
+            conn.setAutoCommit(false);
+            String query = "delete from sk_pangkatterakhir where NIP_lama=? ";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, NIP);
+            stmt.executeUpdate();
+            conn.commit();
+        } catch (SQLException ex) {
+            conn.rollback();
+            throw ex;
+        } finally {
+            try {
+                conn.setAutoCommit(true);
+                if (stmt != null) {
+                    stmt.close();
+                }
+            } catch (Exception e) {
+                try {
+                    throw e;
+                } catch (Exception ex) {
+                    Logger.getLogger(ControlData.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+
+    public void delete_sk_nipbaru(String NIP) throws SQLException {
+        PreparedStatement stmt = null;
+        try {
+            conn.setAutoCommit(false);
+            String query = "delete from sk_nipbaru where NIP_baru=? ";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, NIP);
+            stmt.executeUpdate();
+            conn.commit();
+        } catch (SQLException ex) {
+            conn.rollback();
+            throw ex;
+        } finally {
+            try {
+                conn.setAutoCommit(true);
+                if (stmt != null) {
+                    stmt.close();
+                }
+            } catch (Exception e) {
+                try {
+                    throw e;
+                } catch (Exception ex) {
+                    Logger.getLogger(ControlData.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+
+    public void delete_sk_karpeg(String NIP) throws SQLException {
+        PreparedStatement stmt = null;
+        try {
+            conn.setAutoCommit(false);
+            String query = "delete from sk_karpeg where NIP_lama=? ";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, NIP);
+            stmt.executeUpdate();
+            conn.commit();
+        } catch (SQLException ex) {
+            conn.rollback();
+            throw ex;
+        } finally {
+            try {
+                conn.setAutoCommit(true);
+                if (stmt != null) {
+                    stmt.close();
+                }
+            } catch (Exception e) {
+                try {
+                    throw e;
+                } catch (Exception ex) {
+                    Logger.getLogger(ControlData.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+
+    public void delete_sk_cpns(String NIP) throws SQLException {
+        PreparedStatement stmt = null;
+        try {
+            conn.setAutoCommit(false);
+            String query = "delete from sk_cpns where NIP_lama=? ";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, NIP);
+            stmt.executeUpdate();
+            conn.commit();
+        } catch (SQLException ex) {
+            conn.rollback();
+            throw ex;
+        } finally {
+            try {
+                conn.setAutoCommit(true);
+                if (stmt != null) {
+                    stmt.close();
+                }
+            } catch (Exception e) {
+                try {
+                    throw e;
+                } catch (Exception ex) {
+                    Logger.getLogger(ControlData.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+
+    public void delete_srt_nikah(String NIP) throws SQLException {
+        PreparedStatement stmt = null;
+        try {
+            conn.setAutoCommit(false);
+            String query = "delete from s_nikah where id_suratNikah=? ";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, NIP);
+            stmt.executeUpdate();
+            conn.commit();
+        } catch (SQLException ex) {
+            conn.rollback();
+            throw ex;
+        } finally {
+            try {
+                conn.setAutoCommit(true);
+                if (stmt != null) {
+                    stmt.close();
+                }
+            } catch (Exception e) {
+                try {
+                    throw e;
+                } catch (Exception ex) {
+                    Logger.getLogger(ControlData.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+
+    public void delete_kk(String NIP) throws SQLException {
+        PreparedStatement stmt = null;
+        try {
+            conn.setAutoCommit(false);
+            String query = "delete from kk where id_suratKK=? ";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, NIP);
+            stmt.executeUpdate();
+            conn.commit();
+        } catch (SQLException ex) {
+            conn.rollback();
+            throw ex;
+        } finally {
+            try {
+                conn.setAutoCommit(true);
+                if (stmt != null) {
+                    stmt.close();
+                }
+            } catch (Exception e) {
+                try {
+                    throw e;
+                } catch (Exception ex) {
+                    Logger.getLogger(ControlData.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+
+    public void anggotakeluarga(String NIP) throws SQLException {
+        PreparedStatement stmt = null;
+        try {
+            conn.setAutoCommit(false);
+            String query = "delete from kk where nik=? ";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, NIP);
+            stmt.executeUpdate();
+            conn.commit();
+        } catch (SQLException ex) {
+            conn.rollback();
+            throw ex;
+        } finally {
+            try {
+                conn.setAutoCommit(true);
+                if (stmt != null) {
+                    stmt.close();
+                }
+            } catch (Exception e) {
+                try {
+                    throw e;
+                } catch (Exception ex) {
+                    Logger.getLogger(ControlData.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
     }
 }
