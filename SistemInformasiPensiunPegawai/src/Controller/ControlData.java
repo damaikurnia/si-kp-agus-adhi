@@ -277,20 +277,23 @@ public class ControlData {
     }
 
     public List<PNS> SearchPNS_Nama(String id) throws SQLException {
-        PreparedStatement stmt = null;
-        PNS cek = null;
-        ResultSet result = null;
+        PreparedStatement psmt = null;
+        ResultSet rset = null;
         conn.setAutoCommit(false);
-        String query = "SELECT nip_lama,nip_baru,nama_pns FROM PNS "
-                + "where Upper (nama_pns) like '%" + id.toUpperCase() + "%'";
-        stmt = conn.prepareStatement(query);
-        result = stmt.executeQuery();
+         String query = "SELECT * from pns ";
+//        String query = "SELECT nip_lama,nip_baru,nama_pns FROM PNS "
+//                + "where Upper (nama_pns) like '%" + id.toUpperCase() + "%'";
+        psmt = conn.prepareStatement(query);
+        rset = psmt.executeQuery();
+       
+        psmt = conn.prepareStatement(query);
+        rset = psmt.executeQuery();
         List<PNS> pns = new ArrayList<PNS>();
-        if (result.next()) {
-            cek = new PNS();
-            cek.setNip_lama(result.getString(1));
-            cek.setNip_baru(result.getString(2));
-            cek.setNama_pns(result.getString(3));
+        if (rset.next()) {
+            PNS cek = new PNS();
+            cek.setNip_lama(rset.getString(1));
+            cek.setNip_baru(rset.getString(2));
+            cek.setNama_pns(rset.getString(3));
             pns.add(cek);
         }
         conn.commit();
@@ -606,18 +609,19 @@ public class ControlData {
         PreparedStatement stmt = null;
         ResultSet result = null;
         conn.setAutoCommit(false);
+        AnggotaKeluarga a=null;
         String query = "SELECT a.nik,a.nama_lengkap,a.jenis_kelamin,"
                 + "a.tempat_lahir,a.tanggal_lahir,a.agama,a.pendidikan,a.pekerjaan,"
                 + "a.status_perkawinan,a.status_hub_keluarga,a.kewarganegaraan,"
                 + "a.no_paspor,a.no_kitas_kitap,a.nama_ayah,a.nama_ibu FROM anggotakeluarga a,"
                 + "kk b WHERE a.id_suratKK = b.id_Suratkk AND a.id_suratKK = ? "
-                + "ORDER BY tanggal_lahir"; //belom jadi
+                + "ORDER BY a.tanggal_lahir"; //belom jadi
         stmt = conn.prepareStatement(query);
         stmt.setString(1, idSuratKK);
         result = stmt.executeQuery();
         List<AnggotaKeluarga> at = new ArrayList<AnggotaKeluarga>();
         if (result.next()) {
-            AnggotaKeluarga a = new AnggotaKeluarga();
+             a = new AnggotaKeluarga();
             a.setNo(Integer.toString(result.getRow()));
             a.setNik(result.getString(1));
             a.setNama_lengkap(result.getString(2));          
@@ -637,6 +641,7 @@ public class ControlData {
             at.add(a);
         }
         conn.commit();
+        System.out.println(at.size());
         return at;
     }
 
@@ -884,5 +889,65 @@ public class ControlData {
             System.out.println(at.get(a).getNama_lengkap());
             a++;
         }
+    }
+
+    public List<PNS> SearchAll(String id) throws SQLException {
+          PreparedStatement psmt = null;
+        ResultSet rset = null;
+        conn.setAutoCommit(false);
+//        String query = "SELECT * from pns ";
+                String query = "SELECT nip_lama,nip_baru,nama_pns FROM PNS "
+                + "where Upper (nama_pns) like '%" + id.toUpperCase() + "%'";
+        psmt = conn.prepareStatement(query);
+        rset = psmt.executeQuery();
+        List<PNS> barang = new ArrayList<PNS>();
+        while (rset.next()) {
+            PNS brg = new PNS();
+            brg.setNip_baru(rset.getString(1));
+            brg.setNip_lama(rset.getString(2));
+            brg.setNama_pns(rset.getString(3));
+            barang.add(brg);
+        }
+        conn.commit();
+        return barang;
+    }
+    public List<AnggotaKeluarga> SearchAllAnggota(String id) throws SQLException {
+          PreparedStatement psmt = null;
+        ResultSet result = null;
+        conn.setAutoCommit(false);
+//        String query = "SELECT * from pns ";
+//                String query = "SELECT * from kk ";
+         String query = "SELECT a.nik,a.nama_lengkap,a.jenis_kelamin,"
+                + "a.tempat_lahir,a.tanggal_lahir,a.agama,a.pendidikan,a.pekerjaan,"
+                + "a.status_perkawinan,a.status_hub_keluarga,a.kewarganegaraan,"
+                + "a.no_paspor,a.no_kitas_kitap,a.nama_ayah,a.nama_ibu FROM anggotakeluarga a,"
+                + "kk b WHERE a.id_suratKK = b.id_Suratkk AND a.id_suratKK = ? "
+                + "ORDER BY a.tanggal_lahir";
+        psmt = conn.prepareStatement(query);
+        psmt.setString(1, id);
+        result = psmt.executeQuery();
+        List<AnggotaKeluarga> at = new ArrayList<AnggotaKeluarga>();
+        while (result.next()) {
+            AnggotaKeluarga a = new AnggotaKeluarga();
+            a.setNo(Integer.toString(result.getRow()));
+            a.setNik(result.getString(1));
+            a.setNama_lengkap(result.getString(2));
+            a.setJenis_kelamin(result.getString(3));
+            a.setTempat_lahir(result.getString(4));
+            a.setTanggal_lahir(result.getString(5));
+            a.setAgama(result.getString(6));
+            a.setPendidikan(result.getString(7));
+            a.setPekerjaan(result.getString(8));
+            a.setStatus_perkawinan(result.getString(9));
+            a.setStatus_hub_keluarga(result.getString(10));
+            a.setKewarganegaraan(result.getString(11));
+            a.setNo_paspor(result.getString(12));
+            a.setNo_kitas_kitab(result.getString(13));
+            a.setNama_ayah(result.getString(14));
+            a.setNama_ibu(result.getString(15));
+            at.add(a);
+        }
+        conn.commit();
+        return at;
     }
 }

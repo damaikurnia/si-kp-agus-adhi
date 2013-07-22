@@ -27,7 +27,7 @@
 	<import value="net.sf.jasperreports.engine.data.*" />
 
 	<parameter name="SUBREPORT_DIR" isForPrompting="false" class="java.lang.String">
-		<defaultValueExpression ><![CDATA["E:\\KP\\trunk\\SistemInformasiPensiunPegawai\\Cetak\\"]]></defaultValueExpression>
+		<defaultValueExpression ><![CDATA["E:\\Subversion\\SistemInformasiPensiunPegawai\\Cetak\\"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="NIP" isForPrompting="true" class="java.lang.String">
 		<defaultValueExpression ><![CDATA[""]]></defaultValueExpression>
@@ -538,7 +538,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="373"
-						y="479"
+						y="491"
 						width="35"
 						height="17"
 						key="staticText-60"/>
@@ -551,7 +551,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="373"
-						y="495"
+						y="507"
 						width="101"
 						height="17"
 						key="staticText-69"/>
@@ -564,7 +564,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="373"
-						y="512"
+						y="524"
 						width="101"
 						height="17"
 						key="staticText-70"/>
@@ -577,7 +577,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="200"
-						y="495"
+						y="507"
 						width="121"
 						height="17"
 						key="staticText-71"/>
@@ -590,7 +590,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="200"
-						y="512"
+						y="524"
 						width="121"
 						height="17"
 						key="staticText-72"/>
@@ -603,7 +603,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="25"
-						y="511"
+						y="523"
 						width="121"
 						height="17"
 						key="staticText-73"/>
@@ -616,7 +616,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="25"
-						y="494"
+						y="506"
 						width="121"
 						height="17"
 						key="staticText-74"/>
@@ -876,18 +876,34 @@ WHERE
 				<subreport  isUsingCache="true">
 					<reportElement
 						x="27"
-						y="271"
+						y="268"
 						width="510"
-						height="197"
+						height="77"
 						key="subreport-1"/>
-					<subreportParameter  name="NIP">
-						<subreportParameterExpression><![CDATA[$F{nip_baru}]]></subreportParameterExpression>
-					</subreportParameter>
 					<subreportParameter  name="SUBREPORT_DIR">
 						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
 					</subreportParameter>
+					<subreportParameter  name="NIP">
+						<subreportParameterExpression><![CDATA[$P{NIP}]]></subreportParameterExpression>
+					</subreportParameter>
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_DSK.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="27"
+						y="358"
+						width="510"
+						height="38"
+						key="subreport-2"/>
+					<subreportParameter  name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="NIP">
+						<subreportParameterExpression><![CDATA[$P{NIP}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "dsk_inner_data_anak.jasper"]]></subreportExpression>
 				</subreport>
 			</band>
 		</detail>

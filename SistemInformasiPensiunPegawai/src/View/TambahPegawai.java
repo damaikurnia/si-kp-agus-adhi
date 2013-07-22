@@ -1692,8 +1692,8 @@ public class TambahPegawai extends javax.swing.JFrame {
     
     private void updateTerusTabelnyaKK(String idSuratKK){
         try {
-            List<AnggotaKeluarga> ak = Controller.ControlData.getKoneksi().tampilAnggotaKeluarga(idSuratKK);
-            TampilAnggotaKeluarga model = new TampilAnggotaKeluarga(ak);
+            List<AnggotaKeluarga> listAk = Controller.ControlData.getKoneksi().SearchAllAnggota(idSuratKK);
+            TampilAnggotaKeluarga model = new TampilAnggotaKeluarga(listAk);
             KK_TabelAnggotaKel_Table.setModel(model);
         } catch (Exception ex) {
             Logger.getLogger(TambahPegawai.class.getName()).log(Level.SEVERE, null, ex);

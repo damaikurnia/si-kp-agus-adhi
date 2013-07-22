@@ -26,6 +26,9 @@
 	<parameter name="NIP" isForPrompting="true" class="java.lang.String">
 		<defaultValueExpression ><![CDATA[""]]></defaultValueExpression>
 	</parameter>
+	<parameter name="SUBREPORT_DIR" isForPrompting="true" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["E:\\Subversion\\SistemInformasiPensiunPegawai\\Cetak\\"]]></defaultValueExpression>
+	</parameter>
 	<queryString><![CDATA[SELECT
   anggotakeluarga.nama_lengkap,
   anggotakeluarga.pekerjaan  ,
@@ -34,15 +37,16 @@
     DATE_FORMAT( s_nikah.tanggal_nikah  , '%d-%m-%Y') AS tglNikah
 FROM 
   s_nikah,anggotakeluarga,pns,kk
-WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
-                                               anggotakeluarga.status_hub_keluarga
-                                             FROM anggotakeluarga,
-                                               pns,
-                                               sptkg_terakhir
-                                             WHERE sptkg_terakhir.nip_baru LIKE $P{NIP} )
+WHERE anggotakeluarga.id_suratKK IN(SELECT
+                                      anggotakeluarga.id_suratKK
+                                    FROM anggotakeluarga,KK,pns
+                                    WHERE PNS.nip_baru LIKE  $P{NIP}
+                                        AND anggotakeluarga.id_suratKK = kk.id_Suratkk
+                                        AND pns.id_Suratkk = kk.id_Suratkk)
     AND pns.id_SuratNikah = s_nikah.id_SuratNikah
     AND kk.id_Suratkk = anggotakeluarga.id_suratKK
-    AND pns.nama_pns != anggotakeluarga.nama_lengkap;]]></queryString>
+    AND pns.nama_pns != anggotakeluarga.nama_lengkap
+    AND anggotakeluarga.status_hub_keluarga  NOT LIKE '%Anak%';]]></queryString>
 
 	<field name="nama_lengkap" class="java.lang.String"/>
 	<field name="pekerjaan" class="java.lang.String"/>
@@ -59,7 +63,7 @@ WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
 				<staticText>
 					<reportElement
 						x="2"
-						y="7"
+						y="6"
 						width="487"
 						height="21"
 						key="staticText-1"/>
@@ -72,7 +76,7 @@ WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
 				<staticText>
 					<reportElement
 						x="286"
-						y="31"
+						y="30"
 						width="70"
 						height="14"
 						key="staticText-2"/>
@@ -85,7 +89,7 @@ WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
 				<staticText>
 					<reportElement
 						x="219"
-						y="49"
+						y="48"
 						width="56"
 						height="16"
 						key="staticText-3"/>
@@ -98,7 +102,7 @@ WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
 				<staticText>
 					<reportElement
 						x="435"
-						y="38"
+						y="37"
 						width="54"
 						height="18"
 						key="staticText-4"/>
@@ -111,7 +115,7 @@ WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
 				<staticText>
 					<reportElement
 						x="151"
-						y="46"
+						y="45"
 						width="48"
 						height="19"
 						key="staticText-5"/>
@@ -124,7 +128,7 @@ WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
 				<staticText>
 					<reportElement
 						x="219"
-						y="30"
+						y="29"
 						width="56"
 						height="17"
 						key="staticText-6"/>
@@ -137,7 +141,7 @@ WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
 				<staticText>
 					<reportElement
 						x="286"
-						y="48"
+						y="47"
 						width="70"
 						height="14"
 						key="staticText-7"/>
@@ -150,7 +154,7 @@ WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
 				<staticText>
 					<reportElement
 						x="18"
-						y="38"
+						y="37"
 						width="121"
 						height="17"
 						key="staticText-8"/>
@@ -163,7 +167,7 @@ WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
 				<staticText>
 					<reportElement
 						x="367"
-						y="46"
+						y="45"
 						width="65"
 						height="17"
 						key="staticText-9"/>
@@ -176,7 +180,7 @@ WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
 				<staticText>
 					<reportElement
 						x="151"
-						y="31"
+						y="30"
 						width="48"
 						height="16"
 						key="staticText-10"/>
@@ -189,7 +193,7 @@ WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
 				<staticText>
 					<reportElement
 						x="2"
-						y="38"
+						y="37"
 						width="15"
 						height="18"
 						key="staticText-11"/>
@@ -202,7 +206,7 @@ WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
 				<staticText>
 					<reportElement
 						x="366"
-						y="31"
+						y="30"
 						width="66"
 						height="15"
 						key="staticText-12"/>
@@ -240,8 +244,8 @@ WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
 				</staticText>
 				<staticText>
 					<reportElement
-						x="163"
-						y="64"
+						x="166"
+						y="62"
 						width="15"
 						height="18"
 						key="staticText-15"/>
@@ -387,7 +391,7 @@ WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
 				<line direction="TopDown">
 					<reportElement
 						x="3"
-						y="63"
+						y="62"
 						width="485"
 						height="1"
 						key="line-11"/>
@@ -396,8 +400,8 @@ WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
 				<line direction="TopDown">
 					<reportElement
 						x="1"
-						y="30"
-						width="485"
+						y="29"
+						width="488"
 						height="1"
 						key="line-22"/>
 					<graphicElement stretchType="NoStretch"/>
@@ -413,11 +417,11 @@ WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="20"  isSplitAllowed="true" >
+			<band height="107"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="20"
-						y="1"
+						x="21"
+						y="5"
 						width="119"
 						height="15"
 						key="textField-1"/>
@@ -430,7 +434,7 @@ WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
 				<line direction="TopDown">
 					<reportElement
 						x="2"
-						y="18"
+						y="19"
 						width="486"
 						height="1"
 						key="line-12"/>
@@ -439,7 +443,7 @@ WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
 				<line direction="TopDown">
 					<reportElement
 						x="2"
-						y="-1"
+						y="1"
 						width="0"
 						height="19"
 						key="line-14"/>
@@ -448,7 +452,7 @@ WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
 				<line direction="TopDown">
 					<reportElement
 						x="17"
-						y="-1"
+						y="1"
 						width="0"
 						height="19"
 						key="line-15"/>
@@ -457,7 +461,7 @@ WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
 				<line direction="TopDown">
 					<reportElement
 						x="138"
-						y="-1"
+						y="1"
 						width="0"
 						height="19"
 						key="line-16"/>
@@ -466,7 +470,7 @@ WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
 				<line direction="TopDown">
 					<reportElement
 						x="219"
-						y="-1"
+						y="1"
 						width="0"
 						height="19"
 						key="line-17"/>
@@ -475,7 +479,7 @@ WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
 				<line direction="TopDown">
 					<reportElement
 						x="286"
-						y="-3"
+						y="-1"
 						width="0"
 						height="19"
 						key="line-18"/>
@@ -484,7 +488,7 @@ WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
 				<line direction="TopDown">
 					<reportElement
 						x="362"
-						y="-1"
+						y="1"
 						width="0"
 						height="19"
 						key="line-19"/>
@@ -493,7 +497,7 @@ WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
 				<line direction="TopDown">
 					<reportElement
 						x="435"
-						y="-1"
+						y="1"
 						width="0"
 						height="19"
 						key="line-20"/>
@@ -502,16 +506,16 @@ WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
 				<line direction="TopDown">
 					<reportElement
 						x="489"
-						y="-1"
+						y="0"
 						width="0"
-						height="19"
+						height="20"
 						key="line-21"/>
 					<graphicElement stretchType="NoStretch"/>
 				</line>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="223"
-						y="1"
+						x="224"
+						y="5"
 						width="49"
 						height="15"
 						key="textField-2"/>
@@ -523,8 +527,8 @@ WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="366"
-						y="1"
+						x="367"
+						y="5"
 						width="61"
 						height="15"
 						key="textField-3"/>
@@ -536,8 +540,8 @@ WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="291"
-						y="1"
+						x="292"
+						y="5"
 						width="61"
 						height="15"
 						key="textField-4"/>
@@ -549,8 +553,8 @@ WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="141"
-						y="0"
+						x="142"
+						y="4"
 						width="77"
 						height="15"
 						key="textField-5"/>
@@ -560,6 +564,22 @@ WHERE anggotakeluarga.status_hub_keluarga IN(SELECT
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{status_hub_keluarga}]]></textFieldExpression>
 				</textField>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="2"
+						y="23"
+						width="486"
+						height="21"
+						key="subreport-1"/>
+					<subreportParameter  name="NIP">
+						<subreportParameterExpression><![CDATA[$P{NIP}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_DSK_anak.jasper"]]></subreportExpression>
+				</subreport>
 			</band>
 		</detail>
 		<columnFooter>
