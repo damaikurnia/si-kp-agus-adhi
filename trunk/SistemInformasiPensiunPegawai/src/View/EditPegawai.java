@@ -1635,6 +1635,8 @@ public class EditPegawai extends javax.swing.JFrame {
         KK_KabKota_TF.setText(kk.getKabupaten_Kota());
         KK_KodePos_TF.setText(kk.getKode_pos());
         KK_Provinsi_TF.setText(kk.getProvinsi());
+        KK_tanggalEdit.setText(tukangSplit2(kk.getTanggal_penyimpanan_surat()));
+        KK_kode_ope.setText(kk.getKode_operator());
     }
 
     public void dataOperatorEditPegawai(String nama, String id) {
