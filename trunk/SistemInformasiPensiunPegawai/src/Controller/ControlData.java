@@ -853,8 +853,8 @@ public class ControlData {
         List<PNS> barang = new ArrayList<PNS>();
         while (rset.next()) {
             PNS brg = new PNS();
-            brg.setNip_baru(rset.getString(1));
-            brg.setNip_lama(rset.getString(2));
+            brg.setNip_lama(rset.getString(1));
+            brg.setNip_baru(rset.getString(2));
             brg.setNama_pns(rset.getString(3));
             barang.add(brg);
         }
