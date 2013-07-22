@@ -297,7 +297,7 @@ public class EditPegawai extends javax.swing.JFrame {
         jLabel59 = new javax.swing.JLabel();
         KK_NoKK_TF = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        KK_TabelAnggotaKel_Table = new javax.swing.JTable();
+        KK_TabelAnggotaKel_Tablel = new javax.swing.JTable();
         KK_SimpanKK_button = new javax.swing.JButton();
         KK_TambahAnggota_button = new javax.swing.JButton();
         jLabel105 = new javax.swing.JLabel();
@@ -1178,7 +1178,7 @@ public class EditPegawai extends javax.swing.JFrame {
         KK_NoKK_TF.setEditable(false);
         jPanel8.add(KK_NoKK_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 230, -1));
 
-        KK_TabelAnggotaKel_Table.setModel(new javax.swing.table.DefaultTableModel(
+        KK_TabelAnggotaKel_Tablel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
@@ -1199,7 +1199,7 @@ public class EditPegawai extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(KK_TabelAnggotaKel_Table);
+        jScrollPane3.setViewportView(KK_TabelAnggotaKel_Tablel);
 
         jPanel8.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 1120, 120));
 
@@ -1526,7 +1526,7 @@ public class EditPegawai extends javax.swing.JFrame {
         try {
             List<AnggotaKeluarga> listAk = Controller.ControlData.getKoneksi().SearchAllAnggota(idSuratKK);
             TampilAnggotaKeluarga model = new TampilAnggotaKeluarga(listAk);
-            KK_TabelAnggotaKel_Table.setModel(model);
+            KK_TabelAnggotaKel_Tablel.setModel(model);
         } catch (Exception ex) {
             Logger.getLogger(EditPegawai.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1637,6 +1637,7 @@ public class EditPegawai extends javax.swing.JFrame {
         KK_Provinsi_TF.setText(kk.getProvinsi());
         KK_tanggalEdit.setText(tukangSplit2(kk.getTanggal_penyimpanan_surat()));
         KK_kode_ope.setText(kk.getKode_operator());
+        updateTerusTabelnyaKK(kk.getId_Suratkk());
     }
 
     public void dataOperatorEditPegawai(String nama, String id) {
@@ -1727,7 +1728,7 @@ public class EditPegawai extends javax.swing.JFrame {
     private javax.swing.JTextField KK_RT_TF;
     private javax.swing.JTextField KK_RW_TF;
     private javax.swing.JButton KK_SimpanKK_button;
-    private javax.swing.JTable KK_TabelAnggotaKel_Table;
+    private javax.swing.JTable KK_TabelAnggotaKel_Tablel;
     private javax.swing.JButton KK_TambahAnggota_button;
     private javax.swing.JLabel KK_kode_ope;
     private javax.swing.JLabel KK_tanggalEdit;
