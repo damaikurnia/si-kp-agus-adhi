@@ -303,10 +303,10 @@ public class ControlData {
         return pns;
     }
 
-    public void insertDataMeninggal(DataMeninggal dm) throws SQLException {
+    public void insertDataMeninggal(DataMeninggal dm,String idOP) throws SQLException {
         PreparedStatement stmt = null;
         conn.setAutoCommit(false);
-        String query = "INSERT INTO data_meninggal VALUES(?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO data_meninggal VALUES(?,?,?,?,?,?,?,?,?)";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, dm.getNo());
         stmt.setString(2, dm.getNIP());
@@ -316,6 +316,7 @@ public class ControlData {
         stmt.setString(6, dm.getAnggota_alamat().toUpperCase());
         stmt.setString(7, dm.getKabupaten().toUpperCase());
         stmt.setString(8, dm.getAnggota_pekerjaan().toUpperCase());
+         stmt.setString(9, idOP);
 
         stmt.executeUpdate();
         conn.commit();
@@ -1127,13 +1128,13 @@ public class ControlData {
         }
     }
 
-    public void anggotakeluarga(String NIP) throws SQLException {
+    public void anggotakeluarga(String NIK) throws SQLException {
         PreparedStatement stmt = null;
         try {
             conn.setAutoCommit(false);
             String query = "delete from kk where nik=? ";
             stmt = conn.prepareStatement(query);
-            stmt.setString(1, NIP);
+            stmt.setString(1, NIK);
             stmt.executeUpdate();
             conn.commit();
         } catch (SQLException ex) {
