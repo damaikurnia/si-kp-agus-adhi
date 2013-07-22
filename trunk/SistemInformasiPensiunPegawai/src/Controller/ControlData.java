@@ -866,8 +866,6 @@ public class ControlData {
           PreparedStatement psmt = null;
         ResultSet result = null;
         conn.setAutoCommit(false);
-//        String query = "SELECT * from pns ";
-//                String query = "SELECT * from kk ";
          String query = "SELECT a.nik,a.nama_lengkap,a.jenis_kelamin,"
                 + "a.tempat_lahir,a.tanggal_lahir,a.agama,a.pendidikan,a.pekerjaan,"
                 + "a.status_perkawinan,a.status_hub_keluarga,a.kewarganegaraan,"
