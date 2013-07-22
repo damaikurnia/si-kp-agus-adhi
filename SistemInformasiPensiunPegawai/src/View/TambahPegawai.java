@@ -104,6 +104,8 @@ public class TambahPegawai extends javax.swing.JFrame {
         AK_Pekerjaan_TF = new javax.swing.JTextField();
         AK_NoKitasKitap_TF = new javax.swing.JTextField();
         jLabel93 = new javax.swing.JLabel();
+        jLabel104 = new javax.swing.JLabel();
+        jLabel103 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -316,12 +318,12 @@ public class TambahPegawai extends javax.swing.JFrame {
         KK_SimpanKK_button = new javax.swing.JButton();
         KK_TambahAnggota_button = new javax.swing.JButton();
         jLabel102 = new javax.swing.JLabel();
-        jLabel95 = new javax.swing.JLabel();
-        time = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        TP_Kode_Label = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         TP_Nama_Label = new javax.swing.JLabel();
-        TP_Kode_Label = new javax.swing.JLabel();
+        time = new javax.swing.JLabel();
+        jLabel95 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -329,40 +331,58 @@ public class TambahPegawai extends javax.swing.JFrame {
         KK_Internal.setTitle("Tambah Anggota Keluarga");
         KK_Internal.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("FORM PENGISIAN TABEL KK");
         jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 740, 24));
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel18.setText("Nama Lengkap");
+        jPanel5.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 15, -1, -1));
 
         jLabel25.setText("NIK");
+        jPanel5.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 41, -1, -1));
 
         jLabel26.setText("Jenis Kelamin");
+        jPanel5.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 67, -1, -1));
 
         jLabel29.setText("Tempat Lahir");
+        jPanel5.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 93, -1, -1));
 
         jLabel30.setText("Tanggal Lahir");
+        jPanel5.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 116, -1, -1));
 
         jLabel37.setText("Agama");
+        jPanel5.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 142, -1, -1));
 
         jLabel38.setText("Pendidikan");
+        jPanel5.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 176, -1, -1));
 
         jLabel50.setText("Pekerjaan");
+        jPanel5.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 202, -1, -1));
 
         jLabel87.setText("Status Perkawinan");
+        jPanel5.add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 230, -1, -1));
 
         jLabel88.setText("Hubungan Keluarga");
+        jPanel5.add(jLabel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(393, 15, -1, -1));
 
         jLabel89.setText("Kewarganegaraan");
+        jPanel5.add(jLabel89, new org.netbeans.lib.awtextra.AbsoluteConstraints(393, 41, -1, -1));
 
         jLabel90.setText("No Paspor");
+        jPanel5.add(jLabel90, new org.netbeans.lib.awtextra.AbsoluteConstraints(393, 67, -1, -1));
 
         jLabel91.setText("Nama Ayah");
+        jPanel5.add(jLabel91, new org.netbeans.lib.awtextra.AbsoluteConstraints(393, 119, -1, -1));
 
         jLabel92.setText("Nama Ibu");
+        jPanel5.add(jLabel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(393, 145, -1, -1));
 
         AK_Batal_button.setText("BATAL");
         AK_Batal_button.addActionListener(new java.awt.event.ActionListener() {
@@ -370,6 +390,7 @@ public class TambahPegawai extends javax.swing.JFrame {
                 AK_Batal_buttonActionPerformed(evt);
             }
         });
+        jPanel5.add(AK_Batal_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(519, 198, -1, -1));
 
         AK_Simpan_button.setText("SIMPAN");
         AK_Simpan_button.addActionListener(new java.awt.event.ActionListener() {
@@ -377,14 +398,25 @@ public class TambahPegawai extends javax.swing.JFrame {
                 AK_Simpan_buttonActionPerformed(evt);
             }
         });
+        jPanel5.add(AK_Simpan_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 198, -1, -1));
+        jPanel5.add(AK_Nama_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 12, 182, -1));
+        jPanel5.add(AK_NIK_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 38, 182, -1));
+        jPanel5.add(AK_TempatLahir_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 90, 182, -1));
 
         AK_JK_Combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "L", "P" }));
+        jPanel5.add(AK_JK_Combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 64, -1, -1));
+        jPanel5.add(AK_TanggalLahir_Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 116, 123, -1));
 
         AK_NoPaspor_TF.setText("-");
+        jPanel5.add(AK_NoPaspor_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(505, 64, 182, -1));
+        jPanel5.add(AK_NamaAyah_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(505, 116, 182, -1));
+        jPanel5.add(AK_NamaIbu_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(505, 142, 182, -1));
 
         AK_Agama_Combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ISLAM", "KRISTEN", "KATOLIK", "HINDU", "BUDHA", "KHONGHUCU" }));
+        jPanel5.add(AK_Agama_Combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 142, -1, -1));
 
         AK_Pendidikan_Combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TIDAK/BLM SEKOLAH", "TK/SEDERAJAT", "SD/SEDERAJAT", "SLTP/SEDERAJAT", "SLTA/SEDERAJAT", "DIPLOMA III", "DIPLOMA IV/STRATA I", "TIDAK TAMAT TK/SEDERAJAT", "TIDAK TAMAT SD/SEDERAJAT", "TIDAK TAMAT SLTP/SEDERAJAT", "TIDAK TAMAT SLTA/SEDERAJAT" }));
+        jPanel5.add(AK_Pendidikan_Combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 173, -1, -1));
 
         AK_Pekerjaan_Combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PEGAWAI NEGRI SIPIL", "KARYAWAN SWASTA", "MENGURUS RUMAH TANGGA", "PELAJAR/MAHASISWA", "WIRASWASTA", "Lainnya..." }));
         AK_Pekerjaan_Combo.addActionListener(new java.awt.event.ActionListener() {
@@ -392,154 +424,33 @@ public class TambahPegawai extends javax.swing.JFrame {
                 AK_Pekerjaan_ComboActionPerformed(evt);
             }
         });
+        jPanel5.add(AK_Pekerjaan_Combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 199, 134, -1));
 
         AK_StatusKawin_Combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "KAWIN", "BELUM KAWIN" }));
+        jPanel5.add(AK_StatusKawin_Combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 227, -1, -1));
 
         AK_HubKeluarga_Combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SUAMI", "ISTRI", "ANAK KANDUNG", "ANAK ANGKAT", "ANAK TIRI", "SAUDARA" }));
+        jPanel5.add(AK_HubKeluarga_Combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(505, 12, -1, -1));
 
         AK_Kewarganegaraan_Combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "WNI", "WNA" }));
+        jPanel5.add(AK_Kewarganegaraan_Combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(505, 38, -1, -1));
 
         AK_Pekerjaan_TF.setText("-");
+        jPanel5.add(AK_Pekerjaan_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 199, 118, -1));
 
         AK_NoKitasKitap_TF.setText("-");
+        jPanel5.add(AK_NoKitasKitap_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(505, 90, 182, -1));
 
         jLabel93.setText("No Kitas/Kitap");
+        jPanel5.add(jLabel93, new org.netbeans.lib.awtextra.AbsoluteConstraints(393, 93, -1, -1));
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel18)
-                    .addComponent(jLabel25)
-                    .addComponent(jLabel29)
-                    .addComponent(jLabel26)
-                    .addComponent(jLabel30)
-                    .addComponent(jLabel37)
-                    .addComponent(jLabel38)
-                    .addComponent(jLabel50)
-                    .addComponent(jLabel87))
-                .addGap(25, 25, 25)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AK_Pendidikan_Combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(AK_Pekerjaan_Combo, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(AK_Pekerjaan_TF, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47)
-                        .addComponent(AK_Simpan_button)
-                        .addGap(18, 18, 18)
-                        .addComponent(AK_Batal_button))
-                    .addComponent(AK_StatusKawin_Combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(AK_JK_Combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AK_TempatLahir_TF, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AK_NIK_TF, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AK_Nama_TF, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AK_TanggalLahir_Date, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AK_Agama_Combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(86, 86, 86)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel88)
-                            .addComponent(jLabel89)
-                            .addComponent(jLabel90)
-                            .addComponent(jLabel91)
-                            .addComponent(jLabel92)
-                            .addComponent(jLabel93))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(AK_NamaIbu_TF, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
-                            .addComponent(AK_NamaAyah_TF, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
-                            .addComponent(AK_NoPaspor_TF, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
-                            .addComponent(AK_HubKeluarga_Combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AK_Kewarganegaraan_Combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AK_NoKitasKitap_TF))))
-                .addContainerGap(52, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel18)
-                    .addComponent(jLabel88)
-                    .addComponent(AK_Nama_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AK_HubKeluarga_Combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel25)
-                    .addComponent(jLabel89)
-                    .addComponent(AK_NIK_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AK_Kewarganegaraan_Combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel26)
-                    .addComponent(jLabel90)
-                    .addComponent(AK_JK_Combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AK_NoPaspor_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel29)
-                    .addComponent(AK_TempatLahir_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AK_NoKitasKitap_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel93))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel30)
-                            .addComponent(AK_TanggalLahir_Date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel37)
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(AK_Agama_Combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel92)
-                                .addComponent(AK_NamaIbu_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel38)
-                            .addComponent(AK_Pendidikan_Combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(5, 5, 5)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel50)
-                            .addComponent(AK_Pekerjaan_Combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AK_Pekerjaan_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AK_Simpan_button)
-                            .addComponent(AK_Batal_button))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel87)
-                            .addComponent(AK_StatusKawin_Combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(AK_NamaAyah_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel91)))
-                .addContainerGap(51, Short.MAX_VALUE))
-        );
+        jLabel104.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PIcture/bg1.png"))); // NOI18N
+        jPanel5.add(jLabel104, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 280));
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
-        );
+        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 41, 740, 280));
+
+        jLabel103.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PIcture/bg1.png"))); // NOI18N
+        jPanel4.add(jLabel103, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 330));
 
         KK_Internal.getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, -1));
 
@@ -582,7 +493,7 @@ public class TambahPegawai extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel2.setText("Tambah PNS");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 0, 155, -1));
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, 155, -1));
 
         DU.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         DU.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1351,29 +1262,29 @@ public class TambahPegawai extends javax.swing.JFrame {
 
         Tab_PNS.addTab("KK", KK);
 
-        jPanel3.add(Tab_PNS, new org.netbeans.lib.awtextra.AbsoluteConstraints(-5, 28, 880, 412));
-
-        jLabel95.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PIcture/wall1.jpg"))); // NOI18N
-        jPanel3.add(jLabel95, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 360));
-
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 205, 870, 450));
-
-        time.setFont(new java.awt.Font("Tahoma", 1, 12));
-        time.setText("time");
-        getContentPane().add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 190, -1, -1));
+        jPanel3.add(Tab_PNS, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 870, 412));
 
         jLabel5.setText("Selamat Datang,");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
-
-        jLabel8.setText("-");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 190, 10, -1));
-
-        TP_Nama_Label.setText("Nama");
-        getContentPane().add(TP_Nama_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 190, -1));
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         TP_Kode_Label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         TP_Kode_Label.setText("Kode");
-        getContentPane().add(TP_Kode_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 20, -1));
+        jPanel3.add(TP_Kode_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 20, -1));
+
+        jLabel8.setText("-");
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 10, -1));
+
+        TP_Nama_Label.setText("Nama");
+        jPanel3.add(TP_Nama_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 190, -1));
+
+        time.setFont(new java.awt.Font("Tahoma", 1, 12));
+        time.setText("time");
+        jPanel3.add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 10, -1, -1));
+
+        jLabel95.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PIcture/wall2.jpg"))); // NOI18N
+        jPanel3.add(jLabel95, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 110));
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 870, 500));
 
         pack();
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -1961,6 +1872,8 @@ public class TambahPegawai extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel100;
     private javax.swing.JLabel jLabel101;
     private javax.swing.JLabel jLabel102;
+    private javax.swing.JLabel jLabel103;
+    private javax.swing.JLabel jLabel104;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
