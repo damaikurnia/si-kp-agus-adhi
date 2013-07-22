@@ -325,6 +325,9 @@
                 <Component class="javax.swing.JTextField" name="AK_Nama_TF">
                 </Component>
                 <Component class="javax.swing.JTextField" name="AK_NIK_TF">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="AK_TempatLahir_TF">
                 </Component>
