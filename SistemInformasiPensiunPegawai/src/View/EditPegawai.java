@@ -38,6 +38,7 @@ public class EditPegawai extends javax.swing.JFrame {
     PNS pegawai = new PNS("-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-");
     AnggotaKeluarga ak;
     String idSuratkk;
+    String NIP;
 
     /**
      * Creates new form TambahPegawai
@@ -65,6 +66,8 @@ public class EditPegawai extends javax.swing.JFrame {
         isiSK_Karpeg(nipBaru);
         isiS_Nikah(nipBaru);
         isiKK(nipBaru);
+
+        NIP = nipBaru;
     }
 
     /**
@@ -312,11 +315,13 @@ public class EditPegawai extends javax.swing.JFrame {
         jLabel106 = new javax.swing.JLabel();
         KK_kode_ope = new javax.swing.JLabel();
         jLabel114 = new javax.swing.JLabel();
+        jLabel115 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         TP_Kode_Label = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         TP_Nama_Label = new javax.swing.JLabel();
         time = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jLabel108 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -464,8 +469,8 @@ public class EditPegawai extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -487,7 +492,7 @@ public class EditPegawai extends javax.swing.JFrame {
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("EDIT PNS");
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 857, -1));
@@ -1136,9 +1141,14 @@ public class EditPegawai extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        KK_TabelAnggotaKel_Tablel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                KK_TabelAnggotaKel_TablelMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(KK_TabelAnggotaKel_Tablel);
 
-        jPanel8.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 1090, 120));
+        jPanel8.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 1050, 120));
 
         KK_SimpanKK_button.setFont(new java.awt.Font("Tahoma", 1, 11));
         KK_SimpanKK_button.setText("SIMPAN KK");
@@ -1181,15 +1191,18 @@ public class EditPegawai extends javax.swing.JFrame {
         jPanel8.add(KK_kode_ope, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 30, -1));
 
         jLabel114.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PIcture/wall2.jpg"))); // NOI18N
-        jPanel8.add(jLabel114, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1090, 380));
+        jPanel8.add(jLabel114, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 360));
+
+        jLabel115.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PIcture/wall2.jpg"))); // NOI18N
+        jPanel8.add(jLabel115, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 0, 190, 360));
 
         jScrollPane2.setViewportView(jPanel8);
 
-        KK.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 380));
+        KK.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 380));
 
         Tab_PNS.addTab("KK", KK);
 
-        jPanel3.add(Tab_PNS, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 880, -1));
+        jPanel3.add(Tab_PNS, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 880, 410));
 
         jLabel5.setText("Selamat Datang,");
         jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -1208,8 +1221,17 @@ public class EditPegawai extends javax.swing.JFrame {
         time.setText("time");
         jPanel3.add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 10, -1, -1));
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14));
+        jButton1.setText("Keluar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 60, -1, -1));
+
         jLabel108.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PIcture/wall2.jpg"))); // NOI18N
-        jPanel3.add(jLabel108, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 330));
+        jPanel3.add(jLabel108, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 110));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 880, 500));
 
@@ -1247,9 +1269,9 @@ public class EditPegawai extends javax.swing.JFrame {
         cpns.setKode_operator(TP_Kode_Label.getText().toUpperCase());
 
         try {
-            Controller.ControlData.getKoneksi().insertCPNS(cpns);
-            Controller.ControlData.getKoneksi().updatePNS("CPNS", cpns.getNip_baru(), cpns.getId_SuratCPNS().toUpperCase());
-            JOptionPane.showMessageDialog(rootPane, "Data SK CPNS Berhasil Disimpan");
+            Controller.ControlData.getKoneksi().updateCPNS(cpns);
+            JOptionPane.showMessageDialog(rootPane, "Data SK CPNS Berhasil Diupdate");
+            isiCPNS(cpns.getNip_baru());
         } catch (Exception ex) {
             Logger.getLogger(EditPegawai.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1277,10 +1299,11 @@ public class EditPegawai extends javax.swing.JFrame {
         pt.setKode_operator(TP_Kode_Label.getText().toUpperCase());
         pt.setProfesi(PT_Profesi_TF.getText());
         pt.setSekolah(PT_Sekolah_TF.getText());
+        pt.setTempat_lahir(PT_TmpLhr_TF.getText());
         try {
-            Controller.ControlData.getKoneksi().insertSK_PangkatTerakhir(pt);
-            Controller.ControlData.getKoneksi().updatePNS("PANGKATTERAKHIR", pt.getNip_baru(), pt.getId_SuratPangkatTerakhir().toUpperCase());
-            JOptionPane.showMessageDialog(rootPane, "Data SK PANGKAT TERAKHIR Berhasil Disimpan");
+            Controller.ControlData.getKoneksi().updateSK_PangkatTerakhir(pt);
+            JOptionPane.showMessageDialog(rootPane, "Data SK PANGKAT TERAKHIR Berhasil Diupdate");
+            isiSK_PangkatTerakhir(pt.getNip_baru());
         } catch (Exception ex) {
             Logger.getLogger(EditPegawai.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1304,9 +1327,9 @@ public class EditPegawai extends javax.swing.JFrame {
         sptkg.setNip_lama(SPTKG_NipLama_TF.getText());
         sptkg.setKode_operator(TP_Kode_Label.getText().toUpperCase());
         try {
-            Controller.ControlData.getKoneksi().insertSPTKG_Terakhir(sptkg);
-            Controller.ControlData.getKoneksi().updatePNS("SPTKG", sptkg.getNip_baru(), sptkg.getId_SuratSPTKGTerakhir().toUpperCase());
-            JOptionPane.showMessageDialog(rootPane, "Data SPTKG TERAKHIR Berhasil Disimpan");
+            Controller.ControlData.getKoneksi().updateSPTKG_Terakhir(sptkg);
+            JOptionPane.showMessageDialog(rootPane, "Data SPTKG TERAKHIR Berhasil Diupdate");
+            isiSPTKG_Terakhir(sptkg.getNip_baru());
         } catch (Exception ex) {
             Logger.getLogger(EditPegawai.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1324,9 +1347,9 @@ public class EditPegawai extends javax.swing.JFrame {
         karpeg.setTmt_cpns(sdf.format(Karpeg_TMT_Date.getDate()));
         karpeg.setKode_operator(TP_Kode_Label.getText().toUpperCase());
         try {
-            Controller.ControlData.getKoneksi().insertSK_Karpeg(karpeg);
-            Controller.ControlData.getKoneksi().updatePNS("KARPEG", karpeg.getNip_baru(), karpeg.getId_SuratKarpeg().toUpperCase());
-            JOptionPane.showMessageDialog(rootPane, "Data KARPEG Berhasil Disimpan");
+            Controller.ControlData.getKoneksi().updateSK_Karpeg(karpeg);
+            JOptionPane.showMessageDialog(rootPane, "Data KARPEG Berhasil Diupdate");
+            isiSK_Karpeg(karpeg.getNip_baru());
         } catch (Exception ex) {
             Logger.getLogger(EditPegawai.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1342,9 +1365,9 @@ public class EditPegawai extends javax.swing.JFrame {
         nikah.setKode_operator(TP_Kode_Label.getText().toUpperCase());
 
         try {
-            Controller.ControlData.getKoneksi().insertS_Nikah(nikah);
-            Controller.ControlData.getKoneksi().updatePNS("NIKAH", pegawai.getNip_baru(), nikah.getId_SuratNikah().toUpperCase());
-            JOptionPane.showMessageDialog(rootPane, "Data SURAT NIKAH Berhasil Disimpan");
+            Controller.ControlData.getKoneksi().updateS_Nikah(nikah);
+            JOptionPane.showMessageDialog(rootPane, "Data SURAT NIKAH Berhasil Diupdate");
+            isiS_Nikah(NIP);
         } catch (Exception ex) {
             Logger.getLogger(EditPegawai.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1391,8 +1414,8 @@ public class EditPegawai extends javax.swing.JFrame {
         ak.setId_suratkk(kartu);
 
         try {
-            Controller.ControlData.getKoneksi().insertAnggotaKeluarga(ak);
-            JOptionPane.showMessageDialog(rootPane, "Berhasil Disimpan");
+            Controller.ControlData.getKoneksi().updateAnggotaKeluarga(ak);
+            JOptionPane.showMessageDialog(rootPane, "Berhasil DiUpdate");
             updateTerusTabelnyaKK(idSuratkk);
 
             KK_Internal.setVisible(false);
@@ -1417,10 +1440,10 @@ public class EditPegawai extends javax.swing.JFrame {
         k.setKode_operator(TP_Kode_Label.getText().toUpperCase());
 
         try {
-            Controller.ControlData.getKoneksi().insertKK(k);
-            Controller.ControlData.getKoneksi().updatePNS("KK", pegawai.getNip_baru(), k.getId_Suratkk().toUpperCase());
+            Controller.ControlData.getKoneksi().updateKK(k);
             idSuratkk = k.getId_Suratkk();
-            JOptionPane.showMessageDialog(rootPane, "Data KARTU KELUARGA Berhasil Disimpan, Silahkan Masukkan Anggota Keluarga");
+            JOptionPane.showMessageDialog(rootPane, "Data KARTU KELUARGA Berhasil diupdate");
+            isiKK(NIP);
             KK_TambahAnggota_button.setEnabled(true);
         } catch (Exception ex) {
             Logger.getLogger(EditPegawai.class.getName()).log(Level.SEVERE, null, ex);
@@ -1437,6 +1460,44 @@ public class EditPegawai extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_AK_Pekerjaan_ComboActionPerformed
 
+    private void KK_TabelAnggotaKel_TablelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KK_TabelAnggotaKel_TablelMouseClicked
+        int row = KK_TabelAnggotaKel_Tablel.getSelectedRow();
+        AK_Nama_TF.setText(ambilIsi(row, 1));
+        AK_NIK_TF.setText(ambilIsi(row, 2));
+        AK_JK_Combo.setSelectedItem(ambilIsi(row, 3));
+        AK_TempatLahir_TF.setText(ambilIsi(row, 4));
+        try {
+            AK_TanggalLahir_Date.setDate(tukangSplit(ambilIsi(row, 5)));
+        } catch (ParseException ex) {
+            Logger.getLogger(EditPegawai.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        AK_Agama_Combo.setSelectedItem(ambilIsi(row, 6));
+        AK_Pendidikan_Combo.setSelectedItem(ambilIsi(row, 7));
+        AK_Pekerjaan_Combo.setSelectedItem(ambilIsi(row, 8));
+        AK_Pekerjaan_TF.setText(ambilIsi(row, 8));
+        AK_StatusKawin_Combo.setSelectedItem(ambilIsi(row, 9));
+        AK_HubKeluarga_Combo.setSelectedItem(ambilIsi(row, 10));
+        AK_Kewarganegaraan_Combo.setSelectedItem(ambilIsi(row, 11));
+        AK_NoPaspor_TF.setText(ambilIsi(row, 12));
+        AK_NoKitasKitap_TF.setText(ambilIsi(row, 13));
+        AK_NamaAyah_TF.setText(ambilIsi(row, 14));
+        AK_NamaIbu_TF.setText(ambilIsi(row, 15));
+
+        KK_Internal.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_KK_TabelAnggotaKel_TablelMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        FrameOperator fp = new FrameOperator();
+        this.dispose();
+        fp.setVisible(true);
+        fp.dataOperator(TP_Nama_Label.getText(), TP_Kode_Label.getText());
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+    private String ambilIsi(int baris, int kolom) {
+        return KK_TabelAnggotaKel_Tablel.getValueAt(baris, kolom).toString();
+    }
+
     private int cekAngka(String isian) {
         if (!isian.matches("[0-9]*")) {
             JOptionPane.showMessageDialog(rootPane, "Masukkan harus angka..!!");
@@ -1445,7 +1506,7 @@ public class EditPegawai extends javax.swing.JFrame {
         return 1;
     }
 
-    private void updateTerusTabelnyaKK(String idSuratKK){
+    private void updateTerusTabelnyaKK(String idSuratKK) {
         try {
             List<AnggotaKeluarga> listAk = Controller.ControlData.getKoneksi().SearchAllAnggota(idSuratKK);
             TampilAnggotaKeluarga model = new TampilAnggotaKeluarga(listAk);
@@ -1481,8 +1542,8 @@ public class EditPegawai extends javax.swing.JFrame {
         CPNS_tanggalEdit.setText(tukangSplit2(cpns.getTanggal_penyimpanan_surat()).toString());
         CPNS_kode_ope.setText(cpns.getKode_operator());
     }
-    
-    public void isiSK_PangkatTerakhir(String nipBaru) throws Exception{
+
+    public void isiSK_PangkatTerakhir(String nipBaru) throws Exception {
         SK_PangkatTerakhir skpt = Controller.ControlData.getKoneksi().tampilSK_PangkatTerakhir(nipBaru);
         PT_NoSurat_TF.setText(skpt.getId_SuratPangkatTerakhir());
         PT_Nama_TF.setText(skpt.getNama_pemilik());
@@ -1505,8 +1566,8 @@ public class EditPegawai extends javax.swing.JFrame {
         PT_tanggalEdit.setText(tukangSplit2(skpt.getTanggal_penyimpanan_surat()).toString());
         PT_kode_ope.setText(skpt.getKode_operator());
     }
-    
-    public void isiSPTKG_Terakhir(String nipBaru) throws Exception{
+
+    public void isiSPTKG_Terakhir(String nipBaru) throws Exception {
         SPTKG_Terakhir sptkg = Controller.ControlData.getKoneksi().tampilSPTKG_Terakhir(nipBaru);
         SPTKG_NoSurat_TF.setText(sptkg.getId_SuratSPTKGTerakhir());
         SPTKG_TmpSurat_TF.setText(sptkg.getTempat_surat());
@@ -1523,8 +1584,8 @@ public class EditPegawai extends javax.swing.JFrame {
         SPTKG_tanggalEdit.setText(tukangSplit2(sptkg.getTanggal_penyimpanan_surat()));
         SPTKG_kode_ope.setText(sptkg.getKode_operator());
     }
-    
-    public void isiSK_Karpeg(String nipBaru) throws Exception{
+
+    public void isiSK_Karpeg(String nipBaru) throws Exception {
         SK_Karpeg karpeg = Controller.ControlData.getKoneksi().tampilSK_Karpeg(nipBaru);
         Karpeg_NoSurat_TF.setText(karpeg.getId_SuratKarpeg());
         Karpeg_Nama_TF.setText(karpeg.getNama_pemilik());
@@ -1535,8 +1596,8 @@ public class EditPegawai extends javax.swing.JFrame {
         Karpeg_tanggalEdit.setText(tukangSplit2(karpeg.getTanggal_penyimpanan_surat()));
         Karpeg_kode_ope.setText(karpeg.getKode_operator());
     }
-    
-    public void isiS_Nikah(String nipBaru) throws Exception{
+
+    public void isiS_Nikah(String nipBaru) throws Exception {
         S_Nikah sn = Controller.ControlData.getKoneksi().tampilS_Nikah(nipBaru);
         SN_NoSurat_TF.setText(sn.getId_SuratNikah());
         SN_TglNikah_Date.setDate(tukangSplit(sn.getTanggal_nikah()));
@@ -1545,8 +1606,8 @@ public class EditPegawai extends javax.swing.JFrame {
         SN_tanggalEdit.setText(tukangSplit2(sn.getTanggal_penyimpanan_surat()));
         SN_kode_ope.setText(sn.getKode_operator());
     }
-    
-    public void isiKK(String nipBaru) throws Exception{
+
+    public void isiKK(String nipBaru) throws Exception {
         KK kk = Controller.ControlData.getKoneksi().tampilKK(nipBaru);
         KK_NoKK_TF.setText(kk.getId_Suratkk());
         KK_NamaKK_TF.setText(kk.getNama_kk());
@@ -1561,6 +1622,7 @@ public class EditPegawai extends javax.swing.JFrame {
         KK_tanggalEdit.setText(tukangSplit2(kk.getTanggal_penyimpanan_surat()));
         KK_kode_ope.setText(kk.getKode_operator());
         updateTerusTabelnyaKK(kk.getId_Suratkk());
+        idSuratkk = kk.getId_Suratkk();
     }
 
     public void dataOperatorEditPegawai(String nama, String id) {
@@ -1574,7 +1636,7 @@ public class EditPegawai extends javax.swing.JFrame {
         Date kirimFormat = new SimpleDateFormat("dd-MM-yyyy").parse(formatBener);
         return kirimFormat;
     }
-    
+
     public String tukangSplit2(String tanggal) { //buat tanggal penyimpanan
         String[] split = tanggal.split("-");
         String formatBener = split[2] + "-" + split[1] + "-" + split[0];
@@ -1586,6 +1648,7 @@ public class EditPegawai extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 try {
                     new EditPegawai().setVisible(true);
@@ -1715,6 +1778,7 @@ public class EditPegawai extends javax.swing.JFrame {
     private javax.swing.JLabel TP_Kode_Label;
     private javax.swing.JLabel TP_Nama_Label;
     private javax.swing.JTabbedPane Tab_PNS;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
@@ -1733,6 +1797,7 @@ public class EditPegawai extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel112;
     private javax.swing.JLabel jLabel113;
     private javax.swing.JLabel jLabel114;
+    private javax.swing.JLabel jLabel115;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;

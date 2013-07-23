@@ -341,19 +341,20 @@ public class ProsesPensiun extends javax.swing.JFrame {
         jLabel17.setText("jLabel17");
         jPanel4.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 540, 210));
 
-        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 560, 230));
+        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 560, 230));
 
         jLabel3.setFont(new java.awt.Font("Arial Black", 1, 18));
         jLabel3.setText("Proses Pensiun Pegawai");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, -1, -1));
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, -1, -1));
 
+        exit_button.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         exit_button.setText("Keluar");
         exit_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exit_buttonActionPerformed(evt);
             }
         });
-        jPanel3.add(exit_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 330, -1, -1));
+        jPanel3.add(exit_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 50, -1, -1));
 
         jLabel5.setText("Selamat Datang,");
         jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
