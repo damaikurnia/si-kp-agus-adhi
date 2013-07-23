@@ -496,7 +496,6 @@ public class ControlData {
         stmt.setString(17, k.getProfesi().toUpperCase());
         stmt.setString(18, k.getSekolah().toUpperCase());
         stmt.setString(19, k.getTempat_lahir().toUpperCase());
-
         stmt.executeUpdate();
         conn.commit();
     }
