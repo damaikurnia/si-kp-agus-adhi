@@ -397,8 +397,6 @@ public class EditPegawai extends javax.swing.JFrame {
         jPanel5.add(AK_NIK_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 38, 182, -1));
         jPanel5.add(AK_TempatLahir_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 90, 182, -1));
 
-        AK_NIK_TF.setEditable(false);
-
         AK_JK_Combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "L", "P" }));
         jPanel5.add(AK_JK_Combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 64, -1, -1));
         jPanel5.add(AK_TanggalLahir_Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 116, 123, -1));
@@ -491,7 +489,7 @@ public class EditPegawai extends javax.swing.JFrame {
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("EDIT PNS");
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 857, -1));
