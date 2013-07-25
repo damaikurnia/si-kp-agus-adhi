@@ -35,12 +35,12 @@ sptkg_terakhir.`nama_pemilik`  AS sptkg_terakhir_nama_pemilik,
   kk.`Alamat`                          AS kk_Alamat,
 kk.`Kabupaten_kota`                          AS kk_Kabupaten_kota,
   sptkg_terakhir.`Sekolah`             AS sptkg_terakhir_Sekola
-FROM `sk_pangkatterakhir` sk_pangkatterakhir,
+FROM 
   `sk_cpns` sk_cpns,
   `kk` kk,
   `sptkg_terakhir` sptkg_terakhir,
   `pns` pns
-WHERE pns.nip_baru LIKE  $P{NIP}
+WHERE pns.nip_baru LIKE $P{NIP}
 AND pns.id_SuratSPTKGTerakhir = sptkg_terakhir.id_SuratSPTKGTerakhir
 AND pns.id_Suratkk=kk.id_Suratkk
 AND pns.id_SuratCPNS=sk_cpns.id_SuratCPNS]]></queryString>

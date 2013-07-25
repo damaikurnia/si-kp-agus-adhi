@@ -512,7 +512,7 @@ AND pns.id_SuratCPNS=sk_cpns.id_SuratCPNS]]></queryString>
 					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sk_pangkatterakhir_nama_pemilik}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sptkg_terakhir_nama_pemilik}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement

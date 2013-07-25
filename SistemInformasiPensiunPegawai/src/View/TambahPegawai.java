@@ -12,7 +12,6 @@ package View;
 
 import Model.AnggotaKeluarga;
 import Model.KK;
-import Model.Operator;
 import Model.PNS;
 import Model.SK_CPNS;
 import Model.SK_Karpeg;
@@ -21,13 +20,11 @@ import Model.SPTKG_Terakhir;
 import Model.S_Nikah;
 import TableModel.TampilAnggotaKeluarga;
 import java.awt.Color;
-import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -755,6 +752,12 @@ public class TambahPegawai extends javax.swing.JFrame {
         jLabel65.setFont(new java.awt.Font("Tahoma", 0, 14));
         jLabel65.setText("Golongan");
         SK_CPNS.add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, 20));
+
+        CPNS_MasaKerjaBulan_TF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                CPNS_MasaKerjaBulan_TFKeyReleased(evt);
+            }
+        });
         SK_CPNS.add(CPNS_MasaKerjaBulan_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 40, -1));
 
         jLabel66.setFont(new java.awt.Font("Tahoma", 0, 14));
@@ -773,6 +776,12 @@ public class TambahPegawai extends javax.swing.JFrame {
         jLabel69.setFont(new java.awt.Font("Tahoma", 0, 14));
         jLabel69.setText("Masa Kerja");
         SK_CPNS.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, 20));
+
+        CPNS_MasaKerjaTahun_TF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                CPNS_MasaKerjaTahun_TFKeyReleased(evt);
+            }
+        });
         SK_CPNS.add(CPNS_MasaKerjaTahun_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 40, -1));
         SK_CPNS.add(CPNS_GPdari_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, 170, -1));
 
@@ -802,7 +811,12 @@ public class TambahPegawai extends javax.swing.JFrame {
         jLabel75.setText("Nmr Persetujuan");
         SK_CPNS.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, -1, -1));
 
-        combo_sk_cpns_golongan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "II /A", "II /B", "II /C", "III /D", "III /A", "III /B", "III /C", "III /D", "IV /A", "IV /B", "IV /C", "IV /D", "IV /E" }));
+        combo_sk_cpns_golongan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "II /A", "II /B", "II /C", "II /D", "III/A", "III/B", "III/C", "III/D", "IV /A", "IV /B", "IV /C", "IV /D", "IV /E" }));
+        combo_sk_cpns_golongan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combo_sk_cpns_golonganActionPerformed(evt);
+            }
+        });
         SK_CPNS.add(combo_sk_cpns_golongan, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, 90, -1));
 
         jLabel97.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PIcture/wall2.jpg"))); // NOI18N
@@ -944,6 +958,12 @@ public class TambahPegawai extends javax.swing.JFrame {
         jLabel79.setFont(new java.awt.Font("Tahoma", 0, 14));
         jLabel79.setText("Pangkat,Gol Lama");
         SK_PangkatTerakhir.add(jLabel79, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
+
+        PT_Sekolah_TF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                PT_Sekolah_TFKeyReleased(evt);
+            }
+        });
         SK_PangkatTerakhir.add(PT_Sekolah_TF, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, 230, -1));
 
         combo_sk_pangkat_terakhir_pangkat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pangkat Pengatur Muda", "Pangkat Pengatur Muda Tingat 1", "Pangkat Pengatur", "Pangkat Pengatur Tingkat 1", "Pangkat Penata Muda", "Pangkat Penata Muda Tingkat 1", "Pangkat Penata", "Pangkat Penata Tingkat 1", "Pangkat Pembina", "Pangkat Pembina Tingkat 1", "Pangkat Pembina Utama Muda", "Pangkat Pembina Utama Madya", "Pangkat Pembina Utama" }));
@@ -1449,7 +1469,7 @@ public class TambahPegawai extends javax.swing.JFrame {
     }//GEN-LAST:event_CPNS_next_buttonActionPerformed
 
     private void PT_simpan_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PT_simpan_buttonActionPerformed
-
+        SPTKG_Sekolah_TF.setText(PT_Sekolah_TF.getText());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String pangkat = (String) combo_sk_pangkat_terakhir_pangkat.getSelectedItem();
         String pangkatBaru = (String) combo_sk_pangkat_terakhir_pangkatBaru.getSelectedItem();
@@ -1499,6 +1519,7 @@ public class TambahPegawai extends javax.swing.JFrame {
 
     private void SPTKG_simpan_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SPTKG_simpan_buttonActionPerformed
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
         SPTKG_Terakhir sptkg = new SPTKG_Terakhir();
         sptkg.setId_SuratSPTKGTerakhir(SPTKG_NoSurat_TF.getText());
         sptkg.setTempat_surat(SPTKG_TmpSurat_TF.getText());
@@ -1668,6 +1689,7 @@ public class TambahPegawai extends javax.swing.JFrame {
             idSuratkk = k.getId_Suratkk();
             JOptionPane.showMessageDialog(rootPane, "Data KARTU KELUARGA Berhasil Disimpan, Silahkan Masukkan Anggota Keluarga");
             KK_TambahAnggota_button.setEnabled(true);
+            KK_SimpanKK_button.setEnabled(false);
         } catch (Exception ex) {
             Logger.getLogger(TambahPegawai.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1858,6 +1880,75 @@ public class TambahPegawai extends javax.swing.JFrame {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_DU_NipBaru_TFKeyReleased
+
+    private void CPNS_MasaKerjaTahun_TFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CPNS_MasaKerjaTahun_TFKeyReleased
+         CPNS_MasaKerjaTahun_TF.setBackground(Color.WHITE);
+        if (cekAngka(CPNS_MasaKerjaTahun_TF.getText()) == 0) {
+            CPNS_MasaKerjaTahun_TF.setBackground(Color.RED);
+        }
+    }//GEN-LAST:event_CPNS_MasaKerjaTahun_TFKeyReleased
+
+    private void CPNS_MasaKerjaBulan_TFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CPNS_MasaKerjaBulan_TFKeyReleased
+       CPNS_MasaKerjaBulan_TF.setBackground(Color.WHITE);
+        if (cekAngka(CPNS_MasaKerjaBulan_TF.getText()) == 0) {
+            CPNS_MasaKerjaBulan_TF.setBackground(Color.RED);
+        }
+    }//GEN-LAST:event_CPNS_MasaKerjaBulan_TFKeyReleased
+
+    private void combo_sk_cpns_golonganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_sk_cpns_golonganActionPerformed
+
+        String golongan = (String) combo_sk_cpns_golongan.getSelectedItem();
+        if (golongan.equalsIgnoreCase("II /A")) {
+            System.out.println(golongan);
+            combo_sk_pangkat_terakhir_pangkat.setSelectedItem("Pangkat Pengatur Muda");
+            combo_sk_pangkat_terakhir_pangkatBaru.setSelectedItem("Pangkat Pengatur Muda");
+        } if (golongan.equalsIgnoreCase("II /B")) {
+            System.out.println(golongan);
+            combo_sk_pangkat_terakhir_pangkat.setSelectedItem("Pangkat Pengatur Muda Tingat 1");
+            combo_sk_pangkat_terakhir_pangkatBaru.setSelectedItem("Pangkat Pengatur Muda Tingat 1");
+        } if (golongan.equalsIgnoreCase("II /C")) {
+            System.out.println(golongan);
+            combo_sk_pangkat_terakhir_pangkat.setSelectedItem("Pangkat Pengatur");
+            combo_sk_pangkat_terakhir_pangkatBaru.setSelectedItem("Pangkat Pengatur");
+        } if (golongan.equalsIgnoreCase("II /D")) {
+            System.out.println(golongan);
+            combo_sk_pangkat_terakhir_pangkat.setSelectedItem("Pangkat Pengatur Tingkat 1");
+            combo_sk_pangkat_terakhir_pangkatBaru.setSelectedItem("Pangkat Pengatur Tingkat 1");
+        }
+         if (golongan.equalsIgnoreCase("III/A")) {
+            combo_sk_pangkat_terakhir_pangkat.setSelectedItem("Pangkat Penata Muda");
+            combo_sk_pangkat_terakhir_pangkatBaru.setSelectedItem("Pangkat Penata Muda");
+        } if (golongan.equalsIgnoreCase("III/B")) {
+            combo_sk_pangkat_terakhir_pangkat.setSelectedItem("Pangkat Penata Muda Tingkat 1");
+            combo_sk_pangkat_terakhir_pangkatBaru.setSelectedItem("Pangkat Penata Muda Tingkat 1");
+        } if (golongan.equalsIgnoreCase("III/C")) {
+            combo_sk_pangkat_terakhir_pangkat.setSelectedItem("Pangkat Penata");
+            combo_sk_pangkat_terakhir_pangkatBaru.setSelectedItem("Pangkat Penata");
+        } if (golongan.equalsIgnoreCase("III/D")) {
+            combo_sk_pangkat_terakhir_pangkat.setSelectedItem("Pangkat Penata Tingkat 1");
+            combo_sk_pangkat_terakhir_pangkatBaru.setSelectedItem("Pangkat Penata Tingkat 1");
+        }
+          if (golongan.equalsIgnoreCase("IV /A")) {
+            combo_sk_pangkat_terakhir_pangkat.setSelectedItem("Pangkat Pembina");
+            combo_sk_pangkat_terakhir_pangkatBaru.setSelectedItem("Pangkat Pembina");
+        } if (golongan.equalsIgnoreCase("IV /B")) {
+            combo_sk_pangkat_terakhir_pangkat.setSelectedItem("Pangkat Pembina Tingkat 1");
+            combo_sk_pangkat_terakhir_pangkatBaru.setSelectedItem("Pangkat Pembina Tingkat 1");
+        } if (golongan.equalsIgnoreCase("IV /C")) {
+            combo_sk_pangkat_terakhir_pangkat.setSelectedItem("Pangkat Pembina Utama Muda");
+            combo_sk_pangkat_terakhir_pangkatBaru.setSelectedItem("Pangkat Pembina Utama Muda");
+        } if (golongan.equalsIgnoreCase("IV /D")) {
+            combo_sk_pangkat_terakhir_pangkat.setSelectedItem("Pangkat Pembina Utama Madya");
+            combo_sk_pangkat_terakhir_pangkatBaru.setSelectedItem("Pangkat Pembina Utama Madya");
+        } if (golongan.equalsIgnoreCase("IV /E")) {
+            combo_sk_pangkat_terakhir_pangkat.setSelectedItem("Pangkat Pembina Utama");
+            combo_sk_pangkat_terakhir_pangkatBaru.setSelectedItem("Pangkat Pembina Utama");
+        }
+    }//GEN-LAST:event_combo_sk_cpns_golonganActionPerformed
+
+    private void PT_Sekolah_TFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PT_Sekolah_TFKeyReleased
+
+    }//GEN-LAST:event_PT_Sekolah_TFKeyReleased
 
     private int cekAngka(String isian) {
         if (!isian.matches("[0-9]*")) {

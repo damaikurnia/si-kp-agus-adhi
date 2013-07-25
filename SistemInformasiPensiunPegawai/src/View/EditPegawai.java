@@ -328,6 +328,7 @@ public class EditPegawai extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         KK_Internal.setTitle("Tambah Anggota Keluarga");
+        KK_Internal.setVisible(true);
         KK_Internal.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

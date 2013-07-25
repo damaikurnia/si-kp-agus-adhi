@@ -185,6 +185,11 @@ public class FrameOperator extends javax.swing.JFrame {
 
         buttonHpsPeg.setFont(new java.awt.Font("Tahoma", 1, 12));
         buttonHpsPeg.setText("Hapus Pegawai");
+        buttonHpsPeg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonHpsPegActionPerformed(evt);
+            }
+        });
         jPanel5.add(buttonHpsPeg, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 184, 37));
 
         buttonSearch.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -267,10 +272,18 @@ public class FrameOperator extends javax.swing.JFrame {
     private void buttonEditPegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditPegActionPerformed
 //        PencarianPegawai pen = new PencarianPegawai("Edit Pegawai");
         PencarianPegawai pen = new PencarianPegawai();
-        pen.dataOperator(nama_operator.getText(),kode_op.getText());
+        pen.dataOperator(nama_operator.getText(), kode_op.getText());
         pen.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_buttonEditPegActionPerformed
+
+    private void buttonHpsPegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHpsPegActionPerformed
+        HapusDataPegawai HDP = new HapusDataPegawai();
+        HDP.dataOperatorEditPegawai(nama_operator.getText(), kode_op.getText());
+        HDP.setVisible(true);
+        this.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonHpsPegActionPerformed
     public void dataOperator(String nama, String id) {
         nama_operator.setText(nama);
         kode_op.setText(id);

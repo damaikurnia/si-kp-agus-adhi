@@ -29,7 +29,7 @@
 	<parameter name="SUBREPORT_DIR" isForPrompting="true" class="java.lang.String">
 		<defaultValueExpression ><![CDATA["E:\\Subversion\\SistemInformasiPensiunPegawai\\Cetak\\"]]></defaultValueExpression>
 	</parameter>
-	<queryString><![CDATA[SELECT
+	<queryString><![CDATA[ SELECT
   anggotakeluarga.nama_lengkap,
   anggotakeluarga.pekerjaan  ,
   anggotakeluarga.status_hub_keluarga  ,
@@ -37,15 +37,16 @@
     DATE_FORMAT( s_nikah.tanggal_nikah  , '%d-%m-%Y') AS tglNikah
 FROM 
   s_nikah,anggotakeluarga,pns,kk
-WHERE anggotakeluarga.id_suratKK IN(SELECT
-                                      anggotakeluarga.id_suratKK
-                                    FROM anggotakeluarga,KK,pns
-                                    WHERE PNS.nip_baru LIKE  $P{NIP}
-                                        AND anggotakeluarga.id_suratKK = kk.id_Suratkk
-                                        AND pns.id_Suratkk = kk.id_Suratkk)
+  WHERE anggotakeluarga.id_suratKK IN(
+SELECT KK.id_suratKK
+FROM KK,pns
+WHERE PNS.nip_baru LIKE   $P{NIP}
+AND pns.id_Suratkk = kk.id_Suratkk)
     AND pns.id_SuratNikah = s_nikah.id_SuratNikah
     AND kk.id_Suratkk = anggotakeluarga.id_suratKK
     AND pns.nama_pns != anggotakeluarga.nama_lengkap
+        AND pns.nama_pns != anggotakeluarga.nama_lengkap
+    AND pns.id_Suratkk    =kk.id_Suratkk  
     AND anggotakeluarga.status_hub_keluarga  NOT LIKE '%Anak%';]]></queryString>
 
 	<field name="nama_lengkap" class="java.lang.String"/>

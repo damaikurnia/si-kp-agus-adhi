@@ -417,7 +417,7 @@ WHERE anggotakeluarga.id_suratKK IN(SELECT
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="107"  isSplitAllowed="true" >
+			<band height="47"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="21"
@@ -584,15 +584,6 @@ WHERE anggotakeluarga.id_suratKK IN(SELECT
 		</detail>
 		<columnFooter>
 			<band height="3"  isSplitAllowed="true" >
-				<line direction="TopDown">
-					<reportElement
-						x="2"
-						y="0"
-						width="487"
-						height="1"
-						key="line-13"/>
-					<graphicElement stretchType="NoStretch"/>
-				</line>
 			</band>
 		</columnFooter>
 		<pageFooter>
