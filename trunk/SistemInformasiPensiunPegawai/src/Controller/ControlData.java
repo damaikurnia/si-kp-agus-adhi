@@ -257,6 +257,83 @@ public class ControlData {
         return pns;
     }
 
+    public List<PNS> SearchDataPNS_NIPLama(String id) throws SQLException {
+        PreparedStatement stmt = null;
+        PNS cek = null;
+        ResultSet result = null;
+        conn.setAutoCommit(false);
+        String query = "SELECT * FROM PNS "
+                + "where nip_lama=? ";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, id);
+        result = stmt.executeQuery();
+        List<PNS> pns = new ArrayList<PNS>();
+        if (result.next()) {
+            cek = new PNS();
+            cek.setId_SuratCPNS(result.getString(4));
+            cek.setId_SuratPangkatTerakhir(result.getString(5));
+            cek.setId_SuratSPTKGTerakhir(result.getString(6));
+            cek.setId_SuratKarpeg(result.getString(7));
+            cek.setId_SuratNikah(result.getString(8));
+            cek.setId_SuratNIPBaru(result.getString(9));
+            cek.setId_Suratkk(result.getString(10));
+            pns.add(cek);
+        }
+        conn.commit();
+        return pns;
+    }
+    public List<PNS> SearchDataPNS_NIPBaru(String id) throws SQLException {
+        PreparedStatement stmt = null;
+        PNS cek = null;
+        ResultSet result = null;
+        conn.setAutoCommit(false);
+        String query = "SELECT * FROM PNS "
+                + "where nip_baru=? ";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, id);
+        result = stmt.executeQuery();
+        List<PNS> pns = new ArrayList<PNS>();
+        if (result.next()) {
+            cek = new PNS();
+            cek.setNip_baru(result.getString(1));
+            cek.setNama_pns(result.getString(3));
+            cek.setId_SuratCPNS(result.getString(4));
+            cek.setId_SuratPangkatTerakhir(result.getString(5));
+            cek.setId_SuratSPTKGTerakhir(result.getString(6));
+            cek.setId_SuratKarpeg(result.getString(7));
+            cek.setId_SuratNikah(result.getString(8));
+            cek.setId_SuratNIPBaru(result.getString(9));
+            cek.setId_Suratkk(result.getString(10));
+            pns.add(cek);
+        }
+        conn.commit();
+        return pns;
+    }
+     public List<PNS> SearchDataPNS_Nama(String id) throws SQLException {
+        PreparedStatement stmt = null;
+        PNS cek = null;
+        ResultSet result = null;
+        conn.setAutoCommit(false);
+        String query = "SELECT * FROM PNS "
+                + "where Upper (nama_pns) like '%" + id.toUpperCase() + "%'";
+        stmt = conn.prepareStatement(query);
+        result = stmt.executeQuery();
+        List<PNS> pns = new ArrayList<PNS>();
+        if (result.next()) {
+            cek = new PNS();
+            cek.setId_SuratCPNS(result.getString(4));
+            cek.setId_SuratPangkatTerakhir(result.getString(5));
+            cek.setId_SuratSPTKGTerakhir(result.getString(6));
+            cek.setId_SuratKarpeg(result.getString(7));
+            cek.setId_SuratNikah(result.getString(8));
+            cek.setId_SuratNIPBaru(result.getString(9));
+            cek.setId_Suratkk(result.getString(10));
+            pns.add(cek);
+        }
+        conn.commit();
+        return pns;
+    }
+
     public List<PNS> SearchPNS_NIPBaru(String id) throws SQLException {
         PreparedStatement stmt = null;
         PNS cek = null;
@@ -303,7 +380,7 @@ public class ControlData {
         return pns;
     }
 
-    public void insertDataMeninggal(DataMeninggal dm,String idOP) throws SQLException {
+    public void insertDataMeninggal(DataMeninggal dm, String idOP) throws SQLException {
         PreparedStatement stmt = null;
         conn.setAutoCommit(false);
         String query = "INSERT INTO data_meninggal VALUES(?,?,?,?,?,?,?,?,?)";
@@ -316,7 +393,7 @@ public class ControlData {
         stmt.setString(6, dm.getAnggota_alamat().toUpperCase());
         stmt.setString(7, dm.getKabupaten().toUpperCase());
         stmt.setString(8, dm.getAnggota_pekerjaan().toUpperCase());
-         stmt.setString(9, idOP);
+        stmt.setString(9, idOP);
 
         stmt.executeUpdate();
         conn.commit();
@@ -932,13 +1009,13 @@ public class ControlData {
         }
     }
 
-    public void delete_sptkg_terakhir(String NIP) throws SQLException {
+    public void delete_sptkg_terakhir(String id) throws SQLException {
         PreparedStatement stmt = null;
         try {
             conn.setAutoCommit(false);
-            String query = "delete from sptkg_terakhir where NIP_baru=? ";
+            String query = "delete from sptkg_terakhir where id_SuratSPTKGTerakhir=? ";
             stmt = conn.prepareStatement(query);
-            stmt.setString(1, NIP);
+            stmt.setString(1, id);
             stmt.executeUpdate();
             conn.commit();
         } catch (SQLException ex) {
@@ -960,13 +1037,13 @@ public class ControlData {
         }
     }
 
-    public void delete_sk_pangkatterakhir(String NIP) throws SQLException {
+    public void delete_sk_pangkatterakhir(String id) throws SQLException {
         PreparedStatement stmt = null;
         try {
             conn.setAutoCommit(false);
-            String query = "delete from sk_pangkatterakhir where NIP_lama=? ";
+            String query = "delete from sk_pangkatterakhir where id_SuratPangkatTerakhir=? ";
             stmt = conn.prepareStatement(query);
-            stmt.setString(1, NIP);
+            stmt.setString(1, id);
             stmt.executeUpdate();
             conn.commit();
         } catch (SQLException ex) {
@@ -988,13 +1065,13 @@ public class ControlData {
         }
     }
 
-    public void delete_sk_nipbaru(String NIP) throws SQLException {
+    public void delete_sk_nipbaru(String id) throws SQLException {
         PreparedStatement stmt = null;
         try {
             conn.setAutoCommit(false);
-            String query = "delete from sk_nipbaru where NIP_baru=? ";
+            String query = "delete from sk_nipbaru where id_SuratNIPBaru=? ";
             stmt = conn.prepareStatement(query);
-            stmt.setString(1, NIP);
+            stmt.setString(1, id);
             stmt.executeUpdate();
             conn.commit();
         } catch (SQLException ex) {
@@ -1016,13 +1093,13 @@ public class ControlData {
         }
     }
 
-    public void delete_sk_karpeg(String NIP) throws SQLException {
+    public void delete_sk_karpeg(String id) throws SQLException {
         PreparedStatement stmt = null;
         try {
             conn.setAutoCommit(false);
-            String query = "delete from sk_karpeg where NIP_lama=? ";
+            String query = "delete from sk_karpeg where id_SuratKarpeg=? ";
             stmt = conn.prepareStatement(query);
-            stmt.setString(1, NIP);
+            stmt.setString(1, id);
             stmt.executeUpdate();
             conn.commit();
         } catch (SQLException ex) {
@@ -1044,13 +1121,13 @@ public class ControlData {
         }
     }
 
-    public void delete_sk_cpns(String NIP) throws SQLException {
+    public void delete_sk_cpns(String id) throws SQLException {
         PreparedStatement stmt = null;
         try {
             conn.setAutoCommit(false);
-            String query = "delete from sk_cpns where NIP_lama=? ";
+            String query = "delete from sk_cpns where id_suratCPNS=? ";
             stmt = conn.prepareStatement(query);
-            stmt.setString(1, NIP);
+            stmt.setString(1, id);
             stmt.executeUpdate();
             conn.commit();
         } catch (SQLException ex) {
@@ -1072,13 +1149,13 @@ public class ControlData {
         }
     }
 
-    public void delete_srt_nikah(String NIP) throws SQLException {
+    public void delete_srt_nikah(String id) throws SQLException {
         PreparedStatement stmt = null;
         try {
             conn.setAutoCommit(false);
             String query = "delete from s_nikah where id_suratNikah=? ";
             stmt = conn.prepareStatement(query);
-            stmt.setString(1, NIP);
+            stmt.setString(1, id);
             stmt.executeUpdate();
             conn.commit();
         } catch (SQLException ex) {
@@ -1100,13 +1177,13 @@ public class ControlData {
         }
     }
 
-    public void delete_kk(String NIP) throws SQLException {
+    public void delete_kk(String id) throws SQLException {
         PreparedStatement stmt = null;
         try {
             conn.setAutoCommit(false);
             String query = "delete from kk where id_suratKK=? ";
             stmt = conn.prepareStatement(query);
-            stmt.setString(1, NIP);
+            stmt.setString(1, id);
             stmt.executeUpdate();
             conn.commit();
         } catch (SQLException ex) {
@@ -1128,11 +1205,11 @@ public class ControlData {
         }
     }
 
-    public void anggotakeluarga(String NIK) throws SQLException {
+    public void Deleteanggotakeluarga(String NIK) throws SQLException {
         PreparedStatement stmt = null;
         try {
             conn.setAutoCommit(false);
-            String query = "delete from kk where nik=? ";
+            String query = "delete from anggotakeluarga where nik=? ";
             stmt = conn.prepareStatement(query);
             stmt.setString(1, NIK);
             stmt.executeUpdate();
@@ -1155,7 +1232,7 @@ public class ControlData {
             }
         }
     }
-    
+
     public void updateCPNS(SK_CPNS cpns) throws SQLException {
         PreparedStatement stmt = null;
         conn.setAutoCommit(false);
@@ -1190,7 +1267,7 @@ public class ControlData {
         stmt.executeUpdate();
         conn.commit();
     }
-    
+
     public void updateSK_PangkatTerakhir(SK_PangkatTerakhir pt) throws SQLException {
         PreparedStatement stmt = null;
         conn.setAutoCommit(false);
@@ -1221,7 +1298,7 @@ public class ControlData {
         stmt.executeUpdate();
         conn.commit();
     }
-    
+
     public void updateSPTKG_Terakhir(SPTKG_Terakhir k) throws SQLException {
         PreparedStatement stmt = null;
         conn.setAutoCommit(false);
@@ -1245,7 +1322,7 @@ public class ControlData {
         stmt.executeUpdate();
         conn.commit();
     }
-    
+
     public void updateSK_Karpeg(SK_Karpeg k) throws SQLException {
         PreparedStatement stmt = null;
         conn.setAutoCommit(false);
@@ -1300,7 +1377,7 @@ public class ControlData {
         stmt.executeUpdate();
         conn.commit();
     }
-    
+
     public void updateAnggotaKeluarga(AnggotaKeluarga k) throws SQLException {
         PreparedStatement stmt = null;
         conn.setAutoCommit(false);
@@ -1310,7 +1387,7 @@ public class ControlData {
                 + "no_paspor = ?,no_kitas_kitap = ?,nama_ayah = ?, nama_ibu = ? "
                 + "WHERE id_suratKK = ? AND nik = ?";
         stmt = conn.prepareStatement(query);
-        
+
         stmt.setString(1, k.getNama_lengkap().toUpperCase());
         stmt.setString(2, k.getJenis_kelamin());
         stmt.setString(3, k.getTempat_lahir().toUpperCase());
@@ -1330,5 +1407,78 @@ public class ControlData {
 
         stmt.executeUpdate();
         conn.commit();
+    }
+     public void updateDataPNS(String kodeSandi, String nip) throws SQLException {
+        PreparedStatement stmt = null;
+        if (kodeSandi.equals("SK CPNS")) {
+            conn.setAutoCommit(false);
+            String query = "update pns set id_suratcpns = ? where nip_baru = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, "-");
+            stmt.setString(2, nip);
+
+            stmt.executeUpdate();
+            conn.commit();
+        } else if (kodeSandi.equals("SK PANGKAT TERAKHIR")) {
+            conn.setAutoCommit(false);
+            String query = "update pns set id_SuratPangkatTerakhir = ? where nip_baru = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, "-");
+            stmt.setString(2, nip);
+
+            stmt.executeUpdate();
+            conn.commit();
+        } else if (kodeSandi.equals("SPTKG TERAKHIR")) {
+            conn.setAutoCommit(false);
+            String query = "update pns set id_SuratSPTKGTerakhir = ? where nip_baru = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, "-");
+            stmt.setString(2, nip);
+
+            stmt.executeUpdate();
+            conn.commit();
+        } else if (kodeSandi.equals("SK KARPEG")) {
+            conn.setAutoCommit(false);
+            String query = "update pns set id_SuratKarpeg = ? where nip_baru = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, "-");
+            stmt.setString(2, nip);
+
+            stmt.executeUpdate();
+            conn.commit();
+        } else if (kodeSandi.equals("Data_Nikah")) {
+            conn.setAutoCommit(false);
+            String query = "update pns set id_SuratNikah = ? where nip_baru = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, "-");
+            stmt.setString(2, nip);
+
+            stmt.executeUpdate();
+            conn.commit();
+        } else if (kodeSandi.equals("KK")) {
+            conn.setAutoCommit(false);
+            String query = "update pns set id_Suratkk = ? where nip_baru = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, "-");
+            stmt.setString(2, nip);
+
+            stmt.executeUpdate();
+            conn.commit();
+        }
+    }
+
+    public void delete_AllData(String id) {
+        try {
+            delete_PNS(id);
+            delete_kk(id);
+            delete_sk_cpns(id);
+            delete_sk_karpeg(id);
+            delete_sk_pangkatterakhir(id);
+            delete_sptkg_terakhir(id);
+            delete_srt_nikah(id);
+        } catch (SQLException ex) {
+            Logger.getLogger(ControlData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 }

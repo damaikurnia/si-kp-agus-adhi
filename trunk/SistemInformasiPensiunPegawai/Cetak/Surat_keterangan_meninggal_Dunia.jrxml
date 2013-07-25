@@ -29,12 +29,12 @@
 	<parameter name="SUBREPORT_DIR" isForPrompting="true" class="java.lang.String">
 		<defaultValueExpression ><![CDATA["E:\\Subversion\\SistemInformasiPensiunPegawai\\Cetak\\"]]></defaultValueExpression>
 	</parameter>
-	<queryString><![CDATA[SELECT
+	<queryString><![CDATA[ SELECT
      sptkg_terakhir.`nama_pemilik` AS sptkg_terakhir_nama_pemilik,
      sptkg_terakhir.`nip_baru` AS sptkg_terakhir_nip_baru,
      sptkg_terakhir.`pangkat_baru` AS sptkg_terakhir_pangkat_baru,
      sptkg_terakhir.`golongan_ruang_baru` AS sptkg_terakhir_golongan_banggotakeluargaruang_aru,
-     sk_cpns.`Profesi` AS sk_cpns_Profesi,
+     sk_pangkatterakhir.Profesi      AS sk_cpns_Profesi,
      kk.`Alamat` AS kk_Alamat,
      kk.`Kabupaten_kota` AS kk_Kabupaten_kota,
      sptkg_terakhir.`Sekolah` AS sptkg_terakhir_Sekola,
@@ -42,15 +42,14 @@
      kk.`Kecamatan` AS kk_Kecamatan
 FROM
      `sk_pangkatterakhir` sk_pangkatterakhir,
-     `sk_cpns` sk_cpns,
      `kk` kk,
      `sptkg_terakhir` sptkg_terakhir,
      `pns` pns
 WHERE
-     pns.nip_baru LIKE $P{NIP}
+     pns.nip_baru like $P{NIP}
  AND pns.id_SuratSPTKGTerakhir = sptkg_terakhir.id_SuratSPTKGTerakhir
  AND pns.id_Suratkk = kk.id_Suratkk
- AND pns.id_SuratCPNS = sk_cpns.id_SuratCPNS]]></queryString>
+ AND pns.id_SuratPangkatTerakhir =sk_pangkatterakhir.id_SuratPangkatTerakhir ]]></queryString>
 
 	<field name="sptkg_terakhir_nama_pemilik" class="java.lang.String"/>
 	<field name="sptkg_terakhir_nip_baru" class="java.lang.String"/>

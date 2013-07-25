@@ -27,32 +27,28 @@
 		<parameterDescription><![CDATA[""]]></parameterDescription>
 	</parameter>
 	<queryString><![CDATA[SELECT
-	
-     Upper(pns.nama_pns) AS pns_nama_pns,
+     UPPER(pns.nama_pns) AS pns_nama_pns,
      sk_nipbaru.`nip_lama` AS sk_nipbaru_nip_lama,
      sk_nipbaru.`nip_baru` AS sk_nipbaru_nip_baru,
-     sk_nipbaru.tanggal_lahir    AS sk_nipbaru_tanggal_lahir ,
-     Upper(anggotakeluarga.`tempat_lahir`) AS anggotakeluarga_tempat_lahir,
-     Upper(sptkg_terakhir.`pangkat_baru`) AS sptkg_terakhir_pangkat_baru,
+     DATE_FORMAT(sk_nipbaru.tanggal_lahir,'%d-%m-%Y') AS sk_nipbaru_tanggal_lahir ,
+     UPPER(sk_cpns.`tempat_lahir`) AS anggotakeluarga_tempat_lahir,
+     UPPER(sptkg_terakhir.`pangkat_baru`) AS sptkg_terakhir_pangkat_baru,
      sptkg_terakhir.`golongan_ruang_baru` AS sptkg_terakhir_golongan_ruang_baru,
      sptkg_terakhir.`gajipokok_baru` AS sptkg_terakhir_gajipokok_baru,
 	DATE_FORMAT(sptkg_terakhir.`tmt_baru`, '%d-%m-%Y') AS sptkg_terakhir_tmt_baru,
      sk_karpeg.`id_SuratKarpeg` AS sk_karpeg_id_SuratKarpeg,
-     Upper(sk_cpns.`Profesi`) AS sk_cpns_Profesi,
-     Upper(kk.`Alamat`) AS kk_Alamat,
-     Upper(kk.`Kabupaten_Kota`) AS kk_Kabupaten_Kota,
-     Upper(sptkg_terakhir.`Sekolah`) AS sptkg_terakhir_Sekolah,
+     UPPER(sk_cpns.`Profesi`) AS sk_cpns_Profesi,
+     UPPER(kk.`Alamat`) AS kk_Alamat,
+     UPPER(kk.`Kabupaten_Kota`) AS kk_Kabupaten_Kota,
+     UPPER(sptkg_terakhir.`Sekolah`) AS sptkg_terakhir_Sekolah,
 	ROUND(DATEDIFF(CURRENT_DATE,sk_cpns.tanggal_surat)/365,0)AS tahun,
 	ROUND(MOD(DATEDIFF(CURRENT_DATE,sk_cpns.tanggal_surat)/365,12)) AS Bulan,
 	sk_cpns.tanggal_lahir AS tanggaltmt,
 	DAY(sk_cpns.tanggal_lahir) AS hari_TMT,
 	YEAR(sk_cpns.tanggal_lahir)+60 AS Tahun_TMT,
 	MONTH(sk_cpns.tanggal_lahir)+1 AS bulan_TMT
-
-
 FROM
      `sk_nipbaru` sk_nipbaru,
-     `anggotakeluarga` anggotakeluarga,
      `sptkg_terakhir` sptkg_terakhir,
      `sk_karpeg` sk_karpeg,
      `sk_cpns` sk_cpns,
@@ -63,12 +59,13 @@ WHERE
  AND pns.`id_SuratCPNS` = sk_cpns.`id_SuratCPNS`
  AND pns.`id_SuratKarpeg` = sk_karpeg.`id_SuratKarpeg`
  AND pns.`id_SuratNIPBaru` = sk_nipbaru.`id_SuratNIPBaru`
- AND anggotakeluarga.nama_lengkap =pns.nama_pns]]></queryString>
+ AND pns.id_SuratSPTKGTerakhir =sptkg_terakhir.id_SuratSPTKGTerakhir 
+ AND pns.id_Suratkk =kk.id_Suratkk ]]></queryString>
 
 	<field name="pns_nama_pns" class="java.lang.String"/>
 	<field name="sk_nipbaru_nip_lama" class="java.lang.String"/>
 	<field name="sk_nipbaru_nip_baru" class="java.lang.String"/>
-	<field name="sk_nipbaru_tanggal_lahir" class="java.sql.Date"/>
+	<field name="sk_nipbaru_tanggal_lahir" class="java.lang.String"/>
 	<field name="anggotakeluarga_tempat_lahir" class="java.lang.String"/>
 	<field name="sptkg_terakhir_pangkat_baru" class="java.lang.String"/>
 	<field name="sptkg_terakhir_golongan_ruang_baru" class="java.lang.String"/>

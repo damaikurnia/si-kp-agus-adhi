@@ -1316,6 +1316,9 @@
                   </Constraints>
                 </Component>
                 <Component class="javax.swing.JTextField" name="CPNS_MasaKerjaBulan_TF">
+                  <Events>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="CPNS_MasaKerjaBulan_TFKeyReleased"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="280" y="290" width="40" height="-1"/>
@@ -1382,6 +1385,9 @@
                   </Constraints>
                 </Component>
                 <Component class="javax.swing.JTextField" name="CPNS_MasaKerjaTahun_TF">
+                  <Events>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="CPNS_MasaKerjaTahun_TFKeyReleased"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="180" y="290" width="40" height="-1"/>
@@ -1492,11 +1498,11 @@
                         <StringItem index="0" value="II /A"/>
                         <StringItem index="1" value="II /B"/>
                         <StringItem index="2" value="II /C"/>
-                        <StringItem index="3" value="III /D"/>
-                        <StringItem index="4" value="III /A"/>
-                        <StringItem index="5" value="III /B"/>
-                        <StringItem index="6" value="III /C"/>
-                        <StringItem index="7" value="III /D"/>
+                        <StringItem index="3" value="II /D"/>
+                        <StringItem index="4" value="III/A"/>
+                        <StringItem index="5" value="III/B"/>
+                        <StringItem index="6" value="III/C"/>
+                        <StringItem index="7" value="III/D"/>
                         <StringItem index="8" value="IV /A"/>
                         <StringItem index="9" value="IV /B"/>
                         <StringItem index="10" value="IV /C"/>
@@ -1505,6 +1511,9 @@
                       </StringArray>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="combo_sk_cpns_golonganActionPerformed"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="180" y="320" width="90" height="-1"/>
@@ -1921,6 +1930,9 @@
                   </Constraints>
                 </Component>
                 <Component class="javax.swing.JTextField" name="PT_Sekolah_TF">
+                  <Events>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="PT_Sekolah_TFKeyReleased"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="180" y="320" width="230" height="-1"/>
