@@ -19,6 +19,7 @@ import Model.SK_Karpeg;
 import Model.SK_PangkatTerakhir;
 import Model.SPTKG_Terakhir;
 import Model.S_Nikah;
+import TableModel.DaftarSurat;
 import TableModel.TampilAnggotaKeluarga;
 import java.awt.Color;
 import java.text.ParseException;
@@ -43,6 +44,7 @@ public class HapusDataPegawai extends javax.swing.JFrame {
         Clock clock = new Clock();
         clock.showDigitalClock(time);
         button_hapus_kk.setVisible(false);
+        // refreshListComboSurat(cari_txt.getText());
 
     }
 
@@ -299,10 +301,11 @@ public class HapusDataPegawai extends javax.swing.JFrame {
         P_Kode_Label = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         exit_button = new javax.swing.JButton();
-        combo_list_surat = new javax.swing.JComboBox();
         button_lihat_detail = new javax.swing.JButton();
         nip_br2 = new javax.swing.JLabel();
         button_remove_all_data = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table_surat_pns = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -625,7 +628,7 @@ public class HapusDataPegawai extends javax.swing.JFrame {
         SK_CPNS.add(button_hapus_sk_cpns, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 270, -1, -1));
 
         jLabel109.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PIcture/wall2.jpg"))); // NOI18N
-        SK_CPNS.add(jLabel109, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 380));
+        SK_CPNS.add(jLabel109, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 370));
 
         Tab_PNS.addTab("SK_CPNS", SK_CPNS);
 
@@ -1197,9 +1200,7 @@ public class HapusDataPegawai extends javax.swing.JFrame {
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         getContentPane().add(jInternalFrame1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 830, 510));
@@ -1256,12 +1257,12 @@ public class HapusDataPegawai extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, -1, -1));
+        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, -1, -1));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PIcture/wall1.jpg"))); // NOI18N
-        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 520, 110));
+        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 520, 90));
 
-        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 540, 130));
+        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 540, 110));
 
         jLabel3.setFont(new java.awt.Font("Arial Black", 0, 18));
         jLabel3.setText("Hapus data Pegawai");
@@ -1289,14 +1290,6 @@ public class HapusDataPegawai extends javax.swing.JFrame {
         });
         jPanel3.add(exit_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(757, 325, 90, 40));
 
-        combo_list_surat.setEnabled(false);
-        combo_list_surat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combo_list_suratActionPerformed(evt);
-            }
-        });
-        jPanel3.add(combo_list_surat, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 300, -1));
-
         button_lihat_detail.setText("Lihat Detail");
         button_lihat_detail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1308,11 +1301,11 @@ public class HapusDataPegawai extends javax.swing.JFrame {
                 button_lihat_detailFocusGained(evt);
             }
         });
-        jPanel3.add(button_lihat_detail, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, -1, -1));
+        jPanel3.add(button_lihat_detail, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 280, -1, -1));
 
         nip_br2.setFont(new java.awt.Font("Tahoma", 1, 14));
         nip_br2.setText("Daftar Surat yang ada");
-        jPanel3.add(nip_br2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, -1, -1));
+        jPanel3.add(nip_br2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, -1, -1));
 
         button_remove_all_data.setText("Hapus Seluruh Data");
         button_remove_all_data.addActionListener(new java.awt.event.ActionListener() {
@@ -1320,7 +1313,25 @@ public class HapusDataPegawai extends javax.swing.JFrame {
                 button_remove_all_dataActionPerformed(evt);
             }
         });
-        jPanel3.add(button_remove_all_data, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 270, -1, -1));
+        jPanel3.add(button_remove_all_data, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 280, -1, -1));
+
+        table_surat_pns.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "SuratCPNS", "SuratPangkatTerakhir", "SuratSPTKGTerakhir", "SuratKarpeg", "SuratNikah", "SuratNIPBaru", "Suratkk"
+            }
+        ));
+        table_surat_pns.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_surat_pnsMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(table_surat_pns);
+
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 830, 70));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PIcture/wall2.jpg"))); // NOI18N
         jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 370));
@@ -1351,7 +1362,6 @@ public class HapusDataPegawai extends javax.swing.JFrame {
                             + "dengan NIP " + k.getNip_baru() + " \n atas nama " + k.getNama_pns() + "\n"
                             + "Apakah akan lihat daftar surat ? ", "konfirmasi", JOptionPane.OK_CANCEL_OPTION);
                     if (pilihan == 0) {
-                        combo_list_surat.setEnabled(true);
                         refreshListComboSurat(cari_txt.getText());
                     }
                 }
@@ -1386,20 +1396,14 @@ public class HapusDataPegawai extends javax.swing.JFrame {
     }//GEN-LAST:event_button_hapus_sk_cpnsActionPerformed
 
     private void button_lihat_detailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_lihat_detailActionPerformed
-        String jenisSurat = (String) combo_list_surat.getSelectedItem();
+//        String jenisSurat = (String) combo_list_surat.getSelectedItem();
         String nipBaru = cari_txt.getText();
-        String[] temp = jenisSurat.split(" ");
-//        if () {
-//        }
-        System.out.println(temp[1]);
+//        String[] temp = jenisSurat.split(" ");
+////        if () {
+////        }
+//        System.out.println(temp[1]);
 //        if (temp[0].equals("Data_CPNS")) {
         try {
-//                Tab_PNS.setEnabledAt(0, true);
-//                Tab_PNS.setEnabledAt(1, false);
-//                Tab_PNS.setEnabledAt(2, false);
-//                Tab_PNS.setEnabledAt(3, false);
-//                Tab_PNS.setEnabledAt(4, false);
-//                Tab_PNS.setEnabledAt(5, false);
             isiCPNS(nipBaru);
             isiSK_PangkatTerakhir(nipBaru);
             isiSPTKG_Terakhir(nipBaru);
@@ -1448,18 +1452,13 @@ public class HapusDataPegawai extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         jInternalFrame1.setVisible(false);
-        combo_list_surat.addItem("");
+        refreshListComboSurat(cari_txt.getText());
         // TODO add your handling code here:
 }//GEN-LAST:event_jButton2ActionPerformed
 
     private void button_lihat_detailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_button_lihat_detailFocusGained
         // TODO add your handling code here:
     }//GEN-LAST:event_button_lihat_detailFocusGained
-
-    private void combo_list_suratActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_list_suratActionPerformed
-//        refreshListComboSurat(cari_txt.getText());
-        // TODO add your handling code here:
-    }//GEN-LAST:event_combo_list_suratActionPerformed
 
     private void button_hapus_sk_PTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_hapus_sk_PTActionPerformed
         try {
@@ -1580,19 +1579,35 @@ public class HapusDataPegawai extends javax.swing.JFrame {
                     + "Lanjut Proses ?", "Konfirmasi hapus",
                     JOptionPane.OK_CANCEL_OPTION);
             if (status == 0) {
-                String jenisSurat = (String) combo_list_surat.getSelectedItem();
-                String[] temp = jenisSurat.split(" ");
-
-//                    ControlData.getKoneksi().delete_AllData(temp[1]);
-                    System.out.println(jenisSurat);
-
+                String cpns = table_surat_pns.getValueAt(0, 0).toString();
+                String suratPangkatterakhir = table_surat_pns.getValueAt(0, 1).toString();
+                String sptkg = table_surat_pns.getValueAt(0, 2).toString();
+                String karpeg = table_surat_pns.getValueAt(0, 3).toString();
+                String nikah = table_surat_pns.getValueAt(0, 4).toString();
+                String nipBaru = table_surat_pns.getValueAt(0, 5).toString();
+                String kk = table_surat_pns.getValueAt(0, 6).toString();
+                ControlData.getKoneksi().delete_kk(kk);
+                ControlData.getKoneksi().delete_sk_cpns(cpns);
+                ControlData.getKoneksi().delete_sk_karpeg(karpeg);
+                ControlData.getKoneksi().delete_sk_nipbaru(nipBaru);
+                ControlData.getKoneksi().delete_sk_pangkatterakhir(suratPangkatterakhir);
+                ControlData.getKoneksi().delete_sptkg_terakhir(sptkg);
+                ControlData.getKoneksi().delete_srt_nikah(nikah);
+                ControlData.getKoneksi().DeleteAllanggotakeluarga(kk);
+                ControlData.getKoneksi().delete_PNS(cari_txt.getText());
+                cari_txt.setText("");
+                refreshListComboSurat("");
                 JOptionPane.showMessageDialog(rootPane, "Data Pengawai NIP " + cari_txt.getText() + " berhasil dihapus");
+                cari_txt.requestFocus();
             }
-            isiKK_kosong(cari_txt.getText(), KK_NoKK_TF.getText());
         } catch (Exception ex) {
             Logger.getLogger(HapusDataPegawai.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_button_remove_all_dataActionPerformed
+
+    private void table_surat_pnsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_surat_pnsMouseClicked
+
+}//GEN-LAST:event_table_surat_pnsMouseClicked
     public void isiCPNS(String nipBaru) throws Exception {
         SK_CPNS cpns = Controller.ControlData.getKoneksi().tampilSK_CPNS(nipBaru);
         if (cpns == null) {
@@ -1897,18 +1912,11 @@ public class HapusDataPegawai extends javax.swing.JFrame {
 
     private void refreshListComboSurat(String id) {
         try {
-            List<PNS> search = ControlData.getKoneksi().SearchDataPNS_NIPBaru(id);
-            for (PNS k : search) {
-                combo_list_surat.addItem("Data_CPNS" + " " + k.getId_SuratCPNS());
-                combo_list_surat.addItem("Data_Surat_Pangkat_Terakhir" + " " + k.getId_SuratPangkatTerakhir());
-                combo_list_surat.addItem("Data_SPTKG" + " " + k.getId_SuratSPTKGTerakhir());
-                combo_list_surat.addItem("Data_KARPEG" + " " + k.getId_SuratKarpeg());
-                combo_list_surat.addItem("Data_Nikah" + " " + k.getId_SuratNikah());
-                combo_list_surat.addItem("Data_Surat_Konversi_NIP" + " " + k.getId_SuratNIPBaru());
-                combo_list_surat.addItem("Data_KK" + " " + k.getId_Suratkk());
-            }
+            List<PNS> lkat = ControlData.getKoneksi().SearchDataPNS_NIPBaru(id);
+            DaftarSurat KTM = new DaftarSurat(lkat);
+            table_surat_pns.setModel(KTM);
         } catch (Exception ex) {
-            Logger.getLogger(HapusDataPegawai.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PencarianPegawai.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -2042,7 +2050,6 @@ public class HapusDataPegawai extends javax.swing.JFrame {
     private javax.swing.JButton button_lihat_detail;
     private javax.swing.JButton button_remove_all_data;
     private javax.swing.JTextField cari_txt;
-    private javax.swing.JComboBox combo_list_surat;
     private javax.swing.JButton exit_button;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -2168,11 +2175,13 @@ public class HapusDataPegawai extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel nip_br;
     private javax.swing.JLabel nip_br1;
     private javax.swing.JLabel nip_br2;
+    private javax.swing.JTable table_surat_pns;
     private javax.swing.JLabel time;
     // End of variables declaration//GEN-END:variables
 

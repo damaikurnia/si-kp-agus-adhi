@@ -478,7 +478,7 @@ public class PencarianPegawai extends javax.swing.JFrame {
 
     private void tampilTable(String id) {
         try {
-            List<PNS> lkat = ControlData.getKoneksi().SearchAll(id);
+            List<PNS> lkat = ControlData.getKoneksi().SearchAllPNS(id);
             CariPegawaiTableModel KTM = new CariPegawaiTableModel(lkat);
             jTable1.setModel(KTM);
         } catch (Exception ex) {

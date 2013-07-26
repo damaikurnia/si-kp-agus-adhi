@@ -1519,111 +1519,260 @@ public class EditPegawai extends javax.swing.JFrame {
 
     public void isiCPNS(String nipBaru) throws Exception {
         SK_CPNS cpns = Controller.ControlData.getKoneksi().tampilSK_CPNS(nipBaru);
-        CPNS_NoSurat_TF.setText(cpns.getId_SuratCPNS());
-        CPNS_TmpBuatSurat_TF.setText(cpns.getTempat_surat());
-        CPNS_TglSurat_Date.setDate(tukangSplit(cpns.getTanggal_surat()));
-        CPNS_nama_TF.setText(cpns.getNama_pemilik());
-        CPNS_TmpLhr_TF.setText(cpns.getTempat_lahir());
-        CPNS_TglLhr_Date.setDate(tukangSplit(cpns.getTanggal_lahir()));
-        CPNS_Partikelir_TF.setText(cpns.getPartikelir());
-        CPNS_TMTPartikelir_Date.setDate(tukangSplit(cpns.getTmt_partikelir()));
-        CPNS_Profesi_TF.setText(cpns.getProfesi());
-        CPNS_Sekolah_TF.setText(cpns.getSekolah());
-        CPNS_GpBulan_TF.setText(cpns.getGp_bulanan());
-        CPNS_GPdari_TF.setText(cpns.getDari_gaji());
-        CPNS_MasaKerjaTahun_TF.setText(cpns.getMasa_kerja_tahun());
-        CPNS_MasaKerjaBulan_TF.setText(cpns.getMasa_kerja_bulan());
-        CPNS_Golongan_TF.setText(cpns.getGolongan());
-        CPNS_NipLama_TF.setText(cpns.getNip_lama());
-        CPNS_NipBaru_TF.setText(cpns.getNip_baru());
-        CPNS_Berijazah_TF.setText(cpns.getBerijazah());
-        CPNS_PersetujuanDr_TF.setText(cpns.getPersetujuan_dr());
-        CPNS_NmrPersetujuan_TF.setText(cpns.getNmr_persetujuan());
-        CPNS_TMTPersetujuan_Date.setDate(tukangSplit(cpns.getTmt_persetujuan()));
-        CPNS_tanggalEdit.setText(tukangSplit2(cpns.getTanggal_penyimpanan_surat()).toString());
-        CPNS_kode_ope.setText(cpns.getKode_operator());
+        if (cpns == null) {
+            isiCPNSKosong(nipBaru);
+        } else {
+            CPNS_NoSurat_TF.setText(cpns.getId_SuratCPNS());
+            CPNS_TmpBuatSurat_TF.setText(cpns.getTempat_surat());
+            CPNS_TglSurat_Date.setDate(tukangSplit(cpns.getTanggal_surat()));
+            CPNS_nama_TF.setText(cpns.getNama_pemilik());
+            CPNS_TmpLhr_TF.setText(cpns.getTempat_lahir());
+            CPNS_TglLhr_Date.setDate(tukangSplit(cpns.getTanggal_lahir()));
+            CPNS_Partikelir_TF.setText(cpns.getPartikelir());
+            CPNS_TMTPartikelir_Date.setDate(tukangSplit(cpns.getTmt_partikelir()));
+            CPNS_Profesi_TF.setText(cpns.getProfesi());
+            CPNS_Sekolah_TF.setText(cpns.getSekolah());
+            CPNS_GpBulan_TF.setText(cpns.getGp_bulanan());
+            CPNS_GPdari_TF.setText(cpns.getDari_gaji());
+            CPNS_MasaKerjaTahun_TF.setText(cpns.getMasa_kerja_tahun());
+            CPNS_MasaKerjaBulan_TF.setText(cpns.getMasa_kerja_bulan());
+            CPNS_Golongan_TF.setText(cpns.getGolongan());
+            CPNS_NipLama_TF.setText(cpns.getNip_lama());
+            CPNS_NipBaru_TF.setText(cpns.getNip_baru());
+            CPNS_Berijazah_TF.setText(cpns.getBerijazah());
+            CPNS_PersetujuanDr_TF.setText(cpns.getPersetujuan_dr());
+            CPNS_NmrPersetujuan_TF.setText(cpns.getNmr_persetujuan());
+            CPNS_TMTPersetujuan_Date.setDate(tukangSplit(cpns.getTmt_persetujuan()));
+            CPNS_tanggalEdit.setText(tukangSplit2(cpns.getTanggal_penyimpanan_surat()).toString());
+            CPNS_kode_ope.setText(cpns.getKode_operator());
+        }
     }
 
     public void isiSK_PangkatTerakhir(String nipBaru) throws Exception {
         SK_PangkatTerakhir skpt = Controller.ControlData.getKoneksi().tampilSK_PangkatTerakhir(nipBaru);
-        PT_NoSurat_TF.setText(skpt.getId_SuratPangkatTerakhir());
-        PT_Nama_TF.setText(skpt.getNama_pemilik());
-        PT_TmpLhr_TF.setText(skpt.getTempat_lahir());
-        PT_TglLhr_Date.setDate(tukangSplit(skpt.getTanggal_lahir()));
-        PT_NipLama_TF.setText(skpt.getNip_lama());
-        PT_NipBaru_TF.setText(skpt.getNip_baru());
-        PT_Pend_TF.setText(skpt.getPendidikan());
-        PT_PngktLm_TF.setText(skpt.getPangkat_lama());
-        PT_GolLm_TF.setText(skpt.getGolongan_lama());
-        PT_TmtLm_Date.setDate(tukangSplit(skpt.getTmt_lama()));
-        PT_Profesi_TF.setText(skpt.getProfesi());
-        PT_Sekolah_TF.setText(skpt.getSekolah());
-        PT_PngktBr_TF.setText(skpt.getPangkat_baru());
-        PT_GolBr_TF.setText(skpt.getGolongan_baru());
-        PT_TmtBr_Date.setDate(tukangSplit(skpt.getTmt_baru()));
-        PT_MsKerjaGolThn_TF.setText(skpt.getMasa_kerja_golongan());
-        PT_MsKerjaGolBln_TF.setText(skpt.getMasa_kerja_golongan_bulan());
-        PT_GajiPokok_TF.setText(skpt.getGaji_pokok());
-        PT_tanggalEdit.setText(tukangSplit2(skpt.getTanggal_penyimpanan_surat()).toString());
-        PT_kode_ope.setText(skpt.getKode_operator());
+        if (skpt == null) {
+            isiSK_PangkatTerakhirKosong(nipBaru);
+        } else {
+            PT_NoSurat_TF.setText(skpt.getId_SuratPangkatTerakhir());
+            PT_Nama_TF.setText(skpt.getNama_pemilik());
+            PT_TmpLhr_TF.setText(skpt.getTempat_lahir());
+            PT_TglLhr_Date.setDate(tukangSplit(skpt.getTanggal_lahir()));
+            PT_NipLama_TF.setText(skpt.getNip_lama());
+            PT_NipBaru_TF.setText(skpt.getNip_baru());
+            PT_Pend_TF.setText(skpt.getPendidikan());
+            PT_PngktLm_TF.setText(skpt.getPangkat_lama());
+            PT_GolLm_TF.setText(skpt.getGolongan_lama());
+            PT_TmtLm_Date.setDate(tukangSplit(skpt.getTmt_lama()));
+            PT_Profesi_TF.setText(skpt.getProfesi());
+            PT_Sekolah_TF.setText(skpt.getSekolah());
+            PT_PngktBr_TF.setText(skpt.getPangkat_baru());
+            PT_GolBr_TF.setText(skpt.getGolongan_baru());
+            PT_TmtBr_Date.setDate(tukangSplit(skpt.getTmt_baru()));
+            PT_MsKerjaGolThn_TF.setText(skpt.getMasa_kerja_golongan());
+            PT_MsKerjaGolBln_TF.setText(skpt.getMasa_kerja_golongan_bulan());
+            PT_GajiPokok_TF.setText(skpt.getGaji_pokok());
+            PT_tanggalEdit.setText(tukangSplit2(skpt.getTanggal_penyimpanan_surat()).toString());
+            PT_kode_ope.setText(skpt.getKode_operator());
+        }
     }
 
     public void isiSPTKG_Terakhir(String nipBaru) throws Exception {
         SPTKG_Terakhir sptkg = Controller.ControlData.getKoneksi().tampilSPTKG_Terakhir(nipBaru);
-        SPTKG_NoSurat_TF.setText(sptkg.getId_SuratSPTKGTerakhir());
-        SPTKG_TmpSurat_TF.setText(sptkg.getTempat_surat());
-        SPTKG_TglSurat_TF.setDate(tukangSplit(sptkg.getTanggal_surat()));
-        SPTKG_Nama_TF.setText(sptkg.getNama_pemilik());
-        SPTKG_NipLama_TF.setText(sptkg.getNip_lama());
-        SPTKG_NipBaru_TF.setText(sptkg.getNip_baru());
-        SPTKG_PangkatBr_TF.setText(sptkg.getPangkat_baru());
-        SPTKG_GolBr_TF.setText(sptkg.getGolongan_ruang_baru());
-        SPTKG_Sekolah_TF.setText(sptkg.getSekolah());
-        SPTKG_GajiLama_TF.setText(sptkg.getGajipokok_lama());
-        SPTKG_GajiBaru_TF.setText(sptkg.getGajipokok_baru());
-        SPTKG_TmtBr_TF.setDate(tukangSplit(sptkg.getTmt_baru()));
-        SPTKG_tanggalEdit.setText(tukangSplit2(sptkg.getTanggal_penyimpanan_surat()));
-        SPTKG_kode_ope.setText(sptkg.getKode_operator());
+        if (sptkg == null) {
+            isiSPTKG_TerakhirKosong(nipBaru);
+        } else {
+            SPTKG_NoSurat_TF.setText(sptkg.getId_SuratSPTKGTerakhir());
+            SPTKG_TmpSurat_TF.setText(sptkg.getTempat_surat());
+            SPTKG_TglSurat_TF.setDate(tukangSplit(sptkg.getTanggal_surat()));
+            SPTKG_Nama_TF.setText(sptkg.getNama_pemilik());
+            SPTKG_NipLama_TF.setText(sptkg.getNip_lama());
+            SPTKG_NipBaru_TF.setText(sptkg.getNip_baru());
+            SPTKG_PangkatBr_TF.setText(sptkg.getPangkat_baru());
+            SPTKG_GolBr_TF.setText(sptkg.getGolongan_ruang_baru());
+            SPTKG_Sekolah_TF.setText(sptkg.getSekolah());
+            SPTKG_GajiLama_TF.setText(sptkg.getGajipokok_lama());
+            SPTKG_GajiBaru_TF.setText(sptkg.getGajipokok_baru());
+            SPTKG_TmtBr_TF.setDate(tukangSplit(sptkg.getTmt_baru()));
+            SPTKG_tanggalEdit.setText(tukangSplit2(sptkg.getTanggal_penyimpanan_surat()));
+            SPTKG_kode_ope.setText(sptkg.getKode_operator());
+        }
     }
 
     public void isiSK_Karpeg(String nipBaru) throws Exception {
         SK_Karpeg karpeg = Controller.ControlData.getKoneksi().tampilSK_Karpeg(nipBaru);
-        Karpeg_NoSurat_TF.setText(karpeg.getId_SuratKarpeg());
-        Karpeg_Nama_TF.setText(karpeg.getNama_pemilik());
-        Karpeg_NipLama_TF.setText(karpeg.getNip_lama());
-        Karpeg_NipBaru_TF.setText(karpeg.getNip_baru());
-        Karpeg_TglLhr_Date.setDate(tukangSplit(karpeg.getTanggal_lahir()));
-        Karpeg_TMT_Date.setDate(tukangSplit(karpeg.getTmt_cpns()));
-        Karpeg_tanggalEdit.setText(tukangSplit2(karpeg.getTanggal_penyimpanan_surat()));
-        Karpeg_kode_ope.setText(karpeg.getKode_operator());
+        if (karpeg == null) {
+            isiSK_KarpegKosong(nipBaru);
+        } else {
+            Karpeg_NoSurat_TF.setText(karpeg.getId_SuratKarpeg());
+            Karpeg_Nama_TF.setText(karpeg.getNama_pemilik());
+            Karpeg_NipLama_TF.setText(karpeg.getNip_lama());
+            Karpeg_NipBaru_TF.setText(karpeg.getNip_baru());
+            Karpeg_TglLhr_Date.setDate(tukangSplit(karpeg.getTanggal_lahir()));
+            Karpeg_TMT_Date.setDate(tukangSplit(karpeg.getTmt_cpns()));
+            Karpeg_tanggalEdit.setText(tukangSplit2(karpeg.getTanggal_penyimpanan_surat()));
+            Karpeg_kode_ope.setText(karpeg.getKode_operator());
+        }
     }
 
     public void isiS_Nikah(String nipBaru) throws Exception {
         S_Nikah sn = Controller.ControlData.getKoneksi().tampilS_Nikah(nipBaru);
-        SN_NoSurat_TF.setText(sn.getId_SuratNikah());
-        SN_TglNikah_Date.setDate(tukangSplit(sn.getTanggal_nikah()));
-        SN_NamaSuami_TF.setText(sn.getNama_suami());
-        SN_NamaIstri_TF.setText(sn.getNama_istri());
-        SN_tanggalEdit.setText(tukangSplit2(sn.getTanggal_penyimpanan_surat()));
-        SN_kode_ope.setText(sn.getKode_operator());
+        if (sn == null) {
+            isiS_NikahKosong(nipBaru);
+        } else {
+            SN_NoSurat_TF.setText(sn.getId_SuratNikah());
+            SN_TglNikah_Date.setDate(tukangSplit(sn.getTanggal_nikah()));
+            SN_NamaSuami_TF.setText(sn.getNama_suami());
+            SN_NamaIstri_TF.setText(sn.getNama_istri());
+            SN_tanggalEdit.setText(tukangSplit2(sn.getTanggal_penyimpanan_surat()));
+            SN_kode_ope.setText(sn.getKode_operator());
+        }
     }
 
     public void isiKK(String nipBaru) throws Exception {
         KK kk = Controller.ControlData.getKoneksi().tampilKK(nipBaru);
-        KK_NoKK_TF.setText(kk.getId_Suratkk());
-        KK_NamaKK_TF.setText(kk.getNama_kk());
-        KK_Alamat_TF.setText(kk.getAlamat());
-        KK_RT_TF.setText(kk.getRT());
-        KK_RW_TF.setText(kk.getRW());
-        KK_KelDesa_TF.setText(kk.getKelurahan_Desa());
-        KK_Kec_TF.setText(kk.getKecamatan());
-        KK_KabKota_TF.setText(kk.getKabupaten_Kota());
-        KK_KodePos_TF.setText(kk.getKode_pos());
-        KK_Provinsi_TF.setText(kk.getProvinsi());
-        KK_tanggalEdit.setText(tukangSplit2(kk.getTanggal_penyimpanan_surat()));
-        KK_kode_ope.setText(kk.getKode_operator());
-        updateTerusTabelnyaKK(kk.getId_Suratkk());
-        idSuratkk = kk.getId_Suratkk();
+        if (kk == null) {
+            isiKK_kosong(nipBaru, KK_NoKK_TF.getText());
+        } else {
+            KK_NoKK_TF.setText(kk.getId_Suratkk());
+            KK_NamaKK_TF.setText(kk.getNama_kk());
+            KK_Alamat_TF.setText(kk.getAlamat());
+            KK_RT_TF.setText(kk.getRT());
+            KK_RW_TF.setText(kk.getRW());
+            KK_KelDesa_TF.setText(kk.getKelurahan_Desa());
+            KK_Kec_TF.setText(kk.getKecamatan());
+            KK_KabKota_TF.setText(kk.getKabupaten_Kota());
+            KK_KodePos_TF.setText(kk.getKode_pos());
+            KK_Provinsi_TF.setText(kk.getProvinsi());
+            KK_tanggalEdit.setText(tukangSplit2(kk.getTanggal_penyimpanan_surat()));
+            KK_kode_ope.setText(kk.getKode_operator());
+            updateTerusTabelnyaKK(kk.getId_Suratkk());
+            idSuratkk = kk.getId_Suratkk();
+        }
+
+    }
+
+    public void isiCPNSKosong(String nipBaru) throws Exception {
+        CPNS_NoSurat_TF.setText("-");
+        CPNS_TmpBuatSurat_TF.setText("-");
+        CPNS_TglSurat_Date.setDate(null);
+        CPNS_nama_TF.setText("-");
+        CPNS_TmpLhr_TF.setText("-");
+        CPNS_TglLhr_Date.setDate(null);
+        CPNS_Partikelir_TF.setText("-");
+        CPNS_TMTPartikelir_Date.setDate(null);
+        CPNS_Profesi_TF.setText("-");
+        CPNS_Sekolah_TF.setText("-");
+        CPNS_GpBulan_TF.setText("-");
+        CPNS_GPdari_TF.setText("-");
+        CPNS_MasaKerjaTahun_TF.setText("-");
+        CPNS_MasaKerjaBulan_TF.setText("-");
+        CPNS_Golongan_TF.setText("-");
+        CPNS_NipLama_TF.setText("-");
+        CPNS_NipBaru_TF.setText("-");
+        CPNS_Berijazah_TF.setText("-");
+        CPNS_PersetujuanDr_TF.setText("-");
+        CPNS_NmrPersetujuan_TF.setText("-");
+        CPNS_TMTPersetujuan_Date.setDate(null);
+//        CPNS_tanggalEdit.setText("-");
+//        CPNS_kode_ope.setText("-");
+    }
+
+    public void isiSK_PangkatTerakhirKosong(String nipBaru) throws Exception {
+        PT_NoSurat_TF.setText("-");
+        PT_Nama_TF.setText("-");
+        PT_TmpLhr_TF.setText("-");
+        PT_TglLhr_Date.setDate(null);
+        PT_NipLama_TF.setText("-");
+        PT_NipBaru_TF.setText("-");
+        PT_Pend_TF.setText("-");
+        PT_PngktLm_TF.setText("-");
+        PT_GolLm_TF.setText("-");
+        PT_TmtLm_Date.setDate(null);
+        PT_Profesi_TF.setText("-");
+        PT_Sekolah_TF.setText("-");
+        PT_PngktBr_TF.setText("-");
+        PT_GolBr_TF.setText("-");
+        PT_TmtBr_Date.setDate(null);
+        PT_MsKerjaGolThn_TF.setText("-");
+        PT_MsKerjaGolBln_TF.setText("-");
+        PT_GajiPokok_TF.setText("-");
+//        PT_tanggalEdit.setText(tukangSplit2(skpt.getTanggal_penyimpanan_surat()).toString());
+//        PT_kode_ope.setText(skpt.getKode_operator());
+    }
+
+    public void isiSPTKG_TerakhirKosong(String nipBaru) throws Exception {
+        SPTKG_NoSurat_TF.setText("-");
+        SPTKG_TmpSurat_TF.setText("-");
+        SPTKG_TglSurat_TF.setDate(null);
+        SPTKG_Nama_TF.setText("-");
+        SPTKG_NipLama_TF.setText("-");
+        SPTKG_NipBaru_TF.setText("-");
+        SPTKG_PangkatBr_TF.setText("-");
+        SPTKG_GolBr_TF.setText("-");
+        SPTKG_Sekolah_TF.setText("-");
+        SPTKG_GajiLama_TF.setText("-");
+        SPTKG_GajiBaru_TF.setText("-");
+        SPTKG_TmtBr_TF.setDate(null);
+//        SPTKG_tanggalEdit.setText(tukangSplit2(sptkg.getTanggal_penyimpanan_surat()));
+//        SPTKG_kode_ope.setText(sptkg.getKode_operator());
+    }
+
+    public void isiSK_KarpegKosong(String nipBaru) throws Exception {
+        Karpeg_NoSurat_TF.setText("-");
+        Karpeg_Nama_TF.setText("-");
+        Karpeg_NipLama_TF.setText("-");
+        Karpeg_NipBaru_TF.setText("-");
+        Karpeg_TglLhr_Date.setDate(null);
+        Karpeg_TMT_Date.setDate(null);
+//        Karpeg_tanggalEdit.setText(tukangSplit2(karpeg.getTanggal_penyimpanan_surat()));
+//        Karpeg_kode_ope.setText(karpeg.getKode_operator());
+    }
+
+    public void isiS_NikahKosong(String nipBaru) throws Exception {
+        SN_NoSurat_TF.setText("-");
+        SN_TglNikah_Date.setDate(null);
+        SN_NamaSuami_TF.setText("-");
+        SN_NamaIstri_TF.setText("-");
+//        SN_tanggalEdit.setText(tukangSplit2(sn.getTanggal_penyimpanan_surat()));
+//        SN_kode_ope.setText(sn.getKode_operator());
+    }
+
+    public void isiKK_kosong(String nipBaru, String idSuratkk) throws Exception {
+        KK_NoKK_TF.setText("-");
+        KK_NamaKK_TF.setText("-");
+        KK_Alamat_TF.setText("");
+        KK_RT_TF.setText("-");
+        KK_RW_TF.setText("-");
+        KK_KelDesa_TF.setText("-");
+        KK_Kec_TF.setText("-");
+        KK_KabKota_TF.setText("-");
+        KK_KodePos_TF.setText("-");
+        KK_Provinsi_TF.setText("-");
+        KK_tanggalEdit.setText(null);
+        KK_kode_ope.setText("-");
+//        updateTerusTabelnyaKK(kk.getId_Suratkk());
+//        idSuratkk = kk.getId_Suratkk();
+    }
+
+    private void kosongDataKK() {
+        int row = KK_TabelAnggotaKel_Tablel.getSelectedRow();
+        AK_Nama_TF.setText("-");
+        AK_NIK_TF.setText("-");
+        AK_JK_Combo.setSelectedItem("");
+        AK_TempatLahir_TF.setText("-");
+
+        AK_TanggalLahir_Date.setDate(null);
+        AK_Agama_Combo.setSelectedItem("");
+        AK_Pendidikan_Combo.setSelectedItem("");
+        AK_Pekerjaan_Combo.setSelectedItem("");
+        AK_Pekerjaan_TF.setText("-");
+        AK_StatusKawin_Combo.setSelectedItem("");
+        AK_HubKeluarga_Combo.setSelectedItem("");
+        AK_Kewarganegaraan_Combo.setSelectedItem("");
+        AK_NoPaspor_TF.setText("-");
+        AK_NoKitasKitap_TF.setText("-");
+        AK_NamaAyah_TF.setText("-");
+        AK_NamaIbu_TF.setText("-");
     }
 
     public void dataOperatorEditPegawai(String nama, String id) {
