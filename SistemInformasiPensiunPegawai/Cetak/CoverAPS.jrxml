@@ -58,7 +58,6 @@ WHERE
      pns.nip_baru LIKE  $P{NIP}
  AND pns.`id_SuratCPNS` = sk_cpns.`id_SuratCPNS`
  AND pns.`id_SuratKarpeg` = sk_karpeg.`id_SuratKarpeg`
- AND pns.`id_SuratNIPBaru` = sk_nipbaru.`id_SuratNIPBaru`
  AND pns.id_SuratSPTKGTerakhir =sptkg_terakhir.id_SuratSPTKGTerakhir 
  AND pns.id_Suratkk =kk.id_Suratkk]]></queryString>
 

@@ -66,7 +66,7 @@ WHERE
  AND anggotakeluarga.nama_lengkap =pns.nama_pns
  AND pns.id_Suratkk =kk.id_Suratkk 
  AND anggotakeluarga.id_suratKK =kk.id_Suratkk 
- AND pns.id_SuratSPTKGTerakhir =sptkg_terakhir.id_SuratSPTKGTerakhir ]]></queryString>
+ AND pns.id_SuratSPTKGTerakhir =sptkg_terakhir.id_SuratSPTKGTerakhir]]></queryString>
 
 	<field name="pns_nama_pns" class="java.lang.String"/>
 	<field name="sk_nipbaru_nip_lama" class="java.lang.String"/>

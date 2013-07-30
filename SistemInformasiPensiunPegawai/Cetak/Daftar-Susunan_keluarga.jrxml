@@ -33,14 +33,13 @@
 		<defaultValueExpression ><![CDATA[""]]></defaultValueExpression>
 	</parameter>
 	<queryString><![CDATA[SELECT
-	a.nama_pemilik, c.nip_lama, c.nip_baru, d.tempat_lahir, DATE_FORMAT(d.tanggal_lahir, '%d-%M-%Y') AS tanggal_lahir,
+	a.nama_pemilik, e.nip_baru, d.tempat_lahir, DATE_FORMAT(d.tanggal_lahir, '%d-%M-%Y') AS tanggal_lahir,
 	a.pangkat_baru, a.golongan_baru,e.gajipokok_baru,d.Profesi, f.id_SuratKarpeg,
 	DATE_FORMAT(g.tanggal_nikah, '%d-%M-%Y') AS tanggal_nikah,e.Sekolah, UPPER(h.Alamat) AS Alamat,UPPER(h.Kabupaten_kota)
 FROM
-	sk_pangkatterakhir a, pns b, sk_nipbaru c, sk_cpns d, sptkg_terakhir e, sk_karpeg f, s_nikah g, kk h
+	sk_pangkatterakhir a, pns b, sk_cpns d, sptkg_terakhir e, sk_karpeg f, s_nikah g, kk h
 WHERE
 	b.id_SuratPangkatTerakhir=a.id_SuratPangkatTerakhir AND
-	b.id_SuratNIPBaru = c.id_SuratNIPBaru AND
 	b.id_SuratCPNS=d.id_SuratCPNS AND
 	b.id_SuratSPTKGTerakhir	= e.id_SuratSPTKGTerakhir AND
 	b.id_SuratKarpeg = f.id_SuratKarpeg AND
@@ -49,7 +48,6 @@ WHERE
 	and e.nip_baru LIKE $P{NIP};]]></queryString>
 
 	<field name="nama_pemilik" class="java.lang.String"/>
-	<field name="nip_lama" class="java.lang.String"/>
 	<field name="nip_baru" class="java.lang.String"/>
 	<field name="tempat_lahir" class="java.lang.String"/>
 	<field name="tanggal_lahir" class="java.lang.String"/>

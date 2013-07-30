@@ -166,7 +166,7 @@ public class FrameOperator extends javax.swing.JFrame {
                 buttonTmbhPegActionPerformed(evt);
             }
         });
-        jPanel5.add(buttonTmbhPeg, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 184, 37));
+        jPanel5.add(buttonTmbhPeg, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 184, 37));
 
         buttonEditPeg.setFont(new java.awt.Font("Tahoma", 1, 12));
         buttonEditPeg.setText("Edit Pegawai");
@@ -175,7 +175,7 @@ public class FrameOperator extends javax.swing.JFrame {
                 buttonEditPegActionPerformed(evt);
             }
         });
-        jPanel5.add(buttonEditPeg, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 184, 37));
+        jPanel5.add(buttonEditPeg, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 184, 37));
 
         buttonHpsPeg.setFont(new java.awt.Font("Tahoma", 1, 12));
         buttonHpsPeg.setText("Hapus Pegawai");
@@ -184,7 +184,7 @@ public class FrameOperator extends javax.swing.JFrame {
                 buttonHpsPegActionPerformed(evt);
             }
         });
-        jPanel5.add(buttonHpsPeg, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 184, 37));
+        jPanel5.add(buttonHpsPeg, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 184, 37));
 
         buttonSearch.setFont(new java.awt.Font("Tahoma", 1, 12));
         buttonSearch.setText("Pencarian Pegawai");
@@ -193,7 +193,7 @@ public class FrameOperator extends javax.swing.JFrame {
                 buttonSearchActionPerformed(evt);
             }
         });
-        jPanel5.add(buttonSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 184, 37));
+        jPanel5.add(buttonSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 184, 37));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PIcture/wall1.jpg"))); // NOI18N
         jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 330, 230));
@@ -234,7 +234,9 @@ public class FrameOperator extends javax.swing.JFrame {
         int status = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin keluar", "Konfirmasi keluar",
                 JOptionPane.OK_CANCEL_OPTION);
         if (status == 0) {
-            System.exit(0);
+            HomeUtama Home=new HomeUtama();
+            Home.setVisible(true);
+            this.dispose();
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_keluar_buttonActionPerformed
