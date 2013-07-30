@@ -12,6 +12,7 @@ package View;
 
 import Controller.ConnMySql;
 import Controller.ControlData;
+import Model.DataAPS;
 import Model.DataMeninggal;
 import Model.KK;
 import Model.PNS;
@@ -22,6 +23,7 @@ import java.sql.Connection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,7 +53,10 @@ public class ProsesPensiun extends javax.swing.JFrame {
         combo_jenisPensiun.setVisible(false);
         tabel_cari.getColumnModel().getColumn(1).setCellRenderer(tengah);
         inter_proses_meninggal.setVisible(false);
+        Cetak_button_APS.setEnabled(false);
         //cetak_internal.setEnabled(false);
+        GregorianCalendar gc = new GregorianCalendar();
+        Date_APS.setDate(gc.getTime());
     }
 
     /** This method is called from within the constructor to
@@ -90,6 +95,23 @@ public class ProsesPensiun extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         kabupaten_TF = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
+        jInternalFrame_APS = new javax.swing.JInternalFrame();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
+        NAMA_APS = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Alasan_APS = new javax.swing.JTextArea();
+        Date_APS = new com.toedter.calendar.JDateChooser();
+        NIP_APS = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        button_batal_APS = new javax.swing.JButton();
+        button_SIMpan_APS = new javax.swing.JButton();
+        Cetak_button_APS = new javax.swing.JButton();
+        jLabel24 = new javax.swing.JLabel();
+        NIP_APS1 = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -113,7 +135,8 @@ public class ProsesPensiun extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -243,6 +266,80 @@ public class ProsesPensiun extends javax.swing.JFrame {
 
         getContentPane().add(inter_proses_meninggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 570, 440));
 
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 24));
+        jLabel20.setText("Data Pensiun APS");
+        jPanel6.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, -1, -1));
+        jPanel6.add(NAMA_APS, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 300, -1));
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel23.setText("Tanggal pengajuan");
+        jPanel6.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 140, -1));
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel21.setText("Alasan pengajuan");
+        jPanel6.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, -1, -1));
+
+        Alasan_APS.setColumns(20);
+        Alasan_APS.setRows(5);
+        jScrollPane2.setViewportView(Alasan_APS);
+
+        jPanel6.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 300, 114));
+
+        Date_APS.setDateFormatString("dd MM yyyy");
+        jPanel6.add(Date_APS, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, 300, -1));
+        jPanel6.add(NIP_APS, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 300, -1));
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel22.setText("NIP");
+        jPanel6.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, -1));
+
+        button_batal_APS.setText("Batal");
+        button_batal_APS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_batal_APSActionPerformed(evt);
+            }
+        });
+        jPanel6.add(button_batal_APS, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, -1, -1));
+
+        button_SIMpan_APS.setText("Simpan");
+        button_SIMpan_APS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_SIMpan_APSActionPerformed(evt);
+            }
+        });
+        jPanel6.add(button_SIMpan_APS, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, -1, -1));
+
+        Cetak_button_APS.setText("Cetak");
+        Cetak_button_APS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cetak_button_APSActionPerformed(evt);
+            }
+        });
+        jPanel6.add(Cetak_button_APS, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, -1, -1));
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel24.setText("NAMA");
+        jPanel6.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, -1, -1));
+        jPanel6.add(NIP_APS1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 300, -1));
+
+        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PIcture/bg1.png"))); // NOI18N
+        jPanel6.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 390));
+
+        javax.swing.GroupLayout jInternalFrame_APSLayout = new javax.swing.GroupLayout(jInternalFrame_APS.getContentPane());
+        jInternalFrame_APS.getContentPane().setLayout(jInternalFrame_APSLayout);
+        jInternalFrame_APSLayout.setHorizontalGroup(
+            jInternalFrame_APSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 704, Short.MAX_VALUE)
+        );
+        jInternalFrame_APSLayout.setVerticalGroup(
+            jInternalFrame_APSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jInternalFrame_APS, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 720, 420));
+
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PIcture/header2.jpg"))); // NOI18N
@@ -263,15 +360,11 @@ public class ProsesPensiun extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 180));
@@ -347,7 +440,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
         jLabel3.setText("Proses Pensiun Pegawai");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, -1, -1));
 
-        exit_button.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        exit_button.setFont(new java.awt.Font("Tahoma", 1, 14));
         exit_button.setText("Keluar");
         exit_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -459,7 +552,32 @@ public class ProsesPensiun extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "", JOptionPane.ERROR_MESSAGE);
             }
         } else if (kat.matches("A P S")) {
-            cetakAPS(nip_TF.getText());
+            // cetakAPS(nip_TF.getText());
+            int a = tabel_cari.getColumnCount();
+            int row = tabel_cari.getRowCount();
+            for (int i = 0; i < row; i++) {
+                try {
+                    String NIP = tabel_cari.getValueAt(i, 0).toString();
+                    String Nama = tabel_cari.getValueAt(i, 1).toString();
+                    String jk = ControlData.getKoneksi().cariJK(NIP);
+                    DataAPS daps = ControlData.getKoneksi().dataPegawaiaps(NIP);
+                    if (daps == null) {
+                        Alasan_APS.setText("");
+                    } else {
+                        Alasan_APS.setText(daps.getAlasan());
+                        Date_APS.setDate(getTanggal(daps.getTanggalAPS()));
+                    }
+                    NIP_APS.setText(NIP);
+                    NAMA_APS.setText(Nama);
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                } catch (Exception ex) {
+                    Logger.getLogger(ProsesPensiun.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            jInternalFrame_APS.setVisible(true);
+            Alasan_APS.requestFocus();
+
         } else if (kat.matches("Meninggal Dunia")) {
             int a = tabel_cari.getColumnCount();
             int row = tabel_cari.getRowCount();
@@ -557,6 +675,41 @@ public class ProsesPensiun extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_cetak_internalActionPerformed
+
+    private void button_SIMpan_APSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_SIMpan_APSActionPerformed
+        try {
+            String NIP = NIP_APS.getText();
+            String nama = NAMA_APS.getText();
+            String Alasan = Alasan_APS.getText();
+            Date tgl = Date_APS.getDate();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String tanggal = sdf.format(tgl);
+
+            DataAPS dap = new DataAPS(NIP, nama, tanggal, Alasan);
+            ControlData.getKoneksi().insertDataAPS(dap, P_Kode_Label.getText());
+            JOptionPane.showMessageDialog(rootPane, "data disimpan");
+            button_SIMpan_APS.setEnabled(false);
+            Cetak_button_APS.setEnabled(true);
+            button_batal_APS.setText("Keluar");
+            // TODO add your handling code here:
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, "data gagal disimpan");
+            Logger.getLogger(ProsesPensiun.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_button_SIMpan_APSActionPerformed
+
+    private void button_batal_APSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_batal_APSActionPerformed
+        jInternalFrame_APS.setVisible(false);
+    }//GEN-LAST:event_button_batal_APSActionPerformed
+
+    private void Cetak_button_APSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cetak_button_APSActionPerformed
+        cetakAPS(NIP_APS.getText());
+        jInternalFrame_APS.setVisible(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Cetak_button_APSActionPerformed
     private JasperPrint multipageLinking(JasperPrint page1, JasperPrint page2) {
         List<JRPrintPage> pages = page2.getPages();
         for (int count = 0; count < pages.size(); count++) {
@@ -588,6 +741,27 @@ public class ProsesPensiun extends javax.swing.JFrame {
         return kirimFormat;
     }
 
+    public String nomorSuratPensiun(String NIP) {
+        String nomor = "";
+        GregorianCalendar gc = new GregorianCalendar();
+        SimpleDateFormat sdf = new SimpleDateFormat("yy");
+        System.out.println();
+        try {
+            String gol = ControlData.getKoneksi().cekGolongan(NIP);
+            String[] cek=gol.split("/");
+            if (cek[0].equalsIgnoreCase("II")) {
+                nomor = "882.2  /      /"+sdf.format(gc.getTime());
+            }if (cek[0].equalsIgnoreCase("III")) {
+                nomor = "882.3  /      /"+sdf.format(gc.getTime());
+            }if (cek[0].equalsIgnoreCase("IV")) {
+                nomor = "882.4  /      /"+sdf.format(gc.getTime());
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(ProsesPensiun.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return nomor;
+    }
+
     private void cetakBUP(String nip) {
         Connection kon = null;
         try {
@@ -597,8 +771,9 @@ public class ProsesPensiun extends javax.swing.JFrame {
 //            } else {
             kon = ConnMySql.getConnections();
             Map reportparametermap1 = new HashMap();
-
+            String no=nomorSuratPensiun(nip);
             reportparametermap1.put("NIP", nip);
+            reportparametermap1.put("nomor", no);
             String reportSource = "./Cetak/CoverBUP.jasper";
             String reportSource2 = "./Cetak/Surat_keterangan.jasper";
             String reportSource3 = "./Cetak/Badan_Administrasi.jasper";
@@ -899,7 +1074,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
 //            JasperPrint jasperPrint2 = JasperFillManager.fillReport(reportSource3, params2, kon);
 //            JasperViewer.viewReport(jasperPrint2, false);
 
-             JasperPrint firstjasperprint = new JasperPrint();
+            JasperPrint firstjasperprint = new JasperPrint();
             firstjasperprint = JasperFillManager.fillReport(reportSource, reportparametermap1, kon);
             JasperPrint secondjasperprint = new JasperPrint();
             secondjasperprint = JasperFillManager.fillReport(reportSource2, reportparametermap1, kon);
@@ -952,17 +1127,26 @@ public class ProsesPensiun extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea Alasan_APS;
+    private javax.swing.JButton Cetak_button_APS;
+    private com.toedter.calendar.JDateChooser Date_APS;
+    private javax.swing.JTextField NAMA_APS;
+    private javax.swing.JTextField NIP_APS;
+    private javax.swing.JTextField NIP_APS1;
     private javax.swing.JTextField NIP_inter_meninggal;
     private javax.swing.JLabel P_Kode_Label;
     private javax.swing.JLabel P_Nama_Label;
     private javax.swing.JTextField alamat;
     private javax.swing.JButton batal_internal;
+    private javax.swing.JButton button_SIMpan_APS;
+    private javax.swing.JButton button_batal_APS;
     private javax.swing.JButton button_proses;
     private javax.swing.JButton cetak_internal;
     private javax.swing.JComboBox combo_jenisPensiun;
     private com.toedter.calendar.JDateChooser date_meninggal;
     private javax.swing.JButton exit_button;
     private javax.swing.JInternalFrame inter_proses_meninggal;
+    private javax.swing.JInternalFrame jInternalFrame_APS;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -975,6 +1159,12 @@ public class ProsesPensiun extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -987,7 +1177,9 @@ public class ProsesPensiun extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel jenis_label;
     private javax.swing.JLabel jk_label;
     private javax.swing.JTextField kabupaten_TF;

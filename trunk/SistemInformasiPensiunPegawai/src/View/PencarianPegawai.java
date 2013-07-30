@@ -92,7 +92,8 @@ public class PencarianPegawai extends javax.swing.JFrame {
         exit_button = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jInternalFrame_proses.setToolTipText("");
@@ -301,7 +302,7 @@ public class PencarianPegawai extends javax.swing.JFrame {
         jLabel6.setText("Selamat Datang,");
         jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        exit_button.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        exit_button.setFont(new java.awt.Font("Tahoma", 1, 14));
         exit_button.setText("Keluar");
         exit_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -418,6 +419,7 @@ public class PencarianPegawai extends javax.swing.JFrame {
 
     private void button_proses_pensiunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_proses_pensiunActionPerformed
         ProsesPensiun pro = new ProsesPensiun();
+        pro.isiNIP(nip.getText());
        // pro.isiNIP(nip.getText());
         pro.dataOperator(P_Nama_Label.getText(), P_Kode_Label.getText());
         this.dispose();

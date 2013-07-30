@@ -30,14 +30,13 @@
 		<defaultValueExpression ><![CDATA[""]]></defaultValueExpression>
 	</parameter>
 	<queryString><![CDATA[SELECT
-	a.nama_pemilik, c.nip_baru, f.id_SuratKarpeg, d.tempat_lahir, DATE_FORMAT(d.tanggal_lahir, '%d-%m-%Y') AS tanggal_lahir,
+	a.nama_pemilik, e.nip_baru, f.id_SuratKarpeg, d.tempat_lahir, DATE_FORMAT(d.tanggal_lahir, '%d-%m-%Y') AS tanggal_lahir,
 	a.pangkat_baru, a.golongan_baru, e.gajipokok_baru, e.Sekolah, h.RT,h.RW, h.Kelurahan_Desa, h.Kecamatan, h.Kabupaten_Kota,
 	DATE_FORMAT(CURRENT_DATE, '%d-%m-%Y') AS tanggalsekarang
 FROM
-	sk_pangkatterakhir a, pns b, sk_nipbaru c, sk_cpns d, sptkg_terakhir e, sk_karpeg f, kk h
+	sk_pangkatterakhir a, pns b, sk_cpns d, sptkg_terakhir e, sk_karpeg f, kk h
 WHERE
 	b.id_SuratPangkatTerakhir=a.id_SuratPangkatTerakhir AND
-	b.id_SuratNIPBaru = c.id_SuratNIPBaru AND
 	b.id_SuratCPNS=d.id_SuratCPNS AND
 	b.id_SuratSPTKGTerakhir	= e.id_SuratSPTKGTerakhir AND
 	b.id_SuratKarpeg = f.id_SuratKarpeg AND

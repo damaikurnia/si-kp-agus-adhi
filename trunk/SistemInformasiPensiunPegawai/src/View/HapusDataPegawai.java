@@ -1848,8 +1848,8 @@ public class HapusDataPegawai extends javax.swing.JFrame {
     }
 
     public void dataOperatorEditPegawai(String nama, String id) {
-        TP_Nama_Label.setText(nama);
-        TP_Kode_Label.setText(id);
+        P_Nama_Label.setText(nama);
+        P_Kode_Label.setText(id);
     }
 
     public Date tukangSplit(String tanggal) throws ParseException {

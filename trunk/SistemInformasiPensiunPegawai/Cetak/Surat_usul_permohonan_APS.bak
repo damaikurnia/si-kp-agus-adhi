@@ -30,8 +30,8 @@
 		<defaultValueExpression ><![CDATA[""]]></defaultValueExpression>
 	</parameter>
 	<queryString><![CDATA[SELECT
-	a.nama_pemilik, c.nip_lama,
- c.nip_baru, 
+	a.nama_pemilik, a.nip_lama,
+ e.nip_baru, 
 Upper(d.tempat_lahir),
 DATE_FORMAT(d.tanggal_lahir, '%d-%m-%Y') AS tanggal_lahir,
 	Upper(a.pangkat_baru), 
@@ -45,13 +45,12 @@ Upper(e.Sekolah),
 Upper(h.Alamat),
  DATE_FORMAT(a.tmt_baru, '%d-%m-%Y') AS tmt,
 	DATE_FORMAT(CURRENT_DATE, '%d-%m-%Y') AS tanggalsekarang,
-Upper(h.kabupaten_kota) as kabupaten
+Upper(h.kabupaten_kota) as kabupaten,DATE_FORMAT(CURRENT_DATE, '%y') as thn
 FROM
-	sk_pangkatterakhir a, pns b, sk_nipbaru c, sk_cpns d, sptkg_terakhir e, sk_karpeg f, s_nikah g, kk h
+	sk_pangkatterakhir a, pns b, sk_cpns d, sptkg_terakhir e, sk_karpeg f, s_nikah g, kk h
 WHERE
 	b.nip_baru LIKE $P{NIP} AND
 	b.id_SuratPangkatTerakhir=a.id_SuratPangkatTerakhir AND
-	b.id_SuratNIPBaru = c.id_SuratNIPBaru AND
 	b.id_SuratCPNS=d.id_SuratCPNS AND
 	b.id_SuratSPTKGTerakhir	= e.id_SuratSPTKGTerakhir AND
 	b.id_SuratKarpeg = f.id_SuratKarpeg AND
@@ -76,6 +75,7 @@ WHERE
 	<field name="tmt" class="java.lang.String"/>
 	<field name="tanggalsekarang" class="java.lang.String"/>
 	<field name="kabupaten" class="java.lang.String"/>
+	<field name="thn" class="java.lang.String"/>
 
 		<background>
 			<band height="0"  isSplitAllowed="true" >
@@ -917,7 +917,7 @@ WHERE
 						key="textField-1"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nama_pemilik}]]></textFieldExpression>
 				</textField>
@@ -930,7 +930,7 @@ WHERE
 						key="textField-2"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nip_baru}]]></textFieldExpression>
 				</textField>
@@ -943,7 +943,7 @@ WHERE
 						key="textField-3"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nama_pemilik}]]></textFieldExpression>
 				</textField>
@@ -956,7 +956,7 @@ WHERE
 						key="textField-4"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nip_lama}]]></textFieldExpression>
 				</textField>
@@ -969,7 +969,7 @@ WHERE
 						key="textField-5"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{Upper(d.tempat_lahir)}]]></textFieldExpression>
 				</textField>
@@ -982,7 +982,7 @@ WHERE
 						key="textField-6"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{Upper(a.pangkat_baru)}]]></textFieldExpression>
 				</textField>
@@ -995,7 +995,7 @@ WHERE
 						key="textField-7"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$F{tahun}]]></textFieldExpression>
 				</textField>
@@ -1008,7 +1008,7 @@ WHERE
 						key="textField-8"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{gajipokok_baru}]]></textFieldExpression>
 				</textField>
@@ -1021,7 +1021,7 @@ WHERE
 						key="textField-9"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{Profesi}]]></textFieldExpression>
 				</textField>
@@ -1034,7 +1034,7 @@ WHERE
 						key="textField-10"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{id_SuratKarpeg}]]></textFieldExpression>
 				</textField>
@@ -1047,7 +1047,7 @@ WHERE
 						key="textField-11"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{tanggal_nikah}]]></textFieldExpression>
 				</textField>
@@ -1060,7 +1060,7 @@ WHERE
 						key="textField-12"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{Upper(e.Sekolah)}]]></textFieldExpression>
 				</textField>
@@ -1086,7 +1086,7 @@ WHERE
 						key="textField-16"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nip_baru}]]></textFieldExpression>
 				</textField>
@@ -1099,7 +1099,7 @@ WHERE
 						key="staticText-66"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center">
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<text><![CDATA[/]]></text>
 				</staticText>
@@ -1112,7 +1112,7 @@ WHERE
 						key="textField-17"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{tanggal_lahir}]]></textFieldExpression>
 				</textField>
@@ -1125,7 +1125,7 @@ WHERE
 						key="staticText-67"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center">
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<text><![CDATA[/]]></text>
 				</staticText>
@@ -1151,7 +1151,7 @@ WHERE
 						key="textField-18"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{golongan_baru}]]></textFieldExpression>
 				</textField>
@@ -1164,7 +1164,7 @@ WHERE
 						key="textField-19"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$F{Bulan}]]></textFieldExpression>
 				</textField>
@@ -1177,7 +1177,7 @@ WHERE
 						key="staticText-69"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center">
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<text><![CDATA[Tahun]]></text>
 				</staticText>
@@ -1190,7 +1190,7 @@ WHERE
 						key="staticText-70"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center">
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<text><![CDATA[Bulan]]></text>
 				</staticText>
@@ -1203,7 +1203,7 @@ WHERE
 						key="textField-20"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{tmt}]]></textFieldExpression>
 				</textField>
@@ -1216,7 +1216,7 @@ WHERE
 						key="staticText-71"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center">
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<text><![CDATA[T.M.T]]></text>
 				</staticText>
@@ -1303,7 +1303,7 @@ WHERE
 						key="textField-1"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{tanggalsekarang}]]></textFieldExpression>
 				</textField>
@@ -1311,14 +1311,14 @@ WHERE
 					<reportElement
 						x="70"
 						y="2"
-						width="26"
+						width="74"
 						height="15"
 						key="staticText-5"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[881.]]></text>
+				<text><![CDATA[881/              /]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -1384,6 +1384,19 @@ WHERE
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{Upper(h.Alamat)}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="144"
+						y="2"
+						width="26"
+						height="14"
+						key="textField-24"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{thn}]]></textFieldExpression>
 				</textField>
 			</band>
 		</detail>

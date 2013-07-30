@@ -34,17 +34,17 @@
 	</parameter>
 	<queryString><![CDATA[SELECT
 	upper(a.nama_pemilik) as nama_pemilik, 
-c.nip_lama, c.nip_baru, d.tempat_lahir, DATE_FORMAT(d.tanggal_lahir, '%d-%m-%Y') AS tanggal_lahir,
+e.nip_lama, a.nip_baru, d.tempat_lahir, DATE_FORMAT(d.tanggal_lahir, '%d-%m-%Y') AS tanggal_lahir,
 	a.pangkat_baru, a.golongan_baru,ROUND(DATEDIFF(CURRENT_DATE,d.tanggal_surat)/365,0) AS tahun,
 	ROUND(MOD(DATEDIFF(CURRENT_DATE,d.tanggal_surat)/365,12)) AS Bulan,e.gajipokok_baru,d.Profesi, f.id_SuratKarpeg,
 	DATE_FORMAT(g.tanggal_nikah, '%d-%m-%Y') AS tanggal_nikah,e.Sekolah, h.Alamat, DATE_FORMAT(a.tmt_baru, '%d-%m-%Y') AS tmt,
-	DATE_FORMAT(CURRENT_DATE, '%d-%m-%Y') AS tanggalsekarang
+	DATE_FORMAT(CURRENT_DATE, '%d-%m-%Y') AS tanggalsekarang,
+DATE_FORMAT(CURRENT_DATE, '%y') as thn
 FROM
-	sk_pangkatterakhir a, pns b, sk_nipbaru c, sk_cpns d, sptkg_terakhir e, sk_karpeg f, s_nikah g, kk h
+	sk_pangkatterakhir a, pns b, sk_cpns d, sptkg_terakhir e, sk_karpeg f, s_nikah g, kk h
 WHERE
 	b.nip_baru LIKE $P{NIP} AND
 	b.id_SuratPangkatTerakhir=a.id_SuratPangkatTerakhir AND
-	b.id_SuratNIPBaru = c.id_SuratNIPBaru AND
 	b.id_SuratCPNS=d.id_SuratCPNS AND
 	b.id_SuratSPTKGTerakhir	= e.id_SuratSPTKGTerakhir AND
 	b.id_SuratKarpeg = f.id_SuratKarpeg AND
@@ -68,6 +68,7 @@ WHERE
 	<field name="Alamat" class="java.lang.String"/>
 	<field name="tmt" class="java.lang.String"/>
 	<field name="tanggalsekarang" class="java.lang.String"/>
+	<field name="thn" class="java.lang.String"/>
 
 		<background>
 			<band height="0"  isSplitAllowed="true" >
@@ -857,7 +858,7 @@ WHERE
 						key="textField-1"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nama_pemilik}]]></textFieldExpression>
 				</textField>
@@ -870,7 +871,7 @@ WHERE
 						key="textField-2"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nip_baru}]]></textFieldExpression>
 				</textField>
@@ -1237,13 +1238,13 @@ WHERE
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="397"
-						y="13"
+						y="12"
 						width="115"
-						height="14"
+						height="15"
 						key="textField-1"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{tanggalsekarang}]]></textFieldExpression>
 				</textField>
@@ -1251,14 +1252,14 @@ WHERE
 					<reportElement
 						x="70"
 						y="13"
-						width="26"
+						width="90"
 						height="15"
 						key="staticText-5"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[882.]]></text>
+				<text><![CDATA[882.5 /                 /]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -1344,6 +1345,19 @@ WHERE
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_tgl_menininggal_sk_satu-satunya.jasper"]]></subreportExpression>
 				</subreport>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="161"
+						y="13"
+						width="21"
+						height="15"
+						key="textField-21"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{thn}]]></textFieldExpression>
+				</textField>
 			</band>
 		</detail>
 		<columnFooter>

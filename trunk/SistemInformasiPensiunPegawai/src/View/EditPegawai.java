@@ -324,7 +324,8 @@ public class EditPegawai extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel108 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         KK_Internal.setTitle("Tambah Anggota Keluarga");

@@ -17,6 +17,9 @@
 		 whenNoDataType="NoPages"
 		 isTitleNewPage="false"
 		 isSummaryNewPage="false">
+	<property name="ireport.zoom" value="1.5" />
+	<property name="ireport.x" value="0" />
+	<property name="ireport.y" value="480" />
 	<property name="ireport.scriptlethandling" value="0" />
 	<property name="ireport.encoding" value="UTF-8" />
 	<import value="java.util.*" />
@@ -31,9 +34,9 @@
 	</parameter>
 	<queryString><![CDATA[SELECT
      UPPER(pns.nama_pns) AS pns_nama_pns,
-     sk_nipbaru.`nip_lama` AS sk_nipbaru_nip_lama,
-     sk_nipbaru.`nip_baru` AS sk_nipbaru_nip_baru,
-     DATE_FORMAT(sk_nipbaru.tanggal_lahir,'%d-%m-%Y') AS sk_nipbaru_tanggal_lahir ,
+     sptkg_terakhir.`nip_lama` AS sk_nipbaru_nip_lama,
+     sptkg_terakhir.`nip_baru` AS sk_nipbaru_nip_baru,
+     DATE_FORMAT(sk_karpeg.tanggal_lahir,'%d-%m-%Y') AS sk_nipbaru_tanggal_lahir ,
      UPPER(sk_cpns.`tempat_lahir`) AS anggotakeluarga_tempat_lahir,
      UPPER(sptkg_terakhir.`pangkat_baru`) AS sptkg_terakhir_pangkat_baru,
      sptkg_terakhir.`golongan_ruang_baru` AS sptkg_terakhir_golongan_ruang_baru,
@@ -51,7 +54,6 @@
 	YEAR(sk_cpns.tanggal_lahir)+60 AS Tahun_TMT,
 	MONTH(sk_cpns.tanggal_lahir)+1 AS bulan_TMT
 FROM
-     `sk_nipbaru` sk_nipbaru,
      `sptkg_terakhir` sptkg_terakhir,
      `sk_karpeg` sk_karpeg,
      `sk_cpns` sk_cpns,
@@ -61,8 +63,7 @@ WHERE
      pns.nip_baru LIKE  $P{NIP}
  AND pns.`id_SuratCPNS` = sk_cpns.`id_SuratCPNS`
  AND pns.`id_SuratKarpeg` = sk_karpeg.`id_SuratKarpeg`
- AND pns.`id_SuratNIPBaru` = sk_nipbaru.`id_SuratNIPBaru`
- AND pns.id_SuratSPTKGTerakhir =sptkg_terakhir.id_SuratSPTKGTerakhir 
+ AND pns.id_SuratSPTKGTerakhir =sptkg_terakhir.id_SuratSPTKGTerakhir
  AND pns.id_Suratkk =kk.id_Suratkk]]></queryString>
 
 	<field name="pns_nama_pns" class="java.lang.String"/>
@@ -123,7 +124,7 @@ WHERE
 						x="0"
 						y="17"
 						width="548"
-						height="0"
+						height="1"
 						key="line-2"/>
 					<graphicElement stretchType="NoStretch"/>
 				</line>
@@ -131,7 +132,7 @@ WHERE
 					<reportElement
 						x="548"
 						y="17"
-						width="0"
+						width="1"
 						height="127"
 						key="line-3"/>
 					<graphicElement stretchType="NoStretch"/>
@@ -140,7 +141,7 @@ WHERE
 					<reportElement
 						x="0"
 						y="16"
-						width="0"
+						width="1"
 						height="128"
 						key="line-6"/>
 					<graphicElement stretchType="NoStretch"/>
@@ -175,7 +176,7 @@ WHERE
 						x="0"
 						y="49"
 						width="548"
-						height="0"
+						height="1"
 						key="line-1"/>
 					<graphicElement stretchType="NoStretch"/>
 				</line>
@@ -521,7 +522,7 @@ WHERE
 					<reportElement
 						x="548"
 						y="0"
-						width="0"
+						width="1"
 						height="42"
 						key="line-4"/>
 					<graphicElement stretchType="NoStretch"/>
@@ -530,7 +531,7 @@ WHERE
 					<reportElement
 						x="0"
 						y="0"
-						width="0"
+						width="1"
 						height="42"
 						key="line-5"/>
 					<graphicElement stretchType="NoStretch"/>
@@ -540,7 +541,7 @@ WHERE
 						x="0"
 						y="723"
 						width="548"
-						height="0"
+						height="1"
 						key="line-7"/>
 					<graphicElement stretchType="NoStretch"/>
 				</line>
@@ -548,7 +549,7 @@ WHERE
 					<reportElement
 						x="548"
 						y="41"
-						width="0"
+						width="1"
 						height="672"
 						key="line-8"/>
 					<graphicElement stretchType="NoStretch"/>
@@ -557,7 +558,7 @@ WHERE
 					<reportElement
 						x="0"
 						y="41"
-						width="0"
+						width="1"
 						height="682"
 						key="line-9"/>
 					<graphicElement stretchType="NoStretch"/>
@@ -644,7 +645,7 @@ WHERE
 					<reportElement
 						x="226"
 						y="343"
-						width="74"
+						width="216"
 						height="20"
 						key="textField-7"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -655,9 +656,9 @@ WHERE
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="330"
+						x="471"
 						y="343"
-						width="53"
+						width="39"
 						height="20"
 						key="textField-8"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -733,7 +734,7 @@ WHERE
 				</staticText>
 				<staticText>
 					<reportElement
-						x="308"
+						x="442"
 						y="343"
 						width="15"
 						height="22"
@@ -835,22 +836,6 @@ WHERE
 					</textElement>
 				<text><![CDATA[,]]></text>
 				</staticText>
-				<subreport  isUsingCache="true">
-					<reportElement
-						x="9"
-						y="123"
-						width="526"
-						height="93"
-						key="subreport-1"/>
-					<subreportParameter  name="NIP">
-						<subreportParameterExpression><![CDATA[$P{NIP}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter  name="SUBREPORT_DIR">
-						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
-					</subreportParameter>
-					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_data_kel_meininggal_cover.jasper"]]></subreportExpression>
-				</subreport>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="330"
@@ -879,6 +864,22 @@ WHERE
 					</subreportParameter>
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_tanggal_meninggal.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="9"
+						y="108"
+						width="526"
+						height="93"
+						key="subreport-4"/>
+					<subreportParameter  name="NIP">
+						<subreportParameterExpression><![CDATA[$P{NIP}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_data_kel_meininggal_cover.jasper"]]></subreportExpression>
 				</subreport>
 			</band>
 		</detail>

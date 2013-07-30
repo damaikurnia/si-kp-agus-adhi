@@ -5,6 +5,7 @@
 package Controller;
 
 import Model.AnggotaKeluarga;
+import Model.DataAPS;
 import Model.DataMeninggal;
 import Model.KK;
 import Model.Operator;
@@ -122,7 +123,7 @@ public class ControlData {
         conn.setAutoCommit(false);
         String query = "SELECT a.nama_lengkap FROM anggotakeluarga a,pns b,kk c "
                 + " where b.nip_baru = ? AND c.id_suratkk = b.id_suratkk AND a.id_suratkk = b.id_suratkk "
-                + " AND b.nama_pns != a.nama_lengkap AND a.status_hub_keluarga != 'anak' ";
+                + " AND b.nama_pns != a.nama_lengkap AND a.status_hub_keluarga NOT LIKE '%anak%' ";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, NIP);
         result = stmt.executeQuery();
@@ -147,6 +148,25 @@ public class ControlData {
             data = new DataMeninggal();
             data.setTglMeninggal(result.getString(1));
             data.setNo(result.getString(2));
+        }
+        conn.commit();
+        return data;
+
+    }
+
+    public DataAPS dataPegawaiaps(String NIP) throws SQLException {
+        PreparedStatement stmt = null;
+        DataAPS data = null;
+        ResultSet result = null;
+        conn.setAutoCommit(false);
+        String query = "SELECT tanggalAPS,AlasanAPS from  data_aps where NIP= ? ";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, NIP);
+        result = stmt.executeQuery();
+        if (result.next()) {
+            data = new DataAPS();
+            data.setTanggalAPS(result.getString(1));
+            data.setAlasan(result.getString(2));
         }
         conn.commit();
         return data;
@@ -199,9 +219,13 @@ public class ControlData {
         String nama = null;
         ResultSet result = null;
         conn.setAutoCommit(false);
-        String query = "SELECT a.pekerjaan FROM anggotakeluarga a,pns b,kk c "
-                + " where b.nip_baru = ? AND c.id_suratkk = b.id_suratkk AND a.id_suratkk = b.id_suratkk "
-                + " AND b.nama_pns != a.nama_lengkap AND a.status_hub_keluarga != 'anak' ";
+//        String query = "SELECT a.pekerjaan FROM anggotakeluarga a,pns b,kk c "
+//                + " where b.nip_baru = ? AND c.id_suratkk = b.id_suratkk AND a.id_suratkk = b.id_suratkk "
+//                + " AND b.nama_pns != a.nama_lengkap AND a.status_hub_keluarga != '%anak%' ";
+
+        String query = "SELECT a.pekerjaan FROM anggotakeluarga a,pns b,kk c  WHERE b.nip_baru = ? AND c.id_suratkk = b.id_suratkk "
+                + "AND a.id_suratkk = b.id_suratkk  AND b.nama_pns != a.nama_lengkap "
+                + "AND a.status_hub_keluarga NOT LIKE '%ANAK%'";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, NIP);
         result = stmt.executeQuery();
@@ -401,6 +425,21 @@ public class ControlData {
         conn.commit();
     }
 
+    public void insertDataAPS(DataAPS dm, String idOP) throws SQLException {
+        PreparedStatement stmt = null;
+        conn.setAutoCommit(false);
+        String query = "INSERT INTO data_APS VALUES(?,?,?,?,?)";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, dm.getNip());
+        stmt.setString(2, dm.getNama().toUpperCase());
+        stmt.setString(3, dm.getTanggalAPS());
+        stmt.setString(4, dm.getAlasan());
+        stmt.setString(5, idOP);
+
+        stmt.executeUpdate();
+        conn.commit();
+    }
+
     public void insertPNS(PNS k) throws SQLException {
         PreparedStatement stmt = null;
         conn.setAutoCommit(false);
@@ -545,6 +584,23 @@ public class ControlData {
         result = stmt.executeQuery();
         if (result.next()) {
             cek = result.getInt(1);
+        }
+        conn.commit();
+        return cek;
+
+    }
+
+    public String cekGolongan(String id) throws SQLException {
+        PreparedStatement stmt = null;
+        String cek = "";
+        ResultSet result = null;
+        conn.setAutoCommit(false);
+        String query = "SELECT golongan_ruang_baru FROM sptkg_terakhir WHERE nip_baru=? ";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, id);
+        result = stmt.executeQuery();
+        if (result.next()) {
+            cek = result.getString(1);
         }
         conn.commit();
         return cek;

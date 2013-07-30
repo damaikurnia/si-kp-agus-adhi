@@ -35,7 +35,7 @@
 	<queryString><![CDATA[SELECT
 	a.nama_pemilik, c.nip_lama, c.nip_baru, d.tempat_lahir, DATE_FORMAT(d.tanggal_lahir, '%d-%M-%Y') AS tanggal_lahir,
 	a.pangkat_baru, a.golongan_baru,e.gajipokok_baru,d.Profesi, f.id_SuratKarpeg,
-	DATE_FORMAT(g.tanggal_nikah, '%d-%M-%Y') AS tanggal_nikah,e.Sekolah, h.Alamat
+	DATE_FORMAT(g.tanggal_nikah, '%d-%M-%Y') AS tanggal_nikah,e.Sekolah, UPPER(h.Alamat) AS Alamat,UPPER(h.Kabupaten_kota)
 FROM
 	sk_pangkatterakhir a, pns b, sk_nipbaru c, sk_cpns d, sptkg_terakhir e, sk_karpeg f, s_nikah g, kk h
 WHERE
@@ -61,6 +61,7 @@ WHERE
 	<field name="tanggal_nikah" class="java.lang.String"/>
 	<field name="Sekolah" class="java.lang.String"/>
 	<field name="Alamat" class="java.lang.String"/>
+	<field name="UPPER(h.Kabupaten_kota)" class="java.lang.String"/>
 
 		<background>
 			<band height="0"  isSplitAllowed="true" >
@@ -889,6 +890,32 @@ WHERE
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_DSK.jasper"]]></subreportExpression>
 				</subreport>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="238"
+						y="209"
+						width="161"
+						height="15"
+						key="textField-1"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{UPPER(h.Kabupaten_kota)}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="239"
+						y="244"
+						width="161"
+						height="15"
+						key="textField-2"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{UPPER(h.Kabupaten_kota)}]]></textFieldExpression>
+				</textField>
 			</band>
 		</detail>
 		<columnFooter>
