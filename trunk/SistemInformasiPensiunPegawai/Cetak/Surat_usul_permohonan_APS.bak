@@ -45,9 +45,12 @@ Upper(e.Sekolah),
 Upper(h.Alamat),
  DATE_FORMAT(a.tmt_baru, '%d-%m-%Y') AS tmt,
 	DATE_FORMAT(CURRENT_DATE, '%d-%m-%Y') AS tanggalsekarang,
-Upper(h.kabupaten_kota) as kabupaten,DATE_FORMAT(CURRENT_DATE, '%y') as thn
+Upper(h.kabupaten_kota) as kabupaten,DATE_FORMAT(CURRENT_DATE, '%y') as thn,
+DATE_FORMAT(ds.tanggalaps, '%d-%m-%Y') as tglAps
 FROM
-	sk_pangkatterakhir a, pns b, sk_cpns d, sptkg_terakhir e, sk_karpeg f, s_nikah g, kk h
+	sk_pangkatterakhir a, pns b, 
+sk_cpns d, sptkg_terakhir e, sk_karpeg f, 
+s_nikah g, kk h,data_aps ds
 WHERE
 	b.nip_baru LIKE $P{NIP} AND
 	b.id_SuratPangkatTerakhir=a.id_SuratPangkatTerakhir AND
@@ -55,6 +58,7 @@ WHERE
 	b.id_SuratSPTKGTerakhir	= e.id_SuratSPTKGTerakhir AND
 	b.id_SuratKarpeg = f.id_SuratKarpeg AND
 	b.id_SuratNikah	= g.id_SuratNikah AND
+	b.nip_baru=ds.NIP and
 	b.id_Suratkk = h.id_Suratkk;]]></queryString>
 
 	<field name="nama_pemilik" class="java.lang.String"/>
@@ -76,6 +80,7 @@ WHERE
 	<field name="tanggalsekarang" class="java.lang.String"/>
 	<field name="kabupaten" class="java.lang.String"/>
 	<field name="thn" class="java.lang.String"/>
+	<field name="tglAps" class="java.lang.String"/>
 
 		<background>
 			<band height="0"  isSplitAllowed="true" >
@@ -783,7 +788,7 @@ WHERE
 						x="223"
 						y="523"
 						width="38"
-						height="16"
+						height="15"
 						key="staticText-54"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -1397,6 +1402,19 @@ WHERE
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{thn}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="261"
+						y="523"
+						width="113"
+						height="15"
+						key="textField-25"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{tglAps}]]></textFieldExpression>
 				</textField>
 			</band>
 		</detail>

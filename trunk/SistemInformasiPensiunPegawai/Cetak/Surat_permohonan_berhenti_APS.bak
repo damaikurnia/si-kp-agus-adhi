@@ -35,14 +35,14 @@
   sptkg_terakhir.`golongan_ruang_baru` AS sptkg_terakhir_golongan_banggotakeluargaruang_aru,
  DATE_FORMAT(  sk_pangkatterakhir.`tmt_baru`, '%d-%m-%Y')        AS sk_pangkatterakhir_tmt_baru,
   sk_karpeg.`id_SuratKarpeg`           AS sk_karpeg_id_SuratKarpeg,
-  sk_cpns.`Profesi`                    AS sk_cpns_Profesi,
+  sk_pangkatterakhir.`Profesi`                    AS sk_cpns_Profesi,
   kk.`Alamat`                          AS kk_Alamat,
   sk_cpns.`tempat_lahir`               AS sk_cpns_tempat_lahir,
   DATE_FORMAT( s_nikah.`tanggal_nikah`, '%d-%m-%Y') AS s_nikah_tanggal_nikah,
   sptkg_terakhir.`Sekolah`             AS sptkg_terakhir_Sekolah,
   sptkg_terakhir.`gajipokok_baru`             AS sptkg_terakhir_gajipokok_baru,
-ROUND(DATEDIFF(CURRENT_DATE,sk_cpns.tanggal_surat)/365,0)AS tahun,
-	ROUND(MOD(DATEDIFF(CURRENT_DATE,sk_cpns.tanggal_surat)/365,12)) AS Bulan,
+ROUND(DATEDIFF(CURRENT_DATE,sk_cpns.tmt_cpns)/365,0)AS tahun,
+	ROUND(MOD(DATEDIFF(CURRENT_DATE,sk_cpns.tmt_cpns)/365,12)) AS Bulan,
 	YEAR(sk_cpns.tanggal_lahir)+60 AS Tahun_TMT,
 	MONTHNAME(sk_cpns.tanggal_lahir) AS bulan_TMT,
 kk.`Kabupaten_kota`                          AS kk_Kabupaten_kota,
@@ -65,7 +65,8 @@ WHERE
     AND pns.id_SuratSPTKGTerakhir    =sptkg_terakhir.id_SuratSPTKGTerakhir    
     AND pns.id_Suratkk    =kk.id_Suratkk    
     AND pns.id_SuratPangkatTerakhir    =sk_pangkatterakhir.id_SuratPangkatTerakhir    
-    AND pns.id_SuratNikah    =s_nikah.id_SuratNikah]]></queryString>
+    AND pns.id_SuratNikah    =s_nikah.id_SuratNikah
+AND data_aps.NIP    =pns.nip_baru ]]></queryString>
 
 	<field name="sk_pangkatterakhir_nama_pemilik" class="java.lang.String"/>
 	<field name="sk_pangkatterakhir_tanggal_lahir" class="java.lang.String"/>
@@ -501,8 +502,8 @@ WHERE
 				</staticText>
 				<staticText>
 					<reportElement
-						x="284"
-						y="476"
+						x="241"
+						y="477"
 						width="36"
 						height="15"
 						key="staticText-46"/>
@@ -828,7 +829,7 @@ WHERE
 					<reportElement
 						x="203"
 						y="247"
-						width="46"
+						width="122"
 						height="16"
 						key="textField-6"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -839,7 +840,7 @@ WHERE
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="249"
+						x="329"
 						y="247"
 						width="29"
 						height="16"
@@ -1021,10 +1022,10 @@ WHERE
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="181"
-						y="476"
-						width="45"
-						height="16"
+						x="174"
+						y="477"
+						width="29"
+						height="15"
 						key="textField-18"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
@@ -1034,10 +1035,10 @@ WHERE
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="226"
-						y="476"
-						width="52"
-						height="16"
+						x="203"
+						y="477"
+						width="38"
+						height="15"
 						key="textField-19"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
@@ -1316,10 +1317,10 @@ WHERE
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="321"
-						y="476"
-						width="228"
-						height="16"
+						x="278"
+						y="477"
+						width="270"
+						height="15"
 						key="textField-25"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>

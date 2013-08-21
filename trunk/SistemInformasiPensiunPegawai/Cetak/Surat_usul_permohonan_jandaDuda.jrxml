@@ -35,8 +35,8 @@
 	<queryString><![CDATA[SELECT
 	upper(a.nama_pemilik) as nama_pemilik, 
 e.nip_lama, a.nip_baru, d.tempat_lahir, DATE_FORMAT(d.tanggal_lahir, '%d-%m-%Y') AS tanggal_lahir,
-	a.pangkat_baru, a.golongan_baru,ROUND(DATEDIFF(CURRENT_DATE,d.tanggal_surat)/365,0) AS tahun,
-	ROUND(MOD(DATEDIFF(CURRENT_DATE,d.tanggal_surat)/365,12)) AS Bulan,e.gajipokok_baru,d.Profesi, f.id_SuratKarpeg,
+	a.pangkat_baru, a.golongan_baru,ROUND(DATEDIFF(CURRENT_DATE,d.tmt_cpns)/365,0) AS tahun,
+	ROUND(MOD(DATEDIFF(CURRENT_DATE,d.tmt_cpns)/365,12)) AS Bulan,e.gajipokok_baru,a.Profesi, f.id_SuratKarpeg,
 	DATE_FORMAT(g.tanggal_nikah, '%d-%m-%Y') AS tanggal_nikah,e.Sekolah, h.Alamat, DATE_FORMAT(a.tmt_baru, '%d-%m-%Y') AS tmt,
 	DATE_FORMAT(CURRENT_DATE, '%d-%m-%Y') AS tanggalsekarang,
 DATE_FORMAT(CURRENT_DATE, '%y') as thn

@@ -1184,7 +1184,7 @@ WHERE
 						key="staticText-69"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center">
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<text><![CDATA[Tahun]]></text>
 				</staticText>
@@ -1197,7 +1197,7 @@ WHERE
 						key="staticText-70"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center">
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<text><![CDATA[Bulan]]></text>
 				</staticText>
@@ -1223,7 +1223,7 @@ WHERE
 						key="staticText-71"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center">
-						<font/>
+						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<text><![CDATA[T.M.T]]></text>
 				</staticText>
@@ -1374,7 +1374,7 @@ WHERE
 						height="16"
 						key="textField-22"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
+					<textElement verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.Long"><![CDATA[$F{bulan_TMT}]]></textFieldExpression>
@@ -1400,7 +1400,7 @@ WHERE
 						height="16"
 						key="textField-23"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
+					<textElement verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.Long"><![CDATA[$F{Tahun_TMT}]]></textFieldExpression>

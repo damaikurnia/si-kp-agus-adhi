@@ -57,6 +57,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
         //cetak_internal.setEnabled(false);
         GregorianCalendar gc = new GregorianCalendar();
         Date_APS.setDate(gc.getTime());
+
     }
 
     /** This method is called from within the constructor to
@@ -331,7 +332,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
         jInternalFrame_APS.getContentPane().setLayout(jInternalFrame_APSLayout);
         jInternalFrame_APSLayout.setHorizontalGroup(
             jInternalFrame_APSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 704, Short.MAX_VALUE)
+            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jInternalFrame_APSLayout.setVerticalGroup(
             jInternalFrame_APSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -563,7 +564,10 @@ public class ProsesPensiun extends javax.swing.JFrame {
                     DataAPS daps = ControlData.getKoneksi().dataPegawaiaps(NIP);
                     if (daps == null) {
                         Alasan_APS.setText("");
+                        button_SIMpan_APS.setEnabled(true);
                     } else {
+                        Cetak_button_APS.setEnabled(true);
+                        button_SIMpan_APS.setEnabled(false);
                         Alasan_APS.setText(daps.getAlasan());
                         Date_APS.setDate(getTanggal(daps.getTanggalAPS()));
                     }
@@ -592,11 +596,14 @@ public class ProsesPensiun extends javax.swing.JFrame {
                     DataMeninggal dm = ControlData.getKoneksi().dataPegawaiMeninggal(NIP);
                     if (dm == null) {
                         no_surat_kematian.setText("");
-                        //date_meninggal.setDate(getTanggal(dm.getTglMeninggal()));
+                        simpan_internal.setEnabled(true);
+                        cetak_internal.setEnabled(false);
 
                     } else {
                         no_surat_kematian.setText(dm.getNo());
                         date_meninggal.setDate(getTanggal(dm.getTglMeninggal()));
+                        simpan_internal.setEnabled(false);
+                        cetak_internal.setEnabled(true);
                     }
                     NIP_inter_meninggal.setText(NIP);
                     nama_inter_meninggal.setText(Nama);
@@ -720,7 +727,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
 
     private void inputAngka(String angka) {
         if (!angka.matches("[0-9]*")) {
-            JOptionPane.showMessageDialog(rootPane, "masukan angka", "peringatan", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "masukan NIP yang valid", "peringatan", JOptionPane.WARNING_MESSAGE);
         }
     }
 
@@ -748,13 +755,15 @@ public class ProsesPensiun extends javax.swing.JFrame {
         System.out.println();
         try {
             String gol = ControlData.getKoneksi().cekGolongan(NIP);
-            String[] cek=gol.split("/");
+            String[] cek = gol.split("/");
             if (cek[0].equalsIgnoreCase("II")) {
-                nomor = "882.2  /      /"+sdf.format(gc.getTime());
-            }if (cek[0].equalsIgnoreCase("III")) {
-                nomor = "882.3  /      /"+sdf.format(gc.getTime());
-            }if (cek[0].equalsIgnoreCase("IV")) {
-                nomor = "882.4  /      /"+sdf.format(gc.getTime());
+                nomor = "882.2  /      /" + sdf.format(gc.getTime());
+            }
+            if (cek[0].equalsIgnoreCase("III")) {
+                nomor = "882.3  /      /" + sdf.format(gc.getTime());
+            }
+            if (cek[0].equalsIgnoreCase("IV")) {
+                nomor = "882.4  /      /" + sdf.format(gc.getTime());
             }
         } catch (Exception ex) {
             Logger.getLogger(ProsesPensiun.class.getName()).log(Level.SEVERE, null, ex);
@@ -771,7 +780,7 @@ public class ProsesPensiun extends javax.swing.JFrame {
 //            } else {
             kon = ConnMySql.getConnections();
             Map reportparametermap1 = new HashMap();
-            String no=nomorSuratPensiun(nip);
+            String no = nomorSuratPensiun(nip);
             reportparametermap1.put("NIP", nip);
             reportparametermap1.put("nomor", no);
             String reportSource = "./Cetak/CoverBUP.jasper";
@@ -790,9 +799,6 @@ public class ProsesPensiun extends javax.swing.JFrame {
 
             JasperPrint secondjasperprint = new JasperPrint();
             secondjasperprint = JasperFillManager.fillReport(reportSource2, reportparametermap1, kon);
-
-//            JasperPrint thirdjasperprint = new JasperPrint();
-//            thirdjasperprint = JasperFillManager.fillReport(reportSource3, reportparametermap1, kon);
 
             JasperPrint fourthjasperprint = new JasperPrint();
             fourthjasperprint = JasperFillManager.fillReport(reportSource4, reportparametermap1, kon);

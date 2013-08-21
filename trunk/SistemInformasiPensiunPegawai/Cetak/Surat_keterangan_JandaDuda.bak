@@ -34,19 +34,20 @@ sptkg_terakhir.`nama_pemilik`  AS sptkg_terakhir_nama_pemilik,
   sptkg_terakhir.`nip_baru`            AS sptkg_terakhir_nip_baru,
   sptkg_terakhir.`pangkat_baru`        AS sptkg_terakhir_pangkat_baru,
   sptkg_terakhir.`golongan_ruang_baru` AS sptkg_terakhir_golongan_banggotakeluargaruang_aru,
-  sk_cpns.`Profesi`                    AS sk_cpns_Profesi,
+  sk_pangkatterakhir.`Profesi`                    AS sk_cpns_Profesi,
   kk.`Alamat`                          AS kk_Alamat,
 kk.`Kabupaten_kota`                          AS kk_Kabupaten_kota,
    UPPER( sptkg_terakhir.`Sekolah`      )         AS sptkg_terakhir_Sekola
 FROM 
-  `sk_cpns` sk_cpns,
+  `sk_cpns` sk_cpns,sk_pangkatterakhir,
   `kk` kk,
   `sptkg_terakhir` sptkg_terakhir,
   `pns` pns
 WHERE pns.nip_baru LIKE  $P{NIP}
 AND pns.id_SuratSPTKGTerakhir = sptkg_terakhir.id_SuratSPTKGTerakhir
 AND pns.id_Suratkk=kk.id_Suratkk
-AND pns.id_SuratCPNS=sk_cpns.id_SuratCPNS]]></queryString>
+AND pns.id_SuratCPNS=sk_cpns.id_SuratCPNS
+and pns.id_SuratPangkatTerakhir=sk_pangkatterakhir.id_SuratPangkatTerakhir]]></queryString>
 
 	<field name="sptkg_terakhir_nama_pemilik" class="java.lang.String"/>
 	<field name="sptkg_terakhir_nip_baru" class="java.lang.String"/>
@@ -417,7 +418,7 @@ AND pns.id_SuratCPNS=sk_cpns.id_SuratCPNS]]></queryString>
 					<reportElement
 						x="181"
 						y="99"
-						width="55"
+						width="146"
 						height="15"
 						key="textField-3"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -428,7 +429,7 @@ AND pns.id_SuratCPNS=sk_cpns.id_SuratCPNS]]></queryString>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="246"
+						x="349"
 						y="99"
 						width="55"
 						height="15"
@@ -533,6 +534,19 @@ AND pns.id_SuratCPNS=sk_cpns.id_SuratCPNS]]></queryString>
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_nama_kel_meininggal.jasper"]]></subreportExpression>
 				</subreport>
+				<staticText>
+					<reportElement
+						x="336"
+						y="98"
+						width="5"
+						height="15"
+						key="staticText-36"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[/]]></text>
+				</staticText>
 			</band>
 		</detail>
 		<columnFooter>
