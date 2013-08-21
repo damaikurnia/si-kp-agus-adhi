@@ -9,29 +9,48 @@ package Model;
  * @author Mich
  */
 public class SK_PangkatTerakhir {
+
     private String id_SuratPangkatTerakhir;
     private String nama_pemilik;
+    private String tempat_lahir;
     private String tanggal_lahir;
     private String nip_lama;
     private String nip_baru;
     private String pendidikan;
-    private String pangkat_lama;
-    private String golongan_lama;
-    private String tmt_lama;
+    private String profesi;
+    private String sekolah;
     private String pangkat_baru;
     private String golongan_baru;
     private String tmt_baru;
-    private String masa_kerja_golongan;
-    private String gaji_pokok;
+    private String masa_kerja_golongan_tahun;
     private String masa_kerja_golongan_bulan;
+    private String gaji_pokok;
     private String tanggal_penyimpanan_surat;
     private String kode_operator;
-    private String profesi;
-    private String sekolah;
-    private String tempat_lahir;
 
-    public SK_PangkatTerakhir(){}
-    
+    public SK_PangkatTerakhir() {
+    }
+
+    public SK_PangkatTerakhir(String id_SuratPangkatTerakhir, String nama_pemilik, String tempat_lahir, String tanggal_lahir, String nip_lama, String nip_baru, String pendidikan, String profesi, String sekolah, String pangkat_baru, String golongan_baru, String tmt_baru, String masa_kerja_golongan_tahun, String masa_kerja_golongan_bulan, String gaji_pokok, String tanggal_penyimpanan_surat, String kode_operator) {
+        this.id_SuratPangkatTerakhir = id_SuratPangkatTerakhir;
+        this.nama_pemilik = nama_pemilik;
+        this.tempat_lahir = tempat_lahir;
+        this.tanggal_lahir = tanggal_lahir;
+        this.nip_lama = nip_lama;
+        this.nip_baru = nip_baru;
+        this.pendidikan = pendidikan;
+        this.profesi = profesi;
+        this.sekolah = sekolah;
+        this.pangkat_baru = pangkat_baru;
+        this.golongan_baru = golongan_baru;
+        this.tmt_baru = tmt_baru;
+        this.masa_kerja_golongan_tahun = masa_kerja_golongan_tahun;
+        this.masa_kerja_golongan_bulan = masa_kerja_golongan_bulan;
+        this.gaji_pokok = gaji_pokok;
+        this.tanggal_penyimpanan_surat = tanggal_penyimpanan_surat;
+        this.kode_operator = kode_operator;
+    }
+
     /**
      * @return the id_SuratPangkatTerakhir
      */
@@ -58,6 +77,20 @@ public class SK_PangkatTerakhir {
      */
     public void setNama_pemilik(String nama_pemilik) {
         this.nama_pemilik = nama_pemilik;
+    }
+
+    /**
+     * @return the tempat_lahir
+     */
+    public String getTempat_lahir() {
+        return tempat_lahir;
+    }
+
+    /**
+     * @param tempat_lahir the tempat_lahir to set
+     */
+    public void setTempat_lahir(String tempat_lahir) {
+        this.tempat_lahir = tempat_lahir;
     }
 
     /**
@@ -117,45 +150,31 @@ public class SK_PangkatTerakhir {
     }
 
     /**
-     * @return the pangkat_lama
+     * @return the profesi
      */
-    public String getPangkat_lama() {
-        return pangkat_lama;
+    public String getProfesi() {
+        return profesi;
     }
 
     /**
-     * @param pangkat_lama the pangkat_lama to set
+     * @param profesi the profesi to set
      */
-    public void setPangkat_lama(String pangkat_lama) {
-        this.pangkat_lama = pangkat_lama;
+    public void setProfesi(String profesi) {
+        this.profesi = profesi;
     }
 
     /**
-     * @return the golongan_lama
+     * @return the sekolah
      */
-    public String getGolongan_lama() {
-        return golongan_lama;
+    public String getSekolah() {
+        return sekolah;
     }
 
     /**
-     * @param golongan_lama the golongan_lama to set
+     * @param sekolah the sekolah to set
      */
-    public void setGolongan_lama(String golongan_lama) {
-        this.golongan_lama = golongan_lama;
-    }
-
-    /**
-     * @return the tmt_lama
-     */
-    public String getTmt_lama() {
-        return tmt_lama;
-    }
-
-    /**
-     * @param tmt_lama the tmt_lama to set
-     */
-    public void setTmt_lama(String tmt_lama) {
-        this.tmt_lama = tmt_lama;
+    public void setSekolah(String sekolah) {
+        this.sekolah = sekolah;
     }
 
     /**
@@ -201,31 +220,17 @@ public class SK_PangkatTerakhir {
     }
 
     /**
-     * @return the masa_kerja_golongan
+     * @return the masa_kerja_golongan_tahun
      */
-    public String getMasa_kerja_golongan() {
-        return masa_kerja_golongan;
+    public String getMasa_kerja_golongan_tahun() {
+        return masa_kerja_golongan_tahun;
     }
 
     /**
-     * @param masa_kerja_golongan the masa_kerja_golongan to set
+     * @param masa_kerja_golongan_tahun the masa_kerja_golongan_tahun to set
      */
-    public void setMasa_kerja_golongan(String masa_kerja_golongan) {
-        this.masa_kerja_golongan = masa_kerja_golongan;
-    }
-
-    /**
-     * @return the gaji_pokok
-     */
-    public String getGaji_pokok() {
-        return gaji_pokok;
-    }
-
-    /**
-     * @param gaji_pokok the gaji_pokok to set
-     */
-    public void setGaji_pokok(String gaji_pokok) {
-        this.gaji_pokok = gaji_pokok;
+    public void setMasa_kerja_golongan_tahun(String masa_kerja_golongan_tahun) {
+        this.masa_kerja_golongan_tahun = masa_kerja_golongan_tahun;
     }
 
     /**
@@ -240,6 +245,20 @@ public class SK_PangkatTerakhir {
      */
     public void setMasa_kerja_golongan_bulan(String masa_kerja_golongan_bulan) {
         this.masa_kerja_golongan_bulan = masa_kerja_golongan_bulan;
+    }
+
+    /**
+     * @return the gaji_pokok
+     */
+    public String getGaji_pokok() {
+        return gaji_pokok;
+    }
+
+    /**
+     * @param gaji_pokok the gaji_pokok to set
+     */
+    public void setGaji_pokok(String gaji_pokok) {
+        this.gaji_pokok = gaji_pokok;
     }
 
     /**
@@ -270,46 +289,5 @@ public class SK_PangkatTerakhir {
         this.kode_operator = kode_operator;
     }
 
-    /**
-     * @return the profesi
-     */
-    public String getProfesi() {
-        return profesi;
-    }
-
-    /**
-     * @param profesi the profesi to set
-     */
-    public void setProfesi(String profesi) {
-        this.profesi = profesi;
-    }
-
-    /**
-     * @return the sekolah
-     */
-    public String getSekolah() {
-        return sekolah;
-    }
-
-    /**
-     * @param sekolah the sekolah to set
-     */
-    public void setSekolah(String sekolah) {
-        this.sekolah = sekolah;
-    }
-
-    /**
-     * @return the tempat_lahir
-     */
-    public String getTempat_lahir() {
-        return tempat_lahir;
-    }
-
-    /**
-     * @param tempat_lahir the tempat_lahir to set
-     */
-    public void setTempat_lahir(String tempat_lahir) {
-        this.tempat_lahir = tempat_lahir;
-    }
-
+    
 }

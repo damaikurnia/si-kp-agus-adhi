@@ -37,12 +37,11 @@
      sptkg_terakhir.`nip_baru` AS sptkg_terakhir_nip_baru,
      sptkg_terakhir.`pangkat_baru` AS sptkg_terakhir_pangkat_baru,
      sptkg_terakhir.`golongan_ruang_baru` AS sptkg_terakhir_golongan_banggotakeluargaruang_aru,
-     DATE_FORMAT(sk_pangkatterakhir.`tmt_baru`,'%d-%m-%Y')AS sk_pangkatterakhir_tmt_baru,
      sk_cpns.`Profesi` AS sk_cpns_Profesi,
      kk.`Alamat` AS kk_Alamat,
      sk_cpns.`tempat_lahir` AS sk_cpns_tempat_lahir,
      sptkg_terakhir.`Sekolah` AS sptkg_terakhir_Sekolah,
-     DATE_FORMAT(sk_cpns.`tmt_partikelir`,'%d-%m-%Y')AS sk_cpns_tmt_partikelir,
+     DATE_FORMAT(sk_cpns.`tmt_cpns`,'%d-%m-%Y')AS sk_cpns_tmt_partikelir,
      sptkg_terakhir.`gajipokok_baru` AS sptkg_terakhir_gajipokok_baru,
      kk.`kelurahan_desa` AS desa,
      kk.`kecamatan` AS kecamatan,
@@ -51,12 +50,13 @@
      kk.`provinsi` AS provinsi,
      DATE_FORMAT(CURRENT_DATE,'%d-%m-%Y')AS hari_Ini,
      DATE_FORMAT(sk_pangkatterakhir.`tmt_baru`,'%d-%m-%Y') AS sk_pangkatterakhir_tmt_baru,
-     sk_pangkatterakhir.`masa_kerja_golongan` AS sk_pangkatterakhir_masa_kerja_tahun,
+     sk_pangkatterakhir.`masa_kerja_golongan_tahun` AS sk_pangkatterakhir_masa_kerja_tahun,
      sk_pangkatterakhir.`masa_kerja_golongan_bulan` AS sk_pangkatterakhir_masa_kerja_bulan,
-	ROUND(DATEDIFF(CURRENT_DATE,sk_cpns.tanggal_surat)/365,0)AS tahun,
-	ROUND(MOD(DATEDIFF(CURRENT_DATE,sk_cpns.tanggal_surat)/365,12)) AS Bulan,
-YEAR(sk_cpns.`tmt_partikelir`) AS tahun_cpns,
-YEAR(sk_pangkatterakhir.`tanggal_lahir`)+60 AS tahun_skrng
+	ROUND(DATEDIFF(CURRENT_DATE,sk_cpns.tmt_cpns)/365,0)AS tahun,
+	ROUND(MOD(DATEDIFF(CURRENT_DATE,sk_cpns.tmt_cpns)/365,12)) AS Bulan,
+YEAR(sk_cpns.`tmt_cpns`) AS tahun_cpns,
+YEAR(sk_pangkatterakhir.`tanggal_lahir`)+60 AS tahun_skrng,
+sk_pangkatterakhir.SEKOLAH as sekolah
 FROM
      `sk_pangkatterakhir` sk_pangkatterakhir,
      `sk_cpns` sk_cpns,
@@ -76,7 +76,6 @@ WHERE
 	<field name="sptkg_terakhir_nip_baru" class="java.lang.String"/>
 	<field name="sptkg_terakhir_pangkat_baru" class="java.lang.String"/>
 	<field name="sptkg_terakhir_golongan_banggotakeluargaruang_aru" class="java.lang.String"/>
-	<field name="sk_pangkatterakhir_tmt_baru" class="java.lang.String"/>
 	<field name="sk_cpns_Profesi" class="java.lang.String"/>
 	<field name="kk_Alamat" class="java.lang.String"/>
 	<field name="sk_cpns_tempat_lahir" class="java.lang.String"/>
@@ -89,12 +88,14 @@ WHERE
 	<field name="kode_pos" class="java.lang.String"/>
 	<field name="provinsi" class="java.lang.String"/>
 	<field name="hari_Ini" class="java.lang.String"/>
+	<field name="sk_pangkatterakhir_tmt_baru" class="java.lang.String"/>
 	<field name="sk_pangkatterakhir_masa_kerja_tahun" class="java.lang.String"/>
 	<field name="sk_pangkatterakhir_masa_kerja_bulan" class="java.lang.String"/>
 	<field name="tahun" class="java.math.BigDecimal"/>
 	<field name="Bulan" class="java.math.BigDecimal"/>
 	<field name="tahun_cpns" class="java.lang.Long"/>
 	<field name="tahun_skrng" class="java.lang.Long"/>
+	<field name="sekolah" class="java.lang.String"/>
 
 		<background>
 			<band height="0"  isSplitAllowed="true" >
@@ -948,7 +949,7 @@ WHERE
 					<reportElement
 						x="156"
 						y="44"
-						width="30"
+						width="101"
 						height="12"
 						key="textField-3"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -959,9 +960,9 @@ WHERE
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="200"
+						x="274"
 						y="44"
-						width="155"
+						width="107"
 						height="12"
 						key="textField-4"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -985,7 +986,7 @@ WHERE
 				</textField>
 				<staticText>
 					<reportElement
-						x="187"
+						x="257"
 						y="44"
 						width="13"
 						height="12"
@@ -1220,9 +1221,9 @@ WHERE
 				<subreport  isUsingCache="true">
 					<reportElement
 						x="11"
-						y="190"
+						y="177"
 						width="421"
-						height="164"
+						height="61"
 						key="subreport-1"/>
 					<subreportParameter  name="NIP">
 						<subreportParameterExpression><![CDATA[$P{NIP}]]></subreportParameterExpression>
@@ -1493,6 +1494,71 @@ WHERE
 					</textElement>
 				<textFieldExpression   class="java.lang.Long"><![CDATA[$F{tahun_skrng}]]></textFieldExpression>
 				</textField>
+				<staticText>
+					<reportElement
+						x="202"
+						y="293"
+						width="110"
+						height="12"
+						key="staticText-111"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman"/>
+					</textElement>
+				<text><![CDATA[MENGETAHUI]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="202"
+						y="305"
+						width="42"
+						height="12"
+						key="staticText-112"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman"/>
+					</textElement>
+				<text><![CDATA[KEPALA]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="245"
+						y="305"
+						width="192"
+						height="13"
+						key="textField-30"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{sekolah}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="202"
+						y="350"
+						width="109"
+						height="12"
+						key="staticText-113"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman"/>
+					</textElement>
+				<text><![CDATA[_____________________]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="202"
+						y="362"
+						width="109"
+						height="12"
+						key="staticText-114"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman"/>
+					</textElement>
+				<text><![CDATA[NIP.]]></text>
+				</staticText>
 			</band>
 		</detail>
 		<columnFooter>

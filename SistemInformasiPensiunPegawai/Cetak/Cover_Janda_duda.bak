@@ -43,12 +43,12 @@
      sptkg_terakhir.`gajipokok_baru` AS sptkg_terakhir_gajipokok_baru,
 	DATE_FORMAT(sptkg_terakhir.`tmt_baru`, '%d-%m-%Y') AS sptkg_terakhir_tmt_baru,
      sk_karpeg.`id_SuratKarpeg` AS sk_karpeg_id_SuratKarpeg,
-     UPPER(sk_cpns.`Profesi`) AS sk_cpns_Profesi,
+     UPPER(sk_pangkatterakhir.`Profesi`) AS sk_cpns_Profesi,
      UPPER(kk.`Alamat`) AS kk_Alamat,
      UPPER(kk.`Kabupaten_Kota`) AS kk_Kabupaten_Kota,
      UPPER(sptkg_terakhir.`Sekolah`) AS sptkg_terakhir_Sekolah,
-	ROUND(DATEDIFF(CURRENT_DATE,sk_cpns.tanggal_surat)/365,0)AS tahun,
-	ROUND(MOD(DATEDIFF(CURRENT_DATE,sk_cpns.tanggal_surat)/365,12)) AS Bulan,
+	ROUND(DATEDIFF(CURRENT_DATE,sk_cpns.tmt_cpns)/365,0)AS tahun,
+	ROUND(MOD(DATEDIFF(CURRENT_DATE,sk_cpns.tmt_cpns)/365,12)) AS Bulan,
 	sk_cpns.tanggal_lahir AS tanggaltmt,
 	DAY(sk_cpns.tanggal_lahir) AS hari_TMT,
 	YEAR(sk_cpns.tanggal_lahir)+60 AS Tahun_TMT,
@@ -58,13 +58,14 @@ FROM
      `sk_karpeg` sk_karpeg,
      `sk_cpns` sk_cpns,
      `kk` kk,
-     `pns` pns
+     `pns` pns,sk_pangkatterakhir
 WHERE
-     pns.nip_baru LIKE  $P{NIP}
+     pns.nip_baru LIKE $P{NIP}
  AND pns.`id_SuratCPNS` = sk_cpns.`id_SuratCPNS`
  AND pns.`id_SuratKarpeg` = sk_karpeg.`id_SuratKarpeg`
  AND pns.id_SuratSPTKGTerakhir =sptkg_terakhir.id_SuratSPTKGTerakhir
- AND pns.id_Suratkk =kk.id_Suratkk]]></queryString>
+ AND pns.id_Suratkk =kk.id_Suratkk
+ AND pns.`id_SuratPangkatTerakhir` = sk_pangkatterakhir.`id_SuratPangkatTerakhir`]]></queryString>
 
 	<field name="pns_nama_pns" class="java.lang.String"/>
 	<field name="sk_nipbaru_nip_lama" class="java.lang.String"/>
@@ -550,7 +551,7 @@ WHERE
 						x="548"
 						y="41"
 						width="1"
-						height="672"
+						height="682"
 						key="line-8"/>
 					<graphicElement stretchType="NoStretch"/>
 				</line>
@@ -864,6 +865,22 @@ WHERE
 					</subreportParameter>
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_tanggal_meninggal.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="9"
+						y="108"
+						width="526"
+						height="93"
+						key="subreport-4"/>
+					<subreportParameter  name="NIP">
+						<subreportParameterExpression><![CDATA[$P{NIP}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_data_kel_meininggal_cover.jasper"]]></subreportExpression>
 				</subreport>
 			</band>
 		</detail>

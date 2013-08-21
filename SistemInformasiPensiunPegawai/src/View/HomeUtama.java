@@ -51,6 +51,7 @@ public class HomeUtama extends javax.swing.JFrame {
         masuk_button2 = new javax.swing.JButton();
         password_TF = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
+        button_upload_DB = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -77,15 +78,11 @@ public class HomeUtama extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 180));
@@ -143,6 +140,14 @@ public class HomeUtama extends javax.swing.JFrame {
 
         jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 290, 240));
 
+        button_upload_DB.setText("Upload Database");
+        button_upload_DB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_upload_DBActionPerformed(evt);
+            }
+        });
+        jPanel3.add(button_upload_DB, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 60, -1, -1));
+
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PIcture/wall1.jpg"))); // NOI18N
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 360));
 
@@ -197,7 +202,7 @@ public class HomeUtama extends javax.swing.JFrame {
             } catch (Exception ex) {
 //                JOptionPane.showMessageDialog(rootPane, "Tidak dapat koneksi ke Database \n"
 //                        + "cek settingan dahulu");
-                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+                JOptionPane.showMessageDialog(rootPane, "Database belum ada, silahkan upload database dahulu");
             }
         }
     }//GEN-LAST:event_masuk_button2ActionPerformed
@@ -212,6 +217,12 @@ public class HomeUtama extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_password_TFKeyReleased
 
+    private void button_upload_DBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_upload_DBActionPerformed
+        sqldump sql=new sqldump();
+        sql.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_button_upload_DBActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -224,6 +235,7 @@ public class HomeUtama extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton button_upload_DB;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;

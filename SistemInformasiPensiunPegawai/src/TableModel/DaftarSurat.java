@@ -26,7 +26,7 @@ public class DaftarSurat extends AbstractTableModel {
     }
 
     public int getColumnCount() {
-        return 7;
+        return 6;
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {
@@ -43,8 +43,6 @@ public class DaftarSurat extends AbstractTableModel {
             case 4:
                 return k.getId_SuratNikah();
             case 5:
-                return k.getId_SuratNIPBaru();
-            case 6:
                 return k.getId_Suratkk();
             default:
                 return "";
@@ -65,8 +63,6 @@ public class DaftarSurat extends AbstractTableModel {
             case 4:
                 return "SuratNikah";
             case 5:
-                return "SuratNIPBaru";
-            case 6:
                 return "Suratkk";
             default:
                 return "";

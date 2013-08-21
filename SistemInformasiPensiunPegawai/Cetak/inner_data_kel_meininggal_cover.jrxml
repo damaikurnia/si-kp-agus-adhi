@@ -141,14 +141,14 @@ where data_meninggal.`NIP` LIKE $P{NIP}]]></queryString>
 					<reportElement
 						x="204"
 						y="54"
-						width="97"
+						width="102"
 						height="20"
 						key="staticText-5"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="16" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Kabupaten]]></text>
+				<text><![CDATA[KABUPATEN]]></text>
 				</staticText>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement

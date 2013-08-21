@@ -207,7 +207,7 @@ public class FrameOperator extends javax.swing.JFrame {
         jPanel3.add(kode_op, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, 22));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PIcture/wall2.jpg"))); // NOI18N
-        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 360));
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 850, 340));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 870, 360));
 

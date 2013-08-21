@@ -196,7 +196,7 @@ WHERE
 				</staticText>
 				<staticText>
 					<reportElement
-						x="323"
+						x="289"
 						y="346"
 						width="35"
 						height="17"
@@ -209,7 +209,7 @@ WHERE
 				</staticText>
 				<staticText>
 					<reportElement
-						x="323"
+						x="289"
 						y="362"
 						width="118"
 						height="17"
@@ -222,7 +222,7 @@ WHERE
 				</staticText>
 				<staticText>
 					<reportElement
-						x="323"
+						x="289"
 						y="417"
 						width="101"
 						height="17"
@@ -235,7 +235,7 @@ WHERE
 				</staticText>
 				<staticText>
 					<reportElement
-						x="323"
+						x="289"
 						y="439"
 						width="101"
 						height="17"
@@ -289,7 +289,7 @@ WHERE
 					<reportElement
 						x="31"
 						y="218"
-						width="169"
+						width="95"
 						height="15"
 						key="staticText-47"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -300,7 +300,7 @@ WHERE
 				</staticText>
 				<staticText>
 					<reportElement
-						x="200"
+						x="127"
 						y="218"
 						width="203"
 						height="15"
@@ -309,7 +309,7 @@ WHERE
 					<textElement>
 						<font fontName="Times New Roman" size="12"/>
 					</textElement>
-				<text><![CDATA[yang telah meninggal dunia pada tanggal]]></text>
+				<text><![CDATA[Yang telah meninggal dunia pada tanggal]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -500,7 +500,7 @@ WHERE
 					<reportElement
 						x="450"
 						y="237"
-						width="97"
+						width="99"
 						height="15"
 						key="textField-7"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -525,7 +525,7 @@ WHERE
 				<subreport  isUsingCache="true">
 					<reportElement
 						x="164"
-						y="238"
+						y="234"
 						width="108"
 						height="15"
 						key="subreport-2"/>
@@ -541,7 +541,7 @@ WHERE
 				<subreport  isUsingCache="true">
 					<reportElement
 						x="111"
-						y="259"
+						y="256"
 						width="143"
 						height="15"
 						key="subreport-3"/>
@@ -556,9 +556,9 @@ WHERE
 				</subreport>
 				<subreport  isUsingCache="true">
 					<reportElement
-						x="406"
-						y="217"
-						width="144"
+						x="330"
+						y="215"
+						width="72"
 						height="15"
 						key="subreport-4"/>
 					<subreportParameter  name="NIP">
@@ -570,6 +570,45 @@ WHERE
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "inner_tgl_menininggal_sk_satu-satunya.jasper"]]></subreportExpression>
 				</subreport>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="409"
+						y="363"
+						width="129"
+						height="14"
+						key="textField-9"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{kk_Kelurahan_Desa}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="111"
+						y="482"
+						width="146"
+						height="14"
+						key="textField-10"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{kk_Kecamatan}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="411"
+						y="218"
+						width="130"
+						height="15"
+						key="staticText-56"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+				<text><![CDATA[Semasa hidupnya Saudara]]></text>
+				</staticText>
 			</band>
 		</detail>
 		<columnFooter>

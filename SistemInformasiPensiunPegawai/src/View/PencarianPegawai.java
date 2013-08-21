@@ -70,6 +70,7 @@ public class PencarianPegawai extends javax.swing.JFrame {
         nama1 = new javax.swing.JLabel();
         keluar_button = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -98,11 +99,15 @@ public class PencarianPegawai extends javax.swing.JFrame {
 
         jInternalFrame_proses.setToolTipText("");
 
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14));
         jLabel4.setText("Nama :");
+        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 11, 52, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14));
         jLabel5.setText("NIP    : ");
+        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 39, -1, -1));
 
         button_lanjut.setText("YA");
         button_lanjut.addActionListener(new java.awt.event.ActionListener() {
@@ -110,6 +115,7 @@ public class PencarianPegawai extends javax.swing.JFrame {
                 button_lanjutActionPerformed(evt);
             }
         });
+        jPanel5.add(button_lanjut, new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 153, 98, -1));
 
         button_proses_pensiun.setText("Proses pensiun");
         button_proses_pensiun.addActionListener(new java.awt.event.ActionListener() {
@@ -117,10 +123,13 @@ public class PencarianPegawai extends javax.swing.JFrame {
                 button_proses_pensiunActionPerformed(evt);
             }
         });
+        jPanel5.add(button_proses_pensiun, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 153, -1, -1));
 
         nip.setFont(new java.awt.Font("Tahoma", 1, 14));
+        jPanel5.add(nip, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 39, 294, 17));
 
         nama1.setFont(new java.awt.Font("Tahoma", 1, 14));
+        jPanel5.add(nama1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 11, 294, 17));
 
         keluar_button.setText("TIDAK");
         keluar_button.addActionListener(new java.awt.event.ActionListener() {
@@ -128,69 +137,24 @@ public class PencarianPegawai extends javax.swing.JFrame {
                 keluar_buttonActionPerformed(evt);
             }
         });
+        jPanel5.add(keluar_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(169, 153, 104, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14));
         jLabel10.setText("Apakah anda yakin untuk melanjutkan?");
+        jPanel5.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 118, 461, -1));
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(162, 162, 162)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nama1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nip, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(button_lanjut, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(keluar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(128, 128, 128)
-                                .addComponent(button_proses_pensiun)))))
-                .addContainerGap(140, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(nama1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(nip, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addComponent(jLabel10)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(button_lanjut)
-                    .addComponent(button_proses_pensiun)
-                    .addComponent(keluar_button))
-                .addGap(55, 55, 55))
-        );
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PIcture/bg1.png"))); // NOI18N
+        jPanel5.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 230));
 
         javax.swing.GroupLayout jInternalFrame_prosesLayout = new javax.swing.GroupLayout(jInternalFrame_proses.getContentPane());
         jInternalFrame_proses.getContentPane().setLayout(jInternalFrame_prosesLayout);
         jInternalFrame_prosesLayout.setHorizontalGroup(
             jInternalFrame_prosesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE)
         );
         jInternalFrame_prosesLayout.setVerticalGroup(
             jInternalFrame_prosesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrame_prosesLayout.createSequentialGroup()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
         );
 
         getContentPane().add(jInternalFrame_proses, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 670, 260));
@@ -312,7 +276,7 @@ public class PencarianPegawai extends javax.swing.JFrame {
         jPanel3.add(exit_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 40, -1, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PIcture/wall1.jpg"))); // NOI18N
-        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 360));
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 350));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 870, 360));
 
@@ -511,6 +475,7 @@ public class PencarianPegawai extends javax.swing.JFrame {
     private javax.swing.JInternalFrame jInternalFrame_proses;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

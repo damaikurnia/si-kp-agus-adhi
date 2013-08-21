@@ -7,6 +7,7 @@ package Controller;
 import Model.AnggotaKeluarga;
 import Model.DataAPS;
 import Model.DataMeninggal;
+import Model.Instansi;
 import Model.KK;
 import Model.Operator;
 import Model.PNS;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -71,7 +73,11 @@ public class ControlData {
         stmt.setString(1, id);
         result = stmt.executeQuery();
         if (result.next()) {
-            cek = true;
+            if (result.getString(1).contains("SMA") || result.getString(1).contains("SMAN")
+                    || result.getString(1).contains("SMPN") || result.getString(1).contains("SMP")
+                    || result.getString(1).contains("SD") || result.getString(1).contains("SDN")) {
+                cek = true;
+            }
         }
         conn.commit();
         return cek;
@@ -299,7 +305,6 @@ public class ControlData {
             cek.setId_SuratSPTKGTerakhir(result.getString(6));
             cek.setId_SuratKarpeg(result.getString(7));
             cek.setId_SuratNikah(result.getString(8));
-            cek.setId_SuratNIPBaru(result.getString(9));
             cek.setId_Suratkk(result.getString(10));
             pns.add(cek);
         }
@@ -327,8 +332,7 @@ public class ControlData {
             cek.setId_SuratSPTKGTerakhir(result.getString(6));
             cek.setId_SuratKarpeg(result.getString(7));
             cek.setId_SuratNikah(result.getString(8));
-            cek.setId_SuratNIPBaru(result.getString(9));
-            cek.setId_Suratkk(result.getString(10));
+            cek.setId_Suratkk(result.getString(9));
             pns.add(cek);
         }
         conn.commit();
@@ -352,7 +356,6 @@ public class ControlData {
             cek.setId_SuratSPTKGTerakhir(result.getString(6));
             cek.setId_SuratKarpeg(result.getString(7));
             cek.setId_SuratNikah(result.getString(8));
-            cek.setId_SuratNIPBaru(result.getString(9));
             cek.setId_Suratkk(result.getString(10));
             pns.add(cek);
         }
@@ -443,7 +446,7 @@ public class ControlData {
     public void insertPNS(PNS k) throws SQLException {
         PreparedStatement stmt = null;
         conn.setAutoCommit(false);
-        String query = "INSERT INTO pns VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO pns VALUES(?,?,?,?,?,?,?,?,?,?,?)";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, k.getNip_baru());
         stmt.setString(2, k.getNip_lama());
@@ -453,11 +456,9 @@ public class ControlData {
         stmt.setString(6, k.getId_SuratSPTKGTerakhir());
         stmt.setString(7, k.getId_SuratKarpeg());
         stmt.setString(8, k.getId_SuratNikah());
-        stmt.setString(9, k.getId_SuratNIPBaru());
-        stmt.setString(10, k.getId_Suratkk());
-        stmt.setString(11, k.getJk().toUpperCase());
-        stmt.setString(12, k.getStatus().toUpperCase());
-
+        stmt.setString(9, k.getId_Suratkk());
+        stmt.setString(10, k.getJk().toUpperCase());
+        stmt.setString(11, k.getStatus().toUpperCase());
         stmt.executeUpdate();
         conn.commit();
     }
@@ -524,7 +525,7 @@ public class ControlData {
     public void insertCPNS(SK_CPNS k) throws SQLException {
         PreparedStatement stmt = null;
         conn.setAutoCommit(false);
-        String query = "INSERT INTO sk_cpns VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,CURRENT_DATE,?)";
+        String query = "INSERT INTO sk_cpns VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,CURRENT_DATE,?)";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, k.getId_SuratCPNS().toUpperCase());
         stmt.setString(2, k.getTempat_surat().toUpperCase());
@@ -532,23 +533,16 @@ public class ControlData {
         stmt.setString(4, k.getNama_pemilik().toUpperCase());
         stmt.setString(5, k.getTempat_lahir().toUpperCase());
         stmt.setString(6, k.getTanggal_lahir());
-        stmt.setString(7, k.getPartikelir().toUpperCase());
-        stmt.setString(8, k.getTmt_partikelir());
-        stmt.setString(9, k.getProfesi().toUpperCase());
-        stmt.setString(10, k.getSekolah().toUpperCase());
-        stmt.setString(11, k.getNip_lama());
-        stmt.setString(12, k.getNip_baru());
-        stmt.setString(13, k.getGp_bulanan());
-        stmt.setString(14, k.getDari_gaji());
-        stmt.setString(15, k.getMasa_kerja_tahun());
-        stmt.setString(16, k.getMasa_kerja_bulan());
-        stmt.setString(17, k.getGolongan());
-        stmt.setString(18, k.getBerijazah().toUpperCase());
-        stmt.setString(19, k.getPersetujuan_dr().toUpperCase());
-        stmt.setString(20, k.getNmr_persetujuan());
-        stmt.setString(21, k.getTmt_persetujuan());
-        stmt.setString(22, k.getKode_operator().toUpperCase());
-
+        stmt.setString(7, k.getProfesi().toUpperCase());
+        stmt.setString(8, k.getSekolah().toUpperCase());
+        stmt.setString(9, k.getTmt_cpns());
+        stmt.setString(10, k.getNip_lama());
+        stmt.setString(11, k.getNip_baru());
+        stmt.setString(12, k.getMasa_kerja_tahun());
+        stmt.setString(13, k.getMasa_kerja_bulan());
+        stmt.setString(14, k.getGolongan());
+        stmt.setString(15, k.getBerijazah().toUpperCase());
+        stmt.setString(16, k.getKode_operator().toUpperCase());
         stmt.executeUpdate();
         conn.commit();
     }
@@ -577,8 +571,9 @@ public class ControlData {
         int cek = 0;
         ResultSet result = null;
         conn.setAutoCommit(false);
-        String query = "SELECT YEAR(CURRENT_DATE)- YEAR(sk_nipbaru.tanggal_lahir) "
-                + "FROM sk_nipbaru WHERE nip_baru=? ";
+        String query = "SELECT YEAR(CURRENT_DATE)- YEAR(sk_pangkatterakhir.tanggal_lahir) "
+                + "FROM sk_pangkatterakhir,pns WHERE pns.nip_baru=? "
+                + "and pns.id_SuratPangkatTerakhir=sk_pangkatterakhir.id_SuratPangkatTerakhir";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, id);
         result = stmt.executeQuery();
@@ -610,27 +605,24 @@ public class ControlData {
     public void insertSK_PangkatTerakhir(SK_PangkatTerakhir k) throws SQLException {
         PreparedStatement stmt = null;
         conn.setAutoCommit(false);
-        String query = "INSERT INTO sk_pangkatterakhir VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,CURRENT_DATE,?,?,?,?)";
+        String query = "INSERT INTO sk_pangkatterakhir VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,CURRENT_DATE,?)";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, k.getId_SuratPangkatTerakhir().toUpperCase());
         stmt.setString(2, k.getNama_pemilik().toUpperCase());
-        stmt.setString(3, k.getTanggal_lahir());
-        stmt.setString(4, k.getNip_lama());
-        stmt.setString(5, k.getNip_baru());
-        stmt.setString(6, k.getPendidikan().toUpperCase());
-        stmt.setString(7, k.getPangkat_lama().toUpperCase());
-        stmt.setString(8, k.getGolongan_lama().toUpperCase());
-        stmt.setString(9, k.getTmt_lama());
+        stmt.setString(3, k.getTempat_lahir());
+        stmt.setString(4, k.getTanggal_lahir());
+        stmt.setString(5, k.getNip_lama());
+        stmt.setString(6, k.getNip_baru());
+        stmt.setString(7, k.getPendidikan().toUpperCase());
+        stmt.setString(8, k.getProfesi().toUpperCase());
+        stmt.setString(9, k.getSekolah().toUpperCase());
         stmt.setString(10, k.getPangkat_baru().toUpperCase());
         stmt.setString(11, k.getGolongan_baru().toUpperCase());
         stmt.setString(12, k.getTmt_baru());
-        stmt.setString(13, k.getMasa_kerja_golongan().toUpperCase());
-        stmt.setString(14, k.getGaji_pokok());
-        stmt.setString(15, k.getMasa_kerja_golongan_bulan().toUpperCase());
+        stmt.setString(13, k.getMasa_kerja_golongan_tahun());
+        stmt.setString(14, k.getMasa_kerja_golongan_bulan());
+        stmt.setString(15, k.getGaji_pokok());
         stmt.setString(16, k.getKode_operator().toUpperCase());
-        stmt.setString(17, k.getProfesi().toUpperCase());
-        stmt.setString(18, k.getSekolah().toUpperCase());
-        stmt.setString(19, k.getTempat_lahir().toUpperCase());
         stmt.executeUpdate();
         conn.commit();
     }
@@ -776,11 +768,11 @@ public class ControlData {
         ResultSet result = null;
         conn.setAutoCommit(false);
         String query = "SELECT a.id_SuratCPNS,a.tempat_surat,a.tanggal_surat,"
-                + "a.nama_pemilik,a.tempat_lahir,a.tanggal_lahir,a.partikelir,"
-                + "a.tmt_partikelir,a.Profesi,a.Sekolah,a.nip_lama,a.nip_baru,"
-                + "a.gp_bulanan,a.dari_gaji,a.masa_kerja_tahun,a.masa_kerja_bulan,"
-                + "a.golongan,a.berijazah,a.persetujuan_dr,a.nmr_persetujuan,"
-                + "a.tmt_persetujuan,a.tanggal_penyimpanan_surat,a.kode_operator "
+                + "a.nama_pemilik,a.tempat_lahir,a.tanggal_lahir,a.tmt_cpns,"
+                + "a.Profesi,a.Sekolah,a.nip_lama,a.nip_baru,"
+                + "a.masa_kerja_tahun,a.masa_kerja_bulan,"
+                + "a.golongan,a.berijazah,"
+                + "a.tanggal_penyimpanan_surat,a.kode_operator "
                 + "FROM sk_cpns a, pns b WHERE a.id_SuratCPNS = b.id_SuratCPNS "
                 + "AND b.nip_baru = ?";
         stmt = conn.prepareStatement(query);
@@ -794,23 +786,17 @@ public class ControlData {
             cpns.setNama_pemilik(result.getString(4));
             cpns.setTempat_lahir(result.getString(5));
             cpns.setTanggal_lahir(result.getString(6));
-            cpns.setPartikelir(result.getString(7));
-            cpns.setTmt_partikelir(result.getString(8));
-            cpns.setProfesi(result.getString(9));
-            cpns.setSekolah(result.getString(10));
-            cpns.setNip_lama(result.getString(11));
-            cpns.setNip_baru(result.getString(12));
-            cpns.setGp_bulanan(result.getString(13));
-            cpns.setDari_gaji(result.getString(14));
-            cpns.setMasa_kerja_tahun(result.getString(15));
-            cpns.setMasa_kerja_bulan(result.getString(16));
-            cpns.setGolongan(result.getString(17));
-            cpns.setBerijazah(result.getString(18));
-            cpns.setPersetujuan_dr(result.getString(19));
-            cpns.setNmr_persetujuan(result.getString(20));
-            cpns.setTmt_persetujuan(result.getString(21));
-            cpns.setTanggal_penyimpanan_surat(result.getString(22));
-            cpns.setKode_operator(result.getString(23));
+            cpns.setTmt_cpns(result.getString(7));
+            cpns.setProfesi(result.getString(8));
+            cpns.setSekolah(result.getString(9));
+            cpns.setNip_lama(result.getString(10));
+            cpns.setNip_baru(result.getString(11));
+            cpns.setMasa_kerja_tahun(result.getString(12));
+            cpns.setMasa_kerja_bulan(result.getString(13));
+            cpns.setGolongan(result.getString(14));
+            cpns.setBerijazah(result.getString(15));
+            cpns.setTanggal_penyimpanan_surat(result.getString(16));
+            cpns.setKode_operator(result.getString(17));
         }
         conn.commit();
         return cpns;
@@ -822,11 +808,11 @@ public class ControlData {
         ResultSet result = null;
         conn.setAutoCommit(false);
         String query = "SELECT a.id_SuratPangkatTerakhir,a.nama_pemilik,"
-                + "a.tanggal_lahir,a.nip_lama,a.nip_baru,a.pendidikan,a.pangkat_lama,"
-                + "a.golongan_lama,a.tmt_lama,a.pangkat_baru,a.golongan_baru,"
-                + "a.tmt_baru,a.masa_kerja_golongan,a.gaji_pokok,"
-                + "a.masa_kerja_golongan_bulan,a.tanggal_penyimpanan_surat,"
-                + "a.kode_operator,a.Profesi,a.Sekolah,a.tempat_lahir"
+                + "a.tempat_lahir,a.tanggal_lahir,a.nip_lama,a.nip_baru,a.pendidikan,"
+                + "a.Profesi,a.Sekolah,a.pangkat_baru,a.golongan_baru,"
+                + "a.tmt_baru,a.masa_kerja_golongan_tahun,"
+                + "a.masa_kerja_golongan_bulan,a.gaji_pokok,a.tanggal_penyimpanan_surat,"
+                + "a.kode_operator"
                 + " FROM sk_pangkatterakhir a, pns b "
                 + "WHERE a.id_SuratPangkatTerakhir = b.id_SuratPangkatTerakhir "
                 + "AND b.nip_baru = ?";
@@ -837,24 +823,21 @@ public class ControlData {
             skpt = new SK_PangkatTerakhir();
             skpt.setId_SuratPangkatTerakhir(result.getString(1));
             skpt.setNama_pemilik(result.getString(2));
-            skpt.setTanggal_lahir(result.getString(3));
-            skpt.setNip_lama(result.getString(4));
-            skpt.setNip_baru(result.getString(5));
-            skpt.setPendidikan(result.getString(6));
-            skpt.setPangkat_lama(result.getString(7));
-            skpt.setGolongan_lama(result.getString(8));
-            skpt.setTmt_lama(result.getString(9));
+            skpt.setTempat_lahir(result.getString(3));
+            skpt.setTanggal_lahir(result.getString(4));
+            skpt.setNip_lama(result.getString(5));
+            skpt.setNip_baru(result.getString(6));
+            skpt.setPendidikan(result.getString(7));
+            skpt.setProfesi(result.getString(8));
+            skpt.setSekolah(result.getString(9));
             skpt.setPangkat_baru(result.getString(10));
             skpt.setGolongan_baru(result.getString(11));
             skpt.setTmt_baru(result.getString(12));
-            skpt.setMasa_kerja_golongan(result.getString(13));
-            skpt.setGaji_pokok(result.getString(14));
-            skpt.setMasa_kerja_golongan_bulan(result.getString(15));
+            skpt.setMasa_kerja_golongan_tahun(result.getString(13));
+            skpt.setMasa_kerja_golongan_bulan(result.getString(14));
+            skpt.setGaji_pokok(result.getString(15));
             skpt.setTanggal_penyimpanan_surat(result.getString(16));
             skpt.setKode_operator(result.getString(17));
-            skpt.setProfesi(result.getString(18));
-            skpt.setSekolah(result.getString(19));
-            skpt.setTempat_lahir(result.getString(20));
         }
         conn.commit();
         return skpt;
@@ -921,6 +904,31 @@ public class ControlData {
         }
         conn.commit();
         return karpeg;
+    }
+
+    public Instansi tampil_tempat_instansi(String nipBaru) throws SQLException {
+        PreparedStatement stmt = null;
+        Instansi instansi = null;
+        ResultSet result = null;
+        conn.setAutoCommit(false);
+        String query = "SELECT * from instansi WHERE  nipPegawai = ?";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, nipBaru);
+        result = stmt.executeQuery();
+        if (result.next()) {
+            instansi = new Instansi();
+            instansi.setIdInstansi(result.getString(1));
+            instansi.setNmInstansi(result.getString(2));
+            instansi.setNm_kepala(result.getString(3));
+            instansi.setPangkatGolkepala(result.getString(4));
+            instansi.setNip_kepala(result.getString(5));
+            PNS pns = new PNS();
+            pns.setNip_baru(result.getString(7));
+            pns.setNama_pns(result.getString(6));
+            instansi.setPns(pns);
+        }
+        conn.commit();
+        return instansi;
     }
 
     public S_Nikah tampilS_Nikah(String nipBaru) throws SQLException {
@@ -1122,34 +1130,6 @@ public class ControlData {
         }
     }
 
-    public void delete_sk_nipbaru(String id) throws SQLException {
-        PreparedStatement stmt = null;
-        try {
-            conn.setAutoCommit(false);
-            String query = "delete from sk_nipbaru where id_SuratNIPBaru=? ";
-            stmt = conn.prepareStatement(query);
-            stmt.setString(1, id);
-            stmt.executeUpdate();
-            conn.commit();
-        } catch (SQLException ex) {
-            conn.rollback();
-            throw ex;
-        } finally {
-            try {
-                conn.setAutoCommit(true);
-                if (stmt != null) {
-                    stmt.close();
-                }
-            } catch (Exception e) {
-                try {
-                    throw e;
-                } catch (Exception ex) {
-                    Logger.getLogger(ControlData.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-    }
-
     public void delete_sk_karpeg(String id) throws SQLException {
         PreparedStatement stmt = null;
         try {
@@ -1262,6 +1242,34 @@ public class ControlData {
         }
     }
 
+    public void delete_tmt_instansi(String id) throws SQLException {
+        PreparedStatement stmt = null;
+        try {
+            conn.setAutoCommit(false);
+            String query = "delete from instansi where nipPegawai=? ";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, id);
+            stmt.executeUpdate();
+            conn.commit();
+        } catch (SQLException ex) {
+            conn.rollback();
+            throw ex;
+        } finally {
+            try {
+                conn.setAutoCommit(true);
+                if (stmt != null) {
+                    stmt.close();
+                }
+            } catch (Exception e) {
+                try {
+                    throw e;
+                } catch (Exception ex) {
+                    Logger.getLogger(ControlData.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+
     public void Deleteanggotakeluarga(String NIK) throws SQLException {
         PreparedStatement stmt = null;
         try {
@@ -1322,33 +1330,26 @@ public class ControlData {
         PreparedStatement stmt = null;
         conn.setAutoCommit(false);
         String query = "UPDATE sk_cpns SET tempat_surat = ?,tanggal_surat = ?,"
-                + "tempat_lahir = ?,tanggal_lahir = ?,partikelir = ?,tmt_partikelir = ?,"
-                + "Profesi = ?,Sekolah = ?,gp_bulanan = ?,dari_gaji = ?,"
+                + "tempat_lahir = ?,tanggal_lahir = ?,"
+                + "Profesi = ?,Sekolah = ?,tmt_cpns = ?,"
                 + "masa_kerja_tahun = ?,masa_kerja_bulan = ?,golongan = ?,berijazah = ?,"
-                + "persetujuan_dr = ?,nmr_persetujuan = ?,tmt_persetujuan = ?,"
-                + "tanggal_penyimpanan_surat = CURRENT_DATE,kode_operator = ? "
-                + "WHERE id_SuratCPNS = ?";
+                + "tanggal_penyimpanan_surat = CURRENT_DATE,kode_operator = ?,id_suratCPNS=? "
+                + "WHERE nip_baru = ?";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, cpns.getTempat_surat().toUpperCase());
         stmt.setString(2, cpns.getTanggal_surat());
         stmt.setString(3, cpns.getTempat_lahir().toUpperCase());
         stmt.setString(4, cpns.getTanggal_lahir());
-        stmt.setString(5, cpns.getPartikelir().toUpperCase());
-        stmt.setString(6, cpns.getTmt_partikelir());
-        stmt.setString(7, cpns.getProfesi().toUpperCase());
-        stmt.setString(8, cpns.getSekolah().toUpperCase());
-        stmt.setString(9, cpns.getGp_bulanan());
-        stmt.setString(10, cpns.getDari_gaji());
-        stmt.setString(11, cpns.getMasa_kerja_tahun());
-        stmt.setString(12, cpns.getMasa_kerja_bulan());
-        stmt.setString(13, cpns.getGolongan().toUpperCase());
-        stmt.setString(14, cpns.getBerijazah().toUpperCase());
-        stmt.setString(15, cpns.getPersetujuan_dr().toUpperCase());
-        stmt.setString(16, cpns.getNmr_persetujuan().toUpperCase());
-        stmt.setString(17, cpns.getTmt_persetujuan());
-        stmt.setString(18, cpns.getKode_operator().toUpperCase());
-        stmt.setString(19, cpns.getId_SuratCPNS());
-
+        stmt.setString(5, cpns.getProfesi().toUpperCase());
+        stmt.setString(6, cpns.getSekolah().toUpperCase());
+        stmt.setString(7, cpns.getTmt_cpns());
+        stmt.setString(8, cpns.getMasa_kerja_tahun());
+        stmt.setString(9, cpns.getMasa_kerja_bulan());
+        stmt.setString(10, cpns.getGolongan().toUpperCase());
+        stmt.setString(11, cpns.getBerijazah().toUpperCase());
+        stmt.setString(12, cpns.getKode_operator().toUpperCase());
+        stmt.setString(13, cpns.getId_SuratCPNS());
+        stmt.setString(14, cpns.getNip_baru());
         stmt.executeUpdate();
         conn.commit();
     }
@@ -1357,29 +1358,26 @@ public class ControlData {
         PreparedStatement stmt = null;
         conn.setAutoCommit(false);
         String query = "UPDATE sk_pangkatterakhir SET tempat_lahir = ?,tanggal_lahir = ?,"
-                + "pendidikan = ?,pangkat_lama = ?,golongan_lama = ?,tmt_lama = ?,"
+                + "pendidikan = ?,"
                 + "Profesi = ?,Sekolah = ?,pangkat_baru = ?,golongan_baru = ?,tmt_baru = ?,"
-                + "masa_kerja_golongan = ?,masa_kerja_golongan_bulan = ?,gaji_pokok = ?,"
-                + "tanggal_penyimpanan_surat = CURRENT_DATE,kode_operator = ? "
-                + "WHERE id_SuratPangkatTerakhir = ?";
+                + "masa_kerja_golongan_tahun = ?,masa_kerja_golongan_bulan = ?,gaji_pokok = ?,"
+                + "tanggal_penyimpanan_surat = CURRENT_DATE,kode_operator = ? ,id_SuratPangkatTerakhir = ?"
+                + "WHERE nip_baru = ? ";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, pt.getTempat_lahir().toUpperCase());
         stmt.setString(2, pt.getTanggal_lahir());
         stmt.setString(3, pt.getPendidikan().toUpperCase());
-        stmt.setString(4, pt.getPangkat_lama().toUpperCase());
-        stmt.setString(5, pt.getGolongan_lama().toUpperCase());
-        stmt.setString(6, pt.getTmt_lama());
-        stmt.setString(7, pt.getProfesi().toUpperCase());
-        stmt.setString(8, pt.getSekolah().toUpperCase());
-        stmt.setString(9, pt.getPangkat_baru().toUpperCase());
-        stmt.setString(10, pt.getGolongan_baru().toUpperCase());
-        stmt.setString(11, pt.getTmt_baru());
-        stmt.setString(12, pt.getMasa_kerja_golongan());
-        stmt.setString(13, pt.getMasa_kerja_golongan_bulan());
-        stmt.setString(14, pt.getGaji_pokok());
-        stmt.setString(15, pt.getKode_operator().toUpperCase());
-        stmt.setString(16, pt.getId_SuratPangkatTerakhir());
-
+        stmt.setString(4, pt.getProfesi().toUpperCase());
+        stmt.setString(5, pt.getSekolah().toUpperCase());
+        stmt.setString(6, pt.getPangkat_baru().toUpperCase());
+        stmt.setString(7, pt.getGolongan_baru().toUpperCase());
+        stmt.setString(8, pt.getTmt_baru());
+        stmt.setString(9, pt.getMasa_kerja_golongan_tahun());
+        stmt.setString(10, pt.getMasa_kerja_golongan_bulan());
+        stmt.setString(11, pt.getGaji_pokok());
+        stmt.setString(12, pt.getKode_operator().toUpperCase());
+        stmt.setString(13, pt.getId_SuratPangkatTerakhir());
+        stmt.setString(14, pt.getNip_baru());
         stmt.executeUpdate();
         conn.commit();
     }
@@ -1390,8 +1388,8 @@ public class ControlData {
         String query = "UPDATE sptkg_terakhir SET tempat_surat = ?,tanggal_surat = ?,"
                 + "pangkat_baru = ?,golongan_ruang_baru = ?,Sekolah = ?,"
                 + "gajipokok_lama = ?,gajipokok_baru = ?,tmt_baru = ?,"
-                + "tanggal_penyimpanan_surat = CURRENT_DATE,kode_operator = ? "
-                + "WHERE id_SuratSPTKGTerakhir = ?";
+                + "tanggal_penyimpanan_surat = CURRENT_DATE,kode_operator = ?,id_SuratSPTKGTerakhir = ? "
+                + "WHERE nip_baru = ?";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, k.getTempat_surat().toUpperCase());
         stmt.setString(2, k.getTanggal_surat());
@@ -1403,7 +1401,7 @@ public class ControlData {
         stmt.setString(8, k.getTmt_baru());
         stmt.setString(9, k.getKode_operator().toUpperCase());
         stmt.setString(10, k.getId_SuratSPTKGTerakhir());
-
+        stmt.setString(11, k.getNip_baru());
         stmt.executeUpdate();
         conn.commit();
     }
@@ -1412,13 +1410,14 @@ public class ControlData {
         PreparedStatement stmt = null;
         conn.setAutoCommit(false);
         String query = "UPDATE sk_karpeg SET tanggal_lahir = ?,tmt_cpns = ?,"
-                + "tanggal_penyimpanan_surat = CURRENT_DATE,kode_operator = ? "
-                + "WHERE id_SuratKarpeg = ?";
+                + "tanggal_penyimpanan_surat = CURRENT_DATE,kode_operator = ?,id_SuratKarpeg = ? "
+                + "WHERE nip_baru = ?";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, k.getTanggal_lahir());
         stmt.setString(2, k.getTmt_cpns());
         stmt.setString(3, k.getKode_operator().toUpperCase());
         stmt.setString(4, k.getId_SuratKarpeg());
+        stmt.setString(5, k.getNip_baru());
         stmt.executeUpdate();
         conn.commit();
     }
@@ -1566,5 +1565,42 @@ public class ControlData {
             Logger.getLogger(ControlData.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    public void addTempatBekerja(Instansi instansi) {
+        try {
+            PreparedStatement stmt = null;
+            conn.setAutoCommit(false);
+            String query = "INSERT INTO instansi VALUES(?,?,?,?,?,?,?)";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, instansi.getIdInstansi());
+            stmt.setString(2, instansi.getNmInstansi().toUpperCase());
+            stmt.setString(3, instansi.getNm_kepala().toUpperCase());
+            stmt.setString(4, instansi.getPangkatGolkepala().toUpperCase());
+            stmt.setString(5, instansi.getNip_kepala());
+            stmt.setString(6, instansi.getPns().getNama_pns().toUpperCase());
+            stmt.setString(7, instansi.getPns().getNip_baru());
+            stmt.executeUpdate();
+            conn.commit();
+        } catch (SQLException ex) {
+            Logger.getLogger(ControlData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void updateTempatInstansi(Instansi inst) throws SQLException {
+        PreparedStatement stmt = null;
+        conn.setAutoCommit(false);
+        String query = "UPDATE instansi SET idInstansi = ?,namaInstansi = ?,"
+                + "namaKepala = ?,pangkatGol = ?,nipKepala = ? WHERE nipPegawai = ? ";
+        stmt = conn.prepareStatement(query);
+
+        stmt.setString(1, inst.getIdInstansi().toUpperCase());
+        stmt.setString(2, inst.getNmInstansi().toUpperCase());
+        stmt.setString(3, inst.getNm_kepala().toUpperCase());
+        stmt.setString(4, inst.getPangkatGolkepala().toUpperCase());
+        stmt.setString(5, inst.getNip_kepala());
+        stmt.setString(6, inst.getPns().getNip_baru());
+        stmt.executeUpdate();
+        conn.commit();
     }
 }

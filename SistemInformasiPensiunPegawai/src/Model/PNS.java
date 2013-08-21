@@ -17,16 +17,11 @@ public class PNS {
     private String id_SuratSPTKGTerakhir;
     private String id_SuratKarpeg;
     private String id_SuratNikah;
-    private String id_SuratNIPBaru;
     private String id_Suratkk;
     private String jk;
     private String status;
 
-    public PNS(String nip_baru, String nip_lama, String nama_pns, 
-            String id_SuratCPNS, String id_SuratPangkatTerakhir,
-            String id_SuratSPTKGTerakhir, String id_SuratKarpeg,
-            String id_SuratNikah, String id_SuratNIPBaru, String id_Suratkk,
-            String jk,String status) {
+    public PNS(String nip_baru, String nip_lama, String nama_pns, String id_SuratCPNS, String id_SuratPangkatTerakhir, String id_SuratSPTKGTerakhir, String id_SuratKarpeg, String id_SuratNikah, String id_Suratkk, String jk, String status) {
         this.nip_baru = nip_baru;
         this.nip_lama = nip_lama;
         this.nama_pns = nama_pns;
@@ -35,12 +30,12 @@ public class PNS {
         this.id_SuratSPTKGTerakhir = id_SuratSPTKGTerakhir;
         this.id_SuratKarpeg = id_SuratKarpeg;
         this.id_SuratNikah = id_SuratNikah;
-        this.id_SuratNIPBaru = id_SuratNIPBaru;
         this.id_Suratkk = id_Suratkk;
         this.jk = jk;
         this.status = status;
     }
 
+   
     public PNS() {
     }
 
@@ -154,20 +149,6 @@ public class PNS {
      */
     public void setId_SuratNikah(String id_SuratNikah) {
         this.id_SuratNikah = id_SuratNikah;
-    }
-
-    /**
-     * @return the id_SuratNIPBaru
-     */
-    public String getId_SuratNIPBaru() {
-        return id_SuratNIPBaru;
-    }
-
-    /**
-     * @param id_SuratNIPBaru the id_SuratNIPBaru to set
-     */
-    public void setId_SuratNIPBaru(String id_SuratNIPBaru) {
-        this.id_SuratNIPBaru = id_SuratNIPBaru;
     }
 
     /**
